@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naavick Legal — Through Laws, Thoroughly.</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Barlow:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ───── HERO ───── */
+.hero{
+  min-height:100vh;
+  background:var(--ch);
+  display:flex;flex-direction:column;
+  justify-content:center;
+  padding:0 56px;
+  position:relative;overflow:hidden;
+}
+.hero-grid{
+  position:absolute;inset:0;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='90'%3E%3Cpath d='M0,22 Q70,-10 140,22 Q210,54 280,22' fill='none' stroke='white' stroke-opacity='0.028' stroke-width='0.7'/%3E%3Cpath d='M0,67 Q70,35 140,67 Q210,99 280,67' fill='none' stroke='white' stroke-opacity='0.028' stroke-width='0.7'/%3E%3C/svg%3E");
+  background-size:280px 90px;
+  pointer-events:none;
+}
+.hero-wheel{
+  position:absolute;
+  right:-8vw;bottom:-8vw;
+  width:58vw;height:58vw;
+  opacity:0.14;pointer-events:none;
+  filter:invert(1);
+  object-fit:contain;
+  animation:wheelSpin 400s linear infinite;
+  transform-origin:center center;
+  z-index:1;
+}
+@keyframes wheelSpin{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+.hero-loc{
+  font-size:9px;letter-spacing:0.42em;text-transform:uppercase;
+  color:rgba(255,255,255,0.3);font-weight:300;
+  margin-bottom:40px;
+  opacity:0;transform:translateY(12px);
+  animation:fadeup .7s .2s forwards;
+  position:relative;
+}
+.hero-h{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;font-size:clamp(52px,8.5vw,124px);
+  color:rgba(255,255,255,0.94);
+  line-height:0.92;letter-spacing:-0.025em;
+  max-width:880px;
+  margin-top:220px;
+  opacity:0;transform:translateY(24px);
+  animation:fadeup .85s .4s forwards;
+  position:relative;
+}
+.hero-h em{font-style:italic;color:rgba(255,255,255,0.28)}
+.hero-bottom{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-top:64px;flex-wrap:wrap;gap:36px;
+  opacity:0;transform:translateY(16px);
+  animation:fadeup .7s .65s forwards;
+  position:relative;
+}
+.hero-tagline{
+  font-size:13px;color:rgba(255,255,255,0.42);
+  font-weight:300;line-height:1.85;max-width:340px;
+}
+.hero-tagline strong{
+  display:block;font-family:'Cormorant Garamond',serif;
+  font-weight:300;font-size:19px;color:rgba(255,255,255,0.78);
+  margin-bottom:6px;font-style:italic;
+}
+.hero-actions{display:flex;gap:18px;align-items:center;margin-left:auto}
+.btn-hero{
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(255,255,255,0.85);font-weight:300;
+  border:0.5px solid rgba(255,255,255,0.3);
+  padding:13px 28px;transition:all .22s;
+}
+.btn-hero:hover{background:rgba(255,255,255,0.08)}
+.btn-ghost-hero{
+  font-size:10px;letter-spacing:0.16em;text-transform:uppercase;
+  color:rgba(255,255,255,0.32);font-weight:300;
+  transition:color .2s;
+}
+.btn-ghost-hero:hover{color:rgba(255,255,255,0.85)}
+.hero-rule{
+  position:absolute;bottom:0;left:56px;right:56px;
+  height:0.5px;background:rgba(255,255,255,0.07);
+}
+.scroll-ind{
+  position:absolute;right:56px;bottom:32px;
+  display:flex;align-items:center;gap:10px;
+  font-size:8px;letter-spacing:0.32em;text-transform:uppercase;
+  color:rgba(255,255,255,0.22);font-weight:300;
+  opacity:0;animation:fadeup .6s 1.1s forwards;
+}
+.scroll-ind::before{
+  content:'';display:block;width:24px;height:0.5px;
+  background:rgba(255,255,255,0.22);
+}
+@keyframes fadeup{to{opacity:1;transform:translateY(0)}}
+
+/* ───── WHO WE ARE (Philosophy) ───── */
+.philo-grid{
+  display:grid;grid-template-columns:1fr 1.2fr;gap:80px;
+  align-items:start;margin-top:56px;
+}
+.philo-left p{
+  font-size:14.5px;color:var(--mid);line-height:1.95;font-weight:300;
+  margin-bottom:0;max-width:480px;
+}
+.philo-stats{
+  display:flex;margin-top:44px;
+}
+.philo-stat{padding:24px 36px 24px 0;border-right:0.5px solid var(--mist);margin-right:36px}
+.philo-stat:last-child{border-right:none}
+.ps-n{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;font-size:52px;color:var(--ch);line-height:1;letter-spacing:-0.02em;
+}
+.ps-l{
+  font-size:9px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--st);font-weight:300;margin-top:5px;
+}
+.philo-right{
+  border-left:0.5px solid var(--mist);padding-left:56px;
+}
+.philo-pull{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;font-style:italic;
+  font-size:clamp(24px,2.8vw,36px);
+  color:var(--sl);line-height:1.38;letter-spacing:-0.012em;
+  margin-bottom:28px;
+}
+.philo-detail{
+  font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--st);font-weight:300;
+}
+
+/* ───── HOW WE DO ───── */
+.principles-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:1px;background:var(--mist);
+  margin-top:72px;
+}
+.pr-cell{
+  background:var(--ww);
+  padding:48px 44px 44px;
+  transition:background .3s;
+}
+.pr-cell:hover{background:var(--iv)}
+.pr-cell:hover .pr-n{color:var(--crim);transition:color .3s}
+.pr-n{
+  font-family:'Cormorant Garamond',serif;
+  font-size:64px;font-weight:300;
+  color:rgba(26,26,26,0.06);
+  line-height:1;margin-bottom:22px;
+}
+.pr-t{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;font-size:24px;
+  color:var(--ch);margin-bottom:16px;letter-spacing:-0.01em;
+}
+.pr-d{
+  font-size:13px;color:var(--mid);
+  line-height:1.95;font-weight:300;max-width:420px;
+}
+
+/* ───── EXPERTISE PREVIEW ───── */
+.exp-preview-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:1px;background:var(--mist);
+  margin-top:64px;
+}
+.exp-cell{
+  background:var(--ww);
+  padding:36px 32px 32px;
+  display:grid;grid-template-columns:44px 1fr;
+  gap:0;align-items:start;
+  transition:background .3s;
+  position:relative;
+}
+.exp-cell:hover{background:var(--iv)}
+.exp-cell:hover .exp-n{color:var(--crim);transition:color .3s}
+.exp-cell:hover .exp-arrow{transform:translate(4px,-4px);opacity:1}
+
+/* ── PRACTICE POPUP ── */
+#corp-popup{
+  position:fixed;inset:0;z-index:600;
+  display:grid;grid-template-columns:1.5fr 1fr;
+  opacity:0;pointer-events:none;
+  transition:opacity 420ms cubic-bezier(0.25,0,0.1,1);
+}
+#corp-popup.open{opacity:1;pointer-events:all;}
+.pp-left{
+  background:#0D0D0D;
+  display:flex;align-items:center;justify-content:center;
+  padding:72px 64px;
+  border-right:0.5px solid rgba(249,248,244,0.06);
+  position:relative;
+}
+.pp-left svg{width:100%;max-width:560px;height:auto;}
+.pp-right{
+  background:#F9F8F4;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 64px;
+  position:relative;
+}
+.pp-eyebrow{
+  font-family:'Barlow',sans-serif;font-size:8px;letter-spacing:0.38em;
+  text-transform:uppercase;color:#BF1B1B;font-weight:300;
+  display:flex;align-items:center;gap:14px;margin-bottom:44px;
+}
+.pp-eyebrow::before{content:'';display:block;width:22px;height:0.5px;background:#BF1B1B;}
+.pp-h{
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:clamp(44px,4.8vw,68px);color:#1A1A1A;
+  line-height:0.92;letter-spacing:-0.02em;margin-bottom:32px;
+}
+.pp-h em{font-style:italic;color:rgba(26,26,26,0.3);}
+.pp-rule{width:28px;height:0.5px;background:#BF1B1B;margin-bottom:24px;}
+.pp-desc{
+  font-size:13px;color:rgba(26,26,26,0.55);font-weight:300;
+  line-height:1.9;max-width:300px;margin-bottom:40px;
+}
+.pp-list{display:flex;flex-direction:column;}
+.pp-item{
+  font-family:'Barlow',sans-serif;font-size:11px;font-weight:300;
+  color:rgba(26,26,26,0.6);letter-spacing:0.04em;
+  padding:11px 0;border-bottom:0.5px solid rgba(26,26,26,0.08);
+  display:flex;align-items:center;gap:14px;
+}
+.pp-item::before{content:'';width:3px;height:3px;background:#BF1B1B;border-radius:50%;flex-shrink:0;}
+.pp-close{
+  position:absolute;top:36px;right:44px;
+  font-family:'Barlow',sans-serif;font-size:10px;letter-spacing:0.22em;
+  text-transform:uppercase;color:rgba(26,26,26,0.4);font-weight:300;
+  background:none;border:none;cursor:pointer;transition:color .2s;
+  z-index:601;pointer-events:none;
+}
+#corp-popup.open .pp-close{pointer-events:auto;}
+.pp-close:hover{color:#1A1A1A;}
+.exp-n{
+  font-family:'Barlow',sans-serif;
+  font-size:9px;font-weight:300;
+  color:var(--sv);letter-spacing:0.18em;padding-top:5px;
+}
+.exp-content{display:flex;flex-direction:column}
+.exp-title{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;font-size:20px;color:var(--ch);
+  letter-spacing:-0.01em;line-height:1.25;
+}
+.exp-arrow{display:none}
+.exp-all{
+  text-align:center;margin-top:64px;
+  padding-top:48px;border-top:0.5px solid var(--mist);
+}
+
+/* ───── DEAL HIGHLIGHTS (LinkedIn) ───── */
+.deals-header{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:56px;flex-wrap:wrap;gap:24px;
+}
+.deals-meta{
+  font-size:9px;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--st);font-weight:300;display:flex;align-items:center;gap:10px;
+}
+.deals-meta::before{
+  content:'';width:8px;height:8px;border-radius:50%;background:#0A66C2;
+  display:block;
+}
+.deals-carousel{overflow:hidden;width:100%}
+.deals-track{
+  display:flex;
+  transition:transform 600ms cubic-bezier(0.25,0,0.1,1);
+  width:200%;
+}
+.deals-slide{
+  width:50%;display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;flex-shrink:0;
+}
+.deals-slide iframe{
+  width:100%;height:570px;
+  border:0.5px solid var(--mist);
+  background:var(--ww);
+}
+.deals-nav{
+  display:flex;align-items:center;justify-content:center;
+  gap:24px;margin-top:48px;
+}
+.deals-nav-btn{
+  font-family:'Barlow',sans-serif;
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--ch);font-weight:300;
+  background:none;border:0.5px solid var(--mist);
+  padding:12px 28px;cursor:pointer;transition:all .22s;
+}
+.deals-nav-btn:hover{border-color:var(--ch);background:var(--iv)}
+.deals-nav-btn:disabled{opacity:0.28;cursor:default;pointer-events:none}
+.deals-dots{display:flex;gap:8px;align-items:center}
+.deals-dot{width:6px;height:6px;border-radius:50%;background:var(--mist);display:inline-block;transition:background .3s}
+.deals-dot.active{background:var(--crim)}
+
+/* ───── TESTIMONIALS + CLIENTELE ───── */
+.social-proof{
+  background:var(--ww);overflow:hidden;
+  border-bottom:0.5px solid var(--mist);
+  padding:72px 56px 0;
+}
+.test-header-centered{
+  margin-bottom:44px;
+}
+.test-carousel{overflow:hidden;width:100%;}
+.test-track{
+  display:flex;
+  transition:transform 600ms cubic-bezier(0.25,0,0.1,1);
+  width:200%;
+}
+.test-slide{
+  width:50%;display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--mist);
+  flex-shrink:0;
+}
+.test-card{
+  background:var(--ww);
+  padding:32px 32px 28px;
+  display:flex;flex-direction:column;
+  transition:background .3s;
+}
+.test-card:hover{background:var(--iv)}
+.test-qmark{
+  font-family:'Cormorant Garamond',serif;
+  font-size:56px;line-height:0.7;color:var(--crim);
+  font-weight:300;display:block;margin-bottom:20px;
+}
+.test-qt{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;font-style:italic;
+  font-size:clamp(15px,1.6vw,20px);
+  color:var(--sl);line-height:1.7;
+  flex:1;letter-spacing:-0.005em;margin-bottom:28px;
+}
+.test-author-block{
+  border-top:0.5px solid var(--mist);
+  padding-top:20px;
+}
+.test-an{
+  font-family:'Barlow',sans-serif;
+  font-size:10px;letter-spacing:0.28em;
+  text-transform:uppercase;color:var(--ch);
+  font-weight:400;margin-bottom:4px;
+}
+.test-ar{
+  font-size:9px;letter-spacing:0.18em;
+  text-transform:uppercase;color:var(--st);font-weight:300;
+}
+.test-nav{
+  display:flex;align-items:center;justify-content:center;
+  gap:24px;margin-top:36px;padding-bottom:48px;
+}
+.test-nav-btn{
+  font-family:'Barlow',sans-serif;
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--ch);font-weight:300;background:none;
+  border:0.5px solid var(--mist);padding:12px 28px;
+  cursor:pointer;transition:all .22s;
+}
+.test-nav-btn:hover{border-color:var(--ch);background:var(--iv)}
+.test-nav-btn:disabled{opacity:0.28;cursor:default;pointer-events:none}
+.test-dots{display:flex;gap:8px;align-items:center;}
+.test-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--mist);border:none;
+  cursor:pointer;transition:background .3s;padding:0;
+}
+.test-dot.active{background:var(--crim)}
+
+/* clients strip */
+.sp-rule{height:0.5px;background:var(--mist)}
+.sp-clients{padding:40px 0 52px;}
+.sp-marquee{
+  width:100%;overflow:hidden;position:relative;
+}
+.sp-marquee::before,.sp-marquee::after{
+  content:'';position:absolute;top:0;bottom:0;width:120px;z-index:5;pointer-events:none;
+}
+.sp-marquee::before{left:0;background:linear-gradient(to right,var(--ww),transparent)}
+.sp-marquee::after{right:0;background:linear-gradient(to left,var(--ww),transparent)}
+.sp-track{
+  display:flex;align-items:center;gap:0;width:max-content;
+  animation:spScroll 50s linear infinite;
+}
+.sp-pill{
+  padding:0 48px;
+  display:flex;align-items:center;
+  position:relative;
+}
+.sp-pill::after{
+  content:'';position:absolute;right:0;top:50%;
+  transform:translateY(-50%);
+  width:0.5px;height:32px;background:var(--mist);
+}
+.sp-logo{
+  height:44px;width:auto;display:block;
+  filter:brightness(0) saturate(100%) invert(18%) sepia(95%) saturate(1400%) hue-rotate(343deg) brightness(1.05) contrast(1.1);
+  opacity:0.85;
+}
+.sp-logo-lg{height:90px;}
+.sp-logo-xl{height:150px;}
+.sp-logo-xxl{height:160px;}
+.sp-logo-multiply{mix-blend-mode:multiply;filter:sepia(1) saturate(8) hue-rotate(315deg) brightness(0.72) contrast(1.2);}
+@keyframes spScroll{
+  from{transform:translateX(-50%)}
+  to{transform:translateX(0)}
+}
+
+/* ───── WHERE WE ARE ───── */
+.where-section{background:var(--ww);padding:120px 56px;border-bottom:0.5px solid var(--mist);}
+.where-head{margin-bottom:72px;}
+.where-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--mist);}
+.wloc-card{background:var(--ww);padding:44px 36px 40px;display:flex;flex-direction:column;gap:24px;position:relative;overflow:hidden;transition:background 0.8s ease;}
+.wloc-card:hover{background:var(--ch);}
+.wloc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;filter:grayscale(100%) brightness(0.5) contrast(1.05);transition:opacity 0.9s ease;pointer-events:none;z-index:0;}
+.wloc-card:hover .wloc-img{opacity:1;}
+.wloc-tag,.wloc-city,.wloc-addr,.wloc-note{position:relative;z-index:2;}
+.wloc-tag{font-size:8.5px;letter-spacing:0.3em;text-transform:uppercase;color:var(--ch);font-weight:400;display:flex;align-items:center;gap:10px;transition:color 0.6s ease;}
+.wloc-tag::before{content:'';display:block;width:14px;height:0.5px;background:var(--ch);transition:background 0.6s ease;}
+.wloc-card:hover .wloc-tag{color:rgba(255,255,255,0.75);text-shadow:0 1px 6px rgba(0,0,0,0.9);}
+.wloc-card:hover .wloc-tag::before{background:rgba(255,255,255,0.75);}
+.wloc-city{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(36px,4vw,52px);color:var(--ch);line-height:1;letter-spacing:-0.022em;transition:color 0.6s ease;}
+.wloc-card:hover .wloc-city{color:#fff;text-shadow:0 1px 12px rgba(0,0,0,0.9);}
+.wloc-addr{font-size:13px;color:var(--mid);font-weight:300;line-height:1.95;letter-spacing:0.02em;border-top:0.5px solid var(--mist);padding-top:20px;flex:1;transition:color 0.6s ease,border-color 0.6s ease;}
+.wloc-card:hover .wloc-addr{color:rgba(255,255,255,0.82);border-top-color:rgba(255,255,255,0.2);text-shadow:0 1px 8px rgba(0,0,0,0.8);}
+.wloc-note{opacity:0;transition:opacity 0.6s ease;}
+.wloc-note-court{font-size:8px;letter-spacing:0.26em;text-transform:uppercase;color:rgba(255,255,255,0.6);font-weight:300;text-shadow:0 1px 6px rgba(0,0,0,0.9);}
+.wloc-card:hover .wloc-note{opacity:1;}
+@media(max-width:960px){.where-head{grid-template-columns:1fr;gap:32px;}.where-grid{grid-template-columns:1fr;}}
+
+/* ───── GET IN TOUCH (Home version) ───── */
+.touch-section{
+  background:var(--ink);padding:120px 56px;
+  border-bottom:0.5px solid rgba(255,255,255,0.04);
+  position:relative;overflow:hidden;
+}
+.touch-wheel{
+  position:absolute;
+  right:-10vw;top:50%;transform:translateY(-50%);
+  width:48vw;height:48vw;
+  opacity:0.025;pointer-events:none;
+}
+.touch-content{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end}
+.touch-left{}
+.touch-eye{
+  font-size:9px;letter-spacing:0.4em;text-transform:uppercase;
+  color:var(--crim);font-weight:400;margin-bottom:32px;
+}
+.touch-h{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;font-size:clamp(40px,5.5vw,84px);
+  color:rgba(255,255,255,0.93);
+  line-height:0.98;letter-spacing:-0.022em;
+  margin-bottom:0;
+}
+.touch-h em{font-style:italic;color:rgba(255,255,255,0.28)}
+.touch-right{
+  display:flex;flex-direction:column;gap:24px;
+}
+.touch-row{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding-bottom:18px;border-bottom:0.5px solid rgba(255,255,255,0.07);
+  transition:border-color .3s;
+}
+.touch-row:hover{border-bottom-color:rgba(255,255,255,0.3)}
+.touch-row a{
+  font-size:14px;color:rgba(255,255,255,0.62);
+  font-weight:300;letter-spacing:0.02em;
+  transition:color .2s;
+}
+.touch-row a:hover{color:rgba(255,255,255,0.95)}
+.touch-row-l{
+  font-size:8.5px;letter-spacing:0.26em;text-transform:uppercase;
+  color:rgba(255,255,255,0.28);font-weight:300;
+}
+.touch-cta{
+  margin-top:24px;align-self:flex-start;
+  font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(255,255,255,0.88);font-weight:300;
+  border:0.5px solid rgba(255,255,255,0.3);padding:16px 32px;
+  transition:all .22s;display:inline-block;
+}
+.touch-cta:hover{background:var(--crim);border-color:var(--crim);color:var(--ww)}
+
+/* ───── RESPONSIVE ───── */
+@media(max-width:960px){
+  .hero{padding:0 28px 64px}
+  .hero-h{font-size:clamp(42px,11vw,72px)}
+  .exp-preview-grid{grid-template-columns:repeat(2,1fr)}
+  .test-wrap{padding:80px 28px 64px}
+  .test-arrow-prev{left:-32px}
+  .test-arrow-next{right:-32px}
+  .touch-section{padding:80px 28px}
+  .touch-content{grid-template-columns:1fr;gap:48px}
+  .scroll-ind{display:none}
+}
+@media(max-width:600px){
+  .deals-header{flex-direction:column;align-items:flex-start}
+  .test-arrow{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav" id="siteNav">
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-img nav-logo-white" src="brand assets/logo1-white.png" alt="Naavick Legal">
+    <img class="nav-logo-img nav-logo-black" src="brand assets/logo1-black.png" alt="Naavick Legal">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Who we are</a></li>
+    <li><a href="work.html">What we do</a></li>
+    <li><a href="our-dna.html">How we do</a></li>
+    <li><a href="contact.html">Where we are</a></li>
+  </ul>
+  <a href="mailto:office@naavick.com" class="nav-cta">Write to us</a>
+  <div class="nav-mobile-btn" onclick="openMenu()"><span></span><span></span></div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-close" onclick="closeMenu()">Close ✕</div>
+  <ul class="mobile-nav-links">
+    <li><a href="index.html">Who we are</a></li>
+    <li><a href="work.html">What we do</a></li>
+    <li><a href="our-dna.html">How we do</a></li>
+    <li><a href="contact.html">Where we are</a></li>
+  </ul>
+  <div class="mobile-nav-contact">
+    office@naavick.com<br>+91 730 698 6335<br>Mumbai · Delhi · Nagpur
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <img class="hero-wheel" src="brand assets/wheel-element-1.png" alt="" aria-hidden="true">
+
+
+  <h1 class="hero-h">Through Laws,<br><em>Thoroughly.</em></h1>
+  <div class="hero-rule"></div>
+  <div class="scroll-ind">Scroll</div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Corporate Law</span>
+    <span class="marquee-item">Capital Markets</span>
+    <span class="marquee-item">Insolvency & Restructuring</span>
+    <span class="marquee-item">Foreign Investments</span>
+    <span class="marquee-item">IPO Advisory</span>
+    <span class="marquee-item">SME IPO</span>
+    <span class="marquee-item">Dispute Resolution</span>
+    <span class="marquee-item">IP Rights</span>
+    <span class="marquee-item">Startup Advisory</span>
+    <span class="marquee-item">Merger & Amalgamation</span>
+    <span class="marquee-item">Corporate Law</span>
+    <span class="marquee-item">Capital Markets</span>
+    <span class="marquee-item">Insolvency & Restructuring</span>
+    <span class="marquee-item">Foreign Investments</span>
+    <span class="marquee-item">IPO Advisory</span>
+    <span class="marquee-item">SME IPO</span>
+    <span class="marquee-item">Dispute Resolution</span>
+    <span class="marquee-item">IP Rights</span>
+    <span class="marquee-item">Startup Advisory</span>
+    <span class="marquee-item">Merger & Amalgamation</span>
+  </div>
+</div>
+
+<!-- WHO WE ARE -->
+<section class="sec">
+  <div class="ch-label reveal" style="color:var(--crim)">Who we are</div>
+  <h2 class="sh reveal reveal-d1">Not merely a firm —<br>a trust, <em>earned.</em></h2>
+
+  <div class="philo-grid">
+    <div class="philo-left reveal reveal-d1">
+      <p>With over 12 years in Corporate and Securities Laws — deep expertise across IBC, Capital Markets, and the Startup ecosystem — Naavick Legal is a research-driven advisory and litigation firm.</p>
+
+      <div class="philo-stats">
+        <div class="philo-stat">
+          <div class="ps-n">2021</div>
+          <div class="ps-l">Founded</div>
+        </div>
+        <div class="philo-stat">
+          <div class="ps-n">10+</div>
+          <div class="ps-l">Years Expertise</div>
+        </div>
+        <div class="philo-stat">
+          <div class="ps-n">30+</div>
+          <div class="ps-l">Core Team</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="philo-right reveal reveal-d2">
+      <p class="philo-pull">"We are a new-age boutique firm — commanding deep transactional expertise and decisive dispute resolution, backed by authoritative knowledge and an absolute command on execution."</p>
+      <p class="philo-detail">— Adv. Bhupendra Dave, Founding Partner.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE PREVIEW -->
+<section class="sec" id="expertise">
+  <div class="ch-label reveal" style="color:var(--crim)">What we do</div>
+  <h2 class="sh reveal reveal-d1">Anticipate, prevent<br>and <em>resolve.</em></h2>
+  <p class="section-intro reveal reveal-d2">We practice at the intersection of law, finance and technology — built to anticipate risk, prevent conflict, and resolve the disputes in the commercial corporate world.</p>
+
+  <div class="exp-preview-grid">
+    <div class="exp-cell reveal">
+      <div class="exp-n">01</div>
+      <div class="exp-content"><div class="exp-title">Corporate Law</div></div>
+      <span class="exp-arrow">↗</span>
+    </div>
+    <div class="exp-cell reveal reveal-d1">
+      <div class="exp-n">02</div>
+      <div class="exp-content"><div class="exp-title">Capital Markets</div></div>
+      <span class="exp-arrow">↗</span>
+    </div>
+    <div class="exp-cell reveal reveal-d2">
+      <div class="exp-n">03</div>
+      <div class="exp-content"><div class="exp-title">Insolvency & Restructuring</div></div>
+      <span class="exp-arrow">↗</span>
+    </div>
+    <div class="exp-cell reveal reveal-d3">
+      <div class="exp-n">04</div>
+      <div class="exp-content"><div class="exp-title">Foreign Investments</div></div>
+      <span class="exp-arrow">↗</span>
+    </div>
+    <div class="exp-cell reveal">
+      <div class="exp-n">05</div>
+      <div class="exp-content"><div class="exp-title">Taxation</div></div>
+      <span class="exp-arrow">↗</span>
+    </div>
+    <div class="exp-cell reveal reveal-d1">
+      <div class="exp-n">06</div>
+      <div class="exp-content"><div class="exp-title">Startup & Venture Advisory</div></div>
+      <span class="exp-arrow">↗</span>
+    </div>
+    <div class="exp-cell reveal reveal-d2">
+      <div class="exp-n">07</div>
+      <div class="exp-content"><div class="exp-title">IP Rights</div></div>
+      <span class="exp-arrow">↗</span>
+    </div>
+    <div class="exp-cell reveal reveal-d3">
+      <div class="exp-n">08</div>
+      <div class="exp-content"><div class="exp-title">Dispute Resolution</div></div>
+      <span class="exp-arrow">↗</span>
+    </div>
+  </div>
+
+  <div class="exp-all reveal">
+    <a href="work.html" class="btn">View all practice areas</a>
+  </div>
+</section>
+
+<!-- HOW WE DO -->
+<section class="sec">
+  <div class="ch-label reveal" style="color:var(--crim)">How we do</div>
+  <h2 class="sh reveal reveal-d1">Four principles.<br>Zero <em>compromise.</em></h2>
+
+  <div class="principles-grid">
+    <div class="pr-cell reveal">
+      <div class="pr-n">01</div>
+      <h3 class="pr-t">Purpose</h3>
+      <p class="pr-d">We exist with a singular intent — to be the most trusted legal counsel our clients will ever retain. Every brief, every filing, every argument is shaped by that responsibility.</p>
+    </div>
+    <div class="pr-cell reveal reveal-d1">
+      <div class="pr-n">02</div>
+      <h3 class="pr-t">Passion</h3>
+      <p class="pr-d">We bring unwavering dedication to every engagement — available when it matters, invested in every outcome, and personally accountable at every step.</p>
+    </div>
+    <div class="pr-cell reveal reveal-d2">
+      <div class="pr-n">03</div>
+      <h3 class="pr-t">Precision</h3>
+      <p class="pr-d">We command deep subject expertise and anchor every argument in fact. Our counsel is built on authoritative knowledge of the law — every position we take is rigorously substantiated.</p>
+    </div>
+    <div class="pr-cell reveal reveal-d3">
+      <div class="pr-n">04</div>
+      <h3 class="pr-t">Pace</h3>
+      <p class="pr-d">We accomplish what we set out to do — on time, every time. With all-time availability and a team built for urgency, we deliver at the pace our clients' businesses demand.</p>
+    </div>
+  </div>
+
+  <div class="exp-all reveal" style="margin-top:64px">
+    <a href="our-dna.html" class="btn">Explore how we work →</a>
+  </div>
+</section>
+
+<!-- DEAL HIGHLIGHTS / LINKEDIN -->
+<section class="sec" id="deal-highlights">
+  <div class="deals-header">
+    <div>
+      <div class="ch-label reveal" style="color:var(--crim)">Deal highlights</div>
+      <h2 class="sh reveal reveal-d1">From our <em>desk</em><br>to your feed.</h2>
+    </div>
+    <div class="deals-meta reveal reveal-d2">Live from LinkedIn · @NaavickLegal</div>
+  </div>
+
+  <div class="deals-carousel reveal">
+    <div class="deals-track" id="dealsTrack">
+      <div class="deals-slide">
+        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7454884103260106752" frameborder="0" allowfullscreen="" title="LinkedIn Post" loading="lazy"></iframe>
+        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7412142073069531136" frameborder="0" allowfullscreen="" title="LinkedIn Post" loading="lazy"></iframe>
+        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7408766226669277185" frameborder="0" allowfullscreen="" title="LinkedIn Post" loading="lazy"></iframe>
+      </div>
+      <div class="deals-slide">
+        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7388445454029512704" frameborder="0" allowfullscreen="" title="LinkedIn Post" loading="lazy"></iframe>
+        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7377228079653527552" frameborder="0" allowfullscreen="" title="LinkedIn Post" loading="lazy"></iframe>
+        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7326058344442421248" frameborder="0" allowfullscreen="" title="LinkedIn Post" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="deals-nav">
+    <button class="deals-nav-btn" id="dealsPrev" onclick="dealsSlide(-1)" disabled>← Prev</button>
+    <span class="deals-dots">
+      <span class="deals-dot active" id="dealsDot0"></span>
+      <span class="deals-dot" id="dealsDot1"></span>
+    </span>
+    <button class="deals-nav-btn" id="dealsNext" onclick="dealsSlide(1)">Next →</button>
+  </div>
+
+  <div class="exp-all reveal" style="margin-top:64px">
+    <a href="https://linkedin.com" target="_blank" class="btn">Follow us on LinkedIn</a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS + CLIENTELE -->
+<section class="social-proof">
+  <div class="test-wrap reveal">
+    <div class="test-header-centered">
+      <div class="ch-label" style="color:var(--crim)">A word from our clients</div>
+      <h2 class="sh">What they say<br>when we're <em>not in the room.</em></h2>
+    </div>
+
+    <div class="test-carousel">
+      <div class="test-track" id="testTrack">
+        <div class="test-slide">
+          <div class="test-card">
+            <span class="test-qmark">"</span>
+            <p class="test-qt">Naavick Legal brought clarity to one of the most complex capital markets transactions our company had ever undertaken. Their research-first approach made all the difference.</p>
+            <div class="test-author-block"><div class="test-an">Rajiv Mehra</div><div class="test-ar">CFO · Listed Manufacturing Co.</div></div>
+          </div>
+          <div class="test-card">
+            <span class="test-qmark">"</span>
+            <p class="test-qt">In an industry full of legal noise, Naavick is the quiet voice that gets it right. Their advisory on our IBC resolution was nothing short of exceptional.</p>
+            <div class="test-author-block"><div class="test-an">Priya Subramaniam</div><div class="test-ar">Partner · Resolution Professional Firm</div></div>
+          </div>
+          <div class="test-card">
+            <span class="test-qmark">"</span>
+            <p class="test-qt">Bhupendra and his team approach every brief like it is their only one. That level of attention and accountability is rare. We rely on them completely.</p>
+            <div class="test-author-block"><div class="test-an">Arjun Kapoor</div><div class="test-ar">Founder & CEO · Tech Startup</div></div>
+          </div>
+        </div>
+        <div class="test-slide">
+          <div class="test-card">
+            <span class="test-qmark">"</span>
+            <p class="test-qt">Precise, considered, and remarkably current with the latest regulatory shifts. Naavick Legal feels less like an external counsel and more like our internal legal arm.</p>
+            <div class="test-author-block"><div class="test-an">Sneha Iyer</div><div class="test-ar">General Counsel · Investment Firm</div></div>
+          </div>
+          <div class="test-card">
+            <span class="test-qmark">"</span>
+            <p class="test-qt">Their FEMA and FDI advisory cut weeks off our cross-border investment timeline. The work was airtight, and the responsiveness was unmatched in the industry.</p>
+            <div class="test-author-block"><div class="test-an">Marcus Chen</div><div class="test-ar">Investment Director · Singapore VC</div></div>
+          </div>
+          <div class="test-card">
+            <span class="test-qmark">"</span>
+            <p class="test-qt">A truly boutique law firm in the best sense — focused, fast, and absolutely competent. Their work on our M&A transaction was textbook precision.</p>
+            <div class="test-author-block"><div class="test-an">Vikram Bhatia</div><div class="test-ar">MD · Speciality Chemicals Group</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="test-nav">
+      <button class="test-nav-btn" id="testPrev" onclick="testNav(-1)" disabled>← Prev</button>
+      <span class="test-dots">
+        <button class="test-dot active" id="testDot0" onclick="testGo(0)"></button>
+        <button class="test-dot" id="testDot1" onclick="testGo(1)"></button>
+      </span>
+      <button class="test-nav-btn" id="testNext" onclick="testNav(1)">Next →</button>
+    </div>
+  </div><!-- end test-wrap -->
+
+  <div class="sp-rule"></div>
+
+  <div class="sp-clients">
+    <div class="sp-marquee">
+      <div class="sp-track">
+        <span class="sp-pill"><img class="sp-logo sp-logo-lg" src="Client Logos/Bayer.png" alt="Bayer"></span>
+        <span class="sp-pill"><img class="sp-logo sp-logo-xl" src="Client Logos/Kanakia.png" alt="Kanakia"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/Transteel.png" alt="Transteel"></span>
+        <span class="sp-pill"><img class="sp-logo sp-logo-lg" src="Client Logos/Rappid.png" alt="Rappid"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/Kims.png" alt="KIMS" style="height:60px"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/Maple Heights.png" alt="Maple Heights" style="height:112px"></span>
+        <span class="sp-pill"><img class="sp-logo sp-logo-lg" src="Client Logos/SMS.png" alt="SMS Group"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/In corp.png" alt="In-Corp" style="height:112px"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/Authum_-Photoroom.png" alt="Authum" style="height:52px"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/Rustomjee.png" alt="Rustomjee"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/Hoabl.png" alt="Hoabl"></span>
+        <span class="sp-pill"><img class="sp-logo sp-logo-xxl sp-logo-multiply" src="Client Logos/Hocco.png" alt="Hocco"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/Finvin.png" alt="Finvin" style="height:54px"></span>
+        <span class="sp-pill"><img class="sp-logo sp-logo-lg" src="Client Logos/Headway.png" alt="Headway"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/CFM.png" alt="CFM" style="height:120px"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/D thakkar.png" alt="D Thakkar"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/Unnati Finserv.png" alt="Unnati Finserv" style="height:34px"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/abcdubash copy.png" alt="Dubash"></span>
+        <!-- duplicate set for seamless loop -->
+        <span class="sp-pill"><img class="sp-logo sp-logo-lg" src="Client Logos/Bayer.png" alt="Bayer"></span>
+        <span class="sp-pill"><img class="sp-logo sp-logo-xl" src="Client Logos/Kanakia.png" alt="Kanakia"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/Transteel.png" alt="Transteel"></span>
+        <span class="sp-pill"><img class="sp-logo sp-logo-lg" src="Client Logos/Rappid.png" alt="Rappid"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/Kims.png" alt="KIMS" style="height:60px"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/Maple Heights.png" alt="Maple Heights" style="height:112px"></span>
+        <span class="sp-pill"><img class="sp-logo sp-logo-lg" src="Client Logos/SMS.png" alt="SMS Group"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/In corp.png" alt="In-Corp" style="height:112px"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/Authum_-Photoroom.png" alt="Authum" style="height:52px"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/Rustomjee.png" alt="Rustomjee"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/Hoabl.png" alt="Hoabl"></span>
+        <span class="sp-pill"><img class="sp-logo sp-logo-xxl sp-logo-multiply" src="Client Logos/Hocco.png" alt="Hocco"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/Finvin.png" alt="Finvin" style="height:54px"></span>
+        <span class="sp-pill"><img class="sp-logo sp-logo-lg" src="Client Logos/Headway.png" alt="Headway"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/CFM.png" alt="CFM" style="height:120px"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/D thakkar.png" alt="D Thakkar"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/Unnati Finserv.png" alt="Unnati Finserv" style="height:34px"></span>
+        <span class="sp-pill"><img class="sp-logo" src="Client Logos/abcdubash copy.png" alt="Dubash"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHERE WE ARE -->
+<section class="where-section">
+
+  <div class="where-head reveal">
+    <div class="ch-label" style="color:var(--crim)">Where we are</div>
+    <h2 class="sh">Three cities.<br><em>One standard.</em></h2>
+    <p class="section-intro reveal reveal-d1">Headquartered in Mumbai, with full-service offices in Delhi and Nagpur. All three offices operate to the same standard of practice and partner-led work.</p>
+  </div>
+
+  <div class="where-grid">
+
+    <div class="wloc-card reveal">
+      <img class="wloc-img" src="Bombay High Court.jpg" alt="">
+      <div class="wloc-tag">Head Office</div>
+      <div class="wloc-city">Mumbai</div>
+      <div class="wloc-addr">
+        1st Floor, Great Western Building<br>
+        Opp. Carter's Blue, Kalaghoda, Fort<br>
+        Mumbai, Maharashtra<br>
+        India — 400 001
+      </div>
+      <div class="wloc-note">
+        <span class="wloc-note-court">Bombay High Court · Original Side</span>
+      </div>
+    </div>
+
+    <div class="wloc-card reveal reveal-d1">
+      <img class="wloc-img" src="delhi-2.jpg" alt="">
+      <div class="wloc-tag">Regional Office</div>
+      <div class="wloc-city">Delhi</div>
+      <div class="wloc-addr">
+        A-402, Area Chamber D<br>
+        Bhikaji Cama Place<br>
+        New Delhi<br>
+        India — 110 066
+      </div>
+      <div class="wloc-note">
+        <span class="wloc-note-court">Supreme Court of India</span>
+      </div>
+    </div>
+
+    <div class="wloc-card reveal reveal-d2">
+      <img class="wloc-img" src="High Court, Nagpur Bench.jpg" alt="">
+      <div class="wloc-tag">Regional Office</div>
+      <div class="wloc-city">Nagpur</div>
+      <div class="wloc-addr">
+        Ground Floor, Neelkamal Apartment<br>
+        Shivaji Nagar<br>
+        Nagpur, Maharashtra<br>
+        India — 440 010
+      </div>
+      <div class="wloc-note">
+        <span class="wloc-note-court">Nagpur Bench · Bombay High Court</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="exp-all reveal">
+    <a href="contact.html" class="btn">Get in touch with us →</a>
+  </div>
+
+</section>
+
+<!-- GET IN TOUCH -->
+
+<!-- FOOTER -->
+<footer>
+  <svg class="footer-wheel" viewBox="0 0 500 500" fill="none">
+    <circle cx="250" cy="250" r="220" stroke="white" stroke-width="2"/>
+    <circle cx="250" cy="250" r="160" stroke="white" stroke-width="2"/>
+    <circle cx="250" cy="250" r="80" stroke="white" stroke-width="2"/>
+    <line x1="250" y1="30" x2="250" y2="170" stroke="white" stroke-width="2"/>
+    <line x1="250" y1="330" x2="250" y2="470" stroke="white" stroke-width="2"/>
+    <line x1="30" y1="250" x2="170" y2="250" stroke="white" stroke-width="2"/>
+    <line x1="330" y1="250" x2="470" y2="250" stroke="white" stroke-width="2"/>
+    <line x1="95" y1="95" x2="193" y2="193" stroke="white" stroke-width="2"/>
+    <line x1="307" y1="307" x2="405" y2="405" stroke="white" stroke-width="2"/>
+    <line x1="405" y1="95" x2="307" y2="193" stroke="white" stroke-width="2"/>
+    <line x1="193" y1="307" x2="95" y2="405" stroke="white" stroke-width="2"/>
+  </svg>
+  <div class="footer-cta">
+    <h3 class="footer-cta-h">Through Laws,<br><em>Thoroughly.</em></h3>
+    <a href="mailto:office@naavick.com" class="footer-cta-btn">Begin a conversation →</a>
+  </div>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <svg class="wheel-svg" width="32" height="32" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="20" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+        <circle cx="24" cy="24" r="8" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+        <line x1="24" y1="4" x2="24" y2="16" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+        <line x1="24" y1="32" x2="24" y2="44" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+        <line x1="4" y1="24" x2="16" y2="24" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+        <line x1="32" y1="24" x2="44" y2="24" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+      </svg>
+      <div class="footer-wm">N<span class="r">AA</span>VICK LEGAL</div>
+      <p class="footer-tagline">Boutique legal advisory based in Mumbai, with offices in Delhi and Nagpur.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigate</div>
+      <ul class="footer-links">
+        <li><a href="index.html">Who we are</a></li>
+        <li><a href="work.html">What we do</a></li>
+        <li><a href="our-dna.html">How we do</a></li>
+        <li><a href="contact.html">Where we are</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Locations</div>
+      <ul class="footer-links">
+        <li><span>Mumbai (HQ)</span></li>
+        <li><span>Delhi</span></li>
+        <li><span>Nagpur</span></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Reach us</div>
+      <ul class="footer-links">
+        <li><a href="mailto:office@naavick.com">office@naavick.com</a></li>
+        <li><a href="tel:+917306986335">+91 730 698 6335</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Naavick Legal. All rights reserved.</span>
+    <div class="footer-social">
+      <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+      <a href="#">Twitter</a>
+    </div>
+    <span class="footer-legal">Bar Council Enrolled · SEBI Registered</span>
+  </div>
+</footer>
+
+<script>
+/* testimonial carousel */
+var _tCur = 0;
+var _tTimer = setInterval(function(){ testNav(1); }, 10000);
+function testGo(idx){
+  _tCur = Math.max(0, Math.min(1, idx));
+  document.getElementById('testTrack').style.transform = 'translateX(-'+(_tCur*50)+'%)';
+  document.getElementById('testDot0').classList.toggle('active', _tCur===0);
+  document.getElementById('testDot1').classList.toggle('active', _tCur===1);
+  document.getElementById('testPrev').disabled = _tCur===0;
+  document.getElementById('testNext').disabled = _tCur===1;
+  clearInterval(_tTimer);
+  _tTimer = setInterval(function(){ testNav(1); }, 2000);
+}
+function testNav(dir){ testGo(_tCur + dir); }
+</script>
+<script>
+var _dealsCur = 0;
+var _dealsTimer = setInterval(function(){ dealsSlide(1); }, 10000);
+function dealsSlide(dir){
+  _dealsCur = (_dealsCur + dir + 2) % 2;
+  document.getElementById('dealsTrack').style.transform = 'translateX(-'+(_dealsCur * 50)+'%)';
+  document.getElementById('dealsDot0').classList.toggle('active', _dealsCur===0);
+  document.getElementById('dealsDot1').classList.toggle('active', _dealsCur===1);
+  document.getElementById('dealsPrev').disabled = _dealsCur===0;
+  document.getElementById('dealsNext').disabled = _dealsCur===1;
+  clearInterval(_dealsTimer);
+  _dealsTimer = setInterval(function(){ dealsSlide(1); }, 10000);
+}
+</script>
+<script src="script.js"></script>
+</body>
+</html>

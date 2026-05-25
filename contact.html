@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Naavick Legal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Barlow:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+
+/* ───── CONTACT METHODS ───── */
+.contact-methods{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--mist);
+  margin-top:72px;
+}
+.cm-cell{
+  background:var(--ww);
+  padding:48px 36px 44px;
+  display:flex;flex-direction:column;
+  transition:background .3s;
+  text-decoration:none;color:inherit;
+  position:relative;cursor:pointer;
+}
+.cm-cell:hover{background:var(--iv)}
+.cm-cell:hover .cm-arrow{transform:translate(4px,-4px);opacity:1;color:var(--crim)}
+.cm-icon{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;font-style:italic;
+  font-size:48px;color:var(--crim);
+  line-height:1;margin-bottom:24px;
+}
+.cm-label{
+  font-size:8.5px;letter-spacing:0.32em;text-transform:uppercase;
+  color:var(--st);font-weight:400;margin-bottom:12px;
+}
+.cm-value{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;font-size:22px;color:var(--ch);
+  letter-spacing:-0.01em;line-height:1.3;margin-bottom:14px;
+}
+.cm-desc{
+  font-size:12px;color:var(--st);
+  font-weight:300;line-height:1.85;
+  border-top:0.5px solid var(--mist);padding-top:14px;
+}
+.cm-arrow{
+  position:absolute;top:36px;right:32px;
+  font-size:14px;color:var(--sv);
+  opacity:0.4;transition:all .3s;
+}
+
+/* ───── PRIMARY CONTACT CARD ───── */
+.primary-contact{
+  background:var(--ch);padding:80px 56px;
+  border-bottom:0.5px solid rgba(255,255,255,0.06);
+  position:relative;overflow:hidden;
+}
+.pc-wheel{
+  position:absolute;
+  right:-12vw;top:50%;transform:translateY(-50%);
+  width:54vw;height:54vw;
+  opacity:0.03;pointer-events:none;
+}
+.pc-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.pc-left{}
+.pc-eye{
+  font-size:9px;letter-spacing:0.4em;text-transform:uppercase;
+  color:var(--crim);font-weight:400;margin-bottom:28px;
+}
+.pc-h{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;font-size:clamp(40px,5.5vw,72px);
+  color:rgba(255,255,255,0.93);line-height:1.0;
+  letter-spacing:-0.022em;margin-bottom:32px;
+}
+.pc-h em{font-style:italic;color:rgba(255,255,255,0.3)}
+.pc-sub{
+  font-size:13.5px;color:rgba(255,255,255,0.4);
+  line-height:1.9;font-weight:300;max-width:480px;
+}
+.pc-right{display:flex;flex-direction:column;gap:8px}
+.pc-action{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:24px 0;border-bottom:0.5px solid rgba(255,255,255,0.07);
+  text-decoration:none;color:inherit;
+  transition:border-color .3s;cursor:pointer;
+}
+.pc-action:hover{border-bottom-color:var(--crim)}
+.pc-action:hover .pc-action-arrow{transform:translateX(6px);color:var(--crim)}
+.pc-action-text{display:flex;flex-direction:column;gap:4px}
+.pc-action-label{
+  font-size:8.5px;letter-spacing:0.28em;text-transform:uppercase;
+  color:rgba(255,255,255,0.28);font-weight:300;
+}
+.pc-action-val{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;font-size:22px;color:rgba(255,255,255,0.9);
+  letter-spacing:-0.01em;
+}
+.pc-action-arrow{
+  font-size:18px;color:rgba(255,255,255,0.3);
+  transition:all .3s;
+}
+
+/* ───── FORM SECTION ───── */
+.form-section{
+  padding:120px 56px;
+  border-bottom:0.5px solid var(--mist);
+}
+.form-grid{
+  display:grid;grid-template-columns:1fr 1.4fr;gap:80px;
+  margin-top:72px;align-items:start;
+}
+.form-left{}
+.fl-detail{
+  font-size:13.5px;color:var(--mid);line-height:1.95;
+  font-weight:300;max-width:380px;margin-bottom:32px;
+}
+.fl-note{
+  border-top:0.5px solid var(--mist);padding-top:24px;
+  font-size:11.5px;color:var(--st);line-height:1.85;font-weight:300;
+}
+.fl-note strong{
+  display:block;font-family:'Cormorant Garamond',serif;
+  font-weight:400;font-style:italic;font-size:15px;color:var(--sl);
+  margin-bottom:8px;
+}
+.contact-form{
+  display:grid;grid-template-columns:1fr 1fr;gap:32px 24px;
+}
+.cf-field{display:flex;flex-direction:column}
+.cf-field.full{grid-column:1/-1}
+.cf-label{
+  font-size:8.5px;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--st);font-weight:300;margin-bottom:8px;
+}
+.cf-input,.cf-textarea,.cf-select{
+  background:transparent;
+  border:none;border-bottom:0.5px solid var(--ch);
+  color:var(--ch);
+  font-family:'Barlow',sans-serif;font-weight:300;font-size:14px;
+  padding:9px 0;outline:none;
+  transition:border-color .2s;letter-spacing:0.02em;
+}
+.cf-input::placeholder,.cf-textarea::placeholder{color:var(--sv)}
+.cf-input:focus,.cf-textarea:focus,.cf-select:focus{border-bottom-color:var(--crim)}
+.cf-textarea{resize:none;height:100px;line-height:1.7}
+.cf-submit-row{
+  grid-column:1/-1;
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:16px;flex-wrap:wrap;gap:14px;
+}
+.cf-submit{
+  font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--ww);background:var(--ch);
+  border:none;padding:15px 32px;cursor:pointer;
+  font-family:'Barlow',sans-serif;font-weight:300;
+  transition:background .22s;
+}
+.cf-submit:hover{background:var(--crim)}
+.cf-privacy{
+  font-size:10px;color:var(--st);font-weight:300;line-height:1.8;
+  letter-spacing:0.02em;
+}
+
+/* ───── LOCATIONS ───── */
+.locations-section{
+  background:var(--iv);padding:120px 56px;
+  border-bottom:0.5px solid var(--mist);
+}
+.locations-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--mist);margin-top:72px;
+}
+.loc-card{
+  background:var(--ww);padding:44px 36px 40px;
+  display:flex;flex-direction:column;gap:24px;
+  transition:background .3s;
+  position:relative;
+}
+.loc-card:hover{background:var(--cr)}
+.loc-tag{
+  font-size:8.5px;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--crim);font-weight:400;
+  display:flex;align-items:center;gap:10px;
+}
+.loc-tag::before{content:'';display:block;width:14px;height:0.5px;background:var(--crim)}
+.loc-city{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;font-size:clamp(38px,4.5vw,56px);
+  color:var(--ch);line-height:1;letter-spacing:-0.022em;
+}
+.loc-addr{
+  font-size:13px;color:var(--mid);
+  font-weight:300;line-height:1.95;letter-spacing:0.02em;
+  border-top:0.5px solid var(--mist);padding-top:20px;
+}
+.loc-contact{display:flex;flex-direction:column;gap:8px}
+.loc-c-row{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:8px 0;border-bottom:0.5px solid var(--mist);
+}
+.loc-c-row:last-child{border:none}
+.loc-c-l{
+  font-size:8px;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--st);font-weight:300;
+}
+.loc-c-v{
+  font-size:12.5px;color:var(--sl);font-weight:300;
+  text-decoration:none;
+}
+.loc-c-v:hover{color:var(--crim)}
+
+/* ───── HOURS / RESPONSE ───── */
+.hours-section{
+  padding:96px 56px;
+  border-bottom:0.5px solid var(--mist);
+  background:var(--ch);
+}
+.hours-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;
+  align-items:end;
+}
+.h-left{}
+.h-eye{
+  font-size:9px;letter-spacing:0.4em;text-transform:uppercase;
+  color:var(--crim);font-weight:400;margin-bottom:24px;
+}
+.h-h{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;font-size:clamp(32px,4.5vw,52px);
+  color:rgba(255,255,255,0.92);line-height:1.05;letter-spacing:-0.018em;
+}
+.h-h em{font-style:italic;color:rgba(255,255,255,0.3)}
+.h-right{display:flex;flex-direction:column;gap:14px}
+.h-row{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:14px 0;border-bottom:0.5px solid rgba(255,255,255,0.07);
+}
+.h-row-l{
+  font-size:9px;letter-spacing:0.25em;text-transform:uppercase;
+  color:rgba(255,255,255,0.3);font-weight:300;
+}
+.h-row-v{
+  font-size:13px;color:rgba(255,255,255,0.65);font-weight:300;
+}
+
+@media(max-width:960px){
+  .contact-methods{grid-template-columns:1fr}
+  .primary-contact{padding:60px 28px}
+  .pc-grid{grid-template-columns:1fr;gap:48px}
+  .form-section,.locations-section,.hours-section{padding:80px 28px}
+  .form-grid,.hours-grid{grid-template-columns:1fr;gap:48px}
+  .contact-form{grid-template-columns:1fr}
+  .locations-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav" id="siteNav">
+  <a href="index.html" class="nav-logo">
+    <svg class="wheel-svg" width="22" height="22" viewBox="0 0 48 48" fill="none">
+      <circle cx="24" cy="24" r="20" stroke-width="1.2"/>
+      <circle cx="24" cy="24" r="8" stroke-width="1.2"/>
+      <line x1="24" y1="4" x2="24" y2="16" stroke-width="1.2"/>
+      <line x1="24" y1="32" x2="24" y2="44" stroke-width="1.2"/>
+      <line x1="4" y1="24" x2="16" y2="24" stroke-width="1.2"/>
+      <line x1="32" y1="24" x2="44" y2="24" stroke-width="1.2"/>
+    </svg>
+    <span>N<span class="r">AA</span>VICK LEGAL</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Who we are</a></li>
+    <li><a href="work.html">What we do</a></li>
+    <li><a href="our-dna.html">How we do</a></li>
+    <li><a href="contact.html" class="active">Where we are</a></li>
+  </ul>
+  <a href="mailto:office@naavick.com" class="nav-cta">Write to us</a>
+  <div class="nav-mobile-btn" onclick="openMenu()"><span></span><span></span></div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-close" onclick="closeMenu()">Close ✕</div>
+  <ul class="mobile-nav-links">
+    <li><a href="index.html">Who we are</a></li>
+    <li><a href="work.html">What we do</a></li>
+    <li><a href="our-dna.html">How we do</a></li>
+    <li><a href="contact.html">Where we are</a></li>
+  </ul>
+  <div class="mobile-nav-contact">
+    office@naavick.com<br>+91 730 698 6335<br>Mumbai · Delhi · Nagpur
+  </div>
+</div>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="page-header-grid"></div>
+  <svg class="page-header-wheel" viewBox="0 0 500 500" fill="none">
+    <circle cx="250" cy="250" r="220" stroke="white" stroke-width="2.5"/>
+    <circle cx="250" cy="250" r="160" stroke="white" stroke-width="2.5"/>
+    <circle cx="250" cy="250" r="80" stroke="white" stroke-width="2.5"/>
+    <line x1="250" y1="30" x2="250" y2="170" stroke="white" stroke-width="2.5"/>
+    <line x1="250" y1="330" x2="250" y2="470" stroke="white" stroke-width="2.5"/>
+    <line x1="30" y1="250" x2="170" y2="250" stroke="white" stroke-width="2.5"/>
+    <line x1="330" y1="250" x2="470" y2="250" stroke="white" stroke-width="2.5"/>
+    <line x1="95" y1="95" x2="193" y2="193" stroke="white" stroke-width="2.5"/>
+    <line x1="307" y1="307" x2="405" y2="405" stroke="white" stroke-width="2.5"/>
+    <line x1="405" y1="95" x2="307" y2="193" stroke="white" stroke-width="2.5"/>
+    <line x1="193" y1="307" x2="95" y2="405" stroke="white" stroke-width="2.5"/>
+  </svg>
+  <div class="page-eyebrow">Contact · Mumbai · Delhi · Nagpur</div>
+  <h1 class="page-title">Begin a <em>conversation</em><br>with us.</h1>
+  <p class="page-subtitle">We respond to every inquiry within one working day. Whether you are looking to engage us for a specific matter, an open-ended advisory, or simply to understand if we are the right firm for you — write to us, and we will respond.</p>
+</section>
+
+<!-- PRIMARY CONTACT (Tap to email) -->
+<section class="primary-contact">
+  <svg class="pc-wheel" viewBox="0 0 500 500" fill="none">
+    <circle cx="250" cy="250" r="220" stroke="white" stroke-width="2"/>
+    <circle cx="250" cy="250" r="160" stroke="white" stroke-width="2"/>
+    <circle cx="250" cy="250" r="80" stroke="white" stroke-width="2"/>
+    <line x1="250" y1="30" x2="250" y2="170" stroke="white" stroke-width="2"/>
+    <line x1="250" y1="330" x2="250" y2="470" stroke="white" stroke-width="2"/>
+    <line x1="30" y1="250" x2="170" y2="250" stroke="white" stroke-width="2"/>
+    <line x1="330" y1="250" x2="470" y2="250" stroke="white" stroke-width="2"/>
+    <line x1="95" y1="95" x2="193" y2="193" stroke="white" stroke-width="2"/>
+    <line x1="307" y1="307" x2="405" y2="405" stroke="white" stroke-width="2"/>
+    <line x1="405" y1="95" x2="307" y2="193" stroke="white" stroke-width="2"/>
+    <line x1="193" y1="307" x2="95" y2="405" stroke="white" stroke-width="2"/>
+  </svg>
+  <div class="pc-grid">
+    <div class="pc-left reveal">
+      <div class="pc-eye">Direct line</div>
+      <h2 class="pc-h">Tap to write,<br>tap to <em>call.</em></h2>
+      <p class="pc-sub">Every inquiry is read personally by the firm. We respond within one working day, often sooner. For matters of urgency, our principal lines are below.</p>
+    </div>
+    <div class="pc-right reveal reveal-d1">
+      <a href="mailto:office@naavick.com?subject=Inquiry%20from%20naavick.com&body=Dear%20Naavick%20Legal%2C%0A%0AI%20would%20like%20to%20get%20in%20touch%20regarding..." class="pc-action">
+        <div class="pc-action-text">
+          <span class="pc-action-label">Write to us</span>
+          <span class="pc-action-val">office@naavick.com</span>
+        </div>
+        <span class="pc-action-arrow">→</span>
+      </a>
+      <a href="tel:+917306986335" class="pc-action">
+        <div class="pc-action-text">
+          <span class="pc-action-label">Call us</span>
+          <span class="pc-action-val">+91 730 698 6335</span>
+        </div>
+        <span class="pc-action-arrow">→</span>
+      </a>
+      <a href="https://linkedin.com" target="_blank" class="pc-action">
+        <div class="pc-action-text">
+          <span class="pc-action-label">Follow on LinkedIn</span>
+          <span class="pc-action-val">@naavicklegal</span>
+        </div>
+        <span class="pc-action-arrow">→</span>
+      </a>
+      <a href="mailto:careers@naavick.com" class="pc-action">
+        <div class="pc-action-text">
+          <span class="pc-action-label">Careers / Applications</span>
+          <span class="pc-action-val">careers@naavick.com</span>
+        </div>
+        <span class="pc-action-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT METHODS QUICK -->
+<section class="sec">
+  <div class="ch-label reveal">Choose your channel</div>
+  <h2 class="sh reveal reveal-d1">Three ways to <em>reach us.</em></h2>
+
+  <div class="contact-methods">
+    <a href="mailto:office@naavick.com?subject=New%20mandate%20inquiry" class="cm-cell reveal">
+      <div class="cm-icon">i.</div>
+      <div class="cm-label">For new mandates</div>
+      <div class="cm-value">Engage us on a matter</div>
+      <p class="cm-desc">Tap to email us directly about a specific corporate, capital markets, insolvency, or other legal mandate. We respond within one working day.</p>
+      <span class="cm-arrow">↗</span>
+    </a>
+    <a href="mailto:careers@naavick.com?subject=Career%20application" class="cm-cell reveal reveal-d1">
+      <div class="cm-icon">ii.</div>
+      <div class="cm-label">For careers & applications</div>
+      <div class="cm-value">Join the practice</div>
+      <p class="cm-desc">Send your CV and cover letter directly to our careers desk. We read every application personally — no automated screening.</p>
+      <span class="cm-arrow">↗</span>
+    </a>
+    <a href="mailto:press@naavick.com?subject=Press%20inquiry" class="cm-cell reveal reveal-d2">
+      <div class="cm-icon">iii.</div>
+      <div class="cm-label">For media & press</div>
+      <div class="cm-value">Press inquiries</div>
+      <p class="cm-desc">For interviews, expert commentary, or partnership inquiries from journalists and publications, write to our press desk.</p>
+      <span class="cm-arrow">↗</span>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="form-section">
+  <div class="ch-label reveal">Or write to us here</div>
+  <h2 class="sh reveal reveal-d1">Tell us about<br><em>your matter.</em></h2>
+
+  <div class="form-grid">
+    <div class="form-left reveal reveal-d1">
+      <p class="fl-detail">The more detail you can share, the better we can prepare our response. All inquiries are confidential and reviewed personally by a principal of the firm.</p>
+      <div class="fl-note">
+        <strong>One working day.</strong>
+        Our standard response time. For urgent matters, please call our Mumbai line directly at +91 730 698 6335.
+      </div>
+    </div>
+
+    <form class="contact-form reveal reveal-d2" id="contactForm" onsubmit="submitContact(event)">
+      <div class="cf-field">
+        <label class="cf-label">Full name</label>
+        <input class="cf-input" type="text" required placeholder="Your full name" />
+      </div>
+      <div class="cf-field">
+        <label class="cf-label">Company / Organisation</label>
+        <input class="cf-input" type="text" placeholder="Company name" />
+      </div>
+      <div class="cf-field">
+        <label class="cf-label">Email</label>
+        <input class="cf-input" type="email" required placeholder="your@email.com" />
+      </div>
+      <div class="cf-field">
+        <label class="cf-label">Phone</label>
+        <input class="cf-input" type="tel" placeholder="+91 XXXXX XXXXX" />
+      </div>
+      <div class="cf-field full">
+        <label class="cf-label">Area of inquiry</label>
+        <input class="cf-input" type="text" placeholder="e.g. Capital Markets, IBC, Corporate Law, Foreign Investment" />
+      </div>
+      <div class="cf-field full">
+        <label class="cf-label">Brief description of your matter</label>
+        <textarea class="cf-textarea" placeholder="Share as much detail as you are comfortable with. All inquiries are confidential."></textarea>
+      </div>
+      <div class="cf-submit-row">
+        <button class="cf-submit" type="submit">Send inquiry →</button>
+        <span class="cf-privacy">By submitting, you agree that we may contact you regarding this inquiry.</span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section class="locations-section">
+  <div class="ch-label reveal">Our offices</div>
+  <h2 class="sh reveal reveal-d1">Three cities.<br><em>One standard.</em></h2>
+  <p class="section-intro reveal reveal-d2">Headquartered in Mumbai, with full-service offices in Delhi and Nagpur. All three offices operate to the same standard of practice and partner-led work.</p>
+
+  <div class="locations-grid">
+
+    <div class="loc-card reveal">
+      <div class="loc-tag">Head Office</div>
+      <div class="loc-city">Mumbai</div>
+      <div class="loc-addr">
+        1st Floor, Great Western Building<br>
+        Opp. Carter's Blue, Kalaghoda, Fort<br>
+        Mumbai, Maharashtra<br>
+        India — 400 001
+      </div>
+      <div class="loc-contact">
+        <div class="loc-c-row">
+          <span class="loc-c-l">Email</span>
+          <a href="mailto:office@naavick.com" class="loc-c-v">office@naavick.com</a>
+        </div>
+        <div class="loc-c-row">
+          <span class="loc-c-l">Phone</span>
+          <a href="tel:+917306986335" class="loc-c-v">+91 730 698 6335</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="loc-card reveal reveal-d1">
+      <div class="loc-tag">Regional Office</div>
+      <div class="loc-city">Delhi</div>
+      <div class="loc-addr">
+        A-402, Area Chamber D<br>
+        Bhikaji Cama Place<br>
+        New Delhi<br>
+        India — 110 066
+      </div>
+      <div class="loc-contact">
+        <div class="loc-c-row">
+          <span class="loc-c-l">Email</span>
+          <a href="mailto:delhi@naavick.com" class="loc-c-v">delhi@naavick.com</a>
+        </div>
+        <div class="loc-c-row">
+          <span class="loc-c-l">Phone</span>
+          <a href="tel:+911143215678" class="loc-c-v">+91 11 4321 5678</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="loc-card reveal reveal-d2">
+      <div class="loc-tag">Regional Office</div>
+      <div class="loc-city">Nagpur</div>
+      <div class="loc-addr">
+        Ground Floor, Neelkamal Apartment<br>
+        Shivaji Nagar<br>
+        Nagpur, Maharashtra<br>
+        India — 440 010
+      </div>
+      <div class="loc-contact">
+        <div class="loc-c-row">
+          <span class="loc-c-l">Email</span>
+          <a href="mailto:nagpur@naavick.com" class="loc-c-v">nagpur@naavick.com</a>
+        </div>
+        <div class="loc-c-row">
+          <span class="loc-c-l">Phone</span>
+          <a href="tel:+917122987654" class="loc-c-v">+91 712 298 7654</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOURS / RESPONSE COMMITMENT -->
+<section class="hours-section">
+  <div class="hours-grid">
+    <div class="h-left">
+      <div class="h-eye reveal">Response commitment</div>
+      <h3 class="h-h reveal reveal-d1">We respond within<br>one <em>working day.</em></h3>
+    </div>
+    <div class="h-right reveal reveal-d2">
+      <div class="h-row">
+        <span class="h-row-l">Mumbai (HQ)</span>
+        <span class="h-row-v">Mon–Fri · 09:30–18:30 IST</span>
+      </div>
+      <div class="h-row">
+        <span class="h-row-l">Delhi</span>
+        <span class="h-row-v">Mon–Fri · 09:30–18:30 IST</span>
+      </div>
+      <div class="h-row">
+        <span class="h-row-l">Nagpur</span>
+        <span class="h-row-v">Mon–Fri · 09:30–18:30 IST</span>
+      </div>
+      <div class="h-row">
+        <span class="h-row-l">Email response</span>
+        <span class="h-row-v">Within 24 hours</span>
+      </div>
+      <div class="h-row">
+        <span class="h-row-l">Urgent matters</span>
+        <span class="h-row-v">Mumbai line · same day</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <svg class="footer-wheel" viewBox="0 0 500 500" fill="none">
+    <circle cx="250" cy="250" r="220" stroke="white" stroke-width="2"/>
+    <circle cx="250" cy="250" r="160" stroke="white" stroke-width="2"/>
+    <circle cx="250" cy="250" r="80" stroke="white" stroke-width="2"/>
+    <line x1="250" y1="30" x2="250" y2="170" stroke="white" stroke-width="2"/>
+    <line x1="250" y1="330" x2="250" y2="470" stroke="white" stroke-width="2"/>
+    <line x1="30" y1="250" x2="170" y2="250" stroke="white" stroke-width="2"/>
+    <line x1="330" y1="250" x2="470" y2="250" stroke="white" stroke-width="2"/>
+    <line x1="95" y1="95" x2="193" y2="193" stroke="white" stroke-width="2"/>
+    <line x1="307" y1="307" x2="405" y2="405" stroke="white" stroke-width="2"/>
+    <line x1="405" y1="95" x2="307" y2="193" stroke="white" stroke-width="2"/>
+    <line x1="193" y1="307" x2="95" y2="405" stroke="white" stroke-width="2"/>
+  </svg>
+  <div class="footer-cta">
+    <h3 class="footer-cta-h">A conversation<br>worth <em>having.</em></h3>
+    <a href="mailto:office@naavick.com" class="footer-cta-btn">Write to us now →</a>
+  </div>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <svg class="wheel-svg" width="32" height="32" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="20" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+        <circle cx="24" cy="24" r="8" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+        <line x1="24" y1="4" x2="24" y2="16" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+        <line x1="24" y1="32" x2="24" y2="44" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+        <line x1="4" y1="24" x2="16" y2="24" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+        <line x1="32" y1="24" x2="44" y2="24" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+      </svg>
+      <div class="footer-wm">N<span class="r">AA</span>VICK LEGAL</div>
+      <p class="footer-tagline">Advocates & Company Secretaries. Boutique legal advisory based in Mumbai, with offices in Delhi and Nagpur.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigate</div>
+      <ul class="footer-links">
+        <li><a href="index.html">Who we are</a></li>
+        <li><a href="work.html">What we do</a></li>
+        <li><a href="our-dna.html">How we do</a></li>
+        <li><a href="contact.html">Where we are</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Locations</div>
+      <ul class="footer-links">
+        <li><span>Mumbai (HQ)</span></li>
+        <li><span>Delhi</span></li>
+        <li><span>Nagpur</span></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Reach us</div>
+      <ul class="footer-links">
+        <li><a href="mailto:office@naavick.com">office@naavick.com</a></li>
+        <li><a href="tel:+917306986335">+91 730 698 6335</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Naavick Legal. All rights reserved.</span>
+    <div class="footer-social">
+      <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+      <a href="#">Twitter</a>
+    </div>
+    <span class="footer-legal">Bar Council Enrolled · SEBI Registered</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+function submitContact(e){
+  e.preventDefault();
+  const btn = e.target.querySelector('.cf-submit');
+  btn.textContent = 'Inquiry received ✓';
+  btn.style.background = 'var(--crim)';
+  setTimeout(() => {
+    e.target.reset();
+    btn.textContent = 'Send inquiry →';
+    btn.style.background = '';
+  }, 3000);
+}
+</script>
+</body>
+</html>
