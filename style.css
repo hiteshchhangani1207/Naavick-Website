@@ -277,7 +277,7 @@ footer{
 }
 .footer-logo{
   height:96px;width:auto;display:block;
-  margin-bottom:10px;opacity:0.88;
+  margin-top:32px;margin-bottom:6px;opacity:0.88;
 }
 .footer-tagline{
   font-size:11px;color:rgba(255,255,255,0.22);
