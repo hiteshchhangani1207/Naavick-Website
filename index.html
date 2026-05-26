@@ -928,23 +928,20 @@
   </svg>
   <div class="footer-cta">
     <h3 class="footer-cta-h">Through Laws,<br><em>Thoroughly.</em></h3>
-    <a href="mailto:office@naavick.com" class="footer-cta-btn">Begin a conversation →</a>
+    <p class="footer-cta-sub">Leave us your email with a brief introduction and we will get back to you.</p>
+    <form class="footer-form" id="footerForm">
+      <input type="email" class="footer-input" placeholder="Your email address" required>
+      <button type="submit" class="footer-send">Send →</button>
+    </form>
+    <p class="footer-sent" id="footerSent">We'll be in touch shortly.</p>
   </div>
   <div class="footer-top">
     <div class="footer-brand">
-      <svg class="wheel-svg" width="32" height="32" viewBox="0 0 48 48" fill="none">
-        <circle cx="24" cy="24" r="20" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
-        <circle cx="24" cy="24" r="8" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
-        <line x1="24" y1="4" x2="24" y2="16" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
-        <line x1="24" y1="32" x2="24" y2="44" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
-        <line x1="4" y1="24" x2="16" y2="24" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
-        <line x1="32" y1="24" x2="44" y2="24" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
-      </svg>
       <div class="footer-wm">N<span class="r">AA</span>VICK LEGAL</div>
       <p class="footer-tagline">Boutique legal advisory based in Mumbai, with offices in Delhi and Nagpur.</p>
     </div>
     <div>
-      <div class="footer-col-title">Navigate</div>
+      <div class="footer-col-title">Explore</div>
       <ul class="footer-links">
         <li><a href="index.html">Who we are</a></li>
         <li><a href="work.html">What we do</a></li>
@@ -953,27 +950,15 @@
       </ul>
     </div>
     <div>
-      <div class="footer-col-title">Locations</div>
+      <div class="footer-col-title">Connect</div>
       <ul class="footer-links">
-        <li><span>Mumbai (HQ)</span></li>
-        <li><span>Delhi</span></li>
-        <li><span>Nagpur</span></li>
-      </ul>
-    </div>
-    <div>
-      <div class="footer-col-title">Reach us</div>
-      <ul class="footer-links">
-        <li><a href="mailto:office@naavick.com">office@naavick.com</a></li>
-        <li><a href="tel:+917306986335">+91 730 698 6335</a></li>
+        <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+        <li><a href="#">Twitter</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <span class="footer-copy">© 2025 Naavick Legal. All rights reserved.</span>
-    <div class="footer-social">
-      <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-      <a href="#">Twitter</a>
-    </div>
     <span class="footer-legal">Bar Council Enrolled · SEBI Registered</span>
   </div>
 </footer>
@@ -1009,5 +994,16 @@ function dealsSlide(dir){
 }
 </script>
 <script src="script.js"></script>
+<script>
+/* footer email form */
+document.getElementById('footerForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var email = this.querySelector('.footer-input').value;
+  window.location.href = 'mailto:contact@naavick.com?subject=Inquiry — Naavick Legal&body=From: ' + encodeURIComponent(email);
+  this.querySelector('.footer-input').value = '';
+  document.getElementById('footerSent').style.display = 'block';
+  setTimeout(function(){ document.getElementById('footerSent').style.display = 'none'; }, 4000);
+});
+</script>
 </body>
 </html>
