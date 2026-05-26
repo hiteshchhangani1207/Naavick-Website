@@ -215,7 +215,7 @@ nav.site-nav.light .nav-mobile-btn span{background:var(--ch)}
 
 /* ─── FOOTER ─── */
 footer{
-  background:var(--ink);
+  background:var(--ch);
   padding:100px 56px 48px;
   border-top:0.5px solid rgba(255,255,255,0.05);
   position:relative;overflow:hidden;
