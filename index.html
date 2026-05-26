@@ -513,17 +513,6 @@
   .deals-header{flex-direction:column;align-items:flex-start}
   .test-arrow{display:none}
 }
-
-/* ─── WATER SPLASH ─── */
-.splash-zone{position:relative;height:1px;overflow:visible;display:flex;justify-content:center;align-items:center;pointer-events:none;z-index:20;}
-.splash-drop{position:absolute;top:-28px;width:5px;height:10px;background:rgba(191,27,27,0.75);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;opacity:0;}
-.splash-ripple{position:absolute;border-radius:50%;border:0.5px solid rgba(191,27,27,0.45);width:0;height:0;opacity:0;}
-.splash-zone.active .splash-drop{animation:splashDrop 0.38s cubic-bezier(.4,0,1,1) forwards;}
-.splash-zone.active .splash-r1{animation:splashRipple 1s ease-out 0.32s forwards;}
-.splash-zone.active .splash-r2{animation:splashRipple 1s ease-out 0.50s forwards;}
-.splash-zone.active .splash-r3{animation:splashRipple 1s ease-out 0.68s forwards;}
-@keyframes splashDrop{0%{opacity:1;transform:translateY(0);}85%{opacity:0.8;}100%{opacity:0;transform:translateY(26px);}}
-@keyframes splashRipple{0%{width:0;height:0;margin:0;opacity:0.55;}100%{width:320px;height:100px;margin:-50px -160px;opacity:0;}}
 </style>
 </head>
 <body>
@@ -568,14 +557,6 @@
   <div class="hero-rule"></div>
   <div class="scroll-ind">Scroll</div>
 </section>
-
-<!-- WATER SPLASH -->
-<div class="splash-zone" id="splashZone" aria-hidden="true">
-  <div class="splash-drop"></div>
-  <div class="splash-ripple splash-r1"></div>
-  <div class="splash-ripple splash-r2"></div>
-  <div class="splash-ripple splash-r3"></div>
-</div>
 
 <!-- MARQUEE -->
 <div class="marquee-wrap" aria-hidden="true">
@@ -1028,22 +1009,5 @@ function dealsSlide(dir){
 }
 </script>
 <script src="script.js"></script>
-<script>
-/* water splash on hero exit */
-(function(){
-  var sz = document.getElementById('splashZone');
-  if(!sz) return;
-  var obs = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){
-        sz.classList.remove('active');
-        void sz.offsetWidth;
-        sz.classList.add('active');
-      }
-    });
-  }, {threshold: 0});
-  obs.observe(sz);
-})();
-</script>
 </body>
 </html>
