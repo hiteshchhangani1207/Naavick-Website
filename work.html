@@ -178,6 +178,19 @@
 .team-role{font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--st);font-weight:300;margin-bottom:16px;}
 .team-bio{font-size:12px;color:var(--mid);line-height:1.85;font-weight:300;}
 
+/* ───── PAGE HEADER WHEEL ───── */
+.page-header-wheel-img{
+  position:absolute;right:-8vw;bottom:-8vw;
+  width:58vw;height:58vw;
+  opacity:0.12;pointer-events:none;
+  filter:invert(1);object-fit:contain;
+  animation:phWheelSpin 400s linear infinite;
+}
+@keyframes phWheelSpin{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
 /* ───── RESPONSIVE ───── */
 @media(max-width:960px){
   .practice-header{grid-template-columns:1fr;gap:28px;padding:0 28px;}
@@ -205,15 +218,8 @@
 <!-- NAV -->
 <nav class="site-nav" id="siteNav">
   <a href="index.html" class="nav-logo">
-    <svg class="wheel-svg" width="22" height="22" viewBox="0 0 48 48" fill="none">
-      <circle cx="24" cy="24" r="20" stroke-width="1.2"/>
-      <circle cx="24" cy="24" r="8" stroke-width="1.2"/>
-      <line x1="24" y1="4" x2="24" y2="16" stroke-width="1.2"/>
-      <line x1="24" y1="32" x2="24" y2="44" stroke-width="1.2"/>
-      <line x1="4" y1="24" x2="16" y2="24" stroke-width="1.2"/>
-      <line x1="32" y1="24" x2="44" y2="24" stroke-width="1.2"/>
-    </svg>
-    <span>N<span class="r">AA</span>VICK LEGAL</span>
+    <img class="nav-logo-img nav-logo-white" src="brand assets/logo1-white.png" alt="Naavick Legal">
+    <img class="nav-logo-img nav-logo-black" src="brand assets/logo1-black.png" alt="Naavick Legal">
   </a>
   <ul class="nav-links">
     <li><a href="index.html">Who we are</a></li>
@@ -221,7 +227,7 @@
     <li><a href="our-dna.html">How we do</a></li>
     <li><a href="contact.html">Where we are</a></li>
   </ul>
-  <a href="mailto:office@naavick.com" class="nav-cta">Write to us</a>
+  <a href="mailto:contact@naavick.com" class="nav-cta">Write to us</a>
   <div class="nav-mobile-btn" onclick="openMenu()"><span></span><span></span></div>
 </nav>
 
@@ -242,19 +248,7 @@
 <!-- PAGE HEADER -->
 <section class="page-header">
   <div class="page-header-grid"></div>
-  <svg class="page-header-wheel" viewBox="0 0 500 500" fill="none">
-    <circle cx="250" cy="250" r="220" stroke="white" stroke-width="2.5"/>
-    <circle cx="250" cy="250" r="160" stroke="white" stroke-width="2.5"/>
-    <circle cx="250" cy="250" r="80" stroke="white" stroke-width="2.5"/>
-    <line x1="250" y1="30" x2="250" y2="170" stroke="white" stroke-width="2.5"/>
-    <line x1="250" y1="330" x2="250" y2="470" stroke="white" stroke-width="2.5"/>
-    <line x1="30" y1="250" x2="170" y2="250" stroke="white" stroke-width="2.5"/>
-    <line x1="330" y1="250" x2="470" y2="250" stroke="white" stroke-width="2.5"/>
-    <line x1="95" y1="95" x2="193" y2="193" stroke="white" stroke-width="2.5"/>
-    <line x1="307" y1="307" x2="405" y2="405" stroke="white" stroke-width="2.5"/>
-    <line x1="405" y1="95" x2="307" y2="193" stroke="white" stroke-width="2.5"/>
-    <line x1="193" y1="307" x2="95" y2="405" stroke="white" stroke-width="2.5"/>
-  </svg>
+  <img class="page-header-wheel-img" src="brand assets/wheel-element-1.png" alt="" aria-hidden="true">
   <div class="page-eyebrow">Work · Practice · People</div>
   <h1 class="page-title">What we do,<br>and the people<br><em>who do it.</em></h1>
   <p class="page-subtitle">Eight practice areas. Three decades of combined expertise. One uncompromising standard of legal research and execution.</p>
@@ -589,38 +583,22 @@
 
 <!-- FOOTER -->
 <footer>
-  <svg class="footer-wheel" viewBox="0 0 500 500" fill="none">
-    <circle cx="250" cy="250" r="220" stroke="white" stroke-width="2"/>
-    <circle cx="250" cy="250" r="160" stroke="white" stroke-width="2"/>
-    <circle cx="250" cy="250" r="80" stroke="white" stroke-width="2"/>
-    <line x1="250" y1="30" x2="250" y2="170" stroke="white" stroke-width="2"/>
-    <line x1="250" y1="330" x2="250" y2="470" stroke="white" stroke-width="2"/>
-    <line x1="30" y1="250" x2="170" y2="250" stroke="white" stroke-width="2"/>
-    <line x1="330" y1="250" x2="470" y2="250" stroke="white" stroke-width="2"/>
-    <line x1="95" y1="95" x2="193" y2="193" stroke="white" stroke-width="2"/>
-    <line x1="307" y1="307" x2="405" y2="405" stroke="white" stroke-width="2"/>
-    <line x1="405" y1="95" x2="307" y2="193" stroke="white" stroke-width="2"/>
-    <line x1="193" y1="307" x2="95" y2="405" stroke="white" stroke-width="2"/>
-  </svg>
   <div class="footer-cta">
-    <h3 class="footer-cta-h">Ready to work<br>with us, <em>thoroughly?</em></h3>
-    <a href="mailto:office@naavick.com" class="footer-cta-btn">Begin a conversation →</a>
+    <h3 class="footer-cta-h">Write to <em>us.</em></h3>
+    <p class="footer-cta-sub">Leave us your email with a brief introduction and we will get back to you.</p>
+    <form class="footer-form" id="footerForm">
+      <input type="email" class="footer-input" placeholder="Your email address" required>
+      <button type="submit" class="footer-send">Send →</button>
+    </form>
+    <p class="footer-sent" id="footerSent">We'll be in touch shortly.</p>
   </div>
   <div class="footer-top">
     <div class="footer-brand">
-      <svg class="wheel-svg" width="32" height="32" viewBox="0 0 48 48" fill="none">
-        <circle cx="24" cy="24" r="20" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
-        <circle cx="24" cy="24" r="8" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
-        <line x1="24" y1="4" x2="24" y2="16" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
-        <line x1="24" y1="32" x2="24" y2="44" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
-        <line x1="4" y1="24" x2="16" y2="24" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
-        <line x1="32" y1="24" x2="44" y2="24" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
-      </svg>
-      <div class="footer-wm">N<span class="r">AA</span>VICK LEGAL</div>
-      <p class="footer-tagline">Advocates & Company Secretaries. Boutique legal advisory based in Mumbai, with offices in Delhi and Nagpur.</p>
+      <img src="brand assets/logo1-white.png" alt="Naavick Legal" class="footer-logo">
+      <p class="footer-tagline">Boutique legal advisory based in Mumbai, with offices in Delhi and Nagpur.</p>
     </div>
     <div>
-      <div class="footer-col-title">Navigate</div>
+      <div class="footer-col-title">Explore</div>
       <ul class="footer-links">
         <li><a href="index.html">Who we are</a></li>
         <li><a href="work.html">What we do</a></li>
@@ -629,32 +607,30 @@
       </ul>
     </div>
     <div>
-      <div class="footer-col-title">Locations</div>
+      <div class="footer-col-title">Connect</div>
       <ul class="footer-links">
-        <li><span>Mumbai (HQ)</span></li>
-        <li><span>Delhi</span></li>
-        <li><span>Nagpur</span></li>
-      </ul>
-    </div>
-    <div>
-      <div class="footer-col-title">Reach us</div>
-      <ul class="footer-links">
-        <li><a href="mailto:office@naavick.com">office@naavick.com</a></li>
-        <li><a href="tel:+917306986335">+91 730 698 6335</a></li>
+        <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+        <li><a href="#">Twitter</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2025 Naavick Legal. All rights reserved.</span>
-    <div class="footer-social">
-      <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-      <a href="#">Twitter</a>
-    </div>
-    <span class="footer-legal">Bar Council Enrolled · SEBI Registered</span>
+    <span class="footer-copy">© 2026 Naavick Legal. All rights reserved.</span>
   </div>
 </footer>
 
 <script src="script.js"></script>
+<script>
+/* footer email form */
+document.getElementById('footerForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var email = this.querySelector('.footer-input').value;
+  window.location.href = 'mailto:contact@naavick.com?subject=Inquiry — Naavick Legal&body=From: ' + encodeURIComponent(email);
+  this.querySelector('.footer-input').value = '';
+  document.getElementById('footerSent').style.display = 'block';
+  setTimeout(function(){ document.getElementById('footerSent').style.display = 'none'; }, 4000);
+});
+</script>
 <script>
 (function(){
   const wheel  = document.getElementById('practiceWheelImg');

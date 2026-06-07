@@ -106,17 +106,18 @@
 
 /* ───── WHO WE ARE (Philosophy) ───── */
 .philo-grid{
-  display:grid;grid-template-columns:1fr 1.2fr;gap:80px;
-  align-items:start;margin-top:56px;
+  display:grid;grid-template-columns:minmax(280px,1.05fr) minmax(280px,0.95fr);
+  gap:48px;
+  align-items:center;margin-top:48px;
 }
 .philo-left p{
   font-size:14.5px;color:var(--mid);line-height:1.95;font-weight:300;
-  margin-bottom:0;max-width:480px;
+  margin-bottom:24px;max-width:420px;
 }
 .philo-stats{
-  display:flex;margin-top:44px;
+  display:flex;gap:28px;margin-top:32px;
 }
-.philo-stat{padding:24px 36px 24px 0;border-right:0.5px solid var(--mist);margin-right:36px}
+.philo-stat{padding:18px 28px 18px 0;border-right:0.5px solid var(--mist);margin-right:28px}
 .philo-stat:last-child{border-right:none}
 .ps-n{
   font-family:'Cormorant Garamond',serif;
@@ -127,58 +128,71 @@
   color:var(--st);font-weight:300;margin-top:5px;
 }
 .philo-right{
-  border-left:0.5px solid var(--mist);padding-left:56px;
+  border-left:0.5px solid var(--mist);padding-left:40px;
+  display:flex;flex-direction:column;justify-content:center;
 }
 .philo-pull{
   font-family:'Cormorant Garamond',serif;
   font-weight:300;font-style:italic;
-  font-size:clamp(24px,2.8vw,36px);
-  color:var(--sl);line-height:1.38;letter-spacing:-0.012em;
-  margin-bottom:28px;
+  font-size:clamp(22px,2.6vw,34px);
+  color:var(--sl);line-height:1.5;letter-spacing:-0.012em;
+  margin-bottom:28px;position:relative;padding-top:56px;
+}
+.philo-pull::before{
+  content:'\201C';
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(80px,10vw,140px);
+  color:var(--crim);opacity:0.18;
+  line-height:1;position:absolute;top:-8px;left:-8px;
+  font-weight:300;font-style:normal;
 }
 .philo-detail{
-  font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+  font-size:10px;letter-spacing:0.24em;text-transform:uppercase;
   color:var(--st);font-weight:300;
+  display:flex;align-items:center;gap:12px;
+}
+.philo-detail::before{
+  content:'';display:block;width:16px;height:0.5px;background:var(--crim);flex-shrink:0;
 }
 
 /* ───── HOW WE DO ───── */
 .principles-grid{
-  display:grid;grid-template-columns:repeat(2,1fr);
+  display:grid;grid-template-columns:repeat(4,minmax(220px,1fr));
   gap:1px;background:var(--mist);
-  margin-top:72px;
+  margin-top:48px;
 }
 .pr-cell{
   background:var(--ww);
-  padding:48px 44px 44px;
+  padding:36px 30px 30px;
   transition:background .3s;
 }
 .pr-cell:hover{background:var(--iv)}
 .pr-cell:hover .pr-n{color:var(--crim);transition:color .3s}
 .pr-n{
   font-family:'Cormorant Garamond',serif;
-  font-size:64px;font-weight:300;
+  font-size:54px;font-weight:300;
   color:rgba(26,26,26,0.06);
-  line-height:1;margin-bottom:22px;
+  line-height:1;margin-bottom:18px;
 }
 .pr-t{
   font-family:'Cormorant Garamond',serif;
   font-weight:400;font-size:24px;
-  color:var(--ch);margin-bottom:16px;letter-spacing:-0.01em;
+  color:var(--ch);margin-bottom:14px;letter-spacing:-0.01em;
 }
 .pr-d{
-  font-size:13px;color:var(--mid);
-  line-height:1.95;font-weight:300;max-width:420px;
+  font-size:14px;color:var(--mid);
+  line-height:1.8;font-weight:300;max-width:320px;
 }
 
 /* ───── EXPERTISE PREVIEW ───── */
 .exp-preview-grid{
-  display:grid;grid-template-columns:repeat(2,1fr);
+  display:grid;grid-template-columns:repeat(4,minmax(240px,1fr));
   gap:1px;background:var(--mist);
-  margin-top:64px;
+  margin-top:48px;
 }
 .exp-cell{
   background:var(--ww);
-  padding:36px 32px 32px;
+  padding:32px 28px 28px;
   display:grid;grid-template-columns:44px 1fr;
   gap:0;align-items:start;
   transition:background .3s;
@@ -252,19 +266,19 @@
 .exp-content{display:flex;flex-direction:column}
 .exp-title{
   font-family:'Cormorant Garamond',serif;
-  font-weight:400;font-size:20px;color:var(--ch);
-  letter-spacing:-0.01em;line-height:1.25;
+  font-weight:400;font-size:22px;color:var(--ch);
+  letter-spacing:-0.01em;line-height:1.3;
 }
 .exp-arrow{display:none}
 .exp-all{
-  text-align:center;margin-top:64px;
-  padding-top:48px;border-top:0.5px solid var(--mist);
+  text-align:center;margin-top:48px;
+  padding-top:28px;border-top:0.5px solid var(--mist);
 }
 
 /* ───── DEAL HIGHLIGHTS (LinkedIn) ───── */
 .deals-header{
   display:flex;justify-content:space-between;align-items:flex-end;
-  margin-bottom:56px;flex-wrap:wrap;gap:24px;
+  margin-bottom:48px;flex-wrap:wrap;gap:20px;
 }
 .deals-meta{
   font-size:9px;letter-spacing:0.28em;text-transform:uppercase;
@@ -274,7 +288,7 @@
   content:'';width:8px;height:8px;border-radius:50%;background:#0A66C2;
   display:block;
 }
-.deals-carousel{overflow:hidden;width:100%}
+.deals-carousel{overflow:hidden;width:100%;}
 .deals-track{
   display:flex;
   transition:transform 600ms cubic-bezier(0.25,0,0.1,1);
@@ -283,16 +297,16 @@
 .deals-slide{
   width:50%;display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:24px;flex-shrink:0;
+  gap:20px;flex-shrink:0;
 }
 .deals-slide iframe{
-  width:100%;height:570px;
+  width:100%;height:auto;min-height:520px;
   border:0.5px solid var(--mist);
   background:var(--ww);
 }
 .deals-nav{
   display:flex;align-items:center;justify-content:center;
-  gap:24px;margin-top:48px;
+  gap:24px;margin-top:32px;
 }
 .deals-nav-btn{
   font-family:'Barlow',sans-serif;
@@ -311,12 +325,13 @@
 .social-proof{
   background:var(--ww);overflow:hidden;
   border-bottom:0.5px solid var(--mist);
-  padding:72px 56px 0;
+  padding:88px 56px;
+  min-height:100vh;display:flex;flex-direction:column;justify-content:flex-start;
 }
 .test-header-centered{
-  margin-bottom:44px;
+  margin-bottom:48px;
 }
-.test-carousel{overflow:hidden;width:100%;}
+.test-carousel{overflow:hidden;width:100%;max-height:200px;}
 .test-track{
   display:flex;
   transition:transform 600ms cubic-bezier(0.25,0,0.1,1);
@@ -325,45 +340,45 @@
 .test-slide{
   width:50%;display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:1px;background:var(--mist);
+  gap:0.5px;background:var(--mist);
   flex-shrink:0;
 }
 .test-card{
   background:var(--ww);
-  padding:32px 32px 28px;
+  padding:18px 18px 16px;
   display:flex;flex-direction:column;
   transition:background .3s;
 }
 .test-card:hover{background:var(--iv)}
 .test-qmark{
   font-family:'Cormorant Garamond',serif;
-  font-size:56px;line-height:0.7;color:var(--crim);
-  font-weight:300;display:block;margin-bottom:20px;
+  font-size:40px;line-height:0.7;color:var(--crim);
+  font-weight:300;display:block;margin-bottom:12px;
 }
 .test-qt{
   font-family:'Cormorant Garamond',serif;
   font-weight:300;font-style:italic;
-  font-size:clamp(15px,1.6vw,20px);
-  color:var(--sl);line-height:1.7;
-  flex:1;letter-spacing:-0.005em;margin-bottom:28px;
+  font-size:clamp(14px,1.4vw,18px);
+  color:var(--sl);line-height:1.6;
+  flex:1;letter-spacing:-0.005em;margin-bottom:16px;
 }
 .test-author-block{
   border-top:0.5px solid var(--mist);
-  padding-top:20px;
+  padding-top:12px;
 }
 .test-an{
   font-family:'Barlow',sans-serif;
-  font-size:10px;letter-spacing:0.28em;
+  font-size:9px;letter-spacing:0.28em;
   text-transform:uppercase;color:var(--ch);
-  font-weight:400;margin-bottom:4px;
+  font-weight:400;margin-bottom:2px;
 }
 .test-ar{
-  font-size:9px;letter-spacing:0.18em;
+  font-size:8px;letter-spacing:0.18em;
   text-transform:uppercase;color:var(--st);font-weight:300;
 }
 .test-nav{
   display:flex;align-items:center;justify-content:center;
-  gap:24px;margin-top:36px;padding-bottom:48px;
+  gap:24px;margin-top:8px;padding-bottom:12px;
 }
 .test-nav-btn{
   font-family:'Barlow',sans-serif;
@@ -383,8 +398,8 @@
 .test-dot.active{background:var(--crim)}
 
 /* clients strip */
-.sp-rule{height:0.5px;background:var(--mist)}
-.sp-clients{padding:40px 0 52px;}
+.sp-rule{height:0.5px;background:var(--mist);margin:32px 0;}
+.sp-clients{padding:8px 0 0;}
 .sp-marquee{
   width:100%;overflow:hidden;position:relative;
 }
@@ -398,23 +413,23 @@
   animation:spScroll 50s linear infinite;
 }
 .sp-pill{
-  padding:0 48px;
+  padding:0 32px;
   display:flex;align-items:center;
   position:relative;
 }
 .sp-pill::after{
   content:'';position:absolute;right:0;top:50%;
   transform:translateY(-50%);
-  width:0.5px;height:32px;background:var(--mist);
+  width:0.5px;height:24px;background:var(--mist);
 }
 .sp-logo{
-  height:44px;width:auto;display:block;
+  height:38px;width:auto;display:block;
   filter:brightness(0) saturate(100%) invert(18%) sepia(95%) saturate(1400%) hue-rotate(343deg) brightness(1.05) contrast(1.1);
   opacity:0.85;
 }
-.sp-logo-lg{height:90px;}
-.sp-logo-xl{height:150px;}
-.sp-logo-xxl{height:160px;}
+.sp-logo-lg{height:70px;}
+.sp-logo-xl{height:110px;}
+.sp-logo-xxl{height:120px;}
 .sp-logo-multiply{mix-blend-mode:multiply;filter:sepia(1) saturate(8) hue-rotate(315deg) brightness(0.72) contrast(1.2);}
 @keyframes spScroll{
   from{transform:translateX(-50%)}
@@ -422,10 +437,10 @@
 }
 
 /* ───── WHERE WE ARE ───── */
-.where-section{background:var(--ww);padding:120px 56px;border-bottom:0.5px solid var(--mist);}
-.where-head{margin-bottom:72px;}
-.where-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--mist);}
-.wloc-card{background:var(--ww);padding:44px 36px 40px;display:flex;flex-direction:column;gap:24px;position:relative;overflow:hidden;transition:background 0.8s ease;}
+.where-section{background:var(--ww);padding:88px 56px;border-bottom:0.5px solid var(--mist);min-height:100vh;display:flex;flex-direction:column;justify-content:flex-start;}
+.where-head{margin-bottom:32px;}
+.where-grid{display:grid;grid-template-columns:repeat(3,minmax(240px,1fr));gap:1px;background:var(--mist);}
+.wloc-card{background:var(--ww);padding:28px 24px 24px;display:flex;flex-direction:column;gap:16px;position:relative;overflow:hidden;transition:background 0.8s ease;}
 .wloc-card:hover{background:var(--ch);}
 .wloc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;filter:grayscale(100%) brightness(0.5) contrast(1.05);transition:opacity 0.9s ease;pointer-events:none;z-index:0;}
 .wloc-card:hover .wloc-img{opacity:1;}
@@ -434,9 +449,9 @@
 .wloc-tag::before{content:'';display:block;width:14px;height:0.5px;background:var(--ch);transition:background 0.6s ease;}
 .wloc-card:hover .wloc-tag{color:rgba(255,255,255,0.75);text-shadow:0 1px 6px rgba(0,0,0,0.9);}
 .wloc-card:hover .wloc-tag::before{background:rgba(255,255,255,0.75);}
-.wloc-city{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(36px,4vw,52px);color:var(--ch);line-height:1;letter-spacing:-0.022em;transition:color 0.6s ease;}
+.wloc-city{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(28px,3vw,40px);color:var(--ch);line-height:1;letter-spacing:-0.022em;transition:color 0.6s ease;}
 .wloc-card:hover .wloc-city{color:#fff;text-shadow:0 1px 12px rgba(0,0,0,0.9);}
-.wloc-addr{font-size:13px;color:var(--mid);font-weight:300;line-height:1.95;letter-spacing:0.02em;border-top:0.5px solid var(--mist);padding-top:20px;flex:1;transition:color 0.6s ease,border-color 0.6s ease;}
+.wloc-addr{font-size:12px;color:var(--mid);font-weight:300;line-height:1.6;letter-spacing:0.02em;border-top:0.5px solid var(--mist);padding-top:12px;flex:1;transition:color 0.6s ease,border-color 0.6s ease;}
 .wloc-card:hover .wloc-addr{color:rgba(255,255,255,0.82);border-top-color:rgba(255,255,255,0.2);text-shadow:0 1px 8px rgba(0,0,0,0.8);}
 .wloc-note{opacity:0;transition:opacity 0.6s ease;}
 .wloc-note-court{font-size:8px;letter-spacing:0.26em;text-transform:uppercase;color:rgba(255,255,255,0.6);font-weight:300;text-shadow:0 1px 6px rgba(0,0,0,0.9);}
@@ -445,9 +460,10 @@
 
 /* ───── GET IN TOUCH (Home version) ───── */
 .touch-section{
-  background:var(--ink);padding:120px 56px;
+  background:var(--ink);padding:88px 56px;
   border-bottom:0.5px solid rgba(255,255,255,0.04);
   position:relative;overflow:hidden;
+  min-height:100vh;display:flex;flex-direction:column;justify-content:flex-start;
 }
 .touch-wheel{
   position:absolute;
@@ -610,8 +626,8 @@
     </div>
 
     <div class="philo-right reveal reveal-d2">
-      <p class="philo-pull">"We are a new-age boutique firm — commanding deep transactional expertise and decisive dispute resolution, backed by authoritative knowledge and an absolute command on execution."</p>
-      <p class="philo-detail">— Adv. Bhupendra Dave, Founding Partner.</p>
+      <p class="philo-pull">We are a new-age boutique firm — commanding deep transactional expertise and decisive dispute resolution, backed by authoritative knowledge and an absolute command on execution.</p>
+      <p class="philo-detail">Adv. Bhupendra Dave, Founding Partner</p>
     </div>
   </div>
 </section>
@@ -698,7 +714,7 @@
     </div>
   </div>
 
-  <div class="exp-all reveal" style="margin-top:64px">
+  <div class="exp-all reveal" style="margin-top:48px">
     <a href="our-dna.html" class="btn">Explore how we work →</a>
   </div>
 </section>
@@ -850,7 +866,7 @@
 
   <div class="where-head reveal">
     <div class="ch-label" style="color:var(--crim)">Where we are</div>
-    <h2 class="sh">Three cities.<br><em>One standard.</em></h2>
+    <h2 class="sh">Cities apart,<br><em>standards aligned.</em></h2>
     <p class="section-intro reveal reveal-d1">Headquartered in Mumbai, with full-service offices in Delhi and Nagpur. All three offices operate to the same standard of practice and partner-led work.</p>
   </div>
 
