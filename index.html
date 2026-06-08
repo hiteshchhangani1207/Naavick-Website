@@ -411,6 +411,10 @@
 .sp-track{
   display:flex;align-items:center;gap:0;width:max-content;
   animation:spScroll 50s linear infinite;
+  will-change:transform;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  isolation:isolate;
 }
 .sp-pill{
   padding:0 32px;
