@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480">
+  <defs>
+    <style>
+      .bg { fill: #1A1A1A; }
+      .accent { fill: #BF1B1B; }
+      .rule { stroke: #BF1B1B; stroke-width: 0.5; }
+      .label { fill: #909090; font-family: 'Barlow', Arial, sans-serif; font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase; }
+      .heading { fill: #F9F8F4; font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 300; }
+      .sub { fill: #E2DFDA; font-family: 'Barlow', Arial, sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 0.05em; }
+      .meta { fill: #5E5E5E; font-family: 'Barlow', Arial, sans-serif; font-size: 10px; letter-spacing: 0.08em; }
+      .dot { fill: #BF1B1B; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect class="bg" width="800" height="480"/>
+
+  <!-- Left crimson bar -->
+  <rect class="accent" x="0" y="0" width="4" height="480"/>
+
+  <!-- Top rule -->
+  <line class="rule" x1="56" y1="72" x2="744" y2="72"/>
+
+  <!-- Court label -->
+  <text class="label" x="56" y="60">National Company Law Tribunal · Mumbai Bench · Court II</text>
+
+  <!-- Main heading -->
+  <text class="heading" x="56" y="148" font-size="46">Viksit Engineering</text>
+  <text class="heading" x="56" y="200" font-size="46" fill="#BF1B1B">Limited.</text>
+
+  <!-- Divider rule -->
+  <line class="rule" x1="56" y1="228" x2="200" y2="228"/>
+
+  <!-- Sub details -->
+  <text class="sub" x="56" y="264">Resolution Plan · Approved 11 February 2025</text>
+  <text class="sub" x="56" y="286">IA No. 86/2024 in CP(IB) No. 811/MB/C-II/2023</text>
+
+  <!-- Spacer rule -->
+  <line x1="56" y1="320" x2="744" y2="320" stroke="#363636" stroke-width="0.5"/>
+
+  <!-- Two-col meta -->
+  <text class="label" x="56" y="352">Role</text>
+  <text class="sub" x="56" y="372">Counsel for Resolution Professional</text>
+
+  <text class="label" x="400" y="352">Successful Resolution Applicant</text>
+  <text class="sub" x="400" y="372">Mrs. Ruchika Chaturvedi &amp; Mr. Kushal Chaturvedi</text>
+
+  <!-- Bottom rule -->
+  <line class="rule" x1="56" y1="416" x2="744" y2="416"/>
+
+  <!-- Footer -->
+  <text class="meta" x="56" y="444">Naavick Legal LLP</text>
+  <circle class="dot" cx="192" cy="440" r="2"/>
+  <text class="meta" x="202" y="444">Adv. Bhupendra Dave</text>
+  <circle class="dot" cx="330" cy="440" r="2"/>
+  <text class="meta" x="340" y="444">IBC 2016 · Section 30(6) r/w Section 31(1)</text>
+</svg>
