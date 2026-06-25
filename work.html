@@ -295,43 +295,41 @@
 @media(max-width:600px){
   .pn-t{font-size:18px;}
 }
-/* ── CLIENTELE MARQUEE ── */
-.cl-section{background:var(--iv);border-bottom:0.5px solid var(--mist);padding:72px 0 80px;}
+/* ── CLIENTELE GRID ── */
+.cl-section{background:var(--iv);border-bottom:0.5px solid var(--mist);padding:80px 56px 88px;}
 .cl-head{
   font-family:'Cormorant Garamond',serif;
   font-weight:300;font-size:clamp(42px,5.2vw,72px);
   color:var(--ch);line-height:1.1;letter-spacing:-0.02em;
-  padding:0 56px;margin-bottom:52px;
+  margin-bottom:56px;
 }
 .cl-head em{font-style:italic;color:var(--st);}
-.cl-marquee{width:100%;overflow:hidden;position:relative;}
-.cl-marquee::before,.cl-marquee::after{
-  content:'';position:absolute;top:0;bottom:0;width:120px;z-index:5;pointer-events:none;
+.cl-grid{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  border-top:0.5px solid var(--mist);
+  border-left:0.5px solid var(--mist);
 }
-.cl-marquee::before{left:0;background:linear-gradient(to right,var(--iv),transparent);}
-.cl-marquee::after{right:0;background:linear-gradient(to left,var(--iv),transparent);}
-.cl-track{
-  display:flex;align-items:center;gap:0;width:max-content;
-  animation:spScroll 50s linear infinite;
-  will-change:transform;backface-visibility:hidden;
+.cl-cell{
+  display:flex;align-items:center;justify-content:center;
+  padding:44px 28px;
+  border-right:0.5px solid var(--mist);
+  border-bottom:0.5px solid var(--mist);
+  transition:background 0.32s ease;
 }
-.cl-pill{
-  padding:0 32px;display:flex;align-items:center;position:relative;
-}
-.cl-pill::after{
-  content:'';position:absolute;right:0;top:50%;
-  transform:translateY(-50%);width:0.5px;height:24px;background:var(--mist);
-}
+.cl-cell:hover{ background:rgba(191,27,27,0.04); }
 .cl-logo{
-  height:38px;width:auto;display:block;
-  filter:brightness(0) saturate(100%) invert(18%) sepia(95%) saturate(1400%) hue-rotate(343deg) brightness(1.05) contrast(1.1);
-  opacity:0.85;
+  max-height:48px;max-width:130px;
+  width:auto;height:auto;display:block;
+  filter:brightness(0) saturate(100%) invert(10%) sepia(10%) saturate(400%) hue-rotate(0deg) brightness(0.55) contrast(1.1);
+  opacity:0.7;
+  transition:opacity 0.32s ease, filter 0.32s ease;
 }
-.cl-logo-lg{height:70px;}
-.cl-logo-xl{height:110px;}
-.cl-logo-xxl{height:120px;}
-.cl-logo-multiply{mix-blend-mode:multiply;filter:sepia(1) saturate(8) hue-rotate(315deg) brightness(0.72) contrast(1.2);}
-@keyframes spScroll{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.cl-cell:hover .cl-logo{
+  opacity:1;
+  filter:brightness(0) saturate(100%) invert(18%) sepia(95%) saturate(1400%) hue-rotate(343deg) brightness(1.05) contrast(1.1);
+}
+.cl-logo-multiply{mix-blend-mode:multiply;}
 </style>
 </head>
 <body>
@@ -532,46 +530,25 @@
      ═══════════════════════════════════════════ -->
 <section class="cl-section">
   <h2 class="cl-head reveal">Our <em>Clients.</em></h2>
-  <div class="cl-marquee">
-    <div class="cl-track">
-      <span class="cl-pill"><img class="cl-logo cl-logo-lg" src="Client Logos/Bayer.png" alt="Bayer"></span>
-      <span class="cl-pill"><img class="cl-logo cl-logo-xl" src="Client Logos/Kanakia.png" alt="Kanakia"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/Transteel.png" alt="Transteel"></span>
-      <span class="cl-pill"><img class="cl-logo cl-logo-lg" src="Client Logos/Rappid.png" alt="Rappid"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/Kims.png" alt="KIMS" style="height:60px"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/Maple Heights.png" alt="Maple Heights" style="height:112px"></span>
-      <span class="cl-pill"><img class="cl-logo cl-logo-lg" src="Client Logos/SMS.png" alt="SMS Group"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/In corp.png" alt="In-Corp" style="height:112px"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/Authum_-Photoroom.png" alt="Authum" style="height:52px"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/Rustomjee.png" alt="Rustomjee"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/Hoabl.png" alt="Hoabl"></span>
-      <span class="cl-pill"><img class="cl-logo cl-logo-xxl cl-logo-multiply" src="Client Logos/Hocco.png" alt="Hocco"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/Finvin.png" alt="Finvin" style="height:54px"></span>
-      <span class="cl-pill"><img class="cl-logo cl-logo-lg" src="Client Logos/Headway.png" alt="Headway"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/CFM.png" alt="CFM" style="height:120px"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/D thakkar.png" alt="D Thakkar"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/Unnati Finserv.png" alt="Unnati Finserv" style="height:34px"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/abcdubash copy.png" alt="Dubash"></span>
-      <!-- duplicate for seamless loop -->
-      <span class="cl-pill"><img class="cl-logo cl-logo-lg" src="Client Logos/Bayer.png" alt="Bayer"></span>
-      <span class="cl-pill"><img class="cl-logo cl-logo-xl" src="Client Logos/Kanakia.png" alt="Kanakia"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/Transteel.png" alt="Transteel"></span>
-      <span class="cl-pill"><img class="cl-logo cl-logo-lg" src="Client Logos/Rappid.png" alt="Rappid"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/Kims.png" alt="KIMS" style="height:60px"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/Maple Heights.png" alt="Maple Heights" style="height:112px"></span>
-      <span class="cl-pill"><img class="cl-logo cl-logo-lg" src="Client Logos/SMS.png" alt="SMS Group"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/In corp.png" alt="In-Corp" style="height:112px"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/Authum_-Photoroom.png" alt="Authum" style="height:52px"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/Rustomjee.png" alt="Rustomjee"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/Hoabl.png" alt="Hoabl"></span>
-      <span class="cl-pill"><img class="cl-logo cl-logo-xxl cl-logo-multiply" src="Client Logos/Hocco.png" alt="Hocco"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/Finvin.png" alt="Finvin" style="height:54px"></span>
-      <span class="cl-pill"><img class="cl-logo cl-logo-lg" src="Client Logos/Headway.png" alt="Headway"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/CFM.png" alt="CFM" style="height:120px"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/D thakkar.png" alt="D Thakkar"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/Unnati Finserv.png" alt="Unnati Finserv" style="height:34px"></span>
-      <span class="cl-pill"><img class="cl-logo" src="Client Logos/abcdubash copy.png" alt="Dubash"></span>
-    </div>
+  <div class="cl-grid">
+    <div class="cl-cell"><img class="cl-logo" src="Client Logos/Bayer.png" alt="Bayer"></div>
+    <div class="cl-cell"><img class="cl-logo" src="Client Logos/Kanakia.png" alt="Kanakia"></div>
+    <div class="cl-cell"><img class="cl-logo" src="Client Logos/Transteel.png" alt="Transteel"></div>
+    <div class="cl-cell"><img class="cl-logo" src="Client Logos/Rappid.png" alt="Rappid"></div>
+    <div class="cl-cell"><img class="cl-logo" src="Client Logos/Kims.png" alt="KIMS"></div>
+    <div class="cl-cell"><img class="cl-logo" src="Client Logos/Maple Heights.png" alt="Maple Heights"></div>
+    <div class="cl-cell"><img class="cl-logo" src="Client Logos/SMS.png" alt="SMS Group"></div>
+    <div class="cl-cell"><img class="cl-logo" src="Client Logos/In corp.png" alt="In-Corp"></div>
+    <div class="cl-cell"><img class="cl-logo" src="Client Logos/Authum_-Photoroom.png" alt="Authum"></div>
+    <div class="cl-cell"><img class="cl-logo" src="Client Logos/Rustomjee.png" alt="Rustomjee"></div>
+    <div class="cl-cell"><img class="cl-logo" src="Client Logos/Hoabl.png" alt="Hoabl"></div>
+    <div class="cl-cell"><img class="cl-logo cl-logo-multiply" src="Client Logos/Hocco.png" alt="Hocco"></div>
+    <div class="cl-cell"><img class="cl-logo" src="Client Logos/Finvin.png" alt="Finvin"></div>
+    <div class="cl-cell"><img class="cl-logo" src="Client Logos/Headway.png" alt="Headway"></div>
+    <div class="cl-cell"><img class="cl-logo" src="Client Logos/CFM.png" alt="CFM"></div>
+    <div class="cl-cell"><img class="cl-logo" src="Client Logos/D thakkar.png" alt="D Thakkar"></div>
+    <div class="cl-cell"><img class="cl-logo" src="Client Logos/Unnati Finserv.png" alt="Unnati Finserv"></div>
+    <div class="cl-cell"><img class="cl-logo" src="Client Logos/abcdubash copy.png" alt="Dubash"></div>
   </div>
 </section>
 
