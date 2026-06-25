@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naavick Legal — Master Brand Guidelines</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Barlow:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#0D0D0D;--ch:#1C1C1C;--gph:#252525;--sl:#3A3A3A;
+  --mid:#666;--st:#939393;--sv:#BEBEBE;
+  --mist:#E3E1DB;--ln:#EDEAE3;--iv:#F5F2EB;--ww:#F9F8F4;--cr:#FDFCFA;
+  --crim:#C01C1C;--cd:#9A1515;--navy:#0B1929;--nvm:#14253D;
+  --gold:#AD8A52;--goldl:#CBB07C;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;font-weight:300;background:var(--ww);color:var(--ch);font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
+
+.sb{position:fixed;top:0;left:0;width:212px;height:100vh;background:var(--ink);z-index:300;display:flex;flex-direction:column;border-right:0.5px solid rgba(255,255,255,0.04)}
+.sb-head{padding:34px 26px 28px;border-bottom:0.5px solid rgba(255,255,255,0.06)}
+.sb-wm{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.78)}
+.sb-wm .r{color:var(--crim)}
+.sb-cap{font-size:8px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.18);font-weight:300;margin-top:4px;display:block}
+.sb-body{flex:1;overflow-y:auto;padding:18px 0}
+.sb-body::-webkit-scrollbar{width:0}
+.sb-gl{font-size:7.5px;letter-spacing:0.32em;text-transform:uppercase;color:rgba(255,255,255,0.16);font-weight:400;padding:10px 26px 4px;display:block}
+.sb-a{display:block;padding:8px 26px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.32);font-weight:300;text-decoration:none;border-left:1.5px solid transparent;transition:all .18s}
+.sb-a:hover{color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.02)}
+.sb-a.on{color:rgba(255,255,255,0.86);border-left-color:var(--crim);background:rgba(255,255,255,0.022)}
+.sb-ft{padding:18px 26px;border-top:0.5px solid rgba(255,255,255,0.05);font-size:8.5px;color:rgba(255,255,255,0.13);font-weight:300;line-height:1.8}
+
+.main{margin-left:212px}
+
+/* COVER */
+.cov{min-height:100vh;background:var(--ch);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:0 76px 76px}
+.cov-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.017) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.017) 1px,transparent 1px);background-size:62px 62px;pointer-events:none}
+.cov-ac{position:absolute;top:0;right:0;width:44%;height:100%;background:var(--navy);opacity:0.5}
+.cov-badge{position:absolute;top:44px;right:76px;font-size:8px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.18);font-weight:300;border:0.5px solid rgba(255,255,255,0.09);padding:5px 12px}
+.cov-ey{font-size:8px;letter-spacing:0.4em;text-transform:uppercase;color:rgba(255,255,255,0.26);font-weight:400;margin-bottom:26px;position:relative}
+.cov-h{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(56px,9vw,104px);color:rgba(255,255,255,0.93);line-height:0.93;letter-spacing:-0.025em;position:relative;max-width:700px}
+.cov-h em{font-style:italic;color:rgba(255,255,255,0.26)}
+.cov-rule{width:38px;height:1px;background:var(--crim);margin:34px 0;position:relative}
+.cov-meta{display:flex;gap:60px;position:relative;flex-wrap:wrap}
+.cm label{display:block;font-size:7.5px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.18);font-weight:400;margin-bottom:4px}
+.cm span{font-size:11px;color:rgba(255,255,255,0.46);font-weight:300;letter-spacing:0.04em}
+
+/* SECTIONS */
+.sec{padding:92px 76px;border-bottom:0.5px solid var(--mist)}
+.alt{background:var(--iv)}
+.drk{background:var(--ch);border-color:rgba(255,255,255,0.05)}
+.nvy{background:var(--navy);border-color:rgba(255,255,255,0.04)}
+.ink{background:var(--ink);border-color:rgba(255,255,255,0.04)}
+
+.ch-lbl{font-size:8px;letter-spacing:0.42em;text-transform:uppercase;color:var(--st);font-weight:400;display:flex;align-items:center;gap:13px;margin-bottom:46px}
+.ch-lbl::before{content:'';display:block;width:18px;height:0.5px;background:var(--crim);flex-shrink:0}
+.ch-lbl.l{color:rgba(255,255,255,0.2)}
+
+.sh{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(32px,4.2vw,54px);color:var(--ch);line-height:1.06;letter-spacing:-0.015em;margin-bottom:13px}
+.sh.l{color:rgba(255,255,255,0.92)}
+.sh em{font-style:italic;color:var(--st)}
+.sh.l em{color:rgba(255,255,255,0.26)}
+.si{font-size:13px;color:var(--mid);line-height:1.9;font-weight:300;max-width:530px;margin-bottom:56px}
+.si.l{color:rgba(255,255,255,0.36)}
+
+/* GRIDS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--mist)}
+
+.lbl{font-size:8px;letter-spacing:0.3em;text-transform:uppercase;color:var(--st);font-weight:400;display:block;margin-bottom:13px}
+.lbl.l{color:rgba(255,255,255,0.2)}
+
+.hr{border:none;border-top:0.5px solid var(--mist);margin:48px 0}
+.hr.d{border-top-color:rgba(255,255,255,0.06)}
+
+/* SPEC TABLE */
+.sp{width:100%;border-collapse:collapse;font-size:12px}
+.sp tr{border-bottom:0.5px solid var(--mist)}
+.sp td{padding:10px 0;color:var(--mid);font-weight:300}
+.sp td:first-child{color:var(--sl);font-weight:400}
+.sp td:last-child{text-align:right;color:var(--st);font-size:11px}
+.sp.d tr{border-color:rgba(255,255,255,0.06)}
+.sp.d td{color:rgba(255,255,255,0.32)}
+.sp.d td:first-child{color:rgba(255,255,255,0.58)}
+.sp.d td:last-child{color:rgba(255,255,255,0.22)}
+
+/* PHILOSOPHY GRID */
+.pg{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--mist)}
+.pc{background:var(--ww);padding:38px}
+.pc h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:20px;color:var(--ch);margin-bottom:13px;line-height:1.2}
+.pc p,.pc li{font-size:12.5px;color:var(--mid);line-height:1.9;font-weight:300}
+.pc ul{list-style:none}
+.pc li{padding:7px 0;border-bottom:0.5px solid var(--mist);display:flex;gap:10px;align-items:baseline}
+.pc li:last-child{border:none}
+.pc li::before{content:'—';color:var(--sv);flex-shrink:0}
+
+/* SWATCHES */
+.swr{display:flex;gap:2px;margin-top:9px}
+.sw{flex:1;aspect-ratio:1/1.35;display:flex;flex-direction:column;justify-content:flex-end;padding:9px}
+.sw-name{font-size:9px;font-weight:400;line-height:1.3;letter-spacing:0.02em}
+.sw-vals{font-size:8px;font-weight:300;opacity:0.6;margin-top:2px;line-height:1.5}
+.sw.dk .sw-name,.sw.dk .sw-vals{color:rgba(255,255,255,0.8)}
+.sw.lt .sw-name,.sw.lt .sw-vals{color:var(--sl)}
+.sw.bd{border:0.5px solid var(--mist)}
+
+/* TYPE SPECIMENS */
+.ts{border-top:0.5px solid var(--mist);padding:40px 0}
+.tm{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:16px}
+.tm span{font-size:8px;letter-spacing:0.18em;text-transform:uppercase;color:var(--st);font-weight:400}
+.tm b{color:var(--sl);font-weight:400}
+.t-disp{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(42px,7vw,80px);color:var(--ch);line-height:0.97;letter-spacing:-0.015em}
+.t-disp em{font-style:italic;color:var(--st)}
+.t-h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(26px,3.8vw,46px);color:var(--ch);line-height:1.1;letter-spacing:-0.01em}
+.t-h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:21px;color:var(--ch);line-height:1.2}
+.t-body{font-family:'Barlow',sans-serif;font-weight:300;font-size:15px;color:var(--mid);line-height:1.9;max-width:570px}
+.t-cap{font-family:'Barlow',sans-serif;font-weight:200;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--st)}
+
+/* SPACING */
+.spd{display:flex;align-items:flex-end;gap:18px;margin:26px 0}
+.su{display:flex;flex-direction:column;align-items:center;gap:6px}
+.sb2{background:var(--mist);width:24px}
+.sl2{font-size:8px;color:var(--st);font-weight:400;letter-spacing:0.08em;text-align:center}
+
+/* MOCKUP */
+.mk{background:var(--gph);overflow:hidden;margin:44px 0}
+.mbar{background:rgba(255,255,255,0.03);height:34px;display:flex;align-items:center;padding:0 16px;gap:6px;border-bottom:0.5px solid rgba(255,255,255,0.04)}
+.bd{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.08)}
+.burl{margin-left:12px;font-size:9px;letter-spacing:0.05em;color:rgba(255,255,255,0.16)}
+.mnav{display:flex;justify-content:space-between;align-items:center;padding:16px 44px;border-bottom:0.5px solid rgba(255,255,255,0.04)}
+.mwm{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:11.5px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.82)}
+.mwm .r{color:var(--crim)}
+.mlinks{display:flex;gap:22px}
+.ml{font-size:8.5px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);font-weight:300}
+.mhero{padding:68px 44px;min-height:280px;display:flex;flex-direction:column;justify-content:flex-end;border-bottom:0.5px solid rgba(255,255,255,0.04)}
+.mey{font-size:7.5px;letter-spacing:0.4em;text-transform:uppercase;color:var(--crim);font-weight:400;margin-bottom:16px}
+.mh{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:46px;color:rgba(255,255,255,0.92);line-height:1.0;letter-spacing:-0.015em;max-width:420px}
+.mh em{font-style:italic;color:rgba(255,255,255,0.26)}
+.mcta{display:flex;align-items:center;gap:16px;margin-top:28px}
+.mbtn{font-size:8px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.75);font-weight:300;border:0.5px solid rgba(255,255,255,0.2);padding:10px 20px;background:transparent;font-family:'Barlow',sans-serif;cursor:default}
+.mgh{font-size:8px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.26);font-weight:300;font-family:'Barlow',sans-serif}
+.mcards{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.04)}
+.mcard{background:var(--ww);padding:24px}
+.mcn{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--mist);line-height:1;margin-bottom:9px}
+.mct{font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ch);font-weight:400;margin-bottom:5px}
+.mcd{font-size:10px;color:var(--st);font-weight:300;line-height:1.7}
+
+/* BUTTONS */
+.bp{font-family:'Barlow',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;background:var(--ch);color:rgba(255,255,255,0.9);border:none;padding:12px 24px;cursor:pointer}
+.bg{font-family:'Barlow',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;background:transparent;color:var(--ch);border:0.5px solid var(--ch);padding:12px 24px;cursor:pointer}
+.bt{font-family:'Barlow',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;background:transparent;color:var(--st);border:none;padding:12px 0;cursor:pointer}
+.br{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:14px 0 8px}
+
+/* UI CARDS */
+.uc{background:var(--ww);border:0.5px solid var(--mist);padding:24px;flex:1;min-width:140px}
+.ucl{font-size:7.5px;letter-spacing:0.28em;text-transform:uppercase;color:var(--st);font-weight:400;margin-bottom:9px}
+.uch{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:18px;color:var(--ch);margin-bottom:6px}
+.ucp{font-size:11px;color:var(--mid);font-weight:300;line-height:1.7}
+.ur{display:flex;gap:1px;background:var(--mist)}
+
+/* INPUT */
+.inp{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;border:none;border-bottom:0.5px solid var(--ch);background:transparent;color:var(--ch);padding:8px 0;width:100%;outline:none;letter-spacing:0.03em}
+
+/* BIZ CARDS */
+.bzd{background:var(--ch);aspect-ratio:1.75/1;padding:32px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.bzd::after{content:'';position:absolute;right:-20px;top:-20px;width:110px;height:110px;border:0.5px solid rgba(255,255,255,0.04);border-radius:50%}
+.bzl{background:var(--iv);border:0.5px solid var(--mist);aspect-ratio:1.75/1;padding:32px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.bzl::after{content:'';position:absolute;right:-20px;top:-20px;width:110px;height:110px;border:0.5px solid rgba(0,0,0,0.04);border-radius:50%}
+.bw{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.8)}
+.bd2{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ch)}
+.bw .r,.bd2 .r{color:var(--crim)}
+.bnw{font-family:'Barlow',sans-serif;font-weight:300;font-size:13px;color:rgba(255,255,255,0.8)}
+.bnd{font-family:'Barlow',sans-serif;font-weight:300;font-size:13px;color:var(--ch)}
+.brw{font-size:7.5px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.3);font-weight:300;margin-top:2px}
+.brd{font-size:7.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--st);font-weight:300;margin-top:2px}
+.bcw{font-size:9px;color:rgba(255,255,255,0.3);font-weight:200;line-height:1.9;text-align:right}
+.bcd{font-size:9px;color:var(--st);font-weight:200;line-height:1.9;text-align:right}
+
+/* LETTERHEAD */
+.lh{background:var(--ww);border:0.5px solid var(--mist);padding:48px;max-width:620px}
+.lhh{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:32px;border-bottom:0.5px solid var(--mist);margin-bottom:32px}
+.lhwm{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:14px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ch)}
+.lhwm .r{color:var(--crim)}
+.lhsub{font-size:7.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--st);margin-top:3px;font-weight:300}
+.lhci{text-align:right;font-size:9px;color:var(--st);font-weight:300;line-height:2}
+.lhd{font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--st);margin-bottom:20px;font-weight:300}
+.lhre{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:18px;color:var(--ch);margin-bottom:16px;line-height:1.3}
+.lhb{font-size:12px;color:var(--mid);line-height:1.95;font-weight:300;max-width:460px}
+
+/* EMAIL SIG */
+.es{border-top:1.5px solid var(--crim);padding:20px 0 0;display:inline-block;min-width:290px}
+.esn{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:16px;color:var(--ch);margin-bottom:2px}
+.esr{font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:var(--st);font-weight:300;margin-bottom:10px}
+.esf{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ch);margin-bottom:10px}
+.esf .r{color:var(--crim)}
+.esc{font-size:10px;color:var(--st);font-weight:300;line-height:1.9}
+
+/* PHOTO GRID */
+.phg{display:grid;grid-template-columns:2fr 1fr;gap:2px;background:var(--mist);margin:26px 0}
+.phr{display:grid;gap:2px}
+.phc{display:flex;flex-direction:column;justify-content:flex-end;padding:20px;min-height:150px}
+.ph1{background:#101010}
+.ph2{background:#181818}
+.ph3{background:#202020}
+.ph4{background:var(--ln)}
+.phco{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;font-weight:300;line-height:1.4}
+.phco.w{color:rgba(255,255,255,0.36)}
+.phco.d{color:var(--mid)}
+.phcl{font-size:7.5px;letter-spacing:0.2em;text-transform:uppercase;font-weight:300;margin-top:5px}
+.phcl.w{color:rgba(255,255,255,0.18)}
+.phcl.d{color:var(--st)}
+
+/* RULE ITEMS */
+.ri{padding:7px 0;border-bottom:0.5px solid var(--mist);font-size:11.5px;color:var(--mid);font-weight:300;display:flex;gap:9px;align-items:baseline}
+.ri::before{content:'→';color:var(--sv);flex-shrink:0;font-size:11px}
+.ri.no::before{content:'×';color:var(--crim)}
+.ri.ld{border-color:rgba(255,255,255,0.06);color:rgba(255,255,255,0.35)}
+.ri.ld::before{color:rgba(255,255,255,0.16)}
+.ri.ld.no::before{color:var(--crim)}
+
+/* DO DONT */
+.dd{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--mist);margin:22px 0}
+.dc{background:var(--ww);padding:24px}
+.dh{font-size:8px;letter-spacing:0.26em;text-transform:uppercase;font-weight:400;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.dh.y{color:#2A7052}
+.dh.n{color:var(--crim)}
+.di{font-size:11.5px;color:var(--mid);font-weight:300;line-height:1.8;padding:3px 0}
+
+/* TIMING */
+.tr{display:flex;gap:1px;background:var(--mist);margin:14px 0}
+.tc{background:var(--ww);padding:20px 18px;flex:1}
+.tn{font-size:8px;letter-spacing:0.22em;text-transform:uppercase;color:var(--st);font-weight:400;margin-bottom:5px}
+.tv{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:300;color:var(--ch);margin-bottom:3px}
+.td{font-size:10.5px;color:var(--st);font-weight:300;line-height:1.6}
+
+/* LOGO RULE GRID */
+.lrg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--mist);margin:22px 0}
+.lrc{background:var(--ww);padding:26px}
+.lrt{font-size:8px;letter-spacing:0.26em;text-transform:uppercase;font-weight:400;color:var(--st);margin-bottom:10px}
+.lrv{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;color:var(--ch);margin-bottom:3px}
+.lrd{font-size:11.5px;color:var(--mid);font-weight:300;line-height:1.7}
+
+/* PILLARS */
+.fps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(255,255,255,0.05);margin:56px 0}
+.fp{background:rgba(255,255,255,0.02);padding:32px 24px}
+.fpn{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:300;color:rgba(255,255,255,0.06);line-height:1;margin-bottom:12px}
+.fpt{font-size:8.5px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.42);font-weight:400;margin-bottom:10px}
+.fpd{font-size:11.5px;color:rgba(255,255,255,0.22);line-height:1.7;font-weight:300}
+
+/* ADJ */
+.ac{display:flex;flex-wrap:wrap;gap:5px;padding-top:44px;margin-top:44px;border-top:0.5px solid rgba(255,255,255,0.06)}
+.aw{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(17px,2.2vw,28px);font-weight:300;color:rgba(255,255,255,0.24)}
+.aw::after{content:' ·';color:rgba(255,255,255,0.09);margin-right:5px}
+.aw:last-child::after{display:none}
+.aw.h{color:rgba(255,255,255,0.7)}
+
+/* PAGE NUMBER */
+.pn{font-size:8px;letter-spacing:0.16em;color:var(--sv);font-weight:300;text-align:right;margin-top:36px;padding-top:20px;border-top:0.5px solid var(--mist)}
+.pn.d{color:rgba(255,255,255,0.13);border-top-color:rgba(255,255,255,0.05)}
+
+@media(max-width:900px){
+  .sb{display:none}.main{margin-left:0}
+  .sec{padding:56px 22px}.cov{padding:0 22px 56px}
+  .g2,.g3,.g4,.pg,.fps{grid-template-columns:1fr}
+  .mcards,.tr{flex-wrap:wrap}.mlinks{display:none}
+  .mh{font-size:30px}.cov-h{font-size:44px}
+  .dd{grid-template-columns:1fr}.lrg{grid-template-columns:1fr 1fr}
+  .phg{grid-template-columns:1fr}.cov-meta{flex-direction:column;gap:16px}
+}
+</style>
+</head>
+<body>
+
+<nav class="sb">
+  <div class="sb-head">
+    <div class="sb-wm">N<span class="r">AA</span>VICK LEGAL</div>
+    <span class="sb-cap">Master Brand Guidelines · 2025</span>
+  </div>
+  <div class="sb-body">
+    <span class="sb-gl">Foundation</span>
+    <a href="#cover" class="sb-a on">Cover</a>
+    <a href="#philosophy" class="sb-a">Brand Philosophy</a>
+    <a href="#design-language" class="sb-a">Design Language</a>
+    <span class="sb-gl">Identity</span>
+    <a href="#logo-rules" class="sb-a">Logo Usage Rules</a>
+    <a href="#logo-misuse" class="sb-a">Logo Misuse</a>
+    <a href="#color" class="sb-a">Color System</a>
+    <a href="#type" class="sb-a">Typography</a>
+    <a href="#spacing" class="sb-a">Spacing & Grid</a>
+    <span class="sb-gl">Digital</span>
+    <a href="#website" class="sb-a">Website Direction</a>
+    <a href="#ux" class="sb-a">UI / UX System</a>
+    <a href="#motion" class="sb-a">Motion Principles</a>
+    <span class="sb-gl">Applications</span>
+    <a href="#print" class="sb-a">Print & Stationery</a>
+    <a href="#digital-apps" class="sb-a">Digital Applications</a>
+    <a href="#photography" class="sb-a">Photography</a>
+    <span class="sb-gl">Governance</span>
+    <a href="#rulebook" class="sb-a">Creative Rulebook</a>
+  </div>
+  <div class="sb-ft">Direction A · Official System<br>Ultra Minimal Corporate Luxury<br><br>Confidential · Not for distribution</div>
+</nav>
+
+<main class="main">
+
+<!-- COVER -->
+<section class="cov" id="cover">
+  <div class="cov-grid"></div><div class="cov-ac"></div>
+  <div class="cov-badge">Master Brand Guidelines · Version 1.0 · 2025</div>
+  <div style="position:relative">
+    <div class="cov-ey">Naavick Legal · Official Identity System · 2025</div>
+    <h1 class="cov-h">Minimal.<br>Precise.<br><em>Inevitable.</em></h1>
+    <div class="cov-rule"></div>
+    <div class="cov-meta">
+      <div class="cm"><label>Visual System</label><span>Direction A — Ultra Minimal Corporate Luxury</span></div>
+      <div class="cm"><label>Primary Palette</label><span>Obsidian · Crimson · Ivory</span></div>
+      <div class="cm"><label>Typography</label><span>Cormorant Garamond · Barlow</span></div>
+      <div class="cm"><label>Status</label><span>Final · Locked · Permanent</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="sec" id="philosophy">
+  <div class="ch-lbl">01 — Brand Philosophy</div>
+  <h2 class="sh">The firm's voice,<br><em>values, and stance.</em></h2>
+  <p class="si">Before a line is drawn or a pixel placed, a brand must know what it believes. The following is the permanent intellectual foundation from which every visual and verbal decision at Naavick Legal flows.</p>
+  <div class="pg">
+    <div class="pc"><h3>Mission</h3><p>To deliver precise, research-led legal counsel that removes ambiguity from complex corporate, capital market, and regulatory environments — enabling clients to act with complete confidence.</p></div>
+    <div class="pc"><h3>Vision</h3><p>To become India's foremost boutique legal intelligence practice — a firm that defines how modern law is researched, communicated, and delivered at a globally premium standard.</p></div>
+    <div class="pc"><h3>Brand Philosophy</h3><p>The law, in the right hands, is not a constraint — it is a precision instrument. Naavick Legal does not follow precedent. It studies it deeply, anticipates its movement, and navigates beyond it. Every engagement begins with a question no one else thought to ask, and ends with clarity.</p></div>
+    <div class="pc"><h3>Brand Atmosphere</h3><p>Clients should experience <em style="font-style:italic">calm certainty</em> when engaging Naavick Legal. Not the relief of a problem solved — the deeper confidence of a decision perfectly made. The brand communicates quiet authority: the kind that never needs to announce itself.</p></div>
+    <div class="pc"><h3>Tone of Voice</h3><ul><li>Precise — never vague, never hedged unnecessarily</li><li>Authoritative — confident, not arrogant</li><li>Measured — no urgency theatre, no exclamation marks</li><li>Intelligent — assumes a sophisticated, educated audience</li><li>Restrained — says less, means more</li><li>Editorial — the register of a respected institution</li></ul></div>
+    <div class="pc"><h3>Luxury Positioning</h3><p>Naavick Legal's luxury is communicated through the confidence to remove ornamentation. Space, silence, and restraint are the premium signals. The brand should feel closer to a McKinsey global report than any law firm brochure. Closer to Loewe than to Legalese.</p><div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:0"><span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;font-weight:300;color:var(--sl)">Precise · Restrained · Strategic · Global · Timeless</span></div></div>
+  </div>
+  <div class="pn">01 / Brand Philosophy</div>
+</section>
+
+<!-- DESIGN LANGUAGE -->
+<section class="sec alt" id="design-language">
+  <div class="ch-lbl">02 — Final Design Language</div>
+  <h2 class="sh">Direction A is the<br><em>permanent visual system.</em></h2>
+  <p class="si">Ultra Minimal Corporate Luxury is not a trend direction. It is the only language appropriate to what Naavick Legal is, and what it intends to become. These principles govern every future design decision.</p>
+  <div class="g3" style="gap:1px;background:var(--mist);margin-bottom:44px">
+    <div style="background:var(--ww);padding:32px"><div class="lbl">Editorial Minimalism</div><p style="font-size:12.5px;color:var(--mid);line-height:1.9;font-weight:300">Every layout is a page before it is a screen. Content has breathing room. Typography is the design. Nothing decorative exists that does not serve a function. Layouts feel like the inside pages of a considered institution — Monocle, not a legal brief.</p></div>
+    <div style="background:var(--ww);padding:32px"><div class="lbl">Architectural Composition</div><p style="font-size:12.5px;color:var(--mid);line-height:1.9;font-weight:300">Sections are structured like buildings — load-bearing elements at the top, openness below. Grid lines define proportion. Negative space is structural, not accidental. Asymmetric layouts serve hierarchy. Symmetry is reserved for formal applications only.</p></div>
+    <div style="background:var(--ww);padding:32px"><div class="lbl">Cinematic Whitespace</div><p style="font-size:12.5px;color:var(--mid);line-height:1.9;font-weight:300">Whitespace is not empty — it is the silence between notes that gives music meaning. Every section should feel like entering a quiet, considered room. Minimum 96px vertical padding between all major page sections on desktop.</p></div>
+    <div style="background:var(--ww);padding:32px"><div class="lbl">Restrained Luxury</div><p style="font-size:12.5px;color:var(--mid);line-height:1.9;font-weight:300">Luxury communicates through what is absent. No decorative borders. No pattern fills. No unnecessary illustration. Crimson appears in micro-doses only — a single letter accent, a rule line, a form focus state. It should feel considered each time it appears.</p></div>
+    <div style="background:var(--ww);padding:32px"><div class="lbl">Sophisticated Dark / Light</div><p style="font-size:12.5px;color:var(--mid);line-height:1.9;font-weight:300">Alternating dark and light sections create visual rhythm and prevent monotony. Dark sections use Obsidian or Deep Navy. Light sections use Warm White or Ivory. Never use pure #000000 or pure #FFFFFF on any surface.</p></div>
+    <div style="background:var(--ww);padding:32px"><div class="lbl">Visual Silence</div><p style="font-size:12.5px;color:var(--mid);line-height:1.9;font-weight:300">The brand's loudest statement is made through restraint. No chatbots. No carousels. No icon libraries. No stock images. No gradients. When there is doubt about whether something should be added — it must not be added. Default to less, always.</p></div>
+  </div>
+  <div class="hr"></div>
+  <div class="g2">
+    <div><div class="lbl">Visual Hierarchy Principles</div><table class="sp"><tr><td>Primary element</td><td></td><td>Full section width, maximum space</td></tr><tr><td>Secondary element</td><td></td><td>Reduced size, generous leading</td></tr><tr><td>Tertiary element</td><td></td><td>8px tracked uppercase label</td></tr><tr><td>Body copy</td><td></td><td>Max 65 characters per line</td></tr><tr><td>Crimson accent</td><td></td><td>Once per section, maximum</td></tr><tr><td>Decorative elements</td><td></td><td>None permitted, ever</td></tr></table></div>
+    <div><div class="lbl">Luxury Benchmarks — References</div><table class="sp"><tr><td>Editorial rhythm</td><td></td><td>Monocle, FT Weekend</td></tr><tr><td>Typography discipline</td><td></td><td>Swiss design systems</td></tr><tr><td>Digital minimalism</td><td></td><td>Apple editorial pages</td></tr><tr><td>Brand restraint</td><td></td><td>Loewe, Bottega Veneta</td></tr><tr><td>Professional authority</td><td></td><td>McKinsey, Slaughter &amp; May</td></tr><tr><td>Spatial thinking</td><td></td><td>Zaha Hadid Architects</td></tr></table></div>
+  </div>
+  <div class="pn">02 / Design Language</div>
+</section>
+
+<!-- LOGO RULES -->
+<section class="sec" id="logo-rules">
+  <div class="ch-lbl">03 — Logo Usage Rules</div>
+  <h2 class="sh">The existing logo and wheel<br><em>are permanent and locked.</em></h2>
+  <p class="si">The Naavick Legal logo and navigator wheel are the final, permanent brand assets. These are the only marks to be used across all applications. The following defines correct usage exclusively — with zero modification to the assets.</p>
+  <div class="lrg">
+    <div class="lrc"><div class="lrt">Clear Space — All Sides</div><div class="lrv">1× Cap Height</div><p class="lrd">Maintain clear space equal to the height of the capital N on all four sides of the logo. On premium print materials, increase to 2× cap height.</p></div>
+    <div class="lrc"><div class="lrt">Minimum Size — Screen</div><div class="lrv">140px wide</div><p class="lrd">The full logo lock-up must never appear smaller than 140px wide on screen. The wordmark alone may be used at minimum 100px wide.</p></div>
+    <div class="lrc"><div class="lrt">Minimum Size — Print</div><div class="lrv">28mm wide</div><p class="lrd">The full logo must never appear smaller than 28mm wide in print. For embossing, a minimum of 20mm is permitted for the mark only.</p></div>
+    <div class="lrc"><div class="lrt">Approved Backgrounds</div><div class="lrv">3 surfaces only</div><p class="lrd">Logo appears on: (1) Warm White #F9F8F4, (2) Ivory #F5F2EB, or (3) Obsidian #1C1C1C. The crimson AA letters remain crimson on all backgrounds.</p></div>
+    <div class="lrc"><div class="lrt">Favicon / App Icon</div><div class="lrv">Wheel mark only</div><p class="lrd">At favicon sizes (16–64px), use only the navigator wheel from the existing logo. The wordmark is not legible at this scale and must be omitted.</p></div>
+    <div class="lrc"><div class="lrt">Foil &amp; Emboss</div><div class="lrv">Blind or gold only</div><p class="lrd">For premium print, blind emboss or warm gold (#AD8A52) foil stamp are the only approved finishes. No silver foil. No coloured foil.</p></div>
+  </div>
+  <div class="hr"></div>
+  <div class="g2">
+    <div><div class="lbl">Logo on Dark Backgrounds</div><div style="background:var(--ch);padding:32px;display:flex;flex-direction:column;align-items:flex-start;gap:9px"><div style="font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.22);font-weight:300">Reversed — use original asset file</div><div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:21px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.86)">N<span style="color:var(--crim)">AA</span>VICK LEGAL</div><div style="font-size:8.5px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.18);font-weight:300">— Wordmark shown for layout reference only</div></div></div>
+    <div><div class="lbl">Logo on Light Backgrounds</div><div style="background:var(--iv);border:0.5px solid var(--mist);padding:32px;display:flex;flex-direction:column;align-items:flex-start;gap:9px"><div style="font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:var(--st);font-weight:300">Standard — use original asset file</div><div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:21px;letter-spacing:0.22em;text-transform:uppercase;color:var(--ch)">N<span style="color:var(--crim)">AA</span>VICK LEGAL</div><div style="font-size:8.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--sv);font-weight:300">— Wordmark shown for layout reference only</div></div></div>
+  </div>
+  <div class="pn">03 / Logo Usage Rules</div>
+</section>
+
+<!-- LOGO MISUSE -->
+<section class="sec alt" id="logo-misuse">
+  <div class="ch-lbl">04 — Logo Misuse Rules</div>
+  <h2 class="sh">What must <em>never</em><br>be done to the logo.</h2>
+  <p class="si">These are absolute prohibitions. Any application that violates these rules must be rejected and corrected. These rules exist to protect the integrity of a permanently established brand asset.</p>
+  <div class="dd">
+    <div class="dc"><div class="dh n">× &nbsp; Geometry Prohibitions</div><div class="di">Stretching or condensing the logo proportions</div><div class="di">Rotating the logo or wheel at any angle</div><div class="di">Modifying the navigator wheel geometry or spoke count</div><div class="di">Redrawing or recreating the wheel in any format</div><div class="di">Simplifying the wheel to fewer elements</div><div class="di">Scaling wheel and wordmark disproportionately</div></div>
+    <div class="dc"><div class="dh n">× &nbsp; Colour Prohibitions</div><div class="di">Using any colour outside the approved logo palette</div><div class="di">Applying gradients to the logo or wheel</div><div class="di">Using crimson for the full wordmark (AA letters only)</div><div class="di">Placing logo on coloured backgrounds without solid backing</div><div class="di">Reversing logo to grey or silver</div><div class="di">Using the logo in single flat red version</div></div>
+    <div class="dc"><div class="dh n">× &nbsp; Effect Prohibitions</div><div class="di">Applying drop shadows of any kind</div><div class="di">Applying glow or outer glow effects</div><div class="di">Adding outline or stroke effects around the logo</div><div class="di">Adding texture, noise, or halftone to the logo</div><div class="di">Animating the wheel as a rotating spinner</div><div class="di">Applying emboss or bevel effects digitally</div></div>
+    <div class="dc"><div class="dh n">× &nbsp; Alternative Prohibitions</div><div class="di">Creating alternate logo lockups or versions</div><div class="di">Creating monograms or letterform marks</div><div class="di">Creating simplified icon systems from the wheel</div><div class="di">Combining the logo with other graphic elements</div><div class="di">Redesigning the wordmark typeface</div><div class="di">Using the logo as a pattern or repeat element</div></div>
+  </div>
+  <div class="pn">04 / Logo Misuse Rules</div>
+</section>
+
+<!-- COLOR -->
+<section class="sec" id="color">
+  <div class="ch-lbl">05 — Color System</div>
+  <h2 class="sh">Restraint is the<br><em>most expensive colour.</em></h2>
+  <p class="si">A professionally specified colour palette across four groups. Each colour carries a precise function and emotional weight. Nothing is decorative. Nothing should be added. This palette is complete and permanent.</p>
+
+  <div style="margin-bottom:40px"><div class="lbl">Primary Palette — The dominant voice</div>
+  <div class="swr">
+    <div class="sw dk" style="background:#1C1C1C"><span class="sw-name">Obsidian</span><span class="sw-vals">#1C1C1C · R28 G28 B28<br>C0 M0 Y0 K89</span></div>
+    <div class="sw dk" style="background:#252525"><span class="sw-name">Graphite</span><span class="sw-vals">#252525 · R37 G37 B37<br>C0 M0 Y0 K85</span></div>
+    <div class="sw dk" style="background:#C01C1C"><span class="sw-name">Crimson</span><span class="sw-vals">#C01C1C · R192 G28 B28<br>C0 M85 Y85 K25</span></div>
+    <div class="sw lt bd" style="background:#F9F8F4"><span class="sw-name">Warm White</span><span class="sw-vals">#F9F8F4 · R249 G248 B244<br>C0 M0 Y2 K2</span></div>
+    <div class="sw lt bd" style="background:#F5F2EB"><span class="sw-name">Ivory</span><span class="sw-vals">#F5F2EB · R245 G242 B235<br>C0 M1 Y4 K4</span></div>
+  </div></div>
+
+  <div style="margin-bottom:40px"><div class="lbl">Secondary Palette — Depth and hierarchy</div>
+  <div class="swr">
+    <div class="sw dk" style="background:#0B1929"><span class="sw-name">Deep Navy</span><span class="sw-vals">#0B1929 · R11 G25 B41<br>C73 M39 Y0 K84</span></div>
+    <div class="sw dk" style="background:#14253D"><span class="sw-name">Navy Mid</span><span class="sw-vals">#14253D · R20 G37 B61<br>C67 M39 Y0 K76</span></div>
+    <div class="sw dk" style="background:#3A3A3A"><span class="sw-name">Slate</span><span class="sw-vals">#3A3A3A · R58 G58 B58<br>C0 M0 Y0 K77</span></div>
+    <div class="sw dk" style="background:#666666"><span class="sw-name">Mid Grey</span><span class="sw-vals">#666666 · R102 G102 B102<br>C0 M0 Y0 K60</span></div>
+    <div class="sw lt" style="background:#939393"><span class="sw-name">Stone</span><span class="sw-vals">#939393 · R147 G147 B147<br>C0 M0 Y0 K42</span></div>
+  </div></div>
+
+  <div style="margin-bottom:40px"><div class="lbl">Neutral Palette — Space and silence</div>
+  <div class="swr">
+    <div class="sw lt" style="background:#BEBEBE"><span class="sw-name">Silver</span><span class="sw-vals">#BEBEBE · R190 G190 B190<br>C0 M0 Y0 K25</span></div>
+    <div class="sw lt bd" style="background:#E3E1DB"><span class="sw-name">Mist</span><span class="sw-vals">#E3E1DB · R227 G225 B219<br>C0 M1 Y4 K11</span></div>
+    <div class="sw lt bd" style="background:#EDEAE3"><span class="sw-name">Linen</span><span class="sw-vals">#EDEAE3 · R237 G234 B227<br>C0 M1 Y4 K7</span></div>
+    <div class="sw lt bd" style="background:#F5F2EB"><span class="sw-name">Ivory</span><span class="sw-vals">#F5F2EB · R245 G242 B235<br>C0 M1 Y4 K4</span></div>
+    <div class="sw lt bd" style="background:#F9F8F4"><span class="sw-name">Warm White</span><span class="sw-vals">#F9F8F4 · R249 G248 B244<br>C0 M0 Y2 K2</span></div>
+  </div></div>
+
+  <div style="margin-bottom:40px"><div class="lbl">Prestige Palette — Print and tactile applications only. Never on screen.</div>
+  <div class="swr">
+    <div class="sw dk" style="background:#AD8A52"><span class="sw-name">Warm Gold</span><span class="sw-vals">#AD8A52 · R173 G138 B82<br>C0 M20 Y53 K32<br>Pantone 7509 C</span></div>
+    <div class="sw lt" style="background:#CBB07C"><span class="sw-name">Pale Gold</span><span class="sw-vals">#CBB07C · R203 G176 B124<br>C0 M13 Y39 K20<br>Pantone 7508 C</span></div>
+    <div class="sw dk" style="background:#9E9589"><span class="sw-name">Taupe</span><span class="sw-vals">#9E9589 · R158 G149 B137<br>C0 M6 Y13 K38<br>Pantone Warm Gray 7</span></div>
+    <div class="sw dk" style="background:#9A1515"><span class="sw-name">Deep Crimson</span><span class="sw-vals">#9A1515 · R154 G21 B21<br>C0 M86 Y86 K40<br>Pantone 1805 C</span></div>
+    <div class="sw lt bd" style="background:#F4E8E8"><span class="sw-name">Blush</span><span class="sw-vals">#F4E8E8 · R244 G232 B232<br>C0 M5 Y5 K4</span></div>
+  </div></div>
+
+  <div class="hr"></div>
+  <div class="g3" style="gap:36px">
+    <div><div class="lbl">Usage Proportions</div><table class="sp"><tr><td>Warm White / Ivory</td><td></td><td>50% of all surfaces</td></tr><tr><td>Obsidian / Graphite</td><td></td><td>35% of surfaces</td></tr><tr><td>Stone / Silver / Mist</td><td></td><td>12% of surfaces</td></tr><tr><td>Crimson</td><td></td><td>3% maximum — signal only</td></tr><tr><td>Navy (alt dark)</td><td></td><td>As needed</td></tr><tr><td>Gold (print only)</td><td></td><td>Foil / emboss only</td></tr></table></div>
+    <div><div class="lbl">Accessibility · WCAG 2.1</div><table class="sp"><tr><td>Obsidian on Warm White</td><td></td><td>AAA · 18.7:1</td></tr><tr><td>Graphite on Ivory</td><td></td><td>AAA · 14.2:1</td></tr><tr><td>Stone on Warm White</td><td></td><td>AA · 4.6:1</td></tr><tr><td>White on Crimson</td><td></td><td>AA · 5.9:1</td></tr><tr><td>White on Obsidian</td><td></td><td>AAA · 18.7:1</td></tr><tr><td>Stone on Obsidian</td><td></td><td>AA Large · 3.8:1</td></tr></table></div>
+    <div><div class="lbl">Colour Combinations</div><div style="display:flex;flex-direction:column;gap:7px;margin-top:4px"><div><div style="display:flex;height:36px"><div style="background:#1C1C1C;flex:3"></div><div style="background:#C01C1C;flex:0.3"></div><div style="background:#F9F8F4;flex:1.5"></div></div><div style="font-size:8.5px;color:var(--st);letter-spacing:0.1em;margin-top:4px">Hero dark · Obsidian · Signal · Light</div></div><div><div style="display:flex;height:36px;margin-top:8px"><div style="background:#F5F2EB;flex:3"></div><div style="background:#1C1C1C;flex:0.3"></div><div style="background:#C01C1C;flex:0.15"></div></div><div style="font-size:8.5px;color:var(--st);letter-spacing:0.1em;margin-top:4px">Light content · Ivory · Text · Accent</div></div><div><div style="display:flex;height:36px;margin-top:8px"><div style="background:#0B1929;flex:3"></div><div style="background:#AD8A52;flex:0.3"></div><div style="background:#F9F8F4;flex:1.5"></div></div><div style="font-size:8.5px;color:var(--st);letter-spacing:0.1em;margin-top:4px">Prestige print · Navy · Gold · Warm White</div></div></div></div>
+  </div>
+  <div class="pn">05 / Color System</div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section class="sec alt" id="type">
+  <div class="ch-lbl">06 — Typography System</div>
+  <h2 class="sh">Two typefaces.<br><em>One voice.</em></h2>
+  <p class="si">Cormorant Garamond carries elegance, gravitas, and editorial authority. Barlow carries precision, utility, and structural clarity. Together they create a system that communicates luxury through discipline, not decoration.</p>
+
+  <div class="ts"><div class="tm"><span>Role <b>Display / Hero</b></span><span>Family <b>Cormorant Garamond</b></span><span>Weight <b>300 Light</b></span><span>Size <b>72–100px</b></span><span>Leading <b>0.95</b></span></div><div class="t-disp">Through Laws,<br><em>Thoroughly.</em></div></div>
+  <div class="ts"><div class="tm"><span>Role <b>Section H1</b></span><span>Family <b>Cormorant Garamond</b></span><span>Weight <b>300 Light</b></span><span>Size <b>48–64px</b></span><span>Leading <b>1.06</b></span></div><div class="t-h1">Counsel for what matters most.</div></div>
+  <div class="ts"><div class="tm"><span>Role <b>Sub-heading H2</b></span><span>Family <b>Cormorant Garamond</b></span><span>Weight <b>400 Regular</b></span><span>Size <b>20–24px</b></span><span>Leading <b>1.2</b></span></div><div class="t-h2">Research-led advisory for corporate, capital market, and regulatory complexity.</div></div>
+  <div class="ts"><div class="tm"><span>Role <b>Body Copy</b></span><span>Family <b>Barlow</b></span><span>Weight <b>300 Light</b></span><span>Size <b>15–16px</b></span><span>Leading <b>1.85</b></span></div><p class="t-body">With over 12 years of expertise in Corporate and Securities Laws, Naavick Legal brings authoritative, research-driven knowledge to every mandate. We do not follow legal trends — we identify them before they form, and counsel our clients with clarity.</p></div>
+  <div class="ts"><div class="tm"><span>Role <b>UI Label / Caption</b></span><span>Family <b>Barlow</b></span><span>Weight <b>200 Ultralight</b></span><span>Size <b>9–11px</b></span><span>Tracking <b>0.28–0.42em</b></span></div><div class="t-cap">Corporate Law · Capital Markets · Insolvency & Restructuring · Foreign Investments · IP Rights</div></div>
+
+  <div class="hr"></div>
+  <div class="g2">
+    <div><div class="lbl">Type Scale — Complete</div><table class="sp"><tr><td>Display</td><td></td><td>72–100px · 300 · 0.95</td></tr><tr><td>Hero H1</td><td></td><td>52–64px · 300 · 1.06</td></tr><tr><td>Section H2</td><td></td><td>34–44px · 300 · 1.1</td></tr><tr><td>Sub-heading H3</td><td></td><td>20–24px · 400 · 1.2</td></tr><tr><td>Pull Quote</td><td></td><td>22–28px · Italic 300 · 1.3</td></tr><tr><td>Body Copy</td><td></td><td>15–16px · 300 · 1.85</td></tr><tr><td>Small Body</td><td></td><td>13–14px · 300 · 1.9</td></tr><tr><td>UI Label</td><td></td><td>10–11px · 300 · 0.28em</td></tr><tr><td>Caption / Meta</td><td></td><td>8–9px · 200 · 0.38em</td></tr><tr><td>Legal Doc Body</td><td></td><td>11pt · 400 · 1.7 (print)</td></tr></table></div>
+    <div><div class="lbl">Spacing & Tracking Rules</div><table class="sp"><tr><td>Display line height</td><td></td><td>0.93 – 0.97</td></tr><tr><td>Heading line height</td><td></td><td>1.05 – 1.12</td></tr><tr><td>Body line height</td><td></td><td>1.78 – 1.9</td></tr><tr><td>Section label tracking</td><td></td><td>0.38 – 0.44em</td></tr><tr><td>UI label tracking</td><td></td><td>0.22 – 0.28em</td></tr><tr><td>Wordmark tracking</td><td></td><td>0.18 – 0.22em</td></tr><tr><td>Max line length body</td><td></td><td>60 – 72 characters</td></tr><tr><td>Max line length heading</td><td></td><td>28 – 38 characters</td></tr><tr><td>Paragraph spacing</td><td></td><td>1.5× line height</td></tr><tr><td>Section top padding</td><td></td><td>96–120px desktop</td></tr></table></div>
+  </div>
+  <div class="pn">06 / Typography System</div>
+</section>
+
+<!-- SPACING -->
+<section class="sec" id="spacing">
+  <div class="ch-lbl">07 — Spacing & Grid System</div>
+  <h2 class="sh">The brand feels expensive<br><em>because of restraint.</em></h2>
+  <p class="si">Space is not empty. It is the architecture of attention. Every measurement in this system is deliberate. Negative space is the most premium element in any Naavick Legal composition.</p>
+  <div class="g2">
+    <div><div class="lbl">Base Spacing Scale — 4px Unit</div>
+    <div class="spd">
+      <div class="su"><div class="sb2" style="height:4px"></div><span class="sl2">4</span></div>
+      <div class="su"><div class="sb2" style="height:8px"></div><span class="sl2">8</span></div>
+      <div class="su"><div class="sb2" style="height:16px"></div><span class="sl2">16</span></div>
+      <div class="su"><div class="sb2" style="height:24px"></div><span class="sl2">24</span></div>
+      <div class="su"><div class="sb2" style="height:32px"></div><span class="sl2">32</span></div>
+      <div class="su"><div class="sb2" style="height:48px"></div><span class="sl2">48</span></div>
+      <div class="su"><div class="sb2" style="height:64px"></div><span class="sl2">64</span></div>
+      <div class="su"><div class="sb2" style="height:96px"></div><span class="sl2">96</span></div>
+      <div class="su"><div class="sb2" style="height:128px"></div><span class="sl2">128</span></div>
+      <div class="su"><div class="sb2" style="height:160px"></div><span class="sl2">160</span></div>
+    </div>
+    <p style="font-size:12px;color:var(--mid);font-weight:300;line-height:1.8">All spacing taken from the scale above. No arbitrary values. 4px base unit. Internal component spacing: smaller values. Section-level spacing: 96px minimum.</p></div>
+    <div><div class="lbl">Grid — Desktop · Tablet · Mobile</div>
+    <table class="sp"><tr><td>Desktop columns</td><td></td><td>12 · 80px margin · 24px gutter</td></tr><tr><td>Desktop max width</td><td></td><td>1280px centered</td></tr><tr><td>Desktop section padding</td><td></td><td>96px top and bottom</td></tr><tr><td>Tablet columns</td><td></td><td>8 · 40px margin · 20px gutter</td></tr><tr><td>Tablet section padding</td><td></td><td>72px top and bottom</td></tr><tr><td>Mobile columns</td><td></td><td>4 · 24px margin · 16px gutter</td></tr><tr><td>Mobile section padding</td><td></td><td>60px top and bottom</td></tr><tr><td>Hero minimum height</td><td></td><td>100vh all breakpoints</td></tr></table></div>
+  </div>
+  <div class="pn">07 / Spacing & Grid System</div>
+</section>
+
+<!-- WEBSITE -->
+<section class="sec drk" id="website">
+  <div class="ch-lbl l">08 — Website Art Direction</div>
+  <h2 class="sh l">A website that breathes<br><em>rather than speaks.</em></h2>
+  <p class="si l">The homepage is not a brochure. It is an introduction to a way of thinking. Every section is a room. Every scroll is a considered transition. The website should feel like the inside of a great institution — quiet, unhurried, intelligent.</p>
+  <div class="mk">
+    <div class="mbar"><div class="bd"></div><div class="bd"></div><div class="bd"></div><span class="burl">naavick.com</span></div>
+    <div class="mnav"><div class="mwm">N<span class="r">AA</span>VICK LEGAL</div><div class="mlinks"><span class="ml">Expertise</span><span class="ml">Work</span><span class="ml">Team</span><span class="ml">Contact</span></div></div>
+    <div class="mhero"><div class="mey">Mumbai · Delhi · Nagpur</div><h1 class="mh">Counsel for<br>what matters <em>most.</em></h1><div class="mcta"><button class="mbtn">Begin a conversation</button><span class="mgh">Our expertise →</span></div></div>
+    <div class="mcards"><div class="mcard"><div class="mcn">01</div><div class="mct">Corporate Law</div><div class="mcd">M&A, restructuring, governance</div></div><div class="mcard"><div class="mcn">02</div><div class="mct">Capital Markets</div><div class="mcd">IPO, SME IPO, SEBI compliance</div></div><div class="mcard"><div class="mcn">03</div><div class="mct">Insolvency</div><div class="mcd">IBC resolution, creditor advisory</div></div><div class="mcard"><div class="mcn">04</div><div class="mct">Foreign Investments</div><div class="mcd">FDI structuring, RBI compliance</div></div></div>
+  </div>
+  <div class="g3" style="gap:36px;margin-top:0">
+    <div><span class="lbl l">Navigation System</span><p style="font-size:12px;color:rgba(255,255,255,0.35);line-height:1.9;font-weight:300">Fixed, transparent over hero. On scroll: rgba(28,28,28,0.92) + blur(12px). Logo left, 4 links right. No CTA button. Nav text: Barlow 200, 9px, tracked 0.2em. Hover: opacity 0.65, 180ms ease. Mobile: slide-in panel, 40% width.</p></div>
+    <div><span class="lbl l">Hero Composition</span><p style="font-size:12px;color:rgba(255,255,255,0.35);line-height:1.9;font-weight:300">100vh Obsidian background. Zero images in the hero — typography carries all. The navigator wheel may appear as a ghost element at 2–3% opacity, bottom-right corner. One headline. One subline. One button. Nothing else. Reveal on load: fade + translateY(24px), 700ms, 200ms delay.</p></div>
+    <div><span class="lbl l">Page Architecture</span><table class="sp d"><tr><td>Section 1 — Hero</td><td></td><td>100vh · Dark · Full headline</td></tr><tr><td>Section 2 — Practice</td><td></td><td>Auto · Light · Numbered 4-col</td></tr><tr><td>Section 3 — About</td><td></td><td>Auto · Navy · 2-col asymmetric</td></tr><tr><td>Section 4 — Clientele</td><td></td><td>Auto · Light · Logo grid</td></tr><tr><td>Section 5 — Team</td><td></td><td>Auto · Ivory · 3-col portrait</td></tr><tr><td>Section 6 — Contact</td><td></td><td>Auto · Dark · Minimal form</td></tr></table></div>
+  </div>
+  <div class="pn d">08 / Website Art Direction</div>
+</section>
+
+<!-- UX -->
+<section class="sec alt" id="ux">
+  <div class="ch-lbl">09 — UI / UX System</div>
+  <h2 class="sh">Every component<br><em>in its right place.</em></h2>
+  <p class="si">Buttons do not shout. Cards do not compete. Forms do not demand. The UI system is as restrained as the brand — every element reduced to its essential, functional form.</p>
+  <div class="lbl">Button System</div>
+  <div class="br"><button class="bp">Primary — Begin a conversation</button><button class="bg">Secondary — Our expertise</button><button class="bt">Tertiary text link →</button></div>
+  <p style="font-size:12px;color:var(--mid);line-height:1.8;font-weight:300;max-width:520px;margin-bottom:36px">All buttons: square corners, zero border radius. Barlow 400, 9px, tracked 0.18em, uppercase. No icons. Hover: opacity 0.7, 160ms. Press: scale(0.98). No fill colour change on hover.</p>
+  <div class="lbl">Content Cards</div>
+  <div class="ur" style="margin:12px 0 8px"><div class="uc"><div class="ucl">Practice Area</div><div class="uch">Corporate Law</div><p class="ucp">M&A, governance, board advisory, regulatory structuring.</p></div><div class="uc"><div class="ucl">Practice Area</div><div class="uch">Capital Markets</div><p class="ucp">IPO advisory, SEBI compliance, securities mandates.</p></div><div class="uc"><div class="ucl">Practice Area</div><div class="uch">IBC & Insolvency</div><p class="ucp">Resolution planning and creditor representation.</p></div><div class="uc"><div class="ucl">Practice Area</div><div class="uch">Foreign Investments</div><p class="ucp">FDI structuring and RBI regulatory compliance.</p></div></div>
+  <p style="font-size:12px;color:var(--mid);line-height:1.8;font-weight:300;max-width:520px;margin-bottom:36px">Cards: 0.5px Mist border. Square corners. Background: Warm White. Hover: border → Stone, 200ms. No shadow. Numbers (01, 02...) replace iconography.</p>
+  <div class="lbl">Form System</div>
+  <div style="max-width:360px;margin:12px 0 8px;display:flex;flex-direction:column;gap:22px"><div><input class="inp" type="text" placeholder="Full name" /></div><div><input class="inp" type="text" placeholder="Company or organisation" /></div><div><input class="inp" type="email" placeholder="Email address" /></div></div>
+  <p style="font-size:12px;color:var(--mid);line-height:1.8;font-weight:300;max-width:520px;margin-bottom:36px">Bottom border only. Default: 0.5px Charcoal. Focus: Crimson, 200ms transition. No box, no fill, no border radius. Placeholder: Stone, Barlow 300.</p>
+  <div class="hr"></div>
+  <div class="g2">
+    <div><div class="lbl">Hover States</div><table class="sp"><tr><td>Navigation links</td><td></td><td>Opacity 1→0.6, 160ms</td></tr><tr><td>Primary button</td><td></td><td>Opacity 1→0.7, 160ms</td></tr><tr><td>Ghost button</td><td></td><td>Background → Mist, 200ms</td></tr><tr><td>Card border</td><td></td><td>Mist → Stone, 200ms</td></tr><tr><td>Form input</td><td></td><td>Charcoal → Crimson, 200ms</td></tr><tr><td>Team portrait</td><td></td><td>Opacity 1→0.88, 200ms</td></tr></table></div>
+    <div><div class="lbl">Iconography Rules</div><p style="font-size:12.5px;color:var(--mid);line-height:1.9;font-weight:300">No icon library is permitted in the Naavick Legal visual system. Practice areas use numbered labels rendered in Cormorant Garamond Light at large display scale. If directional icons are required, draw monoline to 24×24px grid, 1px stroke only. The navigator wheel in the existing logo is the only pictographic brand element.</p></div>
+  </div>
+  <div class="pn">09 / UI / UX System</div>
+</section>
+
+<!-- MOTION -->
+<section class="sec" id="motion">
+  <div class="ch-lbl">10 — Motion Principles</div>
+  <h2 class="sh">Motion that feels<br><em>invisible.</em></h2>
+  <p class="si">Motion at Naavick Legal is never decorative. It is the natural, unhurried movement of a brand that is confident it has time. Every animation should feel like something settling into place — not something performing.</p>
+  <div class="tr">
+    <div class="tc"><div class="tn">Micro</div><div class="tv">120ms</div><p class="td">Hover colour shifts. Focus state changes. Button opacity.</p></div>
+    <div class="tc"><div class="tn">Short</div><div class="tv">240ms</div><p class="td">Card borders. Navigation states. Form interactions.</p></div>
+    <div class="tc"><div class="tn">Medium</div><div class="tv">400ms</div><p class="td">Section reveals on scroll. Element fade-ins. Panel openings.</p></div>
+    <div class="tc"><div class="tn">Long</div><div class="tv">640ms</div><p class="td">Hero headline reveal on page load. Full page transitions.</p></div>
+    <div class="tc"><div class="tn">Cinematic</div><div class="tv">900ms</div><p class="td">Reserved for cover opens and milestone moments only.</p></div>
+  </div>
+  <div class="g3" style="gap:28px;margin-top:36px">
+    <div><div class="lbl">Easing Functions</div><table class="sp"><tr><td>Default</td><td></td><td>cubic-bezier(0.25,0,0.1,1)</td></tr><tr><td>Reveal</td><td></td><td>cubic-bezier(0.16,1,0.3,1)</td></tr><tr><td>Fade</td><td></td><td>ease (CSS default)</td></tr><tr><td>Never use</td><td></td><td>linear, bounce, elastic</td></tr></table></div>
+    <div><div class="lbl">Scroll Reveal System</div><p style="font-size:12.5px;color:var(--mid);line-height:1.9;font-weight:300">All content elements reveal on scroll entry: opacity 0→1 and translateY 20px→0. Duration: 480ms. Ease: reveal curve. Stagger between grouped elements: 80ms. Trigger: IntersectionObserver at 15% visibility. Once only — never replay on scroll-up.</p></div>
+    <div><div class="lbl">What Motion Must Not Do</div><div class="ri no">Rotate or animate the navigator wheel</div><div class="ri no">Use bounce or spring physics</div><div class="ri no">Trigger on mouse-move or parallax scroll</div><div class="ri no">Auto-play video or ambient loops</div><div class="ri no">Animate text letter-by-letter</div><div class="ri no">Use aggressive entrance sequences</div></div>
+  </div>
+  <div class="pn">10 / Motion Principles</div>
+</section>
+
+<!-- PRINT -->
+<section class="sec alt" id="print">
+  <div class="ch-lbl">11 — Print & Stationery System</div>
+  <h2 class="sh">The brand in<br><em>your hands.</em></h2>
+  <p class="si">Print is where the brand becomes tactile. The weight of the paper, the texture of an emboss, the restraint of the layout — these make a premium impression before a single word is read.</p>
+  <div class="lbl">Business Cards — Dark & Light Variants</div>
+  <div class="g2" style="gap:18px;margin:12px 0 10px">
+    <div class="bzd"><div class="bw">N<span class="r">AA</span>VICK LEGAL</div><div><div class="bnw">Bhupendra Dave</div><div class="brw">Advocate · Company Secretary</div></div><div class="bcw">office@naavick.com<br>+91 730 698 6335 · naavick.com</div></div>
+    <div class="bzl"><div class="bd2">N<span class="r">AA</span>VICK LEGAL</div><div><div class="bnd">Bhupendra Dave</div><div class="brd">Advocate · Company Secretary</div></div><div class="bcd">office@naavick.com<br>+91 730 698 6335 · naavick.com</div></div>
+  </div>
+  <p style="font-size:12px;color:var(--mid);line-height:1.8;font-weight:300;margin-bottom:36px">90 × 55mm. GF Smith Colorplan 400gsm Natural or Munken Lynx 350gsm. Dark: blind letterpress or warm gold foil. Light: blind emboss for wordmark. Square corners, uncoated, matte finish. No UV, no lamination.</p>
+
+  <div class="lbl">Letterhead</div>
+  <div class="lh" style="margin:12px 0 10px">
+    <div class="lhh"><div><div class="lhwm">N<span class="r">AA</span>VICK LEGAL</div><div class="lhsub">Advocates & Company Secretaries</div></div><div class="lhci">Mumbai · Delhi · Nagpur<br>office@naavick.com · naavick.com</div></div>
+    <div class="lhd">17 May 2025</div>
+    <div class="lhre">Re: Advisory on Proposed Corporate Restructuring</div>
+    <p class="lhb">Dear Sir / Madam,<br><br>We write in reference to the above matter and enclose herewith our considered legal opinion on the proposed restructuring plan. This communication is privileged and confidential, and is addressed solely to the named recipient.</p>
+  </div>
+  <p style="font-size:12px;color:var(--mid);line-height:1.8;font-weight:300;margin-bottom:36px">A4. Conqueror Laid 100gsm Natural White or Arjowiggins Creator 120gsm. Body: Barlow 300, 11pt, Leading 1.7. Ghost navigator wheel watermark at 3% tint, centered on page.</p>
+
+  <div class="lbl">Email Signature</div>
+  <div style="background:var(--iv);border:0.5px solid var(--mist);padding:32px;display:inline-block;margin:12px 0 10px">
+    <div class="es"><div class="esn">Bhupendra Dave</div><div class="esr">Advocate · Company Secretary</div><div class="esf">N<span class="r">AA</span>VICK LEGAL</div><div class="esc">office@naavick.com · +91 730 698 6335<br>Mumbai · Delhi · Nagpur · naavick.com</div></div>
+  </div>
+
+  <div class="hr"></div>
+  <div class="g2">
+    <div><div class="lbl">Complete Stationery Suite</div><table class="sp"><tr><td>Letterhead</td><td></td><td>A4, Conqueror 100gsm</td></tr><tr><td>Continuation sheet</td><td></td><td>A4, footer mark only</td></tr><tr><td>Envelope DL</td><td></td><td>Blind emboss on flap</td></tr><tr><td>Envelope C4</td><td></td><td>Return address, charcoal ink</td></tr><tr><td>Compliments slip</td><td></td><td>1/3 A4, matching stock</td></tr><tr><td>Legal notice</td><td></td><td>A4, Barlow 300, 11pt body</td></tr><tr><td>Document cover</td><td></td><td>A4, 300gsm, dark version</td></tr><tr><td>Folder / wallet</td><td></td><td>Black linen, gold foil mark</td></tr><tr><td>Wax seal</td><td></td><td>NL monogram, deep crimson wax</td></tr><tr><td>Conference materials</td><td></td><td>Matching stationery system</td></tr></table></div>
+    <div>
+      <div class="lbl">Document Cover</div>
+      <div style="background:var(--ch);aspect-ratio:3/4;max-width:190px;display:flex;flex-direction:column;justify-content:space-between;padding:22px;position:relative;overflow:hidden;margin-bottom:16px">
+        <div style="position:absolute;right:-14px;bottom:-14px;width:80px;height:80px;border:0.5px solid rgba(255,255,255,0.04);border-radius:50%"></div>
+        <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.68)">N<span style="color:var(--crim)">AA</span>VICK LEGAL</div>
+        <div><div style="width:18px;height:0.5px;background:var(--crim);margin-bottom:11px"></div><div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:300;color:rgba(255,255,255,0.82);line-height:1.25">Legal Opinion on Corporate Restructuring</div><div style="font-size:7.5px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-top:9px;font-weight:300">Confidential · May 2025</div></div>
+      </div>
+      <div class="lbl">Office Signage</div>
+      <div style="background:var(--iv);border:0.5px solid var(--mist);max-width:190px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:22px;aspect-ratio:4/3">
+        <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:13px;letter-spacing:0.22em;text-transform:uppercase;color:var(--ch)">N<span style="color:var(--crim)">AA</span>VICK</div>
+        <div style="font-size:7px;letter-spacing:0.44em;text-transform:uppercase;color:var(--st);margin-top:2px;font-weight:200">Legal</div>
+        <div style="width:14px;height:0.5px;background:var(--mist);margin:10px 0"></div>
+        <div style="font-size:7.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--st);font-weight:300;line-height:1.7">1st Floor, Great Western<br>Building, Mumbai</div>
+      </div>
+    </div>
+  </div>
+  <div class="pn">11 / Print & Stationery System</div>
+</section>
+
+<!-- DIGITAL APPS -->
+<section class="sec" id="digital-apps">
+  <div class="ch-lbl">12 — Digital Applications</div>
+  <h2 class="sh">The brand <em>across</em><br>every screen.</h2>
+  <p class="si">Digital applications follow the same principles as print — restrained, measured, consistent. Every digital surface reinforces the same typographic discipline and spatial confidence.</p>
+  <div class="g3" style="gap:20px">
+    <div><div class="lbl">LinkedIn Banner — 1584 × 396px</div>
+    <div style="background:var(--ch);aspect-ratio:4/1;display:flex;align-items:flex-end;justify-content:space-between;padding:14px 18px;position:relative;overflow:hidden">
+      <div style="position:absolute;right:-12px;top:-12px;width:80px;height:80px;border:0.5px solid rgba(255,255,255,0.04);border-radius:50%"></div>
+      <div><div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.8)">N<span style="color:var(--crim)">AA</span>VICK LEGAL</div><div style="font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.22);margin-top:2px;font-weight:300">Corporate · Capital Markets · Insolvency</div></div>
+      <div style="text-align:right;font-size:7px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.16);font-weight:300">Mumbai · Delhi · Nagpur</div>
+    </div></div>
+    <div><div class="lbl">Instagram Post — 1080 × 1080px</div>
+    <div style="background:var(--ch);aspect-ratio:1/1;max-height:180px;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;position:relative;overflow:hidden">
+      <div style="font-size:6.5px;letter-spacing:0.36em;text-transform:uppercase;color:rgba(255,255,255,0.28);font-weight:300;margin-bottom:7px">Naavick Legal</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:16px;color:rgba(255,255,255,0.86);line-height:1.25;max-width:180px">The law, precisely navigated.</div>
+    </div></div>
+    <div><div class="lbl">Presentation — 16:9</div>
+    <div style="background:var(--ch);aspect-ratio:16/9;max-height:180px;display:flex;flex-direction:column;justify-content:center;padding:24px">
+      <div style="font-size:7px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.2);font-weight:400;margin-bottom:12px;display:flex;align-items:center;gap:8px"><span style="display:block;width:10px;height:0.5px;background:var(--crim)"></span>Section Title</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:19px;color:rgba(255,255,255,0.86);line-height:1.1;letter-spacing:-0.01em">Structured advisory for complex corporate environments.</div>
+    </div></div>
+  </div>
+  <div class="hr"></div>
+  <div class="g2">
+    <div><div class="lbl">Social Media Rules</div><div class="ri">Brand colours only — no off-palette tones</div><div class="ri">Cormorant Garamond for copy, Barlow for labels</div><div class="ri">No filters, gradients, or overlays beyond flat fields</div><div class="ri">Crimson used once per post, maximum</div><div class="ri">Logo always bottom-left or top-left with clear space</div><div class="ri">No emoji in feed posts</div></div>
+    <div><div class="lbl">PDF Report System</div><table class="sp"><tr><td>Cover</td><td></td><td>Dark, full-bleed, minimal</td></tr><tr><td>Section dividers</td><td></td><td>Dark field, chapter label</td></tr><tr><td>Body pages</td><td></td><td>Warm White, Barlow 300, 11pt</td></tr><tr><td>Running header</td><td></td><td>Logo left, page right</td></tr><tr><td>Pull quotes</td><td></td><td>Cormorant Italic, 18pt</td></tr><tr><td>Tables</td><td></td><td>0.5px Mist borders, no fill</td></tr></table></div>
+  </div>
+  <div class="pn">12 / Digital Applications</div>
+</section>
+
+<!-- PHOTOGRAPHY -->
+<section class="sec nvy" id="photography">
+  <div class="ch-lbl l">13 — Photography & Visual Language</div>
+  <h2 class="sh l">Replace the lawyer<br><em>with the idea.</em></h2>
+  <p class="si l">The most sophisticated brands never show the obvious. They show how it feels to be inside that world. Naavick Legal photography should evoke the weight of a considered decision — not the performance of legal activity.</p>
+  <div class="phg">
+    <div class="phc ph1" style="min-height:240px"><div class="phco w">Architectural negative space.<br>The pause before precision.</div><div class="phcl w">Hero imagery — interior, no people</div></div>
+    <div class="phr"><div class="phc ph2"><div class="phco w">Close detail.<br>Paper, edge, ink.</div><div class="phcl w">Texture</div></div><div class="phc ph3"><div class="phco w">City at dusk.<br>Skyline silhouette.</div><div class="phcl w">Context</div></div></div>
+  </div>
+  <div class="g3" style="gap:28px;margin-top:28px">
+    <div><div class="lbl l">Style Direction</div><p style="font-size:12px;color:rgba(255,255,255,0.34);line-height:1.9;font-weight:300">Desaturate by 30–40%. Slight warm amber grade in shadows. Never cold or blue-toned. Long lenses (85–135mm). Shallow depth. Subject occupies max 30% of frame. Crop to 2.35:1 for hero images.</p></div>
+    <div><div class="lbl l">Photograph this</div><div class="ri ld">Empty conference rooms, window light</div><div class="ri ld">Hands reviewing documents — styled, not stock</div><div class="ri ld">City skylines at golden hour</div><div class="ri ld">Cotton paper, leather, ink — minimal props</div><div class="ri ld">Architectural corridors and light shafts</div></div>
+    <div><div class="lbl l">Never photograph this</div><div class="ri ld no">Handshakes, signing ceremonies</div><div class="ri ld no">Courtrooms, gavels, scales of justice</div><div class="ri ld no">Law library bookshelves</div><div class="ri ld no">Stock photography of any kind</div><div class="ri ld no">Smiling posed group photos</div></div>
+  </div>
+  <div class="pn d">13 / Photography & Visual Language</div>
+</section>
+
+<!-- RULEBOOK -->
+<section class="sec ink" id="rulebook">
+  <div class="ch-lbl l">14 — Final Creative Rulebook</div>
+  <h2 class="sh l">The single source<br><em>of truth.</em></h2>
+  <p class="si l">Every future implementation of the Naavick Legal brand — website, print, digital, social, office, presentation — must be evaluated against the following. This is the official creative rulebook. It is not a suggestion.</p>
+  <div class="fps">
+    <div class="fp"><div class="fpn">01</div><div class="fpt">Whitespace First</div><p class="fpd">When in doubt, add space. Never subtract it. If a layout feels empty, it is probably correct. If it feels full, remove one element.</p></div>
+    <div class="fp"><div class="fpn">02</div><div class="fpt">Typography Leads</div><p class="fpd">Type is the primary design element. No decoration should compete with the typeface. Cormorant Garamond is the brand's most valuable visual asset.</p></div>
+    <div class="fp"><div class="fpn">03</div><div class="fpt">Crimson Once</div><p class="fpd">Crimson appears once per section, maximum. If it appears twice, one must be removed. It is a signal, not a palette.</p></div>
+    <div class="fp"><div class="fpn">04</div><div class="fpt">Logo Intact</div><p class="fpd">The existing logo and navigator wheel are permanent and final. No modification, recreation, or simplification in any form, ever.</p></div>
+    <div class="fp"><div class="fpn">05</div><div class="fpt">No Decoration</div><p class="fpd">No decorative borders. No patterns. No illustration libraries. No icon sets. If it carries no information, it must not exist.</p></div>
+    <div class="fp"><div class="fpn">06</div><div class="fpt">Dark / Light Balance</div><p class="fpd">All multi-section layouts must alternate dark and light surfaces. Never three dark or three light sections in sequence.</p></div>
+    <div class="fp"><div class="fpn">07</div><div class="fpt">Restrained Motion</div><p class="fpd">Animations are slow, subtle, and invisible. Nothing bounces. Nothing spins. Nothing plays automatically. Motion serves reading, never competes with it.</p></div>
+    <div class="fp"><div class="fpn">08</div><div class="fpt">Print Premium</div><p class="fpd">All print uses uncoated premium stock. No glossy, no laminate, no UV. Gold is restricted to foil only. The tactile experience is the brand promise.</p></div>
+  </div>
+  <div style="margin-top:56px;background:rgba(255,255,255,0.02);padding:36px;border:0.5px solid rgba(255,255,255,0.05)">
+    <div class="lbl l">Implementation Approval</div>
+    <p style="font-size:12.5px;color:rgba(255,255,255,0.32);line-height:1.9;font-weight:300;max-width:600px">Any future design — new website pages, social templates, presentation decks, print materials, office signage, or advertising — must be reviewed against this document before release. If a new element is proposed that does not exist within this system, it must be evaluated against the brand philosophy in Section 01. Default answer: no. Justify before adding.</p>
+  </div>
+  <div class="ac">
+    <span class="aw h">Precise</span><span class="aw">Restrained</span><span class="aw h">Authoritative</span><span class="aw">Considered</span><span class="aw">Strategic</span><span class="aw h">Minimal</span><span class="aw">Editorial</span><span class="aw">Global</span><span class="aw h">Intelligent</span><span class="aw">Timeless</span><span class="aw">Calm</span><span class="aw h">Inevitable</span>
+  </div>
+  <div class="pn d">14 / Final Creative Rulebook</div>
+</section>
+
+<!-- COLOPHON -->
+<section class="sec" style="padding:52px 76px;border:none">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px">
+    <div><div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:13.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ch)">N<span style="color:var(--crim)">AA</span>VICK LEGAL</div><div style="font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:var(--st);margin-top:3px;font-weight:300">Master Brand Guidelines · Direction A · Version 1.0</div></div>
+    <div style="text-align:right;font-size:9px;color:var(--sv);font-weight:300;line-height:1.9">Confidential document · Not for external distribution<br>All brand assets remain the property of Naavick Legal<br>May 2025</div>
+  </div>
+</section>
+
+</main>
+<script>
+const links=document.querySelectorAll('.sb-a');
+const secs=document.querySelectorAll('[id]');
+function upd(){
+  let c='cover';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-150)c=s.id});
+  links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+c));
+}
+window.addEventListener('scroll',upd,{passive:true});
+upd();
+</script>
+</body>
+</html>
