@@ -296,14 +296,7 @@
   .pn-t{font-size:18px;}
 }
 /* ── CLIENTELE GRID ── */
-.cl-section{background:var(--iv);border-bottom:0.5px solid var(--mist);padding:112px 56px 96px;}
-.cl-head{
-  font-family:'Cormorant Garamond',serif;
-  font-weight:300;font-size:clamp(42px,5.2vw,72px);
-  color:var(--ch);line-height:1.1;letter-spacing:-0.02em;
-  margin-bottom:64px;
-}
-.cl-head em{font-style:italic;color:var(--st);}
+.cl-section{background:var(--iv);border-bottom:0.5px solid var(--mist);}
 .cl-grid{
   display:grid;
   grid-template-columns:repeat(6,1fr);
@@ -329,6 +322,7 @@
   opacity:1;
   filter:none;
 }
+.cl-logo-lg{ max-height:96px; max-width:180px; }
 .cl-logo-multiply{mix-blend-mode:multiply;}
 </style>
 </head>
@@ -529,26 +523,30 @@
      SECTION 2 — CLIENTELE
      ═══════════════════════════════════════════ -->
 <section class="cl-section">
-  <h2 class="cl-head reveal">Our <em>Clients.</em></h2>
+  <div class="chap-band">
+    <h2 class="chap-h reveal">Our <em>Clients.</em></h2>
+  </div>
+  <div style="padding:52px 56px 80px;">
   <div class="cl-grid">
     <div class="cl-cell"><img class="cl-logo" src="Client Logos/Bayer.png" alt="Bayer"></div>
-    <div class="cl-cell"><img class="cl-logo" src="Client Logos/Kanakia.png" alt="Kanakia"></div>
+    <div class="cl-cell"><img class="cl-logo cl-logo-lg" src="Client Logos/Kanakia.png" alt="Kanakia"></div>
     <div class="cl-cell"><img class="cl-logo" src="Client Logos/Transteel.png" alt="Transteel"></div>
     <div class="cl-cell"><img class="cl-logo" src="Client Logos/Rappid.png" alt="Rappid"></div>
     <div class="cl-cell"><img class="cl-logo" src="Client Logos/Kims.png" alt="KIMS"></div>
-    <div class="cl-cell"><img class="cl-logo" src="Client Logos/Maple Heights.png" alt="Maple Heights"></div>
-    <div class="cl-cell"><img class="cl-logo" src="Client Logos/SMS.png" alt="SMS Group"></div>
-    <div class="cl-cell"><img class="cl-logo" src="Client Logos/In corp.png" alt="In-Corp"></div>
+    <div class="cl-cell"><img class="cl-logo cl-logo-lg" src="Client Logos/Maple Heights.png" alt="Maple Heights"></div>
+    <div class="cl-cell"><img class="cl-logo cl-logo-lg" src="Client Logos/SMS.png" alt="SMS Group"></div>
+    <div class="cl-cell"><img class="cl-logo cl-logo-lg" src="Client Logos/In corp.png" alt="In-Corp"></div>
     <div class="cl-cell"><img class="cl-logo" src="Client Logos/Authum_-Photoroom.png" alt="Authum"></div>
     <div class="cl-cell"><img class="cl-logo" src="Client Logos/Rustomjee.png" alt="Rustomjee"></div>
     <div class="cl-cell"><img class="cl-logo" src="Client Logos/Hoabl.png" alt="Hoabl"></div>
     <div class="cl-cell"><img class="cl-logo cl-logo-multiply" src="Client Logos/Hocco.png" alt="Hocco"></div>
     <div class="cl-cell"><img class="cl-logo" src="Client Logos/Finvin.png" alt="Finvin"></div>
     <div class="cl-cell"><img class="cl-logo" src="Client Logos/Headway.png" alt="Headway"></div>
-    <div class="cl-cell"><img class="cl-logo" src="Client Logos/CFM.png" alt="CFM"></div>
+    <div class="cl-cell"><img class="cl-logo cl-logo-lg" src="Client Logos/CFM.png" alt="CFM"></div>
     <div class="cl-cell"><img class="cl-logo" src="Client Logos/D thakkar.png" alt="D Thakkar"></div>
     <div class="cl-cell"><img class="cl-logo" src="Client Logos/Unnati Finserv.png" alt="Unnati Finserv"></div>
     <div class="cl-cell"><img class="cl-logo" src="Client Logos/abcdubash copy.png" alt="Dubash"></div>
+  </div>
   </div>
 </section>
 
