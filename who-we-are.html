@@ -173,13 +173,15 @@
   background:var(--crim);flex-shrink:0;
 }
 
-/* ── LOGO DECONSTRUCT ── */
-@keyframes wheel-turn{ to{ transform:rotate(360deg); } }
-.wheel-spin{ animation:wheel-turn 400s linear infinite; cursor:default; }
-.wheel-spin:hover{ animation-play-state:paused; }
+/* ── NAVIGATION WHEEL ── */
+#wheel-base-img{
+  display:block;
+  will-change:transform;
+}
 .deconstruct-item{
-  padding:16px 0 16px 20px;
-  margin-left:-20px;
+  flex:1;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:28px 0 28px 20px;
   border-left:1.5px solid transparent;
   transition:border-color 0.32s ease,transform 0.32s ease;
 }
@@ -187,11 +189,11 @@
 .deconstruct-item:hover{ border-left-color:var(--crim); transform:translateX(4px); }
 .deconstruct-label{
   font-size:9px;letter-spacing:0.32em;text-transform:uppercase;
-  color:var(--st);font-weight:300;margin-bottom:6px;
+  color:var(--st);font-weight:300;margin-bottom:7px;
   transition:color 0.32s ease;
 }
 .deconstruct-item:hover .deconstruct-label{ color:var(--crim); }
-.deconstruct-body{ font-size:13px;color:var(--mid);line-height:1.85;font-weight:300;margin:0; }
+.deconstruct-body{ font-size:13px;color:var(--mid);line-height:1.9;font-weight:300;margin:0;text-align:justify; }
 
 @media(max-width:960px){
   .chap-band{padding:100px 28px 40px;}
@@ -308,15 +310,9 @@
   <h2 class="chap-h reveal">The Navigation <em>Wheel.</em></h2>
 </div>
 <div class="chap-body" style="flex:1;border-bottom:none;padding-top:32px;padding-bottom:32px;">
-  <div class="chap-grid" style="align-items:center;height:100%;">
+  <div class="chap-grid" style="align-items:stretch;height:100%;">
 
-    <div class="reveal reveal-d1" style="display:flex;justify-content:center;align-items:center;">
-      <img class="wheel-spin" src="brand assets/wheel-element-1.png"
-           alt="Naavick navigation wheel mark"
-           style="width:248px;height:248px;object-fit:contain;">
-    </div>
-
-    <div class="chap-right reveal reveal-d2">
+    <div class="reveal reveal-d1" style="display:flex;flex-direction:column;">
       <div class="deconstruct-item">
         <div class="deconstruct-label">The Form</div>
         <p class="deconstruct-body">An instrument of motion, not prestige. The wheel speaks to continuous forward navigation through an ever-shifting legal landscape — standing still is never an option.</p>
@@ -333,6 +329,12 @@
         <div class="deconstruct-label">The Ring</div>
         <p class="deconstruct-body">The outer boundary of accountability. Every engagement, every argument exists within this closed circle — no exceptions, no matter how complex the matter.</p>
       </div>
+    </div>
+
+    <div class="chap-right reveal reveal-d2" style="display:flex;justify-content:center;align-items:center;">
+      <img id="wheel-base-img" src="brand assets/wheel-element-1.png"
+           alt="Naavick navigation wheel"
+           style="width:260px;height:260px;object-fit:contain;">
     </div>
 
   </div>
@@ -473,6 +475,27 @@
   }, { threshold: 0.35 });
 
   obs.observe(trigger);
+}());
+</script>
+<script>
+(function () {
+  'use strict';
+  var img = document.getElementById('wheel-base-img');
+  if (!img) return;
+
+  var current = 0;
+  var target  = 0;
+
+  window.addEventListener('scroll', function () {
+    target = window.scrollY * 0.15; /* deg per scrolled pixel */
+  }, { passive: true });
+
+  /* rAF lerp: silky trailing rotation that eases into each scroll step */
+  (function tick() {
+    current += (target - current) * 0.10;
+    img.style.transform = 'rotate(' + current.toFixed(3) + 'deg)';
+    requestAnimationFrame(tick);
+  }());
 }());
 </script>
 </body>

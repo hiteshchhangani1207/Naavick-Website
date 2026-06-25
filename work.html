@@ -3,31 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Work — Naavick Legal</title>
+<title>What We Do — Naavick Legal</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Barlow:wght@100;200;300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
 
-/* ───── PRACTICE NAVIGATION SYSTEM ───── */
-.practice-section{
-  padding:112px 0;border-bottom:0.5px solid var(--mist);
+/* ── SHARED CHAPTER LAYOUT (mirrors who-we-are.html) ── */
+.chap-band{
+  padding:112px 56px 44px;
+  border-bottom:0.5px solid var(--mist);
+  position:relative;
 }
-.practice-header{
-  padding:0 56px;margin-bottom:80px;
-  display:grid;grid-template-columns:44% 56%;gap:72px;align-items:end;
+.chap-marker{
+  font-size:9px;letter-spacing:0.44em;text-transform:uppercase;
+  color:var(--crim);font-weight:400;
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:32px;
 }
-.practice-intro{
-  font-size:13px;color:var(--mid);line-height:1.9;font-weight:300;max-width:440px;
+.chap-marker::before{
+  content:'';display:block;
+  width:18px;height:0.5px;background:var(--crim);flex-shrink:0;
 }
-.practice-nav{
-  display:grid;grid-template-columns:44% 56%;align-items:start;
+.chap-h{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;font-size:clamp(42px,5.2vw,72px);
+  color:var(--ch);line-height:1.1;letter-spacing:-0.02em;max-width:none;
+}
+.chap-h em{ font-style:italic;color:var(--st); }
+.chap-body{
+  padding:52px 56px 64px;
+  border-bottom:0.5px solid var(--mist);
+}
+.chap-grid{
+  display:grid;
+  grid-template-columns:minmax(260px,1.05fr) minmax(260px,0.95fr);
+  gap:56px;
+  align-items:start;
+}
+.chap-right{
+  border-left:0.5px solid var(--mist);
+  padding-left:48px;
+  position:relative;
 }
 
-/* LEFT */
+/* ── PRACTICE NAVIGATION SYSTEM ── */
 .pn-left{
   position:relative;
-  padding-left:56px;
-  border-right:0.5px solid var(--mist);
 }
 .pn-wheel-wrap{
   position:absolute;
@@ -51,12 +72,12 @@
 .pn-item{
   display:grid;grid-template-columns:44px 1fr;
   align-items:baseline;
-  padding:20px 0;
-  border-bottom:0.5px solid var(--ln);
+  padding:18px 0;
+  border-bottom:0.5px solid var(--mist);
   cursor:pointer;
   transition:opacity 380ms ease;
 }
-.pn-item:first-child{border-top:0.5px solid var(--ln);}
+.pn-item:first-child{border-top:0.5px solid var(--mist);}
 .pn-n{
   font-family:'Barlow',sans-serif;
   font-size:9px;font-weight:300;color:var(--sv);
@@ -74,11 +95,9 @@
 .pn-list:has(.pn-item:hover) .pn-item:not(:hover){opacity:0.2;}
 .pn-list:has(.pn-item:hover) .pn-item:hover{opacity:1;}
 
-/* RIGHT */
 .pn-detail{
   position:sticky;top:112px;
-  padding:0 56px;
-  min-height:520px;
+  min-height:480px;
   display:flex;align-items:flex-start;
 }
 .detail-panel{display:none;flex-direction:column;width:100%;}
@@ -126,7 +145,7 @@
 }
 .dp-service{
   font-size:12px;color:var(--sl);font-weight:300;
-  padding:9px 0;border-bottom:0.5px solid var(--ln);
+  padding:9px 0;border-bottom:0.5px solid var(--mist);
   display:flex;gap:12px;align-items:center;
 }
 .dp-service::before{
@@ -140,75 +159,140 @@
   line-height:1.6;max-width:360px;padding-top:56px;
 }
 
-/* ───── CLIENTELE IN DETAIL ───── */
-.client-detail-section{
-  background:var(--iv);padding:120px 56px;
-  border-bottom:0.5px solid var(--mist);
+/* ── ACHIEVEMENTS — click left, read right ── */
+.achieve-list-wrap{
+  position:relative;
 }
-.client-stats{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1px;background:var(--mist);margin:72px 0 0;
+.achieve-list-wrap::after{
+  content:'';
+  position:absolute;bottom:0;left:0;right:0;
+  height:56px;
+  background:linear-gradient(to bottom,transparent,var(--ww));
+  pointer-events:none;
+  z-index:1;
 }
-.client-stat{background:var(--iv);padding:40px 32px;display:flex;flex-direction:column;}
-.cs-n{
+.achieve-list{
+  display:flex;flex-direction:column;
+  max-height:calc(100vh - 280px);
+  overflow-y:auto;
+  scrollbar-width:thin;
+  scrollbar-color:var(--mist) transparent;
+  padding-bottom:48px; /* room for fade */
+}
+.achieve-list::-webkit-scrollbar{ width:2px; }
+.achieve-list::-webkit-scrollbar-track{ background:transparent; }
+.achieve-list::-webkit-scrollbar-thumb{ background:var(--mist);border-radius:2px; }
+.achieve-item{
+  padding:22px 0;
+  border-top:0.5px solid var(--mist);
+  border-left:1.5px solid transparent;
+  padding-left:0;
+  cursor:pointer;
+  transition:border-left-color 0.28s ease,padding-left 0.28s ease,opacity 0.28s ease;
+}
+.achieve-item:first-child{ border-top:none; }
+.achieve-item:hover,.achieve-item.active{
+  border-left-color:var(--crim);padding-left:20px;
+}
+.achieve-list:has(.achieve-item:hover) .achieve-item:not(:hover):not(.active){ opacity:0.25; }
+.achieve-meta{
+  display:flex;align-items:center;margin-bottom:10px;
+}
+.achieve-year{
+  font-family:'Barlow',sans-serif;
+  font-size:9px;font-weight:300;letter-spacing:0.18em;color:var(--crim);
+}
+.achieve-type{
+  font-size:8.5px;letter-spacing:0.26em;text-transform:uppercase;
+  color:var(--st);font-weight:300;
+  padding-left:14px;margin-left:14px;
+  border-left:0.5px solid var(--mist);
+  transition:color 0.28s ease;
+}
+.achieve-item.active .achieve-type{ color:var(--crim); }
+.achieve-item-title{
   font-family:'Cormorant Garamond',serif;
-  font-weight:300;font-size:clamp(48px,5vw,72px);
-  color:var(--ch);line-height:1;letter-spacing:-0.022em;margin-bottom:12px;
+  font-weight:300;font-style:italic;
+  font-size:clamp(18px,1.9vw,24px);
+  color:var(--sl);letter-spacing:-0.01em;line-height:1.25;
+  transition:color 0.28s ease;
 }
-.cs-l{font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--st);font-weight:300;line-height:1.7;}
-.client-categories{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--mist);margin-top:1px;}
-.client-cat{background:var(--iv);padding:48px 36px;}
-.cc-label{font-size:8.5px;letter-spacing:0.3em;text-transform:uppercase;color:var(--st);font-weight:400;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
-.cc-label::before{content:'';display:block;width:14px;height:0.5px;background:var(--crim);}
-.cc-title{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:22px;color:var(--ch);margin-bottom:24px;letter-spacing:-0.01em;}
-.cc-list{list-style:none;display:flex;flex-direction:column;}
-.cc-list li{font-size:12.5px;color:var(--sl);font-weight:300;padding:8px 0;border-top:0.5px solid var(--mist);letter-spacing:0.02em;}
-.cc-list li:first-child{border-top:none;}
+.achieve-item.active .achieve-item-title{ color:var(--ch); }
 
-/* ───── TEAM ───── */
-.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--mist);margin-top:72px;}
-.team-card{background:var(--ww);overflow:hidden;position:relative;display:flex;flex-direction:column;}
-.team-photo{width:100%;aspect-ratio:3/4;background:var(--ln);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
-.team-photo-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
-.team-initials{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:96px;color:var(--mist);letter-spacing:-0.02em;line-height:1;opacity:0.6;}
-.team-photo-overlay{position:absolute;bottom:0;left:0;right:0;padding:20px;background:linear-gradient(to top,rgba(0,0,0,0.5),transparent);display:flex;justify-content:space-between;align-items:flex-end;}
-.team-photo-tag{font-size:8px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:300;}
-.team-info{padding:28px 28px 32px;}
-.team-name{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:24px;color:var(--ch);margin-bottom:4px;line-height:1.2;}
-.team-role{font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--st);font-weight:300;margin-bottom:16px;}
-.team-bio{font-size:12px;color:var(--mid);line-height:1.85;font-weight:300;}
-
-/* ───── PAGE HEADER WHEEL ───── */
-.page-header-wheel-img{
-  position:absolute;right:-8vw;bottom:-8vw;
-  width:58vw;height:58vw;
-  opacity:0.12;pointer-events:none;
-  filter:invert(1);object-fit:contain;
-  animation:phWheelSpin 400s linear infinite;
+/* Right: sticky panel */
+.achieve-detail{
+  position:sticky;top:112px;
+  min-height:480px;
+  display:flex;align-items:flex-start;
 }
-@keyframes phWheelSpin{
-  from{transform:rotate(0deg)}
-  to{transform:rotate(360deg)}
+.achieve-panel{ display:none;flex-direction:column;width:100%; }
+.achieve-panel.active{
+  display:flex;
+  animation:achieveIn 420ms cubic-bezier(0.16,1,0.3,1) forwards;
+}
+@keyframes achieveIn{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.achieve-d-prompt{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;font-style:italic;
+  font-size:clamp(18px,2vw,26px);color:var(--sv);
+  line-height:1.6;max-width:340px;padding-top:48px;
+}
+.achieve-d-meta{
+  font-size:8px;letter-spacing:0.36em;text-transform:uppercase;
+  color:var(--crim);font-weight:300;
+  margin-bottom:28px;
+  display:flex;align-items:center;gap:12px;
+}
+.achieve-d-meta::before{
+  content:'';display:block;
+  width:20px;height:0.5px;background:var(--crim);flex-shrink:0;
+}
+.achieve-d-title{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;font-style:italic;
+  font-size:clamp(22px,2.6vw,34px);
+  color:var(--ch);letter-spacing:-0.012em;line-height:1.2;
+  margin-bottom:20px;
+}
+.achieve-d-rule{ width:24px;height:0.5px;background:var(--crim);margin-bottom:24px; }
+.achieve-d-img{
+  width:100%;height:auto;display:block;
+  margin-bottom:24px;
+  border:0.5px solid var(--mist);
+  box-shadow:0 4px 20px rgba(0,0,0,0.07);
+}
+.achieve-d-collage{
+  display:grid;
+  grid-template-columns:1fr 1.35fr;
+  gap:8px;
+  margin-bottom:24px;
+}
+.achieve-d-collage img{
+  width:100%;height:100%;
+  object-fit:cover;display:block;
+  border:0.5px solid var(--mist);
+  box-shadow:0 4px 20px rgba(0,0,0,0.07);
+}
+.achieve-d-body{
+  font-size:12.5px;color:var(--mid);line-height:1.9;font-weight:300;text-align:justify;
 }
 
-/* ───── RESPONSIVE ───── */
+/* ── RESPONSIVE ── */
 @media(max-width:960px){
-  .practice-header{grid-template-columns:1fr;gap:28px;padding:0 28px;}
-  .practice-nav{grid-template-columns:1fr;}
-  .pn-left{border-right:none;padding-left:28px;padding-right:28px;}
-  .pn-wheel-wrap{display:none;}
+  .chap-band{padding:100px 28px 40px;}
+  .chap-body{padding:44px 28px 56px;}
+  .chap-grid{grid-template-columns:1fr;gap:48px;}
+  .chap-right{border-left:none;padding-left:0;}
   .pn-list{padding-right:0;}
   .pn-list:has(.pn-item:hover) .pn-item:not(:hover){opacity:1;}
-  .pn-detail{position:static;padding:0 28px;min-height:auto;margin-top:40px;}
+  .pn-detail{position:static;min-height:auto;margin-top:40px;}
+  .pn-wheel-wrap{display:none;}
   .detail-panel.mobile-show{display:flex;}
-  .client-detail-section{padding:80px 28px;}
-  .client-stats{grid-template-columns:1fr 1fr;}
-  .client-categories{grid-template-columns:1fr;}
-  .team-grid{grid-template-columns:1fr 1fr;}
 }
 @media(max-width:600px){
-  .client-stats{grid-template-columns:1fr 1fr;}
-  .team-grid{grid-template-columns:1fr;}
   .pn-t{font-size:18px;}
 }
 </style>
@@ -216,7 +300,7 @@
 <body>
 
 <!-- NAV -->
-<nav class="site-nav" id="siteNav">
+<nav class="site-nav light" id="siteNav">
   <a href="index.html" class="nav-logo">
     <img class="nav-logo-img nav-logo-white" src="brand assets/logo1-white.png" alt="Naavick Legal">
     <img class="nav-logo-img nav-logo-black" src="brand assets/logo1-black.png" alt="Naavick Legal">
@@ -245,29 +329,19 @@
   </div>
 </div>
 
-<!-- PAGE HEADER -->
-<section class="page-header">
-  <div class="page-header-grid"></div>
-  <img class="page-header-wheel-img" src="brand assets/wheel-element-1.png" alt="" aria-hidden="true">
-  <div class="page-eyebrow">Work · Practice · People</div>
-  <h1 class="page-title">What we do,<br>and the people<br><em>who do it.</em></h1>
-  <p class="page-subtitle">Eight practice areas. Three decades of combined expertise. One uncompromising standard of legal research and execution.</p>
-</section>
+<!-- ═══════════════════════════════════════════
+     SECTION 1 — PRACTICE AREAS
+     ═══════════════════════════════════════════ -->
+<section style="min-height:100vh;display:flex;flex-direction:column;background:var(--iv);">
 
-<!-- PRACTICE AREAS — NAVIGATION SYSTEM -->
-<section class="practice-section">
-  <div class="practice-header">
-    <div>
-      <div class="ch-label reveal">Practice Areas</div>
-      <h2 class="sh reveal reveal-d1">Eight focused <em>disciplines.</em></h2>
-    </div>
-    <p class="practice-intro reveal reveal-d2">Each practice area is a navigation heading — a domain of precision, research, and authoritative counsel. Hover to orient.</p>
+  <div class="chap-band">
+    <h1 class="chap-h reveal">Practice <em>Areas.</em></h1>
   </div>
 
-  <div class="practice-nav">
+  <div style="flex:1;display:grid;grid-template-columns:44% 56%;border-bottom:0.5px solid var(--mist);">
 
-    <!-- LEFT: Brand wheel watermark + practice list -->
-    <div class="pn-left">
+    <!-- LEFT: practice list with ghost wheel -->
+    <div class="pn-left" style="padding:52px 0 64px 56px;border-right:0.5px solid var(--mist);">
       <div class="pn-wheel-wrap" aria-hidden="true">
         <img id="practiceWheelImg" class="pn-wheel-img"
              src="brand assets/wheel-element-1.png" alt="">
@@ -300,8 +374,8 @@
       </div>
     </div>
 
-    <!-- RIGHT: Strategic detail panel -->
-    <div class="pn-detail" id="practiceDetail">
+    <!-- RIGHT: detail panel -->
+    <div class="pn-detail" id="practiceDetail" style="padding:52px 56px;">
 
       <div class="detail-panel active" id="default-panel">
         <p class="dp-default">"Hover any discipline to orient the navigation instrument and reveal the depth of our counsel in that domain."</p>
@@ -310,7 +384,7 @@
       <div class="detail-panel" id="p1">
         <div class="dp-index">Practice — 01</div>
         <div class="dp-num">01</div>
-        <h3 class="dp-title">Corporate Law</h3>
+        <h2 class="dp-title">Corporate Law</h2>
         <div class="dp-rule"></div>
         <p class="dp-desc">Comprehensive corporate advisory across mergers and acquisitions, governance, and regulatory structuring. We work alongside boards, founders, and executive teams to deliver counsel that anticipates risk before it materialises.</p>
         <div class="dp-services-label">Scope of work</div>
@@ -324,7 +398,7 @@
       <div class="detail-panel" id="p2">
         <div class="dp-index">Practice — 02</div>
         <div class="dp-num">02</div>
-        <h3 class="dp-title">Capital Markets</h3>
+        <h2 class="dp-title">Capital Markets</h2>
         <div class="dp-rule"></div>
         <p class="dp-desc">End-to-end advisory for issuers, investors, and intermediaries on listed and pre-listing transactions. Authoritative knowledge of SEBI regulations and a track record of complex closings.</p>
         <div class="dp-services-label">Scope of work</div>
@@ -338,7 +412,7 @@
       <div class="detail-panel" id="p3">
         <div class="dp-index">Practice — 03</div>
         <div class="dp-num">03</div>
-        <h3 class="dp-title">Insolvency & Restructuring</h3>
+        <h2 class="dp-title">Insolvency & Restructuring</h2>
         <div class="dp-rule"></div>
         <p class="dp-desc">Strategic counsel under the Insolvency and Bankruptcy Code, representing both resolution applicants and committees of creditors. Research-led, with a precise eye toward emerging tribunal jurisprudence.</p>
         <div class="dp-services-label">Scope of work</div>
@@ -352,7 +426,7 @@
       <div class="detail-panel" id="p4">
         <div class="dp-index">Practice — 04</div>
         <div class="dp-num">04</div>
-        <h3 class="dp-title">Foreign Investments</h3>
+        <h2 class="dp-title">Foreign Investments</h2>
         <div class="dp-rule"></div>
         <p class="dp-desc">Structured advisory for inbound investors and Indian recipients. We navigate FDI, FEMA, and RBI frameworks with the precision and speed that cross-border capital demands.</p>
         <div class="dp-services-label">Scope of work</div>
@@ -366,7 +440,7 @@
       <div class="detail-panel" id="p5">
         <div class="dp-index">Practice — 05</div>
         <div class="dp-num">05</div>
-        <h3 class="dp-title">Taxation</h3>
+        <h2 class="dp-title">Taxation</h2>
         <div class="dp-rule"></div>
         <p class="dp-desc">Practical tax advisory grounded in commercial reality. Transaction structuring, compliance, and emerging regulatory frameworks across direct and indirect tax regimes.</p>
         <div class="dp-services-label">Scope of work</div>
@@ -380,7 +454,7 @@
       <div class="detail-panel" id="p6">
         <div class="dp-index">Practice — 06</div>
         <div class="dp-num">06</div>
-        <h3 class="dp-title">Startup & Venture Advisory</h3>
+        <h2 class="dp-title">Startup & Venture Advisory</h2>
         <div class="dp-rule"></div>
         <p class="dp-desc">Embedded legal counsel for founders and venture investors across every stage of company building. From incorporation to exit, we are the legal partner that grows with the business.</p>
         <div class="dp-services-label">Scope of work</div>
@@ -394,7 +468,7 @@
       <div class="detail-panel" id="p7">
         <div class="dp-index">Practice — 07</div>
         <div class="dp-num">07</div>
-        <h3 class="dp-title">IP Rights</h3>
+        <h2 class="dp-title">IP Rights</h2>
         <div class="dp-rule"></div>
         <p class="dp-desc">Comprehensive protection, enforcement, and commercialisation of intellectual property assets. Trademarks, patents, copyrights, and trade secrets — the full spectrum of an idea's life cycle.</p>
         <div class="dp-services-label">Scope of work</div>
@@ -408,7 +482,7 @@
       <div class="detail-panel" id="p8">
         <div class="dp-index">Practice — 08</div>
         <div class="dp-num">08</div>
-        <h3 class="dp-title">Dispute Resolution</h3>
+        <h2 class="dp-title">Dispute Resolution</h2>
         <div class="dp-rule"></div>
         <p class="dp-desc">Strategic litigation, arbitration, and alternative dispute resolution in commercial and regulatory matters. Every dispute approached as a strategic engagement — not a procedural exercise.</p>
         <div class="dp-services-label">Scope of work</div>
@@ -421,164 +495,89 @@
 
     </div>
   </div>
+
 </section>
 
-<!-- CLIENTELE IN DETAIL -->
-<section class="client-detail-section">
-  <div class="ch-label reveal">Clientele · In depth</div>
-  <h2 class="sh reveal reveal-d1">The breadth of <em>who</em><br>we work with.</h2>
-  <p class="section-intro reveal reveal-d2">From listed multinationals to early-stage startups, our client roster reflects the diversity of legal complexity we are trusted to navigate.</p>
+<!-- ═══════════════════════════════════════════
+     SECTION 2 — ACHIEVEMENTS
+     ═══════════════════════════════════════════ -->
+<section style="min-height:100vh;display:flex;flex-direction:column;background:var(--ww);">
 
-  <div class="client-stats">
-    <div class="client-stat reveal"><div class="cs-n">200+</div><div class="cs-l">Active Mandates</div></div>
-    <div class="client-stat reveal reveal-d1"><div class="cs-n">12+</div><div class="cs-l">Years Expertise</div></div>
-    <div class="client-stat reveal reveal-d2"><div class="cs-n">3</div><div class="cs-l">Cities of Operation</div></div>
-    <div class="client-stat reveal reveal-d3"><div class="cs-n">15+</div><div class="cs-l">Industry Sectors</div></div>
+  <div class="chap-band" style="padding-top:104px;">
+    <h2 class="chap-h reveal">Our <em>Achievements.</em></h2>
   </div>
 
-  <div class="client-categories">
-    <div class="client-cat reveal">
-      <div class="cc-label">Category 01</div>
-      <div class="cc-title">Listed Corporations & Conglomerates</div>
-      <ul class="cc-list">
-        <li>Tata Group · Diversified industrial</li>
-        <li>Reliance · Energy and retail</li>
-        <li>Bayer · Pharmaceuticals</li>
-        <li>D Thakkar Construction · Real estate</li>
-        <li>Maple Highways · Infrastructure</li>
-        <li>KIMS Kingsway · Healthcare</li>
-        <li>SMS Group · Engineering</li>
-      </ul>
-    </div>
-    <div class="client-cat reveal reveal-d1">
-      <div class="cc-label">Category 02</div>
-      <div class="cc-title">Growth-Stage Companies & SMEs</div>
-      <ul class="cc-list">
-        <li>Lovable Lingerie · Consumer brands</li>
-        <li>Mason · Building materials</li>
-        <li>Kanakia · Real estate</li>
-        <li>Headway · Logistics</li>
-        <li>Transteel · Office furniture</li>
-        <li>Bhairaav · Manufacturing</li>
-        <li>Divinity · Hospitality</li>
-      </ul>
-    </div>
-    <div class="client-cat reveal reveal-d2">
-      <div class="cc-label">Category 03</div>
-      <div class="cc-title">Investors, Funds & Advisory Firms</div>
-      <ul class="cc-list">
-        <li>RAPD Group · Financial services</li>
-        <li>In-Corp · Corporate advisory</li>
-        <li>Karma Group · Investment management</li>
-        <li>CFN Legal · Co-counsel arrangements</li>
-        <li>Megaways · Technology investments</li>
-        <li>Bharat Gas · Energy sector</li>
-        <li>+ 30 other institutional clients</li>
-      </ul>
-    </div>
-  </div>
-</section>
+  <div class="chap-body" style="flex:1;border-bottom:none;padding-top:44px;padding-bottom:56px;">
+    <div class="chap-grid" style="align-items:start;">
 
-<!-- MARQUEE BETWEEN -->
-<div class="marquee-wrap" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-item">The Team</span>
-    <span class="marquee-item">Six Lawyers</span>
-    <span class="marquee-item">Three Cities</span>
-    <span class="marquee-item">One Standard</span>
-    <span class="marquee-item">The Team</span>
-    <span class="marquee-item">Six Lawyers</span>
-    <span class="marquee-item">Three Cities</span>
-    <span class="marquee-item">One Standard</span>
-    <span class="marquee-item">The Team</span>
-    <span class="marquee-item">Six Lawyers</span>
-    <span class="marquee-item">Three Cities</span>
-    <span class="marquee-item">One Standard</span>
-    <span class="marquee-item">The Team</span>
-    <span class="marquee-item">Six Lawyers</span>
-    <span class="marquee-item">Three Cities</span>
-    <span class="marquee-item">One Standard</span>
-  </div>
-</div>
+      <!-- ── LEFT: entry list ─────────────────────────────────────────
+           To add a new entry:
+           1. Copy one .achieve-item block below and give it a unique data-target (e.g. data-target="ach4")
+           2. Copy the matching .achieve-panel block on the right and give it the same id (e.g. id="ach4")
+           3. Fill in year, category, title, full description, and optionally an image
+           ──────────────────────────────────────────────────────────── -->
+      <div class="achieve-list-wrap reveal reveal-d1">
+      <div class="achieve-list" id="achieveList">
 
-<!-- TEAM -->
-<section class="sec">
-  <div class="ch-label reveal">The team</div>
-  <h2 class="sh reveal reveal-d1">The people behind<br><em>the precision.</em></h2>
-  <p class="section-intro reveal reveal-d2">A boutique team of advocates and company secretaries — handpicked for technical depth, strategic instinct, and an uncompromising commitment to client work.</p>
-
-  <div class="team-grid">
-
-    <article class="team-card reveal">
-      <div class="team-photo">
-        <div class="team-photo-bg"><div class="team-initials">BD</div></div>
-        <div class="team-photo-overlay">
-          <span class="team-photo-tag">Founding Partner</span>
+        <div class="achieve-item" data-target="ach1">
+          <h3 class="achieve-item-title">Admach Systems Limited — Sole Legal Counsel to IPO</h3>
         </div>
-      </div>
-      <div class="team-info">
-        <div class="team-name">Bhupendra Dave</div>
-        <div class="team-role">Advocate · Company Secretary</div>
-        <p class="team-bio">12+ years across corporate and securities laws, with extensive expertise in IBC, capital markets, and the startup ecosystem. Bhupendra brings authoritative knowledge and practical command over execution.</p>
-      </div>
-    </article>
 
-    <article class="team-card reveal reveal-d1">
-      <div class="team-photo">
-        <div class="team-photo-bg"><div class="team-initials">BC</div></div>
-      </div>
-      <div class="team-info">
-        <div class="team-name">Bhavana Chandak</div>
-        <div class="team-role">Advocate</div>
-        <p class="team-bio">A technically skilled advocate focused on corporate advisory, regulatory compliance, and securities law. Brings precision and thorough legal analysis to every mandate.</p>
-      </div>
-    </article>
+        <div class="achieve-item" data-target="ach2">
+          <h3 class="achieve-item-title">Rappid Valves (India) Limited — Listed on NSE Emerge</h3>
+        </div>
 
-    <article class="team-card reveal reveal-d2">
-      <div class="team-photo">
-        <div class="team-photo-bg"><div class="team-initials">NK</div></div>
-      </div>
-      <div class="team-info">
-        <div class="team-name">Nishtha Khandelwal</div>
-        <div class="team-role">Company Secretary</div>
-        <p class="team-bio">Specialises in corporate governance, secretarial compliance, and SEBI regulations. Ensures rigour and detail across complex compliance mandates.</p>
-      </div>
-    </article>
+        <div class="achieve-item" data-target="ach3">
+          <h3 class="achieve-item-title">Title of this post or achievement</h3>
+        </div>
 
-    <article class="team-card reveal">
-      <div class="team-photo">
-        <div class="team-photo-bg"><div class="team-initials">VC</div></div>
-      </div>
-      <div class="team-info">
-        <div class="team-name">Vinkia Chouriya</div>
-        <div class="team-role">Company Secretary</div>
-        <p class="team-bio">Expertise in corporate restructuring and statutory compliance. Brings methodical precision to complex governance and secretarial work across industries.</p>
-      </div>
-    </article>
+      </div><!-- /.achieve-list -->
+      </div><!-- /.achieve-list-wrap -->
 
-    <article class="team-card reveal reveal-d1">
-      <div class="team-photo">
-        <div class="team-photo-bg"><div class="team-initials">SG</div></div>
-      </div>
-      <div class="team-info">
-        <div class="team-name">Shritee Ghosh</div>
-        <div class="team-role">Advocate</div>
-        <p class="team-bio">Focused on dispute resolution and corporate advisory. Brings sharp analytical skills and a research-first approach to litigation and advisory work.</p>
-      </div>
-    </article>
+      <!-- ── RIGHT: sticky detail panels ────────────────────────────── -->
+      <div class="achieve-detail chap-right" id="achieveDetail">
 
-    <article class="team-card reveal reveal-d2">
-      <div class="team-photo">
-        <div class="team-photo-bg"><div class="team-initials">MA</div></div>
-      </div>
-      <div class="team-info">
-        <div class="team-name">Muskan Agrawal</div>
-        <div class="team-role">Advocate</div>
-        <p class="team-bio">Specialises in capital markets law, startup advisory, and IP rights. Combines deep legal knowledge with commercial understanding of emerging businesses.</p>
-      </div>
-    </article>
+        <!-- shown when nothing is selected -->
+        <div class="achieve-panel active" id="ach-default">
+          <p class="achieve-d-prompt">"Tap any achievement on the left to read the full account."</p>
+        </div>
 
+        <!-- Panel 1 — Admach Systems IPO -->
+        <div class="achieve-panel" id="ach1">
+          <h3 class="achieve-d-title">Admach Systems Limited — Successful Listing</h3>
+          <div class="achieve-d-rule"></div>
+          <img class="achieve-d-img" src="Admach Image.jpeg" alt="Admach Systems IPO — Naavick Legal" loading="lazy">
+          <p class="achieve-d-body">Naavick Legal acted as the Sole Legal Counsel for the proposed Initial Public Offering of Admach Systems Limited, with In-Principal Approval now received — a milestone that reflects both the strength of the transaction and the rigour of the legal work behind it.</p>
+          <p class="achieve-d-body" style="margin-top:14px;">Admach Systems Limited is an established name in Special Purpose Machines in India, headquartered in Pune, Maharashtra. The firm brings decades of manufacturing expertise to a specialised segment of Indian industry, and this listing marks a significant step in its growth journey.</p>
+          <p class="achieve-d-body" style="margin-top:14px;">The transaction was led by a dedicated team at Naavick Legal comprising Bhupendra Dave, Shritee Ghosh, Anuradha Sangeeta Parmar, Muskan Agrawal, and Hitesh Chhangani. Congratulations to the Admach Systems team on a successful listing — and to the Naavick team on a mandate executed with precision.</p>
+        </div>
+
+        <!-- Panel 2 — Rappid Valves NSE Emerge listing -->
+        <div class="achieve-panel" id="ach2">
+          <h3 class="achieve-d-title">Rappid Valves (India) Limited — Successful Listing on NSE Emerge</h3>
+          <div class="achieve-d-rule"></div>
+          <div class="achieve-d-collage">
+            <img src="1727676871512.jpeg" alt="Naavick Legal — Rappid Valves listing memento, NSE Emerge" loading="lazy">
+            <img src="Rappid Image.jpeg" alt="Rappid Valves (India) Limited — NSE Emerge listing" loading="lazy">
+          </div>
+          <p class="achieve-d-body">Naavick Legal's Capital Markets team is proud to have been part of the successful listing of Rappid Valves (India) Limited on NSE Emerge — a mandate that underscores the firm's growing presence in the SME capital markets space.</p>
+          <p class="achieve-d-body" style="margin-top:14px;">Rappid Valves (India) Limited is a recognised name in the Indian valve manufacturing industry, operating under the tagline "Always in Control." The company's listing on NSE Emerge marks a significant milestone in its journey — bringing institutional visibility and growth capital to a business built on precision engineering.</p>
+          <p class="achieve-d-body" style="margin-top:14px;">The memento presented to Naavick Legal LLP at the listing ceremony reads: <em>"In appreciation of your valuable contribution to the success of our Initial Public Offer."</em> It is a recognition the team has earned through diligent legal work, close coordination with all transaction parties, and an unwavering commitment to getting every detail right. Well done, team Naavick.</p>
+        </div>
+
+        <!-- Panel 3 ── fill in for entry ach3 above -->
+        <div class="achieve-panel" id="ach3">
+          <h3 class="achieve-d-title">Title of this post or achievement</h3>
+          <div class="achieve-d-rule"></div>
+          <!-- image (optional): <img class="achieve-d-img" src="your-image.png" alt="" loading="lazy"> -->
+          <p class="achieve-d-body">Write the full description here.</p>
+        </div>
+
+      </div>
+
+    </div>
   </div>
+
 </section>
 
 <!-- FOOTER -->
@@ -612,7 +611,9 @@
         <a href="mailto:office@naavick.com" class="footer-icon" aria-label="Email">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><polyline points="2,4 12,13 22,4"/></svg>
         </a>
-        <a href="https://wa.me/919644532091" target="_blank" class="footer-icon" aria-label="WhatsApp"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        <a href="https://wa.me/919644532091" target="_blank" class="footer-icon" aria-label="WhatsApp">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
       </div>
       <a href="Naavick_Legal_Profile.pdf" target="_blank" class="footer-profile-bar">Firm Profile</a>
     </div>
@@ -633,14 +634,13 @@
 
 <script>
 (function(){
-  const wheel  = document.getElementById('practiceWheelImg');
-  const items  = document.querySelectorAll('.pn-item');
-  const panels = document.querySelectorAll('.detail-panel');
-  const list   = document.getElementById('practiceList');
-  let rot = 0;
+  var wheel  = document.getElementById('practiceWheelImg');
+  var items  = document.querySelectorAll('.pn-item');
+  var panels = document.querySelectorAll('.detail-panel');
+  var list   = document.getElementById('practiceList');
 
   function showPanel(id){
-    panels.forEach(p => p.classList.remove('active','mobile-show'));
+    panels.forEach(function(p){ p.classList.remove('active','mobile-show'); });
     var el = document.getElementById(id);
     if(el) el.classList.add('active');
   }
@@ -652,8 +652,7 @@
       items.forEach(function(i){ i.classList.remove('active'); });
       item.classList.add('active');
       if(wheel){
-        rot = angle;
-        wheel.style.transform = 'rotate('+rot+'deg)';
+        wheel.style.transform = 'rotate('+angle+'deg)';
         wheel.style.opacity   = '0.052';
       }
       showPanel(target);
@@ -673,12 +672,33 @@
     items.forEach(function(i){ i.classList.remove('active'); });
     showPanel('default-panel');
     if(wheel){
-      rot = 0;
       wheel.style.transform = 'rotate(0deg)';
       wheel.style.opacity   = '0.035';
     }
   });
-})();
+}());
+</script>
+
+<script>
+/* ── ACHIEVEMENTS: click left entry → show right panel ── */
+(function(){
+  var items  = document.querySelectorAll('.achieve-item');
+  var panels = document.querySelectorAll('.achieve-panel');
+
+  function showPanel(id){
+    panels.forEach(function(p){ p.classList.remove('active'); });
+    var el = document.getElementById(id);
+    if(el) el.classList.add('active');
+  }
+
+  items.forEach(function(item){
+    item.addEventListener('click', function(){
+      items.forEach(function(i){ i.classList.remove('active'); });
+      item.classList.add('active');
+      showPanel(item.dataset.target);
+    });
+  });
+}());
 </script>
 </body>
 </html>
