@@ -159,125 +159,96 @@
   line-height:1.6;max-width:360px;padding-top:56px;
 }
 
-/* ── ACHIEVEMENTS — click left, read right ── */
-.achieve-list-wrap{
-  position:relative;
-}
+/* ── LATEST UPDATES — click left, read right ── */
+.achieve-list-wrap{ position:relative; }
 .achieve-list-wrap::after{
-  content:'';
-  position:absolute;bottom:0;left:0;right:0;
-  height:56px;
+  content:'';position:absolute;bottom:0;left:0;right:0;height:48px;
   background:linear-gradient(to bottom,transparent,var(--iv));
-  pointer-events:none;
-  z-index:1;
+  pointer-events:none;z-index:1;
 }
 .achieve-list{
   display:flex;flex-direction:column;
-  max-height:calc(100vh - 280px);
-  overflow-y:auto;
-  scrollbar-width:thin;
-  scrollbar-color:var(--mist) transparent;
-  padding-bottom:48px; /* room for fade */
+  max-height:calc(100vh - 280px);overflow-y:auto;
+  scrollbar-width:thin;scrollbar-color:var(--mist) transparent;
+  padding-bottom:48px;
 }
 .achieve-list::-webkit-scrollbar{ width:2px; }
 .achieve-list::-webkit-scrollbar-track{ background:transparent; }
 .achieve-list::-webkit-scrollbar-thumb{ background:var(--mist);border-radius:2px; }
 .achieve-item{
-  padding:22px 0;
+  display:grid;grid-template-columns:32px 1fr;
+  align-items:baseline;gap:0 10px;
+  padding:16px 0;
   border-top:0.5px solid var(--mist);
   border-left:1.5px solid transparent;
-  padding-left:0;
-  cursor:pointer;
-  transition:border-left-color 0.28s ease,padding-left 0.28s ease,opacity 0.28s ease;
+  padding-left:0;cursor:pointer;
+  transition:border-left-color 0.26s ease,padding-left 0.26s ease,opacity 0.26s ease;
 }
 .achieve-item:first-child{ border-top:none; }
-.achieve-item:hover,.achieve-item.active{
-  border-left-color:var(--crim);padding-left:20px;
-}
-.achieve-list:has(.achieve-item:hover) .achieve-item:not(:hover):not(.active){ opacity:0.25; }
-.achieve-meta{
-  display:flex;align-items:center;margin-bottom:10px;
-}
-.achieve-year{
+.achieve-item:hover,.achieve-item.active{ border-left-color:var(--crim);padding-left:14px; }
+.achieve-list:has(.achieve-item:hover) .achieve-item:not(:hover):not(.active){ opacity:0.2; }
+.achieve-item-num{
   font-family:'Barlow',sans-serif;
-  font-size:9px;font-weight:300;letter-spacing:0.18em;color:var(--crim);
+  font-size:8px;font-weight:300;letter-spacing:0.24em;
+  color:var(--crim);padding-top:2px;
 }
-.achieve-type{
-  font-size:8.5px;letter-spacing:0.26em;text-transform:uppercase;
-  color:var(--st);font-weight:300;
-  padding-left:14px;margin-left:14px;
-  border-left:0.5px solid var(--mist);
-  transition:color 0.28s ease;
-}
-.achieve-item.active .achieve-type{ color:var(--crim); }
 .achieve-item-title{
-  font-family:'Cormorant Garamond',serif;
-  font-weight:300;font-style:italic;
-  font-size:clamp(18px,1.9vw,24px);
-  color:var(--sl);letter-spacing:-0.01em;line-height:1.25;
-  transition:color 0.28s ease;
+  font-family:'Barlow',sans-serif;
+  font-weight:300;font-size:12.5px;
+  color:var(--sl);letter-spacing:0.01em;line-height:1.6;
+  transition:color 0.26s ease;
 }
-.achieve-item.active .achieve-item-title{ color:var(--ch); }
+.achieve-item.active .achieve-item-title{ color:var(--ch);font-weight:400; }
 
 /* Right: sticky panel */
 .achieve-detail{
   position:sticky;top:112px;
-  min-height:480px;
-  display:flex;align-items:flex-start;
+  min-height:480px;display:flex;align-items:flex-start;
 }
 .achieve-panel{ display:none;flex-direction:column;width:100%; }
 .achieve-panel.active{
   display:flex;
-  animation:achieveIn 420ms cubic-bezier(0.16,1,0.3,1) forwards;
+  animation:achieveIn 400ms cubic-bezier(0.16,1,0.3,1) forwards;
 }
 @keyframes achieveIn{
-  from{opacity:0;transform:translateY(10px)}
+  from{opacity:0;transform:translateY(8px)}
   to{opacity:1;transform:translateY(0)}
 }
 .achieve-d-prompt{
-  font-family:'Cormorant Garamond',serif;
-  font-weight:300;font-style:italic;
-  font-size:clamp(18px,2vw,26px);color:var(--sv);
-  line-height:1.6;max-width:340px;padding-top:48px;
+  font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;
+  font-size:clamp(15px,1.6vw,20px);color:var(--st);
+  line-height:1.7;max-width:300px;padding-top:36px;
 }
 .achieve-d-meta{
-  font-size:8px;letter-spacing:0.36em;text-transform:uppercase;
-  color:var(--crim);font-weight:300;
-  margin-bottom:28px;
-  display:flex;align-items:center;gap:12px;
+  font-size:7.5px;letter-spacing:0.4em;text-transform:uppercase;
+  color:var(--crim);font-weight:300;margin-bottom:14px;
+  display:flex;align-items:center;gap:10px;
 }
 .achieve-d-meta::before{
-  content:'';display:block;
-  width:20px;height:0.5px;background:var(--crim);flex-shrink:0;
+  content:'';display:block;width:16px;height:0.5px;background:var(--crim);flex-shrink:0;
 }
 .achieve-d-title{
   font-family:'Cormorant Garamond',serif;
   font-weight:300;font-style:italic;
-  font-size:clamp(22px,2.6vw,34px);
-  color:var(--ch);letter-spacing:-0.012em;line-height:1.2;
-  margin-bottom:20px;
+  font-size:clamp(17px,1.9vw,24px);
+  color:var(--ch);letter-spacing:-0.01em;line-height:1.35;
+  margin-bottom:14px;
 }
-.achieve-d-rule{ width:24px;height:0.5px;background:var(--crim);margin-bottom:24px; }
+.achieve-d-rule{ width:18px;height:0.5px;background:var(--crim);margin-bottom:18px; }
 .achieve-d-img{
-  width:100%;height:auto;display:block;
-  margin-bottom:24px;
-  border:0.5px solid var(--mist);
-  box-shadow:0 4px 20px rgba(0,0,0,0.07);
+  width:100%;max-height:200px;object-fit:cover;display:block;
+  margin-bottom:16px;border:0.5px solid var(--mist);
 }
 .achieve-d-collage{
-  display:grid;
-  grid-template-columns:1fr 1.35fr;
-  gap:8px;
-  margin-bottom:24px;
+  display:grid;grid-template-columns:1fr 1.35fr;gap:6px;margin-bottom:16px;
 }
 .achieve-d-collage img{
-  width:100%;height:100%;
-  object-fit:cover;display:block;
-  border:0.5px solid var(--mist);
-  box-shadow:0 4px 20px rgba(0,0,0,0.07);
+  width:100%;height:140px;object-fit:cover;border:0.5px solid var(--mist);
 }
 .achieve-d-body{
-  font-size:12.5px;color:var(--mid);line-height:1.9;font-weight:300;text-align:justify;
+  font-family:'Barlow',sans-serif;
+  font-size:11.5px;color:var(--mid);
+  line-height:1.9;font-weight:300;text-align:justify;
 }
 
 /* ── RESPONSIVE ── */
@@ -573,22 +544,27 @@
       <div class="achieve-list" id="achieveList">
 
         <div class="achieve-item" data-target="ach1">
+          <span class="achieve-item-num">01</span>
           <h3 class="achieve-item-title">Admach Systems Limited — Sole Legal Counsel to IPO</h3>
         </div>
 
         <div class="achieve-item" data-target="ach2">
+          <span class="achieve-item-num">02</span>
           <h3 class="achieve-item-title">Rappid Valves (India) Limited — Listed on NSE Emerge</h3>
         </div>
 
         <div class="achieve-item" data-target="ach3">
+          <span class="achieve-item-num">03</span>
           <h3 class="achieve-item-title">Cian Healthcare Limited — Resolution Plan Approved by NCLT</h3>
         </div>
 
         <div class="achieve-item" data-target="ach4">
+          <span class="achieve-item-num">04</span>
           <h3 class="achieve-item-title">Rishi Kamlesh Agarwal — Personal Guarantor Insolvency, NCLT Ahmedabad</h3>
         </div>
 
         <div class="achieve-item" data-target="ach5">
+          <span class="achieve-item-num">05</span>
           <h3 class="achieve-item-title">Viksit Engineering Limited — Resolution Plan Approved, NCLT Mumbai</h3>
         </div>
 
