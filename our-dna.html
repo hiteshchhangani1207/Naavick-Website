@@ -3,18 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our DNA — Naavick Legal</title>
+<title>How We Do — Naavick Legal</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Barlow:wght@100;200;300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
 
+/* ───── CHAP PATTERN ───── */
+.chap-band{
+  padding:112px 56px 44px;
+  border-bottom:0.5px solid var(--mist);
+  position:relative;
+}
+.chap-marker{
+  font-size:9px;letter-spacing:0.44em;text-transform:uppercase;
+  color:var(--crim);font-weight:400;
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:32px;
+}
+.chap-marker::before{
+  content:'';display:block;
+  width:18px;height:0.5px;background:var(--crim);flex-shrink:0;
+}
+.chap-h{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;font-size:clamp(42px,5.2vw,72px);
+  color:var(--ch);line-height:1.1;letter-spacing:-0.02em;
+}
+.chap-h em{ font-style:italic;color:var(--st); }
+.dna-body{
+  padding:52px 56px 72px;
+  border-bottom:0.5px solid var(--mist);
+}
+
 /* ───── PHILOSOPHY ───── */
 .philo-grid{
   display:grid;grid-template-columns:1fr 1.2fr;gap:80px;
-  align-items:start;margin-top:72px;
+  align-items:start;
 }
 .philo-left p{
-  font-size:14.5px;color:var(--mid);line-height:1.95;font-weight:300;
+  font-size:14.5px;color:var(--mid);line-height:1.95;font-weight:300;text-align:justify;
   margin-bottom:22px;max-width:500px;
 }
 .philo-stats{
@@ -38,49 +65,55 @@
   margin-bottom:32px;
 }
 .philo-detail{
-  font-size:13px;color:var(--st);line-height:1.95;font-weight:300;
+  font-size:13px;color:var(--st);line-height:1.95;font-weight:300;text-align:justify;
   border-top:0.5px solid var(--mist);padding-top:28px;
 }
 
 /* ───── PRINCIPLES ───── */
+.prin-section{
+  height:100vh;
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+.prin-band{
+  padding:112px 56px 44px;
+  border-bottom:0.5px solid var(--mist);
+  flex-shrink:0;
+}
 .principles-grid{
-  display:grid;grid-template-columns:repeat(2,1fr);
-  gap:1px;background:rgba(255,255,255,0.06);
-  margin-top:72px;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  flex:1;
 }
 .pr-cell{
-  background:rgba(255,255,255,0.02);
-  padding:48px 44px 44px;
+  background:var(--ww);
+  padding:52px 44px 44px;
+  border-right:0.5px solid var(--mist);
+  display:flex;flex-direction:column;
   transition:background .3s;
 }
-.pr-cell:hover{background:rgba(255,255,255,0.04)}
+.pr-cell:last-child{border-right:none;}
+.pr-cell:hover{background:var(--iv);}
 .pr-n{
   font-family:'Cormorant Garamond',serif;
-  font-size:64px;font-weight:300;color:rgba(255,255,255,0.07);
-  line-height:1;margin-bottom:22px;
+  font-size:56px;font-weight:300;color:var(--mist);
+  line-height:1;margin-bottom:28px;
 }
 .pr-t{
   font-family:'Cormorant Garamond',serif;
-  font-weight:400;font-size:24px;
-  color:rgba(255,255,255,0.88);margin-bottom:16px;letter-spacing:-0.01em;
+  font-weight:300;font-style:italic;font-size:clamp(26px,2.4vw,36px);
+  color:var(--ch);margin-bottom:8px;letter-spacing:-0.01em;line-height:1.1;
+}
+.pr-tag{
+  font-size:9px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--crim);font-weight:400;margin-bottom:24px;
 }
 .pr-d{
-  font-size:13px;color:rgba(255,255,255,0.36);
-  line-height:1.95;font-weight:300;max-width:420px;
+  font-size:13px;color:var(--mid);
+  line-height:1.9;font-weight:300;text-align:justify;
+  border-top:0.5px solid var(--mist);padding-top:20px;margin-top:auto;
 }
 
 /* ───── LIFE AT WORK ───── */
-.life-section{
-  background:var(--iv);padding:120px 56px;
-  border-bottom:0.5px solid var(--mist);
-}
-.life-intro{
-  display:grid;grid-template-columns:1fr 1fr;gap:80px;
-  align-items:end;margin-bottom:64px;
-}
-.life-intro p{
-  font-size:13.5px;color:var(--mid);line-height:1.9;font-weight:300;
-}
 .life-gallery{
   display:grid;grid-template-columns:repeat(4,1fr);
   gap:1px;background:var(--mist);
@@ -117,7 +150,7 @@
 
 .life-values{
   display:grid;grid-template-columns:repeat(3,1fr);
-  gap:32px;margin-top:80px;
+  gap:56px;margin-top:56px;
 }
 .lv-cell{
   border-top:0.5px solid var(--mist);
@@ -125,9 +158,9 @@
 }
 .lv-icon{
   font-family:'Cormorant Garamond',serif;
-  font-size:38px;font-weight:300;color:var(--crim);
-  line-height:1;margin-bottom:18px;
-  font-style:italic;
+  font-size:clamp(26px,2.8vw,36px);font-weight:300;color:var(--ch);
+  line-height:1.1;margin-bottom:18px;
+  font-style:italic;letter-spacing:-0.01em;
 }
 .lv-t{
   font-family:'Cormorant Garamond',serif;
@@ -135,20 +168,40 @@
   margin-bottom:10px;letter-spacing:-0.01em;
 }
 .lv-d{
-  font-size:12.5px;color:var(--mid);line-height:1.85;font-weight:300;
+  font-size:12.5px;color:var(--mid);line-height:1.85;font-weight:300;text-align:justify;
 }
 
+/* ───── CAREERS VIEWPORT ───── */
+#careers{
+  height:100vh;display:flex;flex-direction:column;overflow:hidden;
+}
+#careers .chap-band{
+  flex-shrink:0;padding-top:80px;
+}
+#careers .dna-body{
+  flex:1;display:grid;
+  grid-template-columns:1fr 1.6fr;
+  gap:56px;align-items:start;
+  border-bottom:none;overflow:hidden;
+}
+.career-intro p{
+  font-size:13.5px;color:var(--mid);line-height:1.9;font-weight:300;text-align:justify;
+}
+.career-intro-rule{
+  width:18px;height:0.5px;background:var(--crim);margin-bottom:24px;
+}
+.career-form-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:0 56px;
+}
+.career-form-grid .mf-field{margin-bottom:16px;}
+.career-form-grid .mf-field.full{grid-column:1/-1;}
+.career-form-grid .mf-input,
+.career-form-grid .mf-textarea{font-size:13px;padding:7px 0;}
+.career-form-grid .mf-label{font-size:8px;}
+.career-form-grid .mf-textarea{height:68px;}
+.career-form-grid .mf-submit{margin-top:6px;}
+
 /* ───── CAREERS ───── */
-.careers-section{
-  padding:120px 56px;border-bottom:0.5px solid var(--mist);
-}
-.careers-intro{
-  display:grid;grid-template-columns:1fr 1fr;gap:80px;
-  margin-bottom:72px;align-items:end;
-}
-.careers-intro p{
-  font-size:13.5px;color:var(--mid);line-height:1.9;font-weight:300;max-width:440px;
-}
 .openings{
   display:flex;flex-direction:column;
   border-top:0.5px solid var(--mist);
@@ -165,7 +218,7 @@
 .opening:hover{background:var(--iv);margin:0 -28px;padding:32px 28px}
 .op-n{
   font-family:'Cormorant Garamond',serif;
-  font-size:13px;font-weight:300;color:var(--sv);letter-spacing:0.04em;
+  font-size:13px;font-weight:300;color:var(--st);letter-spacing:0.04em;
 }
 .op-title{
   font-family:'Cormorant Garamond',serif;
@@ -179,57 +232,15 @@
 .op-meta span{display:block}
 .op-meta-label{
   font-size:8px;letter-spacing:0.25em;text-transform:uppercase;
-  color:var(--sv);font-weight:400;margin-bottom:3px;
+  color:var(--st);font-weight:400;margin-bottom:3px;
 }
 .op-cta{
   font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
   color:var(--crim);font-weight:400;
   border:0.5px solid var(--crim);padding:11px 22px;
-  transition:all .2s;display:inline-block;
+  transition:all .2s;display:inline-block;cursor:pointer;
 }
 .op-cta:hover{background:var(--crim);color:var(--ww)}
-
-/* ───── APPLY CTA ───── */
-.apply-cta{
-  background:var(--ink);padding:96px 56px;
-  text-align:center;position:relative;overflow:hidden;
-  border-bottom:0.5px solid rgba(255,255,255,0.05);
-}
-.apply-cta::before{
-  content:'';position:absolute;left:50%;top:50%;
-  transform:translate(-50%,-50%);
-  width:80vw;height:80vw;max-width:600px;max-height:600px;
-  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><g stroke="white" stroke-width="2" fill="none"><circle cx="250" cy="250" r="220"/><circle cx="250" cy="250" r="160"/><circle cx="250" cy="250" r="80"/><line x1="250" y1="30" x2="250" y2="170"/><line x1="250" y1="330" x2="250" y2="470"/><line x1="30" y1="250" x2="170" y2="250"/><line x1="330" y1="250" x2="470" y2="250"/><line x1="95" y1="95" x2="193" y2="193"/><line x1="307" y1="307" x2="405" y2="405"/><line x1="405" y1="95" x2="307" y2="193"/><line x1="193" y1="307" x2="95" y2="405"/></g></svg>');
-  background-size:contain;background-repeat:no-repeat;
-  opacity:0.025;pointer-events:none;
-}
-.ac-eye{
-  font-size:9px;letter-spacing:0.4em;text-transform:uppercase;
-  color:var(--crim);font-weight:400;margin-bottom:24px;
-  position:relative;
-}
-.ac-h{
-  font-family:'Cormorant Garamond',serif;
-  font-weight:300;font-size:clamp(36px,5vw,64px);
-  color:rgba(255,255,255,0.93);line-height:1.05;
-  letter-spacing:-0.018em;margin-bottom:32px;
-  position:relative;
-}
-.ac-h em{font-style:italic;color:rgba(255,255,255,0.3)}
-.ac-sub{
-  font-size:13.5px;color:rgba(255,255,255,0.4);
-  line-height:1.85;font-weight:300;max-width:500px;
-  margin:0 auto 40px;position:relative;
-}
-.ac-btn{
-  display:inline-block;
-  font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
-  color:rgba(255,255,255,0.9);font-weight:300;
-  border:0.5px solid rgba(255,255,255,0.3);
-  padding:16px 36px;transition:all .22s;
-  position:relative;
-}
-.ac-btn:hover{background:var(--crim);border-color:var(--crim);color:var(--ww)}
 
 /* ───── APPLY MODAL ───── */
 .modal{
@@ -281,21 +292,22 @@
   letter-spacing:0.02em;
 }
 .mf-textarea{resize:none;height:80px}
-.mf-input::placeholder,.mf-textarea::placeholder{color:var(--sv)}
+.mf-input::placeholder,.mf-textarea::placeholder{color:var(--st)}
 .mf-input:focus,.mf-textarea:focus{border-bottom-color:var(--crim)}
 .mf-submit{
-  font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
-  color:var(--ww);background:var(--ch);
-  border:none;padding:14px 32px;cursor:pointer;
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--ch);background:transparent;
+  border:0.5px solid var(--ch);padding:13px 28px;cursor:pointer;
   font-family:'Barlow',sans-serif;font-weight:300;
-  margin-top:12px;transition:background .2s;
+  margin-top:12px;transition:all .22s;
 }
-.mf-submit:hover{background:var(--crim)}
+.mf-submit:hover{background:var(--ch);color:var(--ww)}
 
 @media(max-width:960px){
-  .philo-grid,.life-intro,.careers-intro{grid-template-columns:1fr;gap:40px}
+  .philo-grid{grid-template-columns:1fr;gap:40px}
   .principles-grid{grid-template-columns:1fr}
-  .life-section,.careers-section{padding:80px 28px}
+  .chap-band{padding:80px 28px 40px;}
+  .dna-body{padding:40px 28px 60px;}
   .life-gallery{grid-template-columns:1fr 1fr}
   .life-values{grid-template-columns:1fr}
   .opening{grid-template-columns:50px 1fr;gap:16px;align-items:flex-start}
@@ -311,22 +323,16 @@
 <body>
 
 <!-- NAV -->
-<nav class="site-nav" id="siteNav">
+<nav class="site-nav light" id="siteNav">
   <a href="index.html" class="nav-logo">
-    <svg class="wheel-svg" width="22" height="22" viewBox="0 0 48 48" fill="none">
-      <circle cx="24" cy="24" r="20" stroke-width="1.2"/>
-      <circle cx="24" cy="24" r="8" stroke-width="1.2"/>
-      <line x1="24" y1="4" x2="24" y2="16" stroke-width="1.2"/>
-      <line x1="24" y1="32" x2="24" y2="44" stroke-width="1.2"/>
-      <line x1="4" y1="24" x2="16" y2="24" stroke-width="1.2"/>
-      <line x1="32" y1="24" x2="44" y2="24" stroke-width="1.2"/>
-    </svg>
-    <span>N<span class="r">AA</span>VICK LEGAL</span>
+    <img class="nav-logo-img nav-logo-white" src="brand assets/logo1-white.png" alt="Naavick Legal">
+    <img class="nav-logo-img nav-logo-black" src="brand assets/logo1-black.png" alt="Naavick Legal">
   </a>
   <ul class="nav-links">
     <li><a href="who-we-are.html">Who we are</a></li>
     <li><a href="work.html">What we do</a></li>
     <li><a href="our-dna.html" class="active">How we do</a></li>
+
     <li><a href="contact.html">Where we are</a></li>
   </ul>
   <a href="mailto:office@naavick.com" class="nav-cta">Write to us</a>
@@ -347,224 +353,186 @@
   </div>
 </div>
 
-<!-- PAGE HEADER -->
-<section class="page-header">
-  <div class="page-header-grid"></div>
-  <svg class="page-header-wheel" viewBox="0 0 500 500" fill="none">
-    <circle cx="250" cy="250" r="220" stroke="white" stroke-width="2.5"/>
-    <circle cx="250" cy="250" r="160" stroke="white" stroke-width="2.5"/>
-    <circle cx="250" cy="250" r="80" stroke="white" stroke-width="2.5"/>
-    <line x1="250" y1="30" x2="250" y2="170" stroke="white" stroke-width="2.5"/>
-    <line x1="250" y1="330" x2="250" y2="470" stroke="white" stroke-width="2.5"/>
-    <line x1="30" y1="250" x2="170" y2="250" stroke="white" stroke-width="2.5"/>
-    <line x1="330" y1="250" x2="470" y2="250" stroke="white" stroke-width="2.5"/>
-    <line x1="95" y1="95" x2="193" y2="193" stroke="white" stroke-width="2.5"/>
-    <line x1="307" y1="307" x2="405" y2="405" stroke="white" stroke-width="2.5"/>
-    <line x1="405" y1="95" x2="307" y2="193" stroke="white" stroke-width="2.5"/>
-    <line x1="193" y1="307" x2="95" y2="405" stroke="white" stroke-width="2.5"/>
-  </svg>
-  <div class="page-eyebrow">Philosophy · Principles · People</div>
-  <h1 class="page-title">The DNA of<br>a different kind<br>of <em>law firm.</em></h1>
-  <p class="page-subtitle">Naavick Legal was not built to compete with traditional law firms. It was built to do something they cannot — bring research, restraint, and architectural precision to legal advisory.</p>
-</section>
-
-<!-- PHILOSOPHY -->
-<section class="sec">
-  <div class="ch-label reveal">Philosophy</div>
-  <h2 class="sh reveal reveal-d1">Not merely a firm —<br>a trust, <em>earned.</em></h2>
-
-  <div class="philo-grid">
-    <div class="philo-left reveal reveal-d1">
-      <p>Naavick Legal was founded with a singular conviction — that the most consequential legal work demands research, foresight, and uncompromising precision. We are not built for volume. We are built for depth.</p>
-      <p>The law, in the right hands, is not a constraint. It is a precision instrument. We do not follow precedent. We study it, anticipate its movement, and counsel our clients to navigate beyond it.</p>
-      <p>Every engagement begins with the same question: <em style="font-style:italic;color:var(--sl)">what would a research-first approach reveal that everyone else has missed?</em></p>
-
-      <div class="philo-stats">
-        <div class="philo-stat">
-          <div class="ps-n">2021</div>
-          <div class="ps-l">Founded</div>
-        </div>
-        <div class="philo-stat">
-          <div class="ps-n">12+</div>
-          <div class="ps-l">Years Expertise</div>
-        </div>
-        <div class="philo-stat">
-          <div class="ps-n">6</div>
-          <div class="ps-l">Core Team</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="philo-right reveal reveal-d2">
-      <p class="philo-pull">"We are a new-age boutique firm — commanding deep transactional expertise and decisive dispute resolution, backed by authoritative knowledge and an absolute command on execution."</p>
-      <p class="philo-detail">— Bhupendra Dave, Founding Partner. Established in 2021 with the vision to evolve into a research-led legal advisory and litigation firm. Our team brings authoritative knowledge of corporate laws combined with practical command over execution.</p>
-    </div>
-  </div>
-</section>
-
 <!-- PRINCIPLES -->
-<section class="sec sec-dark">
-  <div class="ch-label l reveal">Our principles</div>
-  <h2 class="sh l reveal reveal-d1">Four ways of <em>working</em><br>that define us.</h2>
-
+<section class="prin-section" style="background:var(--iv);">
+  <div class="prin-band">
+    <h1 class="chap-h reveal">Our <em>Principles.</em></h1>
+  </div>
   <div class="principles-grid">
+
     <div class="pr-cell reveal">
-      <div class="pr-n">01</div>
-      <h3 class="pr-t">Research First, Always</h3>
-      <p class="pr-d">Every mandate begins not with precedent — but with a question. We research the landscape, the regulation, and the risk before we advise. Our counsel is built on intelligence, not assumption.</p>
+      <h3 class="pr-t">Purpose</h3>
+      <div class="pr-tag">Committed to what matters.</div>
+      <p class="pr-d">We take on mandates we believe in and give our fullest attention to outcomes, not just outputs. Our purpose is not to bill hours — it is to earn trust, and to deserve it.</p>
     </div>
     <div class="pr-cell reveal reveal-d1">
-      <div class="pr-n">02</div>
-      <h3 class="pr-t">Precision in Execution</h3>
-      <p class="pr-d">We believe in thorough analysis over rapid opinion. Our work is calibrated, considered, and delivered with the exactness that high-stakes legal matters demand.</p>
+      <h3 class="pr-t">Passion</h3>
+      <div class="pr-tag">Dedicated to every matter.</div>
+      <p class="pr-d">Every client's matter receives the same intellectual energy. We bring the same rigour to a compliance brief as we do to a contested insolvency — no matter is secondary.</p>
     </div>
     <div class="pr-cell reveal reveal-d2">
-      <div class="pr-n">03</div>
-      <h3 class="pr-t">Strategic Foresight</h3>
-      <p class="pr-d">We do not simply resolve today's problem. We anticipate tomorrow's. Our advisory practice is oriented toward forecasting regulatory shifts and positioning clients ahead of complexity.</p>
+      <h3 class="pr-t">Precision</h3>
+      <div class="pr-tag">Every detail matters.</div>
+      <p class="pr-d">In law, the difference between a well-drafted clause and a poorly worded one can be the difference between protection and exposure. We do not cut corners — ever.</p>
     </div>
     <div class="pr-cell reveal reveal-d3">
-      <div class="pr-n">04</div>
-      <h3 class="pr-t">Boutique Accountability</h3>
-      <p class="pr-d">Our clients work directly with principals — not layers of associates. Every engagement benefits from personal attention and direct accountability that only a focused boutique practice provides.</p>
+      <h3 class="pr-t">Pace</h3>
+      <div class="pr-tag">Responsive when it matters.</div>
+      <p class="pr-d">Commercial timelines do not wait. We are built to move quickly without losing rigour — available, responsive, and prepared to act when the situation demands.</p>
     </div>
+
   </div>
 </section>
 
 <!-- LIFE AT WORK -->
-<section class="life-section">
-  <div class="ch-label reveal">Life at Naavick</div>
-  <div class="life-intro">
-    <h2 class="sh reveal reveal-d1">A workplace built<br>for <em>deep work.</em></h2>
-    <p class="reveal reveal-d2">A firm is the sum of its conversations. At Naavick, we have built a working environment that allows the kind of focused, considered work our clients depend on — quiet rooms, long timelines, and a culture that rewards intellectual honesty above all else.</p>
+<section style="background:var(--ww);">
+  <div class="chap-band" style="padding-top:80px;">
+    <h2 class="chap-h reveal">Life at <em>Naavick.</em></h2>
   </div>
+  <div class="dna-body">
+    <div class="life-gallery">
 
-  <div class="life-gallery">
-    <div class="life-cell reveal">
-      <div>
-        <div class="lc-label">Mumbai HQ</div>
-        <div class="lc-caption">"Fort, where business and law intersect."</div>
+      <!-- Photo: workspace -->
+      <div class="life-cell reveal" style="background-image:url('Office Images/WhatsApp Image 2026-06-26 at 00.06.55 (1).jpeg');background-size:cover;background-position:center;">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;"></div>
+        <div style="position:relative;z-index:1;">
+          <div class="lc-label" style="color:rgba(255,255,255,0.45);">The office</div>
+          <div class="lc-caption" style="color:rgba(255,255,255,0.82);">"Quiet desks. Long focus. Real work."</div>
+        </div>
       </div>
-    </div>
-    <div class="life-cell reveal reveal-d1">
-      <div>
-        <div class="lc-label">Workspace</div>
-        <div class="lc-caption">"Quiet desks. Long focus. Real conversation."</div>
-      </div>
-    </div>
-    <div class="life-cell reveal reveal-d2">
-      <div>
-        <div class="lc-label">Library</div>
-        <div class="lc-caption">"Research first. Always."</div>
-      </div>
-    </div>
-    <div class="life-cell reveal reveal-d3">
-      <div>
-        <div class="lc-label">After hours</div>
-        <div class="lc-caption">"Conversation continues over coffee."</div>
-      </div>
-    </div>
-    <div class="life-cell reveal">
-      <div>
-        <div class="lc-label">Delhi office</div>
-        <div class="lc-caption">"Bhikaji Cama Place — the regulatory heart."</div>
-      </div>
-    </div>
-    <div class="life-cell reveal reveal-d1">
-      <div>
-        <div class="lc-label">Nagpur office</div>
-        <div class="lc-caption">"Where the firm began. Where it remains rooted."</div>
-      </div>
-    </div>
-    <div class="life-cell reveal reveal-d2">
-      <div>
-        <div class="lc-label">Team retreat</div>
-        <div class="lc-caption">"A year of work, considered together."</div>
-      </div>
-    </div>
-    <div class="life-cell reveal reveal-d3">
-      <div>
-        <div class="lc-label">In the field</div>
-        <div class="lc-caption">"Where the matter is — not where the office is."</div>
-      </div>
-    </div>
-  </div>
 
-  <div class="life-values">
-    <div class="lv-cell reveal">
-      <div class="lv-icon">i.</div>
-      <div class="lv-t">Intellectual rigour</div>
-      <p class="lv-d">We value the lawyer who asks the second question — and then the third. The work is the point, and the work is hard.</p>
+      <!-- Photo: team -->
+      <div class="life-cell reveal reveal-d1" style="background-image:url('Office Images/WhatsApp Image 2026-06-26 at 00.04.36 (1).jpeg');background-size:cover;background-position:center top;">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;"></div>
+        <div style="position:relative;z-index:1;">
+          <div class="lc-label" style="color:rgba(255,255,255,0.45);">The team</div>
+          <div class="lc-caption" style="color:rgba(255,255,255,0.82);">"The whole firm, in one frame."</div>
+        </div>
+      </div>
+
+      <!-- Photo: team outing -->
+      <div class="life-cell reveal reveal-d2" style="background-image:url('Office Images/WhatsApp Image 2026-06-26 at 00.22.50.jpeg');background-size:cover;background-position:center top;">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;"></div>
+        <div style="position:relative;z-index:1;">
+          <div class="lc-label" style="color:rgba(255,255,255,0.45);">The firm, together</div>
+          <div class="lc-caption" style="color:rgba(255,255,255,0.82);">"Outside the office. Still a team."</div>
+        </div>
+      </div>
+
+      <!-- Photo: discussion -->
+      <div class="life-cell reveal reveal-d3" style="background-image:url('Office Images/WhatsApp Image 2026-06-26 at 00.07.10 (1).jpeg');background-size:cover;background-position:center;">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;"></div>
+        <div style="position:relative;z-index:1;">
+          <div class="lc-label" style="color:rgba(255,255,255,0.45);">In conversation</div>
+          <div class="lc-caption" style="color:rgba(255,255,255,0.82);">"Working through it, together."</div>
+        </div>
+      </div>
+
+      <!-- Photo: inauguration ribbon -->
+      <div class="life-cell reveal" style="background-image:url('Office Images/WhatsApp Image 2026-06-26 at 00.03.12.jpeg');background-size:cover;background-position:center top;">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;"></div>
+        <div style="position:relative;z-index:1;">
+          <div class="lc-label" style="color:rgba(255,255,255,0.45);">Inauguration</div>
+          <div class="lc-caption" style="color:rgba(255,255,255,0.82);">"The beginning of something different."</div>
+        </div>
+      </div>
+
+      <!-- Photo: Holi celebration -->
+      <div class="life-cell reveal reveal-d1" style="background-image:url('Office Images/WhatsApp Image 2026-06-24 at 23.24.35 (2).jpeg');background-size:cover;background-position:center;">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;"></div>
+        <div style="position:relative;z-index:1;">
+          <div class="lc-label" style="color:rgba(255,255,255,0.45);">Holi at Naavick</div>
+          <div class="lc-caption" style="color:rgba(255,255,255,0.82);">"Colour over work. Just once a year."</div>
+        </div>
+      </div>
+
+      <!-- Photo: team lunch -->
+      <div class="life-cell reveal reveal-d2" style="background-image:url('Office Images/WhatsApp Image 2026-06-24 at 23.30.07 (2).jpeg');background-size:cover;background-position:center;">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;"></div>
+        <div style="position:relative;z-index:1;">
+          <div class="lc-label" style="color:rgba(255,255,255,0.45);">After hours</div>
+          <div class="lc-caption" style="color:rgba(255,255,255,0.82);">"Conversation continues over pizza."</div>
+        </div>
+      </div>
+
+      <!-- Photo: group at inauguration -->
+      <div class="life-cell reveal reveal-d3" style="background-image:url('Office Images/WhatsApp Image 2026-06-26 at 00.07.29 (1).jpeg');background-size:cover;background-position:center top;">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;"></div>
+        <div style="position:relative;z-index:1;">
+          <div class="lc-label" style="color:rgba(255,255,255,0.45);">Day one</div>
+          <div class="lc-caption" style="color:rgba(255,255,255,0.82);">"Where the firm was born."</div>
+        </div>
+      </div>
+
     </div>
-    <div class="lv-cell reveal reveal-d1">
-      <div class="lv-icon">ii.</div>
-      <div class="lv-t">Direct accountability</div>
-      <p class="lv-d">No silos, no scapegoats. Every team member owns their work end-to-end, and presents it to clients themselves.</p>
-    </div>
-    <div class="lv-cell reveal reveal-d2">
-      <div class="lv-icon">iii.</div>
-      <div class="lv-t">Generous mentorship</div>
-      <p class="lv-d">Junior lawyers work directly with the founding partner from day one. Learning is structured, deliberate, and substantial.</p>
+
+    <div class="life-values">
+      <div class="lv-cell reveal">
+        <div class="lv-icon">i.</div>
+        <div class="lv-t">Collaboration</div>
+        <p class="lv-d">We work with our clients as partners, not just counsel. Every matter benefits from the combined thinking of the whole firm — no one works alone at Naavick.</p>
+      </div>
+      <div class="lv-cell reveal reveal-d1">
+        <div class="lv-icon">ii.</div>
+        <div class="lv-t">Consistency</div>
+        <p class="lv-d">Our standards do not vary with the size of the matter or the name of the client. The same rigour that goes into a flagship transaction goes into every brief we touch.</p>
+      </div>
+      <div class="lv-cell reveal reveal-d2">
+        <div class="lv-icon">iii.</div>
+        <div class="lv-t">Commitment</div>
+        <p class="lv-d">We see every engagement through — from first brief to final resolution. Our clients know they can count on us to stay the course, however long or difficult it becomes.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- CAREERS -->
-<section class="careers-section" id="careers">
-  <div class="ch-label reveal">Careers</div>
-  <div class="careers-intro">
-    <h2 class="sh reveal reveal-d1">Join our <em>team.</em></h2>
-    <p class="reveal reveal-d2">We hire infrequently, and we hire carefully. We believe in depth over speed, craft over volume, and principle-driven work. If you're a lawyer or company secretary who shares these values, we'd like to hear from you — regardless of whether we currently have an advertised opening.</p>
+<section id="careers" style="background:var(--iv);">
+  <div class="chap-band">
+    <h2 class="chap-h reveal">Join our <em>team.</em></h2>
   </div>
-
-  <div class="openings">
-
-    <div class="opening reveal" data-role="Professional Roles">
-      <span class="op-n">01</span>
-      <div>
-        <span class="op-title">Associate & Senior Associate</span>
-        <p style="font-size: 13px; color: rgba(255,255,255,0.56); line-height: 1.8; margin-top: 12px;">We welcome applications from qualified lawyers at all levels of experience — from early-career associates to senior lawyers. Work across our practice areas including Corporate Law, Capital Markets, Insolvency & Restructuring, Compliance, and specialized advisory.</p>
-        <span class="op-meta" style="margin-top: 16px;">
-          <span class="op-meta-label">Locations</span>
-          <span>Mumbai · Delhi · Nagpur</span>
-        </span>
-      </div>
-      <a class="op-cta" onclick="openModal('Professional Roles - Associate / Senior Associate')">Apply →</a>
+  <div class="dna-body">
+    <div class="career-intro reveal">
+<p>We hire infrequently, and we hire carefully. We believe in depth over speed, craft over volume, and principle-driven work.</p>
+      <p style="margin-top:18px;">If you're a lawyer or company secretary who shares these values, we'd like to hear from you — regardless of whether we currently have an advertised opening.</p>
     </div>
-
-    <div class="opening reveal reveal-d1" data-role="Internship">
-      <span class="op-n">02</span>
-      <div>
-        <span class="op-title">Summer Internship Programme</span>
-        <p style="font-size: 13px; color: rgba(255,255,255,0.56); line-height: 1.8; margin-top: 12px;">We invite law students to join our summer internship programme. Work directly with partners and senior lawyers on meaningful matters. Open to students across all law schools, with emphasis on intellectual curiosity and commitment to quality legal work.</p>
-        <span class="op-meta" style="margin-top: 16px;">
-          <span class="op-meta-label">Eligibility</span>
-          <span>Law students (all years welcome)</span>
-        </span>
+    <form id="careerForm" onsubmit="submitCareer(event)" class="career-form-grid">
+      <div class="mf-field">
+        <label class="mf-label" style="color:var(--st);">Full name</label>
+        <input class="mf-input" name="name" type="text" required placeholder="Your full name" style="border-color:var(--ch);color:var(--ch);"/>
       </div>
-      <a class="op-cta" onclick="openModal('Summer Internship Programme')">Apply →</a>
-    </div>
-
-    <div class="opening reveal reveal-d2" data-role="Company Secretary">
-      <span class="op-n">03</span>
-      <div>
-        <span class="op-title">Company Secretary & Compliance Roles</span>
-        <p style="font-size: 13px; color: rgba(255,255,255,0.56); line-height: 1.8; margin-top: 12px;">Experienced company secretaries and compliance professionals are encouraged to apply. We value professionals who combine technical expertise with a commitment to ethical practice and client service excellence.</p>
-        <span class="op-meta" style="margin-top: 16px;">
-          <span class="op-meta-label">Locations</span>
-          <span>Mumbai · Delhi · Nagpur</span>
-        </span>
+      <div class="mf-field">
+        <label class="mf-label" style="color:var(--st);">Email</label>
+        <input class="mf-input" name="email" type="email" required placeholder="your@email.com" style="border-color:var(--ch);color:var(--ch);"/>
       </div>
-      <a class="op-cta" onclick="openModal('Company Secretary & Compliance Roles')">Apply →</a>
-    </div>
-
-  </div>
-
-  <div style="margin-top: 80px; padding-top: 80px; border-top: 0.5px solid rgba(255,255,255,0.06);">
-    <div class="ac-eye" style="margin-bottom: 20px;">Open application</div>
-    <h3 class="sh" style="font-size: 32px; margin-bottom: 20px;">Have a different profile in mind?</h3>
-    <p style="font-size: 13.5px; color: rgba(255,255,255,0.56); line-height: 1.9; max-width: 700px; margin-bottom: 32px;">We're always open to conversations with talented professionals in adjacent fields. If you believe your background would be valuable to Naavick, send us your profile — we read every application carefully.</p>
-    <a class="ac-btn" onclick="openModal('Open application - General')" style="display: inline-block; padding: 14px 28px; border: 1px solid rgba(255,255,255,0.2); border-radius: 3px; color: rgba(255,255,255,0.88); text-decoration: none; font-size: 13px; transition: all .3s; cursor: pointer;">Send an open application →</a>
+      <div class="mf-field">
+        <label class="mf-label" style="color:var(--st);">Phone</label>
+        <input class="mf-input" name="phone" type="tel" required placeholder="+91 XXXXX XXXXX" style="border-color:var(--ch);color:var(--ch);"/>
+      </div>
+      <div class="mf-field">
+        <label class="mf-label" style="color:var(--st);">Applying for</label>
+        <select class="mf-input" name="role" required style="border-color:var(--ch);color:var(--ch);background:transparent;appearance:none;-webkit-appearance:none;cursor:pointer;">
+          <option value="" disabled selected>Select category</option>
+          <option value="Apprenticeship">Apprenticeship</option>
+          <option value="Associate">Associate</option>
+        </select>
+      </div>
+      <div class="mf-field full">
+        <label class="mf-label" style="color:var(--st);">Years of experience (if any)</label>
+        <input class="mf-input" name="exp" type="text" placeholder="e.g. 2 years, or fresher" style="border-color:var(--ch);color:var(--ch);"/>
+      </div>
+      <div class="mf-field full">
+        <label class="mf-label" style="color:var(--st);">Why you would like to join Naavick</label>
+        <textarea class="mf-textarea" name="why" placeholder="Share what draws you to the firm and how you see yourself contributing." style="border-color:var(--ch);color:var(--ch);height:68px;"></textarea>
+      </div>
+      <div class="mf-field full">
+        <label class="mf-label" style="color:var(--st);">CV / Resume link</label>
+        <input class="mf-input" name="cv" type="text" placeholder="Google Drive, Dropbox, or LinkedIn URL" style="border-color:var(--ch);color:var(--ch);"/>
+      </div>
+      <div class="mf-field full" style="margin-bottom:0;">
+        <button class="mf-submit" type="submit" id="careerSubmitBtn">Send application →</button>
+      </div>
+    </form>
   </div>
 </section>
 
@@ -659,7 +627,38 @@
 
 <script src="script.js"></script>
 <script>
-// APPLY MODAL
+function submitCareer(e){
+  e.preventDefault();
+  const f = e.target;
+  const name = f.name.value;
+  const email = f.email.value;
+  const phone = f.phone.value;
+  const role = f.role.value;
+  const exp = f.exp.value || 'Not specified';
+  const why = f.why.value;
+  const cv = f.cv.value || 'Not provided';
+  const subject = encodeURIComponent('Application — ' + role + ' | ' + name);
+  const body = encodeURIComponent(
+    'Full Name: ' + name +
+    '\nEmail: ' + email +
+    '\nPhone: ' + phone +
+    '\nApplying for: ' + role +
+    '\nExperience: ' + exp +
+    '\n\nWhy I\'d like to join Naavick:\n' + why +
+    '\n\nCV / Resume: ' + cv
+  );
+  window.location.href = 'mailto:associate@naavick.com?subject=' + subject + '&body=' + body;
+  const btn = document.getElementById('careerSubmitBtn');
+  btn.textContent = 'Application sent ✓';
+  btn.style.background = 'var(--ch)';
+  btn.style.color = 'var(--ww)';
+  setTimeout(() => {
+    f.reset();
+    btn.textContent = 'Send application →';
+    btn.style.background = '';
+    btn.style.color = '';
+  }, 2200);
+}
 function openModal(role){
   const m = document.getElementById('applyModal');
   document.getElementById('modalRole').textContent = role;
@@ -683,7 +682,6 @@ function submitApply(e){
     btn.style.background = '';
   }, 1800);
 }
-// click outside to close
 document.getElementById('applyModal').addEventListener('click', (e) => {
   if(e.target.id === 'applyModal') closeModal();
 });

@@ -289,6 +289,66 @@
   opacity:0.9;
 }
 .cl-cell:hover .cl-logo-multiply{ filter:none; mix-blend-mode:normal; opacity:1; }
+
+/* ───── CONTACT FORM ───── */
+.form-section{
+  padding:80px 56px;
+  border-bottom:0.5px solid var(--mist);
+}
+.form-grid{
+  display:grid;grid-template-columns:1fr 1.4fr;gap:80px;
+  margin-top:56px;align-items:start;
+}
+.fl-detail{
+  font-size:13.5px;color:var(--mid);line-height:1.95;
+  font-weight:300;max-width:380px;margin-bottom:32px;text-align:justify;
+}
+.fl-note{
+  border-top:0.5px solid var(--mist);padding-top:24px;
+  font-size:11.5px;color:var(--st);line-height:1.85;font-weight:300;
+}
+.fl-note strong{
+  display:block;font-family:'Cormorant Garamond',serif;
+  font-weight:400;font-style:italic;font-size:15px;color:var(--sl);
+  margin-bottom:8px;
+}
+.contact-form{
+  display:grid;grid-template-columns:1fr 1fr;gap:32px 24px;
+}
+.cf-field{display:flex;flex-direction:column}
+.cf-field.full{grid-column:1/-1}
+.cf-label{
+  font-size:8.5px;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--st);font-weight:300;margin-bottom:8px;
+}
+.cf-input,.cf-textarea{
+  background:transparent;
+  border:none;border-bottom:0.5px solid var(--ch);
+  color:var(--ch);
+  font-family:'Barlow',sans-serif;font-weight:300;font-size:14px;
+  padding:9px 0;outline:none;
+  transition:border-color .2s;letter-spacing:0.02em;
+}
+.cf-input::placeholder,.cf-textarea::placeholder{color:var(--st)}
+.cf-input:focus,.cf-textarea:focus{border-bottom-color:var(--crim)}
+.cf-textarea{resize:none;height:100px;line-height:1.7}
+.cf-submit-row{
+  grid-column:1/-1;
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:16px;flex-wrap:wrap;gap:14px;
+}
+.cf-submit{
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--ch);background:transparent;
+  border:0.5px solid var(--ch);padding:13px 28px;cursor:pointer;
+  font-family:'Barlow',sans-serif;font-weight:300;
+  transition:all .22s;
+}
+.cf-submit:hover{background:var(--ch);color:var(--ww)}
+.cf-privacy{
+  font-size:10px;color:var(--st);font-weight:300;line-height:1.8;
+  letter-spacing:0.02em;
+}
 </style>
 </head>
 <body>
@@ -617,6 +677,48 @@
 
 </section>
 
+<!-- CONTACT FORM -->
+<section class="form-section">
+  <h2 class="sh reveal">Tell us about<br><em>your matter.</em></h2>
+
+  <div class="form-grid">
+    <div class="form-left reveal reveal-d1">
+      <p class="fl-detail">The more detail you can share, the better we can prepare our response.</p>
+    </div>
+
+    <form class="contact-form reveal reveal-d2" id="contactForm" onsubmit="submitContact(event)">
+      <div class="cf-field">
+        <label class="cf-label">Full name</label>
+        <input class="cf-input" name="name" type="text" required placeholder="Your full name" />
+      </div>
+      <div class="cf-field">
+        <label class="cf-label">Company / Organisation</label>
+        <input class="cf-input" name="company" type="text" placeholder="Company name" />
+      </div>
+      <div class="cf-field">
+        <label class="cf-label">Email</label>
+        <input class="cf-input" name="email" type="email" required placeholder="your@email.com" />
+      </div>
+      <div class="cf-field">
+        <label class="cf-label">Phone</label>
+        <input class="cf-input" name="phone" type="tel" placeholder="+91 XXXXX XXXXX" />
+      </div>
+      <div class="cf-field full">
+        <label class="cf-label">Area of inquiry</label>
+        <input class="cf-input" name="area" type="text" placeholder="e.g. Capital Markets, IBC, Corporate Law, Foreign Investment" />
+      </div>
+      <div class="cf-field full">
+        <label class="cf-label">Brief description of your matter</label>
+        <textarea class="cf-textarea" name="matter" placeholder="Share as much detail as you are comfortable with. All inquiries are confidential."></textarea>
+      </div>
+      <div class="cf-submit-row">
+        <button class="cf-submit" type="submit">Send inquiry →</button>
+        <span class="cf-privacy">By submitting, you agree that we may contact you regarding this inquiry.</span>
+      </div>
+    </form>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <img class="footer-ghost-wheel" src="brand assets/wheel-element-white.png" aria-hidden="true" alt="">
@@ -716,6 +818,38 @@
 }());
 </script>
 
+<script>
+function submitContact(e){
+  e.preventDefault();
+  const f = e.target;
+  const name    = f.name.value;
+  const company = f.company.value || 'Not provided';
+  const email   = f.email.value;
+  const phone   = f.phone.value || 'Not provided';
+  const area    = f.area.value || 'Not specified';
+  const matter  = f.matter.value;
+  const subject = encodeURIComponent('Inquiry — ' + (area !== 'Not specified' ? area : 'General') + ' | ' + name);
+  const body = encodeURIComponent(
+    'Full Name: ' + name +
+    '\nCompany / Organisation: ' + company +
+    '\nEmail: ' + email +
+    '\nPhone: ' + phone +
+    '\nArea of Inquiry: ' + area +
+    '\n\nBrief Description:\n' + matter
+  );
+  window.location.href = 'mailto:office@naavick.com?subject=' + subject + '&body=' + body;
+  const btn = f.querySelector('.cf-submit');
+  btn.textContent = 'Inquiry received ✓';
+  btn.style.background = 'var(--ch)';
+  btn.style.color = 'var(--ww)';
+  setTimeout(() => {
+    f.reset();
+    btn.textContent = 'Send inquiry →';
+    btn.style.background = '';
+    btn.style.color = '';
+  }, 3000);
+}
+</script>
 <script>
 /* ── ACHIEVEMENTS: click left entry → show right panel ── */
 (function(){
