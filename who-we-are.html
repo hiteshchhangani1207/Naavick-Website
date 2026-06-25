@@ -8,160 +8,176 @@
 <link rel="stylesheet" href="style.css">
 <style>
 
-/* ─── FIRM INTRO ─── */
-.wwa-intro-grid{
-  display:grid;grid-template-columns:1fr 1.2fr;gap:80px;
-  align-items:start;margin-top:56px;
+/* ── CHAPTER BAND ── */
+.chap-band{
+  padding:112px 56px 44px;
+  border-bottom:0.5px solid var(--mist);
+  position:relative;
 }
-.wwa-intro-left p{
-  font-size:14.5px;color:var(--mid);line-height:1.95;font-weight:300;
-  margin-bottom:20px;max-width:500px;
+.chap-band + .chap-band{
+  padding-top:80px;
 }
-.wwa-pull{
-  font-family:'Cormorant Garamond',serif;
-  font-weight:300;font-style:italic;
-  font-size:clamp(26px,3vw,40px);
-  color:var(--sl);line-height:1.32;letter-spacing:-0.012em;
+.chap-marker{
+  font-size:9px;letter-spacing:0.44em;text-transform:uppercase;
+  color:var(--crim);font-weight:400;
+  display:flex;align-items:center;gap:14px;
   margin-bottom:32px;
 }
-.wwa-attr{
-  font-size:12.5px;color:var(--st);font-weight:300;
-  border-top:0.5px solid var(--mist);padding-top:20px;line-height:1.9;
+.chap-marker::before{
+  content:'';display:block;
+  width:18px;height:0.5px;background:var(--crim);flex-shrink:0;
 }
-.wwa-stats{
-  display:flex;border-top:0.5px solid var(--mist);margin-top:48px;
-}
-.wwa-stat{padding:28px 36px 28px 0;border-right:0.5px solid var(--mist);margin-right:36px;}
-.wwa-stat:last-child{border-right:none;}
-.wwa-stat-n{
+.chap-h{
   font-family:'Cormorant Garamond',serif;
-  font-weight:300;font-size:52px;color:var(--ch);line-height:1;letter-spacing:-0.02em;
+  font-weight:300;
+  font-size:clamp(56px,8vw,108px);
+  color:var(--ch);
+  line-height:0.94;
+  letter-spacing:-0.03em;
+  max-width:none;
 }
-.wwa-stat-l{
-  font-size:9px;letter-spacing:0.22em;text-transform:uppercase;
-  color:var(--st);font-weight:300;margin-top:5px;
+.chap-h em{
+  font-style:italic;
+  color:var(--st);
 }
 
-/* ─── LEADERSHIP ─── */
-.leader-section{
-  background:var(--ink);padding:96px 56px;
-  border-bottom:0.5px solid rgba(255,255,255,0.05);
+/* ── CONTENT GRID ── */
+.chap-body{
+  padding:52px 56px 72px;
+  border-bottom:0.5px solid var(--mist);
 }
-.leader-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:1px;
-  background:rgba(255,255,255,0.06);margin-top:64px;
+.chap-grid{
+  display:grid;
+  grid-template-columns:minmax(260px,1.05fr) minmax(260px,0.95fr);
+  gap:56px;
+  align-items:start;
 }
-.leader-card{
-  background:var(--ink);padding:48px 44px;
-  transition:background .3s;
+.chap-left p{
+  font-size:14.5px;color:var(--mid);line-height:1.95;
+  font-weight:300;margin-bottom:22px;text-align:justify;
 }
-.leader-card:hover{background:rgba(255,255,255,0.025);}
-.lc-role{
-  font-size:8.5px;letter-spacing:0.32em;text-transform:uppercase;
-  color:var(--crim);font-weight:400;margin-bottom:20px;
+.chap-right{
+  border-left:0.5px solid var(--mist);
+  padding-left:48px;
+  padding-top:0;
+  position:relative;
 }
-.lc-name{
+.chap-pull{
   font-family:'Cormorant Garamond',serif;
-  font-weight:300;font-size:clamp(28px,3.5vw,44px);
-  color:rgba(255,255,255,0.92);line-height:1.05;
-  letter-spacing:-0.015em;margin-bottom:24px;
+  font-weight:300;font-style:italic;
+  font-size:clamp(22px,2.5vw,34px);
+  color:var(--sl);line-height:1.52;
+  letter-spacing:-0.012em;
+  margin-bottom:28px;
+  position:relative;
+  text-align:justify;
 }
-.lc-name em{font-style:italic;color:rgba(255,255,255,0.32);}
-.lc-bio{
-  font-size:13px;color:rgba(255,255,255,0.42);
-  line-height:1.95;font-weight:300;max-width:440px;
-  margin-bottom:20px;
+.chap-pull::before{
+  content:'\201C';
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(56px,6.5vw,84px);
+  color:var(--crim);opacity:0.18;
+  line-height:1;
+  position:absolute;top:-56px;left:-4px;
+  font-weight:300;font-style:normal;
 }
-.lc-qual{
-  border-top:0.5px solid rgba(255,255,255,0.07);
-  padding-top:20px;margin-top:8px;
-  display:flex;flex-wrap:wrap;gap:8px 20px;
+.chap-sub{
+  font-size:13.5px;color:var(--mid);line-height:1.95;font-weight:300;
+  text-align:justify;
+  margin-bottom:28px;
 }
-.lc-q-item{
+.chap-attr{
+  font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--st);font-weight:300;
+  display:flex;align-items:center;gap:12px;
+}
+.chap-attr::before{
+  content:'';display:block;
+  width:16px;height:0.5px;
+  background:var(--crim);flex-shrink:0;
+}
+
+/* ── STATS ROW ── */
+.chap-stats{
+  display:flex;gap:0;
+  border-top:0.5px solid var(--mist);
+  margin-top:48px;
+  padding-top:0;
+}
+.chap-stat{
+  padding:28px 40px 0 0;
+  border-right:0.5px solid var(--mist);
+  margin-right:40px;
+}
+.chap-stat:last-child{border-right:none;margin-right:0;}
+.chap-stat-n{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;font-size:54px;color:var(--ch);
+  line-height:1;letter-spacing:-0.025em;
+  transition:letter-spacing 0.55s cubic-bezier(0.25,0.1,0.25,1),opacity 0.35s ease;
+}
+.chap-stat-l{
+  font-size:9px;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--st);font-weight:300;margin-top:6px;
+}
+
+/* ── FOUNDER ELEMENTS ── */
+.founder-display{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:clamp(36px,4.2vw,58px);
+  color:var(--ch);line-height:1.04;
+  letter-spacing:-0.022em;
+  margin-bottom:10px;
+}
+.founder-display em{font-style:italic;color:var(--st);}
+.founder-role{
+  font-size:9px;letter-spacing:0.32em;text-transform:uppercase;
+  color:var(--st);font-weight:300;
+  margin-bottom:36px;
+}
+.founder-bio p{
+  font-size:14.5px;color:var(--mid);line-height:1.95;
+  font-weight:300;margin-bottom:22px;text-align:justify;
+}
+.founder-tags{
+  border-top:0.5px solid var(--mist);
+  padding-top:22px;margin-top:8px;
+  display:flex;flex-wrap:wrap;gap:8px 24px;
+}
+.founder-tag{
   font-size:9px;letter-spacing:0.18em;text-transform:uppercase;
-  color:rgba(255,255,255,0.24);font-weight:300;
+  color:var(--st);font-weight:300;
 }
-
-/* ─── DISTINCTION ─── */
-.diff-grid{
-  display:grid;grid-template-columns:repeat(2,1fr);
-  gap:1px;background:var(--mist);margin-top:64px;
+.founder-photo{
+  width:100%;
+  max-width:300px;
+  height:auto;
+  display:block;
+  margin-top:28px;
+  filter:saturate(0.88) contrast(1.02);
 }
-.diff-cell{
-  background:var(--ww);padding:40px 36px;
-  transition:background .3s;
+.founder-sign{
+  font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--st);font-weight:300;
+  display:flex;align-items:center;gap:12px;
+  margin-top:36px;
 }
-.diff-cell:hover{background:var(--iv);}
-.diff-n{
-  font-family:'Cormorant Garamond',serif;
-  font-size:48px;font-weight:300;color:rgba(26,26,26,0.06);
-  line-height:1;margin-bottom:16px;
+.founder-sign::before{
+  content:'';display:block;
+  width:16px;height:0.5px;
+  background:var(--crim);flex-shrink:0;
 }
-.diff-t{
-  font-family:'Cormorant Garamond',serif;
-  font-weight:400;font-size:22px;color:var(--ch);
-  margin-bottom:12px;letter-spacing:-0.01em;
-}
-.diff-d{
-  font-size:13px;color:var(--mid);line-height:1.9;font-weight:300;
-}
-
-/* ─── OFFICES ─── */
-.offices-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:1px;background:var(--mist);margin-top:64px;
-}
-.office-card{
-  background:var(--ww);padding:40px 36px 36px;
-  display:flex;flex-direction:column;gap:10px;
-}
-.oc-tag{
-  font-size:8.5px;letter-spacing:0.28em;text-transform:uppercase;
-  color:var(--crim);font-weight:400;
-}
-.oc-city{
-  font-family:'Cormorant Garamond',serif;
-  font-weight:300;font-size:clamp(28px,3vw,40px);
-  color:var(--ch);line-height:1;letter-spacing:-0.022em;
-}
-.oc-addr{
-  font-size:12px;color:var(--mid);font-weight:300;line-height:1.75;
-  border-top:0.5px solid var(--mist);padding-top:14px;margin-top:6px;
-}
-
-/* ─── CTA ─── */
-.wwa-cta{
-  background:var(--ch);padding:96px 56px;text-align:center;
-  position:relative;overflow:hidden;
-  border-bottom:0.5px solid rgba(255,255,255,0.05);
-}
-.wwa-cta-eye{
-  font-size:9px;letter-spacing:0.4em;text-transform:uppercase;
-  color:var(--crim);font-weight:400;margin-bottom:24px;position:relative;
-}
-.wwa-cta-h{
-  font-family:'Cormorant Garamond',serif;
-  font-weight:300;font-size:clamp(36px,5vw,64px);
-  color:rgba(255,255,255,0.93);line-height:1.05;
-  letter-spacing:-0.018em;margin-bottom:32px;position:relative;
-}
-.wwa-cta-h em{font-style:italic;color:rgba(255,255,255,0.28);}
-.wwa-cta-btn{
-  display:inline-block;
-  font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
-  color:rgba(255,255,255,0.9);font-weight:300;
-  border:0.5px solid rgba(255,255,255,0.3);
-  padding:16px 36px;transition:all .22s;position:relative;
-}
-.wwa-cta-btn:hover{background:var(--crim);border-color:var(--crim);color:var(--ww);}
 
 @media(max-width:960px){
-  .wwa-intro-grid{grid-template-columns:1fr;gap:48px;}
-  .leader-grid{grid-template-columns:1fr;}
-  .diff-grid{grid-template-columns:1fr;}
-  .offices-grid{grid-template-columns:1fr;}
-  .leader-section{padding:72px 28px;}
-  .wwa-cta{padding:72px 28px;}
+  .chap-band{padding:100px 28px 40px;}
+  .chap-body{padding:44px 28px 60px;}
+  .chap-grid{grid-template-columns:1fr;gap:48px;}
+  .chap-right{
+    border-left:none;padding-left:0;padding-top:0;
+    border-top:0.5px solid var(--mist);padding-top:40px;
+  }
+  .founder-photo{max-width:100%;}
 }
 </style>
 </head>
@@ -169,17 +185,10 @@
 <body>
 
 <!-- NAV -->
-<nav class="site-nav" id="siteNav">
+<nav class="site-nav light" id="siteNav">
   <a href="index.html" class="nav-logo">
-    <svg class="wheel-svg" width="22" height="22" viewBox="0 0 48 48" fill="none">
-      <circle cx="24" cy="24" r="20" stroke-width="1.2"/>
-      <circle cx="24" cy="24" r="8" stroke-width="1.2"/>
-      <line x1="24" y1="4" x2="24" y2="16" stroke-width="1.2"/>
-      <line x1="24" y1="32" x2="24" y2="44" stroke-width="1.2"/>
-      <line x1="4" y1="24" x2="16" y2="24" stroke-width="1.2"/>
-      <line x1="32" y1="24" x2="44" y2="24" stroke-width="1.2"/>
-    </svg>
-    <span>N<span class="r">AA</span>VICK LEGAL</span>
+    <img class="nav-logo-img nav-logo-white" src="brand assets/logo1-white.png" alt="Naavick Legal">
+    <img class="nav-logo-img nav-logo-black" src="brand assets/logo1-black.png" alt="Naavick Legal">
   </a>
   <ul class="nav-links">
     <li><a href="who-we-are.html" class="active">Who we are</a></li>
@@ -205,157 +214,68 @@
   </div>
 </div>
 
-<!-- PAGE HEADER -->
-<section class="page-header">
-  <div class="page-header-grid"></div>
-  <svg class="page-header-wheel" viewBox="0 0 500 500" fill="none">
-    <circle cx="250" cy="250" r="220" stroke="white" stroke-width="2.5"/>
-    <circle cx="250" cy="250" r="160" stroke="white" stroke-width="2.5"/>
-    <circle cx="250" cy="250" r="80" stroke="white" stroke-width="2.5"/>
-    <line x1="250" y1="30" x2="250" y2="170" stroke="white" stroke-width="2.5"/>
-    <line x1="250" y1="330" x2="250" y2="470" stroke="white" stroke-width="2.5"/>
-    <line x1="30" y1="250" x2="170" y2="250" stroke="white" stroke-width="2.5"/>
-    <line x1="330" y1="250" x2="470" y2="250" stroke="white" stroke-width="2.5"/>
-    <line x1="95" y1="95" x2="193" y2="193" stroke="white" stroke-width="2.5"/>
-    <line x1="307" y1="307" x2="405" y2="405" stroke="white" stroke-width="2.5"/>
-    <line x1="405" y1="95" x2="307" y2="193" stroke="white" stroke-width="2.5"/>
-    <line x1="193" y1="307" x2="95" y2="405" stroke="white" stroke-width="2.5"/>
-  </svg>
-  <div class="page-eyebrow">Founded 2021 · Mumbai · Advocates &amp; Company Secretaries</div>
-  <h1 class="page-title">Built from conviction.<br>Guided by <em>counsel.</em></h1>
-  <p class="page-subtitle">Naavick Legal is not a traditional law firm. It is a research-driven practice built to meet the demands of a more complex, more consequential legal landscape — with precision, depth, and unwavering accountability.</p>
-</section>
+<!-- ══ SECTION 1 — ABOUT NAAVICK ══ -->
+<section style="min-height:100vh;display:flex;flex-direction:column;background:var(--ww);">
+<div class="chap-band">
+  <h1 class="chap-h reveal">
+    About <em>Naavick.</em>
+  </h1>
+</div>
 
-<!-- THE FIRM -->
-<section class="sec">
-  <div class="ch-label reveal" style="color:var(--crim)">The Firm</div>
-  <h2 class="sh reveal reveal-d1">Not merely a firm —<br>a trust, <em>earned.</em></h2>
+<div class="chap-body" style="flex:1;border-bottom:none;">
+  <div class="chap-grid" style="align-items:stretch;">
 
-  <div class="wwa-intro-grid">
-    <div class="wwa-intro-left reveal reveal-d1">
-      <p>Founded in 2021 with offices across Mumbai, Delhi, and Nagpur, Naavick Legal brings together a multidisciplinary team of advocates and company secretaries united by one conviction — that exceptional legal work begins with exceptional research.</p>
-      <p>We practice across Corporate Law, Securities Laws, Insolvency &amp; Restructuring under the IBC, Capital Markets, Foreign Investments, and the Startup ecosystem. Our work spans advisory, documentation, compliance, and litigation — anchored in the same rigour regardless of mandate size.</p>
-      <p>In four years, Naavick has become trusted counsel to listed companies, promoter groups, resolution professionals, foreign investors, and first-generation founders. Not because we market broadly — but because we execute precisely.</p>
+    <div class="chap-left reveal reveal-d1">
+      <p>With over 12 years of expertise in Corporate and Securities Laws, including extensive work in IBC, Capital Market, and Start-up ecosystem for the past 7 years, Bhupendra Dave, an Advocate and qualified Company Secretary, established Naavick Legal in 2021. Nestled in Mumbai, Naavick Legal is a research-driven legal advisory and litigation firm with a mission to possess authoritative knowledge in corporate laws and practical command over execution.</p>
+      <p>The vision of our firm is to evolve into a research-driven legal think tank capable of forecasting and resolving policy and regulatory issues in corporate laws. Our team comprises highly motivated and technically skilled lawyers, united by a shared dedication to surpassing expectations in the delivery of legal services. With a keen focus on emerging legal trends, our firm brings a collective commitment to precision and thoroughness, ensuring exceptional legal solutions.</p>
+    </div>
 
-      <div class="wwa-stats">
-        <div class="wwa-stat">
-          <div class="wwa-stat-n">2021</div>
-          <div class="wwa-stat-l">Founded</div>
-        </div>
-        <div class="wwa-stat">
-          <div class="wwa-stat-n">12+</div>
-          <div class="wwa-stat-l">Years Expertise</div>
-        </div>
-        <div class="wwa-stat">
-          <div class="wwa-stat-n">30+</div>
-          <div class="wwa-stat-l">Core Team</div>
-        </div>
-        <div class="wwa-stat">
-          <div class="wwa-stat-n">3</div>
-          <div class="wwa-stat-l">Offices</div>
-        </div>
+    <div id="stats-trigger" class="chap-right reveal reveal-d2" style="display:flex;flex-direction:column;justify-content:space-between;padding-bottom:56px;">
+      <div class="chap-stat" style="border-right:none;margin-right:0;padding:0;">
+        <div class="chap-stat-n" id="ctr-2021">2021</div>
+        <div class="chap-stat-l">Founded</div>
+      </div>
+      <div class="chap-stat" style="border-right:none;margin-right:0;padding:0;">
+        <div class="chap-stat-n" id="ctr-12">12+</div>
+        <div class="chap-stat-l">Years of Expertise</div>
+      </div>
+      <div class="chap-stat" style="border-right:none;margin-right:0;padding:0;">
+        <div class="chap-stat-n" id="ctr-30">30+</div>
+        <div class="chap-stat-l">Core Team</div>
       </div>
     </div>
 
-    <div class="reveal reveal-d2">
-      <p class="wwa-pull">"We are a new-age boutique firm — commanding deep transactional expertise and decisive dispute resolution, backed by authoritative knowledge and an absolute command on execution."</p>
-      <p class="wwa-attr">— Adv. Bhupendra Dave, Founding Partner. Naavick Legal exists to offer its clients something the legal industry rarely delivers: counsel that is both architecturally precise and genuinely accountable.</p>
-    </div>
   </div>
+</div>
 </section>
 
-<!-- LEADERSHIP -->
-<section class="leader-section">
-  <div class="ch-label l reveal" style="color:rgba(191,27,27,0.7)">Leadership</div>
-  <h2 class="sh l reveal reveal-d1">Counsel led from<br>the <em>top, always.</em></h2>
+<!-- ══ SECTION 2 — FROM THE FOUNDER ══ -->
+<section style="min-height:100vh;display:flex;flex-direction:column;background:var(--iv);">
+<div class="chap-band" style="padding-top:104px;">
+  <h2 class="chap-h reveal">
+    From the <em>Founder.</em>
+  </h2>
+</div>
 
-  <div class="leader-grid">
-    <div class="leader-card reveal">
-      <div class="lc-role">Founding Partner</div>
-      <h3 class="lc-name">Adv. Bhupendra <em>Dave</em></h3>
-      <p class="lc-bio">With over 12 years of practice across Corporate Law, Securities Laws, and the Insolvency &amp; Bankruptcy Code, Bhupendra Dave leads Naavick Legal with the conviction that legal advisory must be research-led and client-accountable.</p>
-      <p class="lc-bio">He has advised on landmark IBC resolutions, IPO mandates, cross-border investment structures, and high-stakes corporate disputes — working directly with promoters, resolution professionals, and C-suite decision makers. At Naavick, he is the principal on every significant engagement, ensuring the firm's promise of boutique accountability is never diluted.</p>
-      <div class="lc-qual">
-        <span class="lc-q-item">Corporate &amp; Securities Laws</span>
-        <span class="lc-q-item">Insolvency &amp; Restructuring</span>
-        <span class="lc-q-item">Capital Markets · IPO Advisory</span>
-        <span class="lc-q-item">FEMA · FDI Structuring</span>
-        <span class="lc-q-item">Startup &amp; VC Advisory</span>
+<div class="chap-body" style="flex:1;border-bottom:none;">
+  <div class="chap-grid" style="align-items:stretch;">
+
+    <div class="chap-left reveal reveal-d1">
+      <div class="founder-bio">
+        <p>At Naavick, our journey has been guided by a simple belief—exceptional legal counsel is built on trust, integrity, and a deep understanding of our clients' business realities. From the outset, our vision has been to combine the timeless values of hard work, dedication, and professionalism with innovative, practical solutions that help clients navigate an increasingly complex legal landscape.</p>
+        <p>We are committed to delivering client-centric legal services that are not only legally sound but also commercially relevant. Our approach is rooted in understanding the unique challenges faced by businesses and providing strategic advice that creates lasting value.</p>
+        <p>Equally important is the culture we have built within our firm. We foster an environment of inclusivity, collaboration, and continuous learning, where diverse perspectives are valued and intellectual curiosity is encouraged. By embracing technology and progressive work practices, we empower our team to remain agile, efficient, and forward-thinking.</p>
+        <p>As we continue to grow, our commitment remains unchanged—to be trusted advisors who deliver excellence with integrity, pursue innovation with purpose, and build enduring relationships with every client we serve.</p>
       </div>
+      <div class="founder-sign">Adv. Bhupendra Dave · Founding Partner</div>
     </div>
-    <div class="leader-card reveal reveal-d1">
-      <div class="lc-role">The Naavick Team</div>
-      <h3 class="lc-name">A team built<br>for <em>depth.</em></h3>
-      <p class="lc-bio">The Naavick team is a curated group of advocates, company secretaries, and legal professionals selected for intellectual rigour and genuine domain command. Each member works across practice areas, developing the cross-disciplinary instincts that complex mandates demand.</p>
-      <p class="lc-bio">Our associates work directly with senior practitioners — no siloed departments, no impersonal delegation. The same standards that govern our output to clients govern the way we develop our people: thorough, considered, and built to last.</p>
-      <div class="lc-qual">
-        <span class="lc-q-item">Advocates &amp; Solicitors</span>
-        <span class="lc-q-item">Company Secretaries</span>
-        <span class="lc-q-item">Transaction Specialists</span>
-        <span class="lc-q-item">Compliance Professionals</span>
-      </div>
+
+    <div class="chap-right reveal reveal-d2" style="display:flex;align-items:flex-start;justify-content:center;">
+      <img class="founder-photo" src="C8.JPG" alt="Bhupendra Dave — Founding Partner, Naavick Legal">
     </div>
+
   </div>
-</section>
-
-<!-- WHAT SETS US APART -->
-<section class="sec">
-  <div class="ch-label reveal" style="color:var(--crim)">Our distinction</div>
-  <h2 class="sh reveal reveal-d1">Four things that make<br>Naavick <em>different.</em></h2>
-
-  <div class="diff-grid">
-    <div class="diff-cell reveal">
-      <div class="diff-n">01</div>
-      <h3 class="diff-t">Research Before Everything</h3>
-      <p class="diff-d">We begin every engagement with a question, not an assumption. Our counsel is grounded in deep research of regulation, precedent, and risk — before a single piece of advice leaves the room.</p>
-    </div>
-    <div class="diff-cell reveal reveal-d1">
-      <div class="diff-n">02</div>
-      <h3 class="diff-t">Boutique Accountability</h3>
-      <p class="diff-d">Clients work directly with principals. There are no layers of associates, no diluted attention. Every mandate receives the full focus of the person responsible for its outcome.</p>
-    </div>
-    <div class="diff-cell reveal reveal-d2">
-      <div class="diff-n">03</div>
-      <h3 class="diff-t">Precision in Execution</h3>
-      <p class="diff-d">Our work is thorough, not merely rapid. We deliver with exactness because high-stakes legal matters demand it. Speed is never purchased at the cost of accuracy or completeness.</p>
-    </div>
-    <div class="diff-cell reveal reveal-d3">
-      <div class="diff-n">04</div>
-      <h3 class="diff-t">Strategic Foresight</h3>
-      <p class="diff-d">We do not merely resolve today's legal challenge. We anticipate where the regulatory environment is heading and counsel our clients to stay ahead of complexity, not just survive it.</p>
-    </div>
-  </div>
-</section>
-
-<!-- OFFICES -->
-<section class="sec" style="border-bottom:0.5px solid var(--mist);">
-  <div class="ch-label reveal" style="color:var(--crim)">Where we work</div>
-  <h2 class="sh reveal reveal-d1">Three cities.<br><em>One standard.</em></h2>
-
-  <div class="offices-grid">
-    <div class="office-card reveal">
-      <div class="oc-tag">Headquarters</div>
-      <div class="oc-city">Mumbai</div>
-      <p class="oc-addr">Fort, Mumbai — the financial and regulatory centre of India's capital markets and corporate law practice.</p>
-    </div>
-    <div class="office-card reveal reveal-d1">
-      <div class="oc-tag">North India Office</div>
-      <div class="oc-city">Delhi</div>
-      <p class="oc-addr">Bhikaji Cama Place, New Delhi — proximate to regulatory bodies, tribunals, and the heart of India's policy infrastructure.</p>
-    </div>
-    <div class="office-card reveal reveal-d2">
-      <div class="oc-tag">Central India Office</div>
-      <div class="oc-city">Nagpur</div>
-      <p class="oc-addr">Nagpur — where the firm was founded, and where it remains rooted in its original commitment to considered, client-first legal work.</p>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="wwa-cta">
-  <div class="wwa-cta-eye">Begin a conversation</div>
-  <h2 class="wwa-cta-h">Ready to work<br>with us? <em>Write.</em></h2>
-  <a href="mailto:office@naavick.com" class="wwa-cta-btn">office@naavick.com →</a>
+</div>
 </section>
 
 <!-- FOOTER -->
@@ -407,5 +327,89 @@
 </footer>
 
 <script src="script.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var COUNTERS = [
+    { id: 'ctr-2021', target: 2021, duration: 2000, suffix: '' },
+    { id: 'ctr-12',   target: 12,   duration: 2000, suffix: '+' },
+    { id: 'ctr-30',   target: 30,   duration: 2000, suffix: '+' }
+  ];
+
+  var els = COUNTERS.map(function (c) {
+    return Object.assign({}, c, { el: document.getElementById(c.id) });
+  });
+
+  if (els.some(function (c) { return !c.el; })) return;
+
+  var triggered = false;
+
+  // Cubic ease-out — smooth, unhurried deceleration
+  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+  function runCounters() {
+    if (triggered) return;
+    triggered = true;
+
+    var reflow = document.getElementById('stats-trigger');
+
+    // Commit start state instantly (no CSS transition active yet)
+    els.forEach(function (c) {
+      c.el.style.transition = 'none';
+      c.el.style.opacity    = '0.18';
+      c.el.style.letterSpacing = '0.03em';
+      c.el.textContent = '1';
+    });
+
+    // Force reflow, then restore transitions for the settle step
+    void reflow.offsetWidth;
+    els.forEach(function (c) { c.el.style.transition = ''; });
+
+    var startTime = null;
+    var done = false;
+
+    function tick(ts) {
+      if (!startTime) startTime = ts;
+      var t = Math.min((ts - startTime) / 2000, 1);
+      var progress = easeOut(t);
+
+      // Opacity rises with progress — number "materialises" as it counts
+      var opacity = (0.18 + 0.82 * progress).toFixed(3);
+
+      els.forEach(function (c) {
+        var value = Math.max(1, Math.round(progress * c.target));
+        c.el.style.opacity = opacity;
+        c.el.textContent   = (t >= 1) ? (c.target + c.suffix) : String(value);
+      });
+
+      if (t < 1) {
+        requestAnimationFrame(tick);
+      } else if (!done) {
+        done = true;
+        // Settle: all three simultaneously — opacity to 1, letter-spacing compresses
+        els.forEach(function (c) {
+          c.el.style.opacity       = '1';
+          c.el.style.letterSpacing = ''; // falls back to CSS -0.025em, transition fires
+        });
+      }
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  var trigger = document.getElementById('stats-trigger');
+  if (!trigger) return;
+
+  var obs = new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting) {
+      runCounters();
+      obs.disconnect();
+    }
+  }, { threshold: 0.35 });
+
+  obs.observe(trigger);
+}());
+</script>
 </body>
 </html>
