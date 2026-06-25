@@ -30,10 +30,10 @@
 .chap-h{
   font-family:'Cormorant Garamond',serif;
   font-weight:300;
-  font-size:clamp(56px,8vw,108px);
+  font-size:clamp(42px,5.2vw,72px);
   color:var(--ch);
-  line-height:0.94;
-  letter-spacing:-0.03em;
+  line-height:1.1;
+  letter-spacing:-0.02em;
   max-width:none;
 }
 .chap-h em{
@@ -61,6 +61,10 @@
   padding-left:48px;
   padding-top:0;
   position:relative;
+}
+.chap-right p{
+  font-size:14.5px;color:var(--mid);line-height:1.95;
+  font-weight:300;margin-bottom:22px;text-align:justify;
 }
 .chap-pull{
   font-family:'Cormorant Garamond',serif;
@@ -114,11 +118,11 @@
   font-family:'Cormorant Garamond',serif;
   font-weight:300;font-size:54px;color:var(--ch);
   line-height:1;letter-spacing:-0.025em;
-  transition:letter-spacing 0.55s cubic-bezier(0.25,0.1,0.25,1),opacity 0.35s ease;
+  transition:letter-spacing 0.6s cubic-bezier(0.22,1,0.36,1),opacity 0.4s ease,transform 0.4s ease;
 }
 .chap-stat-l{
   font-size:9px;letter-spacing:0.28em;text-transform:uppercase;
-  color:var(--st);font-weight:300;margin-top:6px;
+  color:var(--st);font-weight:300;
 }
 
 /* ── FOUNDER ELEMENTS ── */
@@ -169,6 +173,26 @@
   background:var(--crim);flex-shrink:0;
 }
 
+/* ── LOGO DECONSTRUCT ── */
+@keyframes wheel-turn{ to{ transform:rotate(360deg); } }
+.wheel-spin{ animation:wheel-turn 400s linear infinite; cursor:default; }
+.wheel-spin:hover{ animation-play-state:paused; }
+.deconstruct-item{
+  padding:16px 0 16px 20px;
+  margin-left:-20px;
+  border-left:1.5px solid transparent;
+  transition:border-color 0.32s ease,transform 0.32s ease;
+}
+.deconstruct-item+.deconstruct-item{ border-top:0.5px solid var(--mist); }
+.deconstruct-item:hover{ border-left-color:var(--crim); transform:translateX(4px); }
+.deconstruct-label{
+  font-size:9px;letter-spacing:0.32em;text-transform:uppercase;
+  color:var(--st);font-weight:300;margin-bottom:6px;
+  transition:color 0.32s ease;
+}
+.deconstruct-item:hover .deconstruct-label{ color:var(--crim); }
+.deconstruct-body{ font-size:13px;color:var(--mid);line-height:1.85;font-weight:300;margin:0; }
+
 @media(max-width:960px){
   .chap-band{padding:100px 28px 40px;}
   .chap-body{padding:44px 28px 60px;}
@@ -215,7 +239,7 @@
 </div>
 
 <!-- ══ SECTION 1 — ABOUT NAAVICK ══ -->
-<section style="min-height:100vh;display:flex;flex-direction:column;background:var(--ww);">
+<section style="min-height:100vh;display:flex;flex-direction:column;background:var(--iv);">
 <div class="chap-band">
   <h1 class="chap-h reveal">
     About <em>Naavick.</em>
@@ -250,7 +274,7 @@
 </section>
 
 <!-- ══ SECTION 2 — FROM THE FOUNDER ══ -->
-<section style="min-height:100vh;display:flex;flex-direction:column;background:var(--iv);">
+<section style="min-height:100vh;display:flex;flex-direction:column;background:var(--ww);">
 <div class="chap-band" style="padding-top:104px;">
   <h2 class="chap-h reveal">
     From the <em>Founder.</em>
@@ -272,6 +296,43 @@
 
     <div class="chap-right reveal reveal-d2" style="display:flex;align-items:flex-start;justify-content:center;">
       <img class="founder-photo" src="C8.JPG" alt="Bhupendra Dave — Founding Partner, Naavick Legal">
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ══ SECTION 3 — LOGO DECONSTRUCT ══ -->
+<section style="min-height:100vh;display:flex;flex-direction:column;background:var(--iv);">
+<div class="chap-band" style="padding-top:96px;padding-bottom:28px;">
+  <h2 class="chap-h reveal">The Navigation <em>Wheel.</em></h2>
+</div>
+<div class="chap-body" style="flex:1;border-bottom:none;padding-top:32px;padding-bottom:32px;">
+  <div class="chap-grid" style="align-items:center;height:100%;">
+
+    <div class="reveal reveal-d1" style="display:flex;justify-content:center;align-items:center;">
+      <img class="wheel-spin" src="brand assets/wheel-element-1.png"
+           alt="Naavick navigation wheel mark"
+           style="width:248px;height:248px;object-fit:contain;">
+    </div>
+
+    <div class="chap-right reveal reveal-d2">
+      <div class="deconstruct-item">
+        <div class="deconstruct-label">The Form</div>
+        <p class="deconstruct-body">An instrument of motion, not prestige. The wheel speaks to continuous forward navigation through an ever-shifting legal landscape — standing still is never an option.</p>
+      </div>
+      <div class="deconstruct-item">
+        <div class="deconstruct-label">The Spokes</div>
+        <p class="deconstruct-body">Eight practice areas — corporate, securities, insolvency, capital markets, startups, litigation, compliance, policy — all radiating from one fixed core.</p>
+      </div>
+      <div class="deconstruct-item">
+        <div class="deconstruct-label">The Hub</div>
+        <p class="deconstruct-body">The founding conviction: that law practised with research and rigour becomes a force for clarity, not complexity. The fixed point from which all practice radiates.</p>
+      </div>
+      <div class="deconstruct-item">
+        <div class="deconstruct-label">The Ring</div>
+        <p class="deconstruct-body">The outer boundary of accountability. Every engagement, every argument exists within this closed circle — no exceptions, no matter how complex the matter.</p>
+      </div>
     </div>
 
   </div>
@@ -332,21 +393,22 @@
   'use strict';
 
   var COUNTERS = [
-    { id: 'ctr-2021', target: 2021, duration: 2000, suffix: '' },
-    { id: 'ctr-12',   target: 12,   duration: 2000, suffix: '+' },
-    { id: 'ctr-30',   target: 30,   duration: 2000, suffix: '+' }
+    { id: 'ctr-2021', target: 2021, suffix: '' },
+    { id: 'ctr-12',   target: 12,   suffix: '+' },
+    { id: 'ctr-30',   target: 30,   suffix: '+' }
   ];
 
   var els = COUNTERS.map(function (c) {
-    return Object.assign({}, c, { el: document.getElementById(c.id) });
+    var el = document.getElementById(c.id);
+    return Object.assign({}, c, { el: el });
   });
 
   if (els.some(function (c) { return !c.el; })) return;
 
   var triggered = false;
 
-  // Cubic ease-out — smooth, unhurried deceleration
-  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+  // Quartic ease-out — fast start, elegant deceleration
+  function easeOut(t) { return 1 - Math.pow(1 - t, 4); }
 
   function runCounters() {
     if (triggered) return;
@@ -354,43 +416,45 @@
 
     var reflow = document.getElementById('stats-trigger');
 
-    // Commit start state instantly (no CSS transition active yet)
+    // Freeze transitions, commit initial state
     els.forEach(function (c) {
-      c.el.style.transition = 'none';
-      c.el.style.opacity    = '0.18';
-      c.el.style.letterSpacing = '0.03em';
-      c.el.textContent = '1';
+      c.el.style.transition    = 'none';
+      c.el.style.opacity       = '0.1';
+      c.el.style.letterSpacing = '0.05em';
+      c.el.style.transform     = 'translateY(5px)';
+      c.el.textContent         = '1';
     });
 
-    // Force reflow, then restore transitions for the settle step
     void reflow.offsetWidth;
-    els.forEach(function (c) { c.el.style.transition = ''; });
 
     var startTime = null;
     var done = false;
 
     function tick(ts) {
       if (!startTime) startTime = ts;
-      var t = Math.min((ts - startTime) / 2000, 1);
-      var progress = easeOut(t);
+      var t = Math.min((ts - startTime) / 2200, 1);
+      var p = easeOut(t);
 
-      // Opacity rises with progress — number "materialises" as it counts
-      var opacity = (0.18 + 0.82 * progress).toFixed(3);
-
+      var opacity    = (0.1  + 0.9  * p).toFixed(3);
+      var translateY = ((1 - p) * 5).toFixed(2);
+      var ls         = (0.05 - 0.075 * p).toFixed(4); // 0.05em → -0.025em
       els.forEach(function (c) {
-        var value = Math.max(1, Math.round(progress * c.target));
-        c.el.style.opacity = opacity;
-        c.el.textContent   = (t >= 1) ? (c.target + c.suffix) : String(value);
+        var value = Math.max(1, Math.round(p * c.target));
+        c.el.style.opacity       = opacity;
+        c.el.style.transform     = 'translateY(' + translateY + 'px)';
+        c.el.style.letterSpacing = ls + 'em';
+        c.el.textContent         = (t >= 1) ? (c.target + c.suffix) : String(value);
       });
 
       if (t < 1) {
         requestAnimationFrame(tick);
       } else if (!done) {
         done = true;
-        // Settle: all three simultaneously — opacity to 1, letter-spacing compresses
         els.forEach(function (c) {
-          c.el.style.opacity       = '1';
-          c.el.style.letterSpacing = ''; // falls back to CSS -0.025em, transition fires
+          c.el.style.transition    = '';
+          c.el.style.opacity       = '';
+          c.el.style.letterSpacing = '';
+          c.el.style.transform     = '';
         });
       }
     }
