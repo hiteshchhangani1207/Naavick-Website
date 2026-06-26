@@ -125,6 +125,15 @@
   display:flex;align-items:flex-end;padding:24px;
   transition:transform .4s;
 }
+.life-cell::before{
+  content:'';
+  position:absolute;inset:0;
+  background-image:var(--bg);
+  background-size:cover;
+  background-position:var(--bp,center);
+  filter:contrast(1.12) brightness(0.85) saturate(0.82);
+  z-index:0;
+}
 .life-cell:nth-child(4n+1){background:#1A1A1A;color:#fff}
 .life-cell:nth-child(4n+2){background:var(--ln)}
 .life-cell:nth-child(4n+3){background:var(--mist)}
@@ -392,73 +401,73 @@
   <div class="dna-body">
     <div class="life-gallery">
 
-      <!-- Photo: workspace -->
-      <div class="life-cell reveal" style="background-image:url('Office Images/WhatsApp Image 2026-06-26 at 00.06.55 (1).jpeg');background-size:cover;background-position:center;">
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;"></div>
-        <div style="position:relative;z-index:1;">
-          <div class="lc-label" style="color:rgba(255,255,255,0.45);">The office</div>
-          <div class="lc-caption" style="color:rgba(255,255,255,0.82);">"Quiet desks. Long focus. Real work."</div>
+      <!-- Photo: focused work -->
+      <div class="life-cell reveal" style="--bg:url('Office Images/WhatsApp Image 2026-06-26 at 14.41.06.jpeg');">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;z-index:1;"></div>
+        <div style="position:relative;z-index:2;">
+          <div class="lc-label" style="color:rgba(255,255,255,0.45);">At work</div>
+          <div class="lc-caption" style="color:rgba(255,255,255,0.82);">"Every brief, given full attention."</div>
         </div>
       </div>
 
       <!-- Photo: team -->
-      <div class="life-cell reveal reveal-d1" style="background-image:url('Office Images/WhatsApp Image 2026-06-26 at 00.04.36 (1).jpeg');background-size:cover;background-position:center top;">
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;"></div>
-        <div style="position:relative;z-index:1;">
+      <div class="life-cell reveal reveal-d1" style="--bg:url('Office Images/WhatsApp Image 2026-06-26 at 00.04.36 (1).jpeg');--bp:center top;">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;z-index:1;"></div>
+        <div style="position:relative;z-index:2;">
           <div class="lc-label" style="color:rgba(255,255,255,0.45);">The team</div>
           <div class="lc-caption" style="color:rgba(255,255,255,0.82);">"The whole firm, in one frame."</div>
         </div>
       </div>
 
       <!-- Photo: team outing -->
-      <div class="life-cell reveal reveal-d2" style="background-image:url('Office Images/WhatsApp Image 2026-06-26 at 00.22.50.jpeg');background-size:cover;background-position:center top;">
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;"></div>
-        <div style="position:relative;z-index:1;">
+      <div class="life-cell reveal reveal-d2" style="--bg:url('Office Images/WhatsApp Image 2026-06-26 at 00.22.50.jpeg');--bp:center top;">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;z-index:1;"></div>
+        <div style="position:relative;z-index:2;">
           <div class="lc-label" style="color:rgba(255,255,255,0.45);">The firm, together</div>
           <div class="lc-caption" style="color:rgba(255,255,255,0.82);">"Outside the office. Still a team."</div>
         </div>
       </div>
 
-      <!-- Photo: discussion -->
-      <div class="life-cell reveal reveal-d3" style="background-image:url('Office Images/WhatsApp Image 2026-06-26 at 00.07.10 (1).jpeg');background-size:cover;background-position:center;">
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;"></div>
-        <div style="position:relative;z-index:1;">
-          <div class="lc-label" style="color:rgba(255,255,255,0.45);">In conversation</div>
+      <!-- Photo: meeting -->
+      <div class="life-cell reveal reveal-d3" style="--bg:url('Office Images/WhatsApp Image 2026-06-26 at 14.38.26.jpeg');">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;z-index:1;"></div>
+        <div style="position:relative;z-index:2;">
+          <div class="lc-label" style="color:rgba(255,255,255,0.45);">In session</div>
           <div class="lc-caption" style="color:rgba(255,255,255,0.82);">"Working through it, together."</div>
         </div>
       </div>
 
-      <!-- Photo: inauguration ribbon -->
-      <div class="life-cell reveal" style="background-image:url('Office Images/WhatsApp Image 2026-06-26 at 00.03.12.jpeg');background-size:cover;background-position:center top;">
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;"></div>
-        <div style="position:relative;z-index:1;">
-          <div class="lc-label" style="color:rgba(255,255,255,0.45);">Inauguration</div>
-          <div class="lc-caption" style="color:rgba(255,255,255,0.82);">"The beginning of something different."</div>
+      <!-- Photo: team workspace -->
+      <div class="life-cell reveal" style="--bg:url('Office Images/WhatsApp Image 2026-06-26 at 13.24.11.jpeg');--bp:center top;">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;z-index:1;"></div>
+        <div style="position:relative;z-index:2;">
+          <div class="lc-label" style="color:rgba(255,255,255,0.45);">The office</div>
+          <div class="lc-caption" style="color:rgba(255,255,255,0.82);">"Quiet desks. Shared purpose."</div>
         </div>
       </div>
 
       <!-- Photo: Holi celebration -->
-      <div class="life-cell reveal reveal-d1" style="background-image:url('Office Images/WhatsApp Image 2026-06-24 at 23.24.35 (2).jpeg');background-size:cover;background-position:center;">
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;"></div>
-        <div style="position:relative;z-index:1;">
+      <div class="life-cell reveal reveal-d1" style="--bg:url('Office Images/WhatsApp Image 2026-06-24 at 23.24.35 (2).jpeg');">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;z-index:1;"></div>
+        <div style="position:relative;z-index:2;">
           <div class="lc-label" style="color:rgba(255,255,255,0.45);">Holi at Naavick</div>
           <div class="lc-caption" style="color:rgba(255,255,255,0.82);">"Colour over work. Just once a year."</div>
         </div>
       </div>
 
       <!-- Photo: team lunch -->
-      <div class="life-cell reveal reveal-d2" style="background-image:url('Office Images/WhatsApp Image 2026-06-24 at 23.30.07 (2).jpeg');background-size:cover;background-position:center;">
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;"></div>
-        <div style="position:relative;z-index:1;">
+      <div class="life-cell reveal reveal-d2" style="--bg:url('Office Images/WhatsApp Image 2026-06-24 at 23.30.07 (2).jpeg');">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;z-index:1;"></div>
+        <div style="position:relative;z-index:2;">
           <div class="lc-label" style="color:rgba(255,255,255,0.45);">After hours</div>
           <div class="lc-caption" style="color:rgba(255,255,255,0.82);">"Conversation continues over pizza."</div>
         </div>
       </div>
 
       <!-- Photo: group at inauguration -->
-      <div class="life-cell reveal reveal-d3" style="background-image:url('Office Images/WhatsApp Image 2026-06-26 at 00.07.29 (1).jpeg');background-size:cover;background-position:center top;">
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;"></div>
-        <div style="position:relative;z-index:1;">
+      <div class="life-cell reveal reveal-d3" style="--bg:url('Office Images/WhatsApp Image 2026-06-26 at 00.07.29 (1).jpeg');--bp:center top;">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.08) 55%);pointer-events:none;z-index:1;"></div>
+        <div style="position:relative;z-index:2;">
           <div class="lc-label" style="color:rgba(255,255,255,0.45);">Day one</div>
           <div class="lc-caption" style="color:rgba(255,255,255,0.82);">"Where the firm was born."</div>
         </div>
