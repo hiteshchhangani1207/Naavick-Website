@@ -70,9 +70,9 @@
 }
 
 /* ───── PRINCIPLES ───── */
-.prin-scroll-wrapper{ height:500vh; }
+.prin-scroll-wrapper{ height:500vh; position:relative; }
 .prin-section{
-  position:sticky;top:0;
+  position:absolute;top:0;left:0;right:0;
   height:100vh;
   display:flex;flex-direction:column;
   overflow:hidden;
@@ -683,20 +683,42 @@
 (function(){
   var wrapper = document.querySelector('.prin-scroll-wrapper');
   if(!wrapper) return;
-  var cards = wrapper.querySelectorAll('.pr-card');
-  var fill  = document.getElementById('prinFill');
-  var ctr   = document.getElementById('prinCounter');
+  var section = wrapper.querySelector('.prin-section');
+  var cards   = wrapper.querySelectorAll('.pr-card');
+  var fill    = document.getElementById('prinFill');
+  var ctr     = document.getElementById('prinCounter');
   var n = cards.length;
+
   function update(){
-    var rect   = wrapper.getBoundingClientRect();
-    var travel = wrapper.offsetHeight - window.innerHeight;
-    var prog   = Math.max(0, Math.min(1, -rect.top / travel));
-    var idx    = Math.min(n - 1, Math.floor(prog * n));
-    cards.forEach(function(c,i){ c.classList.toggle('active', i===idx); });
-    if(fill) fill.style.width = ((idx+1)/n*100)+'%';
-    if(ctr)  ctr.textContent  = '0'+(idx+1)+' / 0'+n;
+    var wTop    = wrapper.getBoundingClientRect().top + (window.scrollY || window.pageYOffset);
+    var scrollY = window.scrollY || window.pageYOffset;
+    var travel  = wrapper.offsetHeight - window.innerHeight;
+    var scrolled = scrollY - wTop;
+
+    /* sticky simulation */
+    if(scrolled <= 0){
+      section.style.position = 'absolute';
+      section.style.top      = '0px';
+    } else if(scrolled >= travel){
+      section.style.position = 'absolute';
+      section.style.top      = travel + 'px';
+    } else {
+      section.style.position = 'fixed';
+      section.style.top      = '0px';
+      section.style.left     = '0px';
+      section.style.right    = '0px';
+    }
+
+    /* card switch */
+    var prog = Math.max(0, Math.min(1, scrolled / travel));
+    var idx  = Math.min(n - 1, Math.floor(prog * n));
+    cards.forEach(function(c,i){ c.classList.toggle('active', i === idx); });
+    if(fill) fill.style.width = ((idx + 1) / n * 100) + '%';
+    if(ctr)  ctr.textContent  = '0' + (idx + 1) + ' / 0' + n;
   }
+
   window.addEventListener('scroll', update, {passive:true});
+  window.addEventListener('resize', update);
   update();
 })();
 
