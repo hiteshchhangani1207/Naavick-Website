@@ -266,18 +266,16 @@ html { overflow-x: clip; }
 .cl-grid{
   display:grid;
   grid-template-columns:repeat(6,1fr);
-  gap:40px 0;
+  grid-auto-rows:136px;
+  gap:0;
 }
 .cl-cell{
-  display:flex;align-items:center;justify-content:center;
-  padding:28px 24px;
+  display:flex;align-items:center;justify-content:flex-start;
+  padding:0 28px;
   min-width:0;
 }
-/* first column — align left edge with heading "Our" text */
-.cl-cell:nth-child(6n+1){
-  justify-content:flex-start;
-  padding-left:0;
-}
+/* first column — align with heading "Our" left edge */
+.cl-cell:nth-child(6n+1){ padding-left:0; }
 .cl-logo{
   max-height:72px;max-width:150px;
   width:auto;height:auto;display:block;
