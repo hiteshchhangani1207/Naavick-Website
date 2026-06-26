@@ -69,86 +69,61 @@
   border-top:0.5px solid var(--mist);padding-top:28px;
 }
 
-/* ───── PRINCIPLES — horizontal-pan journal ───── */
-.prin-scroll-wrapper{ height:500vh;position:relative; }
-.prin-section{
-  position:absolute;top:0;left:0;right:0;
-  height:100vh;display:flex;flex-direction:column;
-  background:var(--iv);overflow:hidden;
+/* ───── PRINCIPLES — 2×2 tilt grid ───── */
+.prin-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:var(--mist);
 }
-.prin-header{
-  padding:88px 56px 28px;
-  border-bottom:0.5px solid rgba(26,26,26,0.08);
-  flex-shrink:0;
-  display:flex;flex-direction:column;gap:18px;
-}
-.prin-progress-bar{
-  height:0.5px;background:rgba(26,26,26,0.1);position:relative;overflow:hidden;
-}
-.prin-progress-fill{
-  position:absolute;inset-block:0;left:0;
-  width:25%;background:var(--crim);
-  transition:width .3s ease;
-}
-/* horizontal track */
-.prin-track{
-  flex:1;display:flex;align-items:stretch;
-  will-change:transform;
-  /* transform set by JS */
-}
-.prin-panel{
-  width:100vw;flex-shrink:0;
+.pr-cell{
+  background:var(--ww);
+  padding:52px 52px 56px;
   position:relative;overflow:hidden;
-  display:flex;align-items:center;
-  padding:0 72px;
-  border-right:0.5px solid rgba(26,26,26,0.07);
+  transform-style:preserve-3d;
+  will-change:transform;
+  transition:box-shadow .35s ease;
 }
-/* faint notebook-line texture */
-.prin-panel::before{
-  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
-  background-image:repeating-linear-gradient(
-    to bottom,
-    transparent 0,transparent 47px,
-    rgba(26,26,26,0.028) 47px,rgba(26,26,26,0.028) 48px
-  );
+/* light-gloss highlight layer */
+.pr-shine{
+  position:absolute;inset:0;
+  pointer-events:none;z-index:3;
+  transition:opacity .25s ease;
 }
-/* ghost index number bleeds off bottom-right */
-.pp-num{
-  position:absolute;right:-24px;bottom:-48px;
+/* ghost number */
+.pr-ghost{
+  position:absolute;right:-10px;bottom:-24px;
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(240px,32vw,420px);
+  font-size:clamp(110px,14vw,180px);
   font-weight:300;color:rgba(26,26,26,0.042);
-  line-height:0.82;letter-spacing:-0.06em;
+  line-height:0.82;letter-spacing:-0.05em;
   pointer-events:none;user-select:none;z-index:0;
 }
-/* body grid */
-.pp-body{
-  position:relative;z-index:1;
-  display:grid;
-  grid-template-columns:1fr 0.5px 1fr;
-  gap:0 64px;width:100%;align-items:center;
+.pr-content{ position:relative;z-index:1; }
+.pr-idx{
+  display:block;
+  font-size:9px;letter-spacing:0.32em;color:var(--st);
+  font-weight:300;margin-bottom:40px;
 }
-.pp-vr{ background:var(--mist);align-self:stretch; }
-.pp-title{
+.pr-t{
   font-family:'Cormorant Garamond',serif;
   font-weight:300;font-style:italic;
-  font-size:clamp(56px,7.5vw,104px);
-  color:var(--ch);letter-spacing:-0.03em;line-height:0.9;
-  margin-bottom:22px;
+  font-size:clamp(32px,3.6vw,50px);
+  color:var(--ch);letter-spacing:-0.02em;line-height:1.05;
+  margin-bottom:10px;
 }
-.pp-tag{
-  font-size:9px;letter-spacing:0.32em;text-transform:uppercase;
+.pr-tag{
+  font-size:9px;letter-spacing:0.28em;text-transform:uppercase;
   color:var(--crim);font-weight:400;
-  display:flex;align-items:center;gap:14px;
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:28px;
 }
-.pp-tag::before{
+.pr-tag::before{
   content:'';display:block;
-  width:22px;height:0.5px;background:var(--crim);flex-shrink:0;
+  width:18px;height:0.5px;background:var(--crim);flex-shrink:0;
 }
-.pp-right{ padding-left:8px; }
-.pp-desc{
-  font-size:14px;color:var(--mid);
-  line-height:2;font-weight:300;text-align:justify;
+.pr-d{
+  font-size:13px;color:var(--mid);
+  line-height:1.9;font-weight:300;text-align:justify;
+  border-top:0.5px solid var(--mist);padding-top:20px;
 }
 
 /* ───── LIFE AT WORK ───── */
@@ -399,75 +374,58 @@
 </div>
 
 <!-- PRINCIPLES -->
-<div class="prin-scroll-wrapper">
-<section class="prin-section">
-
-  <div class="prin-header">
-    <h1 class="chap-h">Our <em>Principles.</em></h1>
-    <div class="prin-progress-bar"><div class="prin-progress-fill" id="prinFill"></div></div>
+<section style="background:var(--iv);">
+  <div class="chap-band" style="padding-top:112px;padding-bottom:44px;border-bottom:0.5px solid var(--mist);">
+    <h1 class="chap-h reveal">Our <em>Principles.</em></h1>
   </div>
+  <div class="prin-grid">
 
-  <div class="prin-track" id="prinTrack">
-
-    <div class="prin-panel">
-      <div class="pp-num">01</div>
-      <div class="pp-body">
-        <div>
-          <h2 class="pp-title">Purpose</h2>
-          <div class="pp-tag">Committed to what matters.</div>
-        </div>
-        <div class="pp-vr"></div>
-        <div class="pp-right">
-          <p class="pp-desc">We take on mandates we believe in and give our fullest attention to outcomes, not just outputs. Our purpose is not to bill hours — it is to earn trust, and to deserve it.</p>
-        </div>
+    <div class="pr-cell">
+      <div class="pr-shine"></div>
+      <div class="pr-ghost">01</div>
+      <div class="pr-content">
+        <span class="pr-idx">01</span>
+        <h3 class="pr-t">Purpose</h3>
+        <div class="pr-tag">Committed to what matters.</div>
+        <p class="pr-d">We take on mandates we believe in and give our fullest attention to outcomes, not just outputs. Our purpose is not to bill hours — it is to earn trust, and to deserve it.</p>
       </div>
     </div>
 
-    <div class="prin-panel">
-      <div class="pp-num">02</div>
-      <div class="pp-body">
-        <div>
-          <h2 class="pp-title">Passion</h2>
-          <div class="pp-tag">Dedicated to every matter.</div>
-        </div>
-        <div class="pp-vr"></div>
-        <div class="pp-right">
-          <p class="pp-desc">Every client's matter receives the same intellectual energy. We bring the same rigour to a compliance brief as we do to a contested insolvency — no matter is secondary.</p>
-        </div>
+    <div class="pr-cell">
+      <div class="pr-shine"></div>
+      <div class="pr-ghost">02</div>
+      <div class="pr-content">
+        <span class="pr-idx">02</span>
+        <h3 class="pr-t">Passion</h3>
+        <div class="pr-tag">Dedicated to every matter.</div>
+        <p class="pr-d">Every client's matter receives the same intellectual energy. We bring the same rigour to a compliance brief as we do to a contested insolvency — no matter is secondary.</p>
       </div>
     </div>
 
-    <div class="prin-panel">
-      <div class="pp-num">03</div>
-      <div class="pp-body">
-        <div>
-          <h2 class="pp-title">Precision</h2>
-          <div class="pp-tag">Every detail matters.</div>
-        </div>
-        <div class="pp-vr"></div>
-        <div class="pp-right">
-          <p class="pp-desc">In law, the difference between a well-drafted clause and a poorly worded one can be the difference between protection and exposure. We do not cut corners — ever.</p>
-        </div>
+    <div class="pr-cell">
+      <div class="pr-shine"></div>
+      <div class="pr-ghost">03</div>
+      <div class="pr-content">
+        <span class="pr-idx">03</span>
+        <h3 class="pr-t">Precision</h3>
+        <div class="pr-tag">Every detail matters.</div>
+        <p class="pr-d">In law, the difference between a well-drafted clause and a poorly worded one can be the difference between protection and exposure. We do not cut corners — ever.</p>
       </div>
     </div>
 
-    <div class="prin-panel">
-      <div class="pp-num">04</div>
-      <div class="pp-body">
-        <div>
-          <h2 class="pp-title">Pace</h2>
-          <div class="pp-tag">Responsive when it matters.</div>
-        </div>
-        <div class="pp-vr"></div>
-        <div class="pp-right">
-          <p class="pp-desc">Commercial timelines do not wait. We are built to move quickly without losing rigour — available, responsive, and prepared to act when the situation demands.</p>
-        </div>
+    <div class="pr-cell">
+      <div class="pr-shine"></div>
+      <div class="pr-ghost">04</div>
+      <div class="pr-content">
+        <span class="pr-idx">04</span>
+        <h3 class="pr-t">Pace</h3>
+        <div class="pr-tag">Responsive when it matters.</div>
+        <p class="pr-d">Commercial timelines do not wait. We are built to move quickly without losing rigour — available, responsive, and prepared to act when the situation demands.</p>
       </div>
     </div>
 
   </div>
 </section>
-</div>
 
 <!-- LIFE AT WORK -->
 <section style="background:var(--ww);">
@@ -704,56 +662,29 @@
 
 <script src="script.js"></script>
 <script>
-/* ── PRINCIPLES — horizontal pan ── */
+/* ── PRINCIPLES — 3D tilt hover ── */
 (function(){
-  var wrapper = document.querySelector('.prin-scroll-wrapper');
-  if(!wrapper) return;
-  var section = wrapper.querySelector('.prin-section');
-  var track   = document.getElementById('prinTrack');
-  var fill    = document.getElementById('prinFill');
-  var n       = 4;
-  var cur     = 0; /* lerp current */
-  var tgt     = 0; /* lerp target  */
-
-  function sticky(scrolled, travel){
-    if(scrolled <= 0){
-      section.style.position = 'absolute';
-      section.style.top = '0px';
-      section.style.left = section.style.right = '';
-    } else if(scrolled >= travel){
-      section.style.position = 'absolute';
-      section.style.top = travel + 'px';
-      section.style.left = section.style.right = '';
-    } else {
-      section.style.position = 'fixed';
-      section.style.top = '0px';
-      section.style.left = '0px';
-      section.style.right = '0px';
-    }
-  }
-
-  function onScroll(){
-    var wTop    = wrapper.getBoundingClientRect().top + (window.scrollY||window.pageYOffset);
-    var scrollY = window.scrollY || window.pageYOffset;
-    var travel  = wrapper.offsetHeight - window.innerHeight;
-    var scrolled = scrollY - wTop;
-    sticky(scrolled, travel);
-    var prog = Math.max(0, Math.min(1, scrolled / travel));
-    tgt = prog * (n - 1); /* 0 → 3 */
-    var idx = Math.min(n-1, Math.floor(prog * n));
-    if(fill) fill.style.width = ((idx+1)/n*100) + '%';
-  }
-
-  function loop(){
-    cur += (tgt - cur) * 0.1;
-    if(track) track.style.transform = 'translateX(' + (-cur * 100) + 'vw)';
-    requestAnimationFrame(loop);
-  }
-
-  window.addEventListener('scroll', onScroll, {passive:true});
-  window.addEventListener('resize', onScroll);
-  onScroll();
-  loop();
+  document.querySelectorAll('.pr-cell').forEach(function(cell){
+    var shine = cell.querySelector('.pr-shine');
+    cell.addEventListener('mouseenter', function(){
+      cell.style.transition = 'transform 0.15s ease, box-shadow 0.3s ease';
+    });
+    cell.addEventListener('mousemove', function(e){
+      cell.style.transition = 'box-shadow 0.3s ease';
+      var r = cell.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - 0.5;
+      var y = (e.clientY - r.top)  / r.height - 0.5;
+      cell.style.transform = 'perspective(900px) rotateX('+(-y*10)+'deg) rotateY('+(x*14)+'deg) translateZ(8px)';
+      cell.style.boxShadow = '0 28px 56px rgba(0,0,0,0.13), 0 8px 20px rgba(0,0,0,0.07)';
+      if(shine) shine.style.background = 'radial-gradient(circle at '+(x*100+50)+'% '+(y*100+50)+'%, rgba(255,255,255,0.22) 0%, transparent 62%)';
+    });
+    cell.addEventListener('mouseleave', function(){
+      cell.style.transition = 'transform 0.7s cubic-bezier(0.16,1,0.3,1), box-shadow 0.7s ease';
+      cell.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) translateZ(0)';
+      cell.style.boxShadow = '';
+      if(shine) shine.style.background = '';
+    });
+  });
 })();
 
 function submitCareer(e){
