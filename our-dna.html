@@ -129,8 +129,8 @@
   position:absolute;inset:0;
   background-image:var(--bg);
   background-size:cover;
-  background-position:var(--bp,center 20%);
-  filter:contrast(1.1) brightness(0.88) saturate(0.8);
+  background-position:var(--bp,center 15%);
+  filter:contrast(1.05) brightness(1.0) saturate(1.0);
   z-index:0;
   transition:transform .65s ease;
 }
@@ -138,21 +138,21 @@
 .life-cell::after{
   content:'';
   position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,0.88) 0%,rgba(0,0,0,0.48) 40%,rgba(0,0,0,0) 70%);
+  background:linear-gradient(to top,rgba(0,0,0,0.88) 0%,rgba(0,0,0,0.45) 40%,rgba(0,0,0,0) 70%);
   z-index:1;
   pointer-events:none;
 }
 .lc-text{position:relative;z-index:2;}
 .lc-label{
   font-size:8px;letter-spacing:0.32em;text-transform:uppercase;
-  font-weight:300;color:rgba(255,255,255,0.48);
+  font-weight:300;color:rgba(255,255,255,0.5);
   margin-bottom:10px;
 }
 .lc-caption{
   font-family:'Cormorant Garamond',serif;
   font-weight:300;font-style:italic;font-size:17px;
   line-height:1.38;letter-spacing:-0.005em;
-  color:rgba(255,255,255,0.85);
+  color:rgba(255,255,255,0.88);
 }
 
 .life-values{
@@ -400,7 +400,7 @@
     <div class="life-gallery">
 
       <!-- Photo: focused work -->
-      <div class="life-cell reveal" style="--bg:url('Office Images/WhatsApp Image 2026-06-26 at 14.41.06.jpeg');--bp:40% 15%;">
+      <div class="life-cell reveal" style="--bg:url('Office Images/enhanced/WhatsApp Image 2026-06-26 at 14.41.06.jpeg');--bp:40% top;">
         <div class="lc-text">
           <div class="lc-label">At work</div>
           <div class="lc-caption">"Every brief, given full attention."</div>
@@ -408,7 +408,7 @@
       </div>
 
       <!-- Photo: inauguration ribbon cutting -->
-      <div class="life-cell reveal reveal-d1" style="--bg:url('Office Images/WhatsApp Image 2026-06-26 at 00.03.12.jpeg');--bp:center 22%;">
+      <div class="life-cell reveal reveal-d1" style="--bg:url('Office Images/enhanced/WhatsApp Image 2026-06-26 at 00.03.12.jpeg');--bp:center 22%;">
         <div class="lc-text">
           <div class="lc-label">Inauguration</div>
           <div class="lc-caption">"The beginning of something different."</div>
@@ -416,7 +416,7 @@
       </div>
 
       <!-- Photo: team at desks -->
-      <div class="life-cell reveal reveal-d2" style="--bg:url('Office Images/WhatsApp Image 2026-06-26 at 13.25.03.jpeg');--bp:center top;">
+      <div class="life-cell reveal reveal-d2" style="--bg:url('Office Images/enhanced/WhatsApp Image 2026-06-26 at 13.25.03.jpeg');--bp:center top;">
         <div class="lc-text">
           <div class="lc-label">The workspace</div>
           <div class="lc-caption">"Side by side, case by case."</div>
@@ -424,7 +424,7 @@
       </div>
 
       <!-- Photo: meeting -->
-      <div class="life-cell reveal reveal-d3" style="--bg:url('Office Images/WhatsApp Image 2026-06-26 at 14.38.26.jpeg');--bp:center 18%;">
+      <div class="life-cell reveal reveal-d3" style="--bg:url('Office Images/enhanced/WhatsApp Image 2026-06-26 at 14.38.26.jpeg');--bp:center 20%;">
         <div class="lc-text">
           <div class="lc-label">In session</div>
           <div class="lc-caption">"Working through it, together."</div>
@@ -432,7 +432,7 @@
       </div>
 
       <!-- Photo: team workspace -->
-      <div class="life-cell reveal" style="--bg:url('Office Images/WhatsApp Image 2026-06-26 at 13.24.11.jpeg');--bp:center 28%;">
+      <div class="life-cell reveal" style="--bg:url('Office Images/enhanced/WhatsApp Image 2026-06-26 at 13.24.11.jpeg');--bp:center top;">
         <div class="lc-text">
           <div class="lc-label">The office</div>
           <div class="lc-caption">"Quiet desks. Shared purpose."</div>
@@ -440,7 +440,7 @@
       </div>
 
       <!-- Photo: Holi celebration -->
-      <div class="life-cell reveal reveal-d1" style="--bg:url('Office Images/WhatsApp Image 2026-06-24 at 23.24.35 (2).jpeg');--bp:center 22%;">
+      <div class="life-cell reveal reveal-d1" style="--bg:url('Office Images/enhanced/WhatsApp Image 2026-06-24 at 23.24.35 (2).jpeg');--bp:center 25%;">
         <div class="lc-text">
           <div class="lc-label">Holi at Naavick</div>
           <div class="lc-caption">"Colour over work. Just once a year."</div>
@@ -448,7 +448,7 @@
       </div>
 
       <!-- Photo: team lunch -->
-      <div class="life-cell reveal reveal-d2" style="--bg:url('Office Images/WhatsApp Image 2026-06-24 at 23.30.07 (2).jpeg');--bp:center 28%;">
+      <div class="life-cell reveal reveal-d2" style="--bg:url('Office Images/enhanced/WhatsApp Image 2026-06-24 at 23.30.07 (2).jpeg');--bp:center 28%;">
         <div class="lc-text">
           <div class="lc-label">After hours</div>
           <div class="lc-caption">"Conversation continues over pizza."</div>
@@ -456,7 +456,7 @@
       </div>
 
       <!-- Photo: group at inauguration -->
-      <div class="life-cell reveal reveal-d3" style="--bg:url('Office Images/WhatsApp Image 2026-06-26 at 00.07.29 (1).jpeg');--bp:center top;">
+      <div class="life-cell reveal reveal-d3" style="--bg:url('Office Images/enhanced/WhatsApp Image 2026-06-26 at 00.07.29 (1).jpeg');--bp:center top;">
         <div class="lc-text">
           <div class="lc-label">Day one</div>
           <div class="lc-caption">"Where the firm was born."</div>
