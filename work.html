@@ -7,6 +7,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Barlow:wght@100;200;300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
+/* prevent any horizontal scroll flash on reload */
+html { overflow-x: clip; }
 
 /* ── SHARED CHAPTER LAYOUT (mirrors who-we-are.html) ── */
 .chap-band{
@@ -269,6 +271,12 @@
 .cl-cell{
   display:flex;align-items:center;justify-content:center;
   padding:28px 24px;
+  min-width:0;
+}
+/* first column — align left edge with heading "Our" text */
+.cl-cell:nth-child(6n+1){
+  justify-content:flex-start;
+  padding-left:0;
 }
 .cl-logo{
   max-height:72px;max-width:150px;
