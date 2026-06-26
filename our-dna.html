@@ -444,28 +444,6 @@
 </section>
 </div>
 
-<script>
-(function(){
-  var wrapper = document.querySelector('.prin-scroll-wrapper');
-  if(!wrapper) return;
-  var cards = wrapper.querySelectorAll('.pr-card');
-  var fill  = document.getElementById('prinFill');
-  var ctr   = document.getElementById('prinCounter');
-  var n = cards.length;
-  function update(){
-    var rect   = wrapper.getBoundingClientRect();
-    var travel = wrapper.offsetHeight - window.innerHeight;
-    var prog   = Math.max(0, Math.min(1, -rect.top / travel));
-    var idx    = Math.min(n - 1, Math.floor(prog * n));
-    cards.forEach(function(c,i){ c.classList.toggle('active', i===idx); });
-    if(fill) fill.style.width = ((idx+1)/n*100)+'%';
-    if(ctr)  ctr.textContent  = '0'+(idx+1)+' / 0'+n;
-  }
-  window.addEventListener('scroll', update, {passive:true});
-  update();
-})();
-</script>
-
 <!-- LIFE AT WORK -->
 <section style="background:var(--ww);">
   <div class="chap-band" style="padding-top:80px;">
@@ -701,6 +679,27 @@
 
 <script src="script.js"></script>
 <script>
+/* ── PRINCIPLES SCROLL ANIMATION ── */
+(function(){
+  var wrapper = document.querySelector('.prin-scroll-wrapper');
+  if(!wrapper) return;
+  var cards = wrapper.querySelectorAll('.pr-card');
+  var fill  = document.getElementById('prinFill');
+  var ctr   = document.getElementById('prinCounter');
+  var n = cards.length;
+  function update(){
+    var rect   = wrapper.getBoundingClientRect();
+    var travel = wrapper.offsetHeight - window.innerHeight;
+    var prog   = Math.max(0, Math.min(1, -rect.top / travel));
+    var idx    = Math.min(n - 1, Math.floor(prog * n));
+    cards.forEach(function(c,i){ c.classList.toggle('active', i===idx); });
+    if(fill) fill.style.width = ((idx+1)/n*100)+'%';
+    if(ctr)  ctr.textContent  = '0'+(idx+1)+' / 0'+n;
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  update();
+})();
+
 function submitCareer(e){
   e.preventDefault();
   const f = e.target;

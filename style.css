@@ -24,7 +24,7 @@
   --gold:#B08D57;
 }
 
-html{scroll-behavior:smooth;font-size:16px;overflow-x:hidden;}
+html{scroll-behavior:smooth;font-size:16px;overflow-x:clip;}
 
 body{
   font-family:'Barlow',sans-serif;
