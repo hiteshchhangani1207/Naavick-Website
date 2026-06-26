@@ -608,63 +608,38 @@
 <!-- DISCLAIMER OVERLAY -->
 <div id="disclaimerOverlay" style="
   position:fixed;inset:0;z-index:9999;
-  background:rgba(20,17,14,0.88);
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  background:transparent;
   display:flex;align-items:center;justify-content:center;
   padding:24px;
   opacity:1;transition:opacity .45s ease;
+  pointer-events:none;
 ">
   <div style="
     background:var(--ww);
-    max-width:620px;width:100%;
-    padding:52px 48px 44px;
-    position:relative;
+    max-width:680px;width:100%;
+    padding:44px 48px 40px;
+    display:flex;align-items:center;gap:40px;
+    border-top:0.5px solid var(--mist);
+    border-bottom:0.5px solid var(--mist);
+    pointer-events:all;
+    position:absolute;bottom:0;left:0;right:0;max-width:100%;
   ">
-    <!-- marker -->
-    <div style="
-      font-size:8.5px;letter-spacing:0.38em;text-transform:uppercase;
-      color:var(--crim);font-weight:400;
-      display:flex;align-items:center;gap:12px;
-      margin-bottom:28px;
-    ">
-      <span style="display:block;width:16px;height:0.5px;background:var(--crim);flex-shrink:0;"></span>
-      Disclaimer
-    </div>
-    <!-- heading -->
-    <h2 style="
-      font-family:'Cormorant Garamond',serif;
-      font-weight:300;font-size:clamp(28px,3.5vw,40px);
-      color:var(--ch);line-height:1.1;letter-spacing:-0.02em;
-      margin-bottom:28px;
-    ">Before you <em style="font-style:italic;color:var(--st);">proceed.</em></h2>
-    <!-- divider -->
-    <div style="width:100%;height:0.5px;background:var(--mist);margin-bottom:28px;"></div>
-    <!-- body -->
     <p style="
       font-family:'Barlow',sans-serif;font-weight:300;
-      font-size:13px;color:var(--mid);line-height:1.9;
-      margin-bottom:16px;
-    ">
-      In accordance with the rules of the Bar Council of India, advocates and law firms are not permitted to solicit work or advertise. By accessing this website, you confirm that you are seeking information about Naavick Legal of your own accord and that no inducement, personal communication, or solicitation of any kind has been made by the firm.
-    </p>
-    <p style="
-      font-family:'Barlow',sans-serif;font-weight:300;
-      font-size:13px;color:var(--mid);line-height:1.9;
-      margin-bottom:36px;
-    ">
-      The content on this website is for informational purposes only and does not constitute legal advice or create an attorney–client relationship. Naavick Legal shall not be liable for any action taken in reliance on information provided herein.
-    </p>
-    <!-- button -->
+      font-size:13px;color:var(--mid);line-height:1.85;
+      flex:1;
+    ">By browsing this website you agree that you are, of your own accord, seeking further information regarding our firm, Naavick Legal. No part of this website should be construed as an advertisement or solicitation of our professional services.</p>
+    <div style="width:0.5px;height:60px;background:var(--mist);flex-shrink:0;"></div>
     <button onclick="acceptDisclaimer()" style="
       font-family:'Barlow',sans-serif;font-weight:300;
       font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
       color:var(--ch);background:transparent;
-      border:0.5px solid var(--ch);padding:14px 36px;
-      cursor:pointer;transition:all .22s;
+      border:0.5px solid var(--ch);padding:14px 32px;
+      cursor:pointer;transition:all .22s;flex-shrink:0;
     "
     onmouseover="this.style.background='var(--ch)';this.style.color='var(--ww)'"
     onmouseout="this.style.background='transparent';this.style.color='var(--ch)'"
-    >I agree &amp; proceed →</button>
+    >I agree</button>
   </div>
 </div>
 
