@@ -70,47 +70,71 @@
 }
 
 /* ───── PRINCIPLES ───── */
+.prin-scroll-wrapper{ height:500vh; }
 .prin-section{
+  position:sticky;top:0;
   height:100vh;
   display:flex;flex-direction:column;
   overflow:hidden;
+  background:var(--iv);
 }
 .prin-band{
   padding:112px 56px 44px;
   border-bottom:0.5px solid var(--mist);
   flex-shrink:0;
+  display:flex;align-items:baseline;justify-content:space-between;
 }
-.principles-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  flex:1;
+.prin-counter{
+  font-family:'Barlow',sans-serif;font-size:9px;
+  letter-spacing:0.3em;color:var(--st);font-weight:300;
 }
-.pr-cell{
-  background:var(--ww);
-  padding:52px 44px 44px;
-  border-right:0.5px solid var(--mist);
-  display:flex;flex-direction:column;
-  transition:background .3s;
+.prin-progress-bar{
+  height:0.5px;background:var(--mist);flex-shrink:0;position:relative;
 }
-.pr-cell:last-child{border-right:none;}
-.pr-cell:hover{background:var(--iv);}
+.prin-progress-fill{
+  position:absolute;inset:0;right:auto;
+  background:var(--crim);width:25%;
+  transition:width .5s cubic-bezier(0.16,1,0.3,1);
+}
+.prin-stage{
+  flex:1;position:relative;
+}
+.pr-card{
+  position:absolute;inset:0;
+  display:flex;align-items:center;
+  padding:0 56px;
+  opacity:0;transform:translateY(28px);
+  transition:opacity .55s ease,transform .55s cubic-bezier(0.16,1,0.3,1);
+  pointer-events:none;
+}
+.pr-card.active{
+  opacity:1;transform:translateY(0);
+  pointer-events:auto;
+}
+.pr-card-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;width:100%;align-items:center;
+}
 .pr-n{
   font-family:'Cormorant Garamond',serif;
-  font-size:56px;font-weight:300;color:var(--mist);
-  line-height:1;margin-bottom:28px;
+  font-size:clamp(80px,11vw,144px);font-weight:300;
+  color:rgba(26,26,26,0.07);
+  line-height:1;margin-bottom:20px;
 }
 .pr-t{
   font-family:'Cormorant Garamond',serif;
-  font-weight:300;font-style:italic;font-size:clamp(26px,2.4vw,36px);
-  color:var(--ch);margin-bottom:8px;letter-spacing:-0.01em;line-height:1.1;
+  font-weight:300;font-style:italic;font-size:clamp(36px,4.5vw,60px);
+  color:var(--ch);letter-spacing:-0.02em;line-height:1.05;
+  margin-bottom:10px;
 }
 .pr-tag{
-  font-size:9px;letter-spacing:0.22em;text-transform:uppercase;
-  color:var(--crim);font-weight:400;margin-bottom:24px;
+  font-size:9px;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--crim);font-weight:400;
 }
 .pr-d{
-  font-size:13px;color:var(--mid);
-  line-height:1.9;font-weight:300;text-align:justify;
-  border-top:0.5px solid var(--mist);padding-top:20px;margin-top:auto;
+  font-size:14px;color:var(--mid);
+  line-height:1.95;font-weight:300;text-align:justify;
+  border-left:0.5px solid var(--mist);padding-left:56px;
 }
 
 /* ───── LIFE AT WORK ───── */
@@ -361,35 +385,86 @@
 </div>
 
 <!-- PRINCIPLES -->
-<section class="prin-section" style="background:var(--iv);">
+<div class="prin-scroll-wrapper">
+<section class="prin-section">
   <div class="prin-band">
-    <h1 class="chap-h reveal">Our <em>Principles.</em></h1>
+    <h1 class="chap-h">Our <em>Principles.</em></h1>
+    <div class="prin-counter" id="prinCounter">01 / 04</div>
   </div>
-  <div class="principles-grid">
+  <div class="prin-progress-bar">
+    <div class="prin-progress-fill" id="prinFill"></div>
+  </div>
+  <div class="prin-stage">
 
-    <div class="pr-cell reveal">
-      <h3 class="pr-t">Purpose</h3>
-      <div class="pr-tag">Committed to what matters.</div>
-      <p class="pr-d">We take on mandates we believe in and give our fullest attention to outcomes, not just outputs. Our purpose is not to bill hours — it is to earn trust, and to deserve it.</p>
+    <div class="pr-card active" data-idx="0">
+      <div class="pr-card-inner">
+        <div>
+          <div class="pr-n">01</div>
+          <h3 class="pr-t">Purpose</h3>
+          <div class="pr-tag">Committed to what matters.</div>
+        </div>
+        <p class="pr-d">We take on mandates we believe in and give our fullest attention to outcomes, not just outputs. Our purpose is not to bill hours — it is to earn trust, and to deserve it.</p>
+      </div>
     </div>
-    <div class="pr-cell reveal reveal-d1">
-      <h3 class="pr-t">Passion</h3>
-      <div class="pr-tag">Dedicated to every matter.</div>
-      <p class="pr-d">Every client's matter receives the same intellectual energy. We bring the same rigour to a compliance brief as we do to a contested insolvency — no matter is secondary.</p>
+
+    <div class="pr-card" data-idx="1">
+      <div class="pr-card-inner">
+        <div>
+          <div class="pr-n">02</div>
+          <h3 class="pr-t">Passion</h3>
+          <div class="pr-tag">Dedicated to every matter.</div>
+        </div>
+        <p class="pr-d">Every client's matter receives the same intellectual energy. We bring the same rigour to a compliance brief as we do to a contested insolvency — no matter is secondary.</p>
+      </div>
     </div>
-    <div class="pr-cell reveal reveal-d2">
-      <h3 class="pr-t">Precision</h3>
-      <div class="pr-tag">Every detail matters.</div>
-      <p class="pr-d">In law, the difference between a well-drafted clause and a poorly worded one can be the difference between protection and exposure. We do not cut corners — ever.</p>
+
+    <div class="pr-card" data-idx="2">
+      <div class="pr-card-inner">
+        <div>
+          <div class="pr-n">03</div>
+          <h3 class="pr-t">Precision</h3>
+          <div class="pr-tag">Every detail matters.</div>
+        </div>
+        <p class="pr-d">In law, the difference between a well-drafted clause and a poorly worded one can be the difference between protection and exposure. We do not cut corners — ever.</p>
+      </div>
     </div>
-    <div class="pr-cell reveal reveal-d3">
-      <h3 class="pr-t">Pace</h3>
-      <div class="pr-tag">Responsive when it matters.</div>
-      <p class="pr-d">Commercial timelines do not wait. We are built to move quickly without losing rigour — available, responsive, and prepared to act when the situation demands.</p>
+
+    <div class="pr-card" data-idx="3">
+      <div class="pr-card-inner">
+        <div>
+          <div class="pr-n">04</div>
+          <h3 class="pr-t">Pace</h3>
+          <div class="pr-tag">Responsive when it matters.</div>
+        </div>
+        <p class="pr-d">Commercial timelines do not wait. We are built to move quickly without losing rigour — available, responsive, and prepared to act when the situation demands.</p>
+      </div>
     </div>
 
   </div>
 </section>
+</div>
+
+<script>
+(function(){
+  var wrapper = document.querySelector('.prin-scroll-wrapper');
+  if(!wrapper) return;
+  var cards = wrapper.querySelectorAll('.pr-card');
+  var fill  = document.getElementById('prinFill');
+  var ctr   = document.getElementById('prinCounter');
+  var n = cards.length;
+  function update(){
+    var rect   = wrapper.getBoundingClientRect();
+    var travel = wrapper.offsetHeight - window.innerHeight;
+    var prog   = Math.max(0, Math.min(1, -rect.top / travel));
+    var idx    = Math.min(n - 1, Math.floor(prog * n));
+    cards.forEach(function(c,i){ c.classList.toggle('active', i===idx); });
+    if(fill) fill.style.width = ((idx+1)/n*100)+'%';
+    if(ctr)  ctr.textContent  = '0'+(idx+1)+' / 0'+n;
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  update();
+})();
+</script>
 
 <!-- LIFE AT WORK -->
 <section style="background:var(--ww);">
