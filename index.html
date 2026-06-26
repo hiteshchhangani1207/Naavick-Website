@@ -608,33 +608,23 @@
 <!-- DISCLAIMER OVERLAY -->
 <div id="disclaimerOverlay" style="
   position:fixed;inset:0;z-index:9999;
-  background:transparent;
+  background:rgba(244,241,234,0.88);
   display:flex;align-items:center;justify-content:center;
-  padding:24px;
+  padding:0 56px;
   opacity:1;transition:opacity .45s ease;
-  pointer-events:none;
 ">
-  <div style="
-    background:var(--ww);
-    max-width:680px;width:100%;
-    padding:44px 48px 40px;
-    display:flex;align-items:center;gap:40px;
-    border-top:0.5px solid var(--mist);
-    border-bottom:0.5px solid var(--mist);
-    pointer-events:all;
-    position:absolute;bottom:0;left:0;right:0;max-width:100%;
-  ">
+  <div style="max-width:920px;width:100%;display:flex;align-items:center;gap:52px;">
     <p style="
       font-family:'Barlow',sans-serif;font-weight:300;
-      font-size:13px;color:var(--mid);line-height:1.85;
-      flex:1;
+      font-size:14px;color:var(--ch);line-height:1.85;
+      flex:1;text-align:justify;
     ">By browsing this website you agree that you are, of your own accord, seeking further information regarding our firm, Naavick Legal. No part of this website should be construed as an advertisement or solicitation of our professional services.</p>
-    <div style="width:0.5px;height:60px;background:var(--mist);flex-shrink:0;"></div>
+    <div style="width:0.5px;height:72px;background:rgba(26,26,26,0.18);flex-shrink:0;"></div>
     <button onclick="acceptDisclaimer()" style="
       font-family:'Barlow',sans-serif;font-weight:300;
       font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
       color:var(--ch);background:transparent;
-      border:0.5px solid var(--ch);padding:14px 32px;
+      border:0.5px solid var(--ch);padding:14px 36px;
       cursor:pointer;transition:all .22s;flex-shrink:0;
     "
     onmouseover="this.style.background='var(--ch)';this.style.color='var(--ww)'"
