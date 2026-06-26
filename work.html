@@ -302,12 +302,17 @@ html { overflow-x: clip; }
 
 /* ───── CONTACT FORM ───── */
 .form-section{
-  padding:112px 56px 80px;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  background:var(--ww);
   border-bottom:0.5px solid var(--mist);
+}
+.form-body{
+  flex:1;padding:52px 56px 72px;
 }
 .form-grid{
   display:grid;grid-template-columns:1fr 1.4fr;gap:80px;
-  margin-top:56px;align-items:start;
+  align-items:start;
 }
 .fl-detail{
   font-size:13.5px;color:var(--mid);line-height:1.95;
@@ -689,10 +694,11 @@ html { overflow-x: clip; }
 
 <!-- CONTACT FORM -->
 <section class="form-section">
-  <div style="border-bottom:0.5px solid var(--mist);padding-bottom:44px;margin-bottom:52px;">
-    <h2 class="sh reveal" style="margin-bottom:0;">Tell us about<br><em>your matter.</em></h2>
+  <div class="chap-band">
+    <h2 class="chap-h reveal">Tell us about <em>your matter.</em></h2>
   </div>
 
+  <div class="form-body">
   <div class="form-grid">
     <div class="form-left reveal reveal-d1">
       <p class="fl-detail">The more detail you can share, the better we can prepare our response.</p>
@@ -728,6 +734,7 @@ html { overflow-x: clip; }
         <span class="cf-privacy">By submitting, you agree that we may contact you regarding this inquiry.</span>
       </div>
     </form>
+  </div>
   </div>
 </section>
 
