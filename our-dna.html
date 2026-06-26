@@ -69,93 +69,86 @@
   border-top:0.5px solid var(--mist);padding-top:28px;
 }
 
-/* ───── PRINCIPLES ───── */
+/* ───── PRINCIPLES — horizontal-pan journal ───── */
 .prin-scroll-wrapper{ height:500vh;position:relative; }
 .prin-section{
   position:absolute;top:0;left:0;right:0;
   height:100vh;display:flex;flex-direction:column;
   background:var(--iv);overflow:hidden;
 }
-.prin-band{
-  padding:88px 56px 32px;
+.prin-header{
+  padding:88px 56px 28px;
   border-bottom:0.5px solid rgba(26,26,26,0.08);
   flex-shrink:0;
-  display:flex;align-items:center;justify-content:space-between;
+  display:flex;flex-direction:column;gap:18px;
 }
-.prin-dots{ display:flex;gap:10px;align-items:center; }
-.prin-dot{
-  height:1px;width:22px;background:rgba(26,26,26,0.18);
-  transition:all .45s cubic-bezier(0.16,1,0.3,1);
-  flex-shrink:0;
+.prin-progress-bar{
+  height:0.5px;background:rgba(26,26,26,0.1);position:relative;overflow:hidden;
 }
-.prin-dot.on{ background:var(--crim);width:40px; }
-
-/* Stage with 3-D perspective */
-.prin-stage{
-  flex:1;position:relative;
-  perspective:1400px;perspective-origin:50% 45%;
-  overflow:hidden;
+.prin-progress-fill{
+  position:absolute;inset-block:0;left:0;
+  width:25%;background:var(--crim);
+  transition:width .3s ease;
 }
-
-/* Base card state — waiting below */
-.pr-card{
-  position:absolute;inset:0;
-  display:flex;align-items:center;padding:0 56px 40px;
-  opacity:0;pointer-events:none;
-  transform:translateY(64px) rotateX(-9deg) scale(0.96);
-  transition:opacity .7s ease,transform .75s cubic-bezier(0.16,1,0.3,1);
-  will-change:transform,opacity;
+/* horizontal track */
+.prin-track{
+  flex:1;display:flex;align-items:stretch;
+  will-change:transform;
+  /* transform set by JS */
 }
-/* Active — flat, centred, fully visible */
-.pr-card.active{
-  opacity:1;pointer-events:auto;
-  transform:translateY(0) rotateX(0deg) scale(1);
+.prin-panel{
+  width:100vw;flex-shrink:0;
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;
+  padding:0 72px;
+  border-right:0.5px solid rgba(26,26,26,0.07);
 }
-/* Exited — flips backward and up */
-.pr-card.exited{
-  opacity:0;
-  transform:translateY(-48px) rotateX(10deg) scale(0.97);
-  transition:opacity .5s ease,transform .55s cubic-bezier(0.4,0,1,1);
+/* faint notebook-line texture */
+.prin-panel::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:repeating-linear-gradient(
+    to bottom,
+    transparent 0,transparent 47px,
+    rgba(26,26,26,0.028) 47px,rgba(26,26,26,0.028) 48px
+  );
 }
-
-/* The physical card (notecard feel) */
-.pr-card-inner{
-  display:grid;grid-template-columns:0.85fr 1px 1.15fr;
-  gap:0 52px;
-  width:100%;align-items:center;
-  background:var(--ww);
-  padding:48px 52px;
-  border:0.5px solid rgba(26,26,26,0.07);
-  /* stacked-paper shadow: two ghost cards beneath */
-  box-shadow:
-    0 11px 0 -2px var(--iv),
-    0 11px 0 -1px rgba(26,26,26,0.07),
-    0 20px 0 -4px var(--iv),
-    0 20px 0 -3px rgba(26,26,26,0.045);
-}
-.pr-vert-rule{ background:var(--mist);align-self:stretch; }
-
-/* Big ghost index number */
-.pr-n{
+/* ghost index number bleeds off bottom-right */
+.pp-num{
+  position:absolute;right:-24px;bottom:-48px;
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(80px,12vw,150px);font-weight:300;
-  color:rgba(26,26,26,0.06);line-height:0.85;
-  margin-bottom:18px;letter-spacing:-0.05em;
+  font-size:clamp(240px,32vw,420px);
+  font-weight:300;color:rgba(26,26,26,0.042);
+  line-height:0.82;letter-spacing:-0.06em;
+  pointer-events:none;user-select:none;z-index:0;
 }
-.pr-t{
+/* body grid */
+.pp-body{
+  position:relative;z-index:1;
+  display:grid;
+  grid-template-columns:1fr 0.5px 1fr;
+  gap:0 64px;width:100%;align-items:center;
+}
+.pp-vr{ background:var(--mist);align-self:stretch; }
+.pp-title{
   font-family:'Cormorant Garamond',serif;
   font-weight:300;font-style:italic;
-  font-size:clamp(30px,3.8vw,50px);
-  color:var(--ch);letter-spacing:-0.025em;line-height:1.05;
-  margin-bottom:10px;
+  font-size:clamp(56px,7.5vw,104px);
+  color:var(--ch);letter-spacing:-0.03em;line-height:0.9;
+  margin-bottom:22px;
 }
-.pr-tag{
-  font-size:8.5px;letter-spacing:0.3em;text-transform:uppercase;
+.pp-tag{
+  font-size:9px;letter-spacing:0.32em;text-transform:uppercase;
   color:var(--crim);font-weight:400;
+  display:flex;align-items:center;gap:14px;
 }
-.pr-d{
-  font-size:13.5px;color:var(--mid);
-  line-height:1.95;font-weight:300;text-align:justify;
+.pp-tag::before{
+  content:'';display:block;
+  width:22px;height:0.5px;background:var(--crim);flex-shrink:0;
+}
+.pp-right{ padding-left:8px; }
+.pp-desc{
+  font-size:14px;color:var(--mid);
+  line-height:2;font-weight:300;text-align:justify;
 }
 
 /* ───── LIFE AT WORK ───── */
@@ -408,63 +401,67 @@
 <!-- PRINCIPLES -->
 <div class="prin-scroll-wrapper">
 <section class="prin-section">
-  <div class="prin-band">
+
+  <div class="prin-header">
     <h1 class="chap-h">Our <em>Principles.</em></h1>
-    <div class="prin-dots" id="prinDots">
-      <div class="prin-dot on"></div>
-      <div class="prin-dot"></div>
-      <div class="prin-dot"></div>
-      <div class="prin-dot"></div>
-    </div>
+    <div class="prin-progress-bar"><div class="prin-progress-fill" id="prinFill"></div></div>
   </div>
 
-  <div class="prin-stage">
+  <div class="prin-track" id="prinTrack">
 
-    <div class="pr-card active" data-idx="0">
-      <div class="pr-card-inner">
+    <div class="prin-panel">
+      <div class="pp-num">01</div>
+      <div class="pp-body">
         <div>
-          <div class="pr-n">01</div>
-          <h3 class="pr-t">Purpose</h3>
-          <div class="pr-tag">Committed to what matters.</div>
+          <h2 class="pp-title">Purpose</h2>
+          <div class="pp-tag">Committed to what matters.</div>
         </div>
-        <div class="pr-vert-rule"></div>
-        <p class="pr-d">We take on mandates we believe in and give our fullest attention to outcomes, not just outputs. Our purpose is not to bill hours — it is to earn trust, and to deserve it.</p>
+        <div class="pp-vr"></div>
+        <div class="pp-right">
+          <p class="pp-desc">We take on mandates we believe in and give our fullest attention to outcomes, not just outputs. Our purpose is not to bill hours — it is to earn trust, and to deserve it.</p>
+        </div>
       </div>
     </div>
 
-    <div class="pr-card" data-idx="1">
-      <div class="pr-card-inner">
+    <div class="prin-panel">
+      <div class="pp-num">02</div>
+      <div class="pp-body">
         <div>
-          <div class="pr-n">02</div>
-          <h3 class="pr-t">Passion</h3>
-          <div class="pr-tag">Dedicated to every matter.</div>
+          <h2 class="pp-title">Passion</h2>
+          <div class="pp-tag">Dedicated to every matter.</div>
         </div>
-        <div class="pr-vert-rule"></div>
-        <p class="pr-d">Every client's matter receives the same intellectual energy. We bring the same rigour to a compliance brief as we do to a contested insolvency — no matter is secondary.</p>
+        <div class="pp-vr"></div>
+        <div class="pp-right">
+          <p class="pp-desc">Every client's matter receives the same intellectual energy. We bring the same rigour to a compliance brief as we do to a contested insolvency — no matter is secondary.</p>
+        </div>
       </div>
     </div>
 
-    <div class="pr-card" data-idx="2">
-      <div class="pr-card-inner">
+    <div class="prin-panel">
+      <div class="pp-num">03</div>
+      <div class="pp-body">
         <div>
-          <div class="pr-n">03</div>
-          <h3 class="pr-t">Precision</h3>
-          <div class="pr-tag">Every detail matters.</div>
+          <h2 class="pp-title">Precision</h2>
+          <div class="pp-tag">Every detail matters.</div>
         </div>
-        <div class="pr-vert-rule"></div>
-        <p class="pr-d">In law, the difference between a well-drafted clause and a poorly worded one can be the difference between protection and exposure. We do not cut corners — ever.</p>
+        <div class="pp-vr"></div>
+        <div class="pp-right">
+          <p class="pp-desc">In law, the difference between a well-drafted clause and a poorly worded one can be the difference between protection and exposure. We do not cut corners — ever.</p>
+        </div>
       </div>
     </div>
 
-    <div class="pr-card" data-idx="3">
-      <div class="pr-card-inner">
+    <div class="prin-panel">
+      <div class="pp-num">04</div>
+      <div class="pp-body">
         <div>
-          <div class="pr-n">04</div>
-          <h3 class="pr-t">Pace</h3>
-          <div class="pr-tag">Responsive when it matters.</div>
+          <h2 class="pp-title">Pace</h2>
+          <div class="pp-tag">Responsive when it matters.</div>
         </div>
-        <div class="pr-vert-rule"></div>
-        <p class="pr-d">Commercial timelines do not wait. We are built to move quickly without losing rigour — available, responsive, and prepared to act when the situation demands.</p>
+        <div class="pp-vr"></div>
+        <div class="pp-right">
+          <p class="pp-desc">Commercial timelines do not wait. We are built to move quickly without losing rigour — available, responsive, and prepared to act when the situation demands.</p>
+        </div>
       </div>
     </div>
 
@@ -707,48 +704,56 @@
 
 <script src="script.js"></script>
 <script>
-/* ── PRINCIPLES SCROLL ANIMATION ── */
+/* ── PRINCIPLES — horizontal pan ── */
 (function(){
   var wrapper = document.querySelector('.prin-scroll-wrapper');
   if(!wrapper) return;
   var section = wrapper.querySelector('.prin-section');
-  var cards   = wrapper.querySelectorAll('.pr-card');
-  var dots    = document.querySelectorAll('#prinDots .prin-dot');
-  var n       = cards.length;
+  var track   = document.getElementById('prinTrack');
+  var fill    = document.getElementById('prinFill');
+  var n       = 4;
+  var cur     = 0; /* lerp current */
+  var tgt     = 0; /* lerp target  */
 
-  function update(){
-    var wTop    = wrapper.getBoundingClientRect().top + (window.scrollY || window.pageYOffset);
+  function sticky(scrolled, travel){
+    if(scrolled <= 0){
+      section.style.position = 'absolute';
+      section.style.top = '0px';
+      section.style.left = section.style.right = '';
+    } else if(scrolled >= travel){
+      section.style.position = 'absolute';
+      section.style.top = travel + 'px';
+      section.style.left = section.style.right = '';
+    } else {
+      section.style.position = 'fixed';
+      section.style.top = '0px';
+      section.style.left = '0px';
+      section.style.right = '0px';
+    }
+  }
+
+  function onScroll(){
+    var wTop    = wrapper.getBoundingClientRect().top + (window.scrollY||window.pageYOffset);
     var scrollY = window.scrollY || window.pageYOffset;
     var travel  = wrapper.offsetHeight - window.innerHeight;
     var scrolled = scrollY - wTop;
-
-    /* JS sticky */
-    if(scrolled <= 0){
-      section.style.position = 'absolute';
-      section.style.top      = '0px';
-    } else if(scrolled >= travel){
-      section.style.position = 'absolute';
-      section.style.top      = travel + 'px';
-    } else {
-      section.style.position = 'fixed';
-      section.style.top      = '0px';
-      section.style.left     = '0px';
-      section.style.right    = '0px';
-    }
-
-    /* card + dot update */
+    sticky(scrolled, travel);
     var prog = Math.max(0, Math.min(1, scrolled / travel));
-    var idx  = Math.min(n - 1, Math.floor(prog * n));
-    cards.forEach(function(c, i){
-      c.classList.toggle('active', i === idx);
-      c.classList.toggle('exited', i < idx);
-    });
-    dots.forEach(function(d, i){ d.classList.toggle('on', i === idx); });
+    tgt = prog * (n - 1); /* 0 → 3 */
+    var idx = Math.min(n-1, Math.floor(prog * n));
+    if(fill) fill.style.width = ((idx+1)/n*100) + '%';
   }
 
-  window.addEventListener('scroll', update, {passive:true});
-  window.addEventListener('resize', update);
-  update();
+  function loop(){
+    cur += (tgt - cur) * 0.1;
+    if(track) track.style.transform = 'translateX(' + (-cur * 100) + 'vw)';
+    requestAnimationFrame(loop);
+  }
+
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+  loop();
 })();
 
 function submitCareer(e){
