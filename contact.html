@@ -21,67 +21,156 @@
 }
 .chap-h em{font-style:italic;color:var(--st);}
 
-/* ── LOCATION CARDS (matches homepage wloc pattern) ── */
-.loc-body{
-  padding:52px 56px 72px;
+/* ── OFFICES — light left / map right ── */
+.where-inner{
+  display:grid;
+  grid-template-columns:42% 58%;
   border-bottom:0.5px solid var(--mist);
 }
-.where-grid{display:grid;grid-template-columns:repeat(3,minmax(200px,1fr));gap:1px;background:var(--mist);}
-.wloc-card{background:var(--ww);padding:28px 24px 24px;display:flex;flex-direction:column;gap:16px;position:relative;overflow:hidden;transition:background 0.8s ease;}
-.wloc-card:hover{background:var(--ch);}
-.wloc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;filter:grayscale(100%) brightness(0.5) contrast(1.05);transition:opacity 0.9s ease;pointer-events:none;z-index:0;}
-.wloc-card:hover .wloc-img{opacity:1;}
-.wloc-tag,.wloc-city,.wloc-addr,.wloc-note{position:relative;z-index:2;}
-.wloc-tag{font-size:8.5px;letter-spacing:0.3em;text-transform:uppercase;color:var(--ch);font-weight:400;display:flex;align-items:center;gap:10px;transition:color 0.6s ease;}
-.wloc-tag::before{content:'';display:block;width:14px;height:0.5px;background:var(--ch);transition:background 0.6s ease;}
-.wloc-card:hover .wloc-tag{color:rgba(255,255,255,0.75);text-shadow:0 1px 6px rgba(0,0,0,0.9);}
-.wloc-card:hover .wloc-tag::before{background:rgba(255,255,255,0.75);}
-.wloc-city{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(28px,3vw,40px);color:var(--ch);line-height:1;letter-spacing:-0.022em;transition:color 0.6s ease;}
-.wloc-card:hover .wloc-city{color:#fff;text-shadow:0 1px 12px rgba(0,0,0,0.9);}
-.wloc-addr{font-size:12px;color:var(--mid);font-weight:300;line-height:1.6;letter-spacing:0.02em;border-top:0.5px solid var(--mist);padding-top:12px;flex:1;transition:color 0.6s ease,border-color 0.6s ease;}
-.wloc-card:hover .wloc-addr{color:rgba(255,255,255,0.82);border-top-color:rgba(255,255,255,0.2);text-shadow:0 1px 8px rgba(0,0,0,0.8);}
-.wloc-note{opacity:0;transition:opacity 0.6s ease;}
-.wloc-note-court{font-size:8px;letter-spacing:0.26em;text-transform:uppercase;color:rgba(255,255,255,0.6);font-weight:300;text-shadow:0 1px 6px rgba(0,0,0,0.9);}
-.wloc-card:hover .wloc-note{opacity:1;}
-@media(max-width:960px){.where-grid{grid-template-columns:1fr;}}
-
+.office-list{
+  background:var(--ww);
+  border-right:0.5px solid var(--mist);
+  display:flex;flex-direction:column;
+}
+.office-card{
+  padding:52px 48px 44px;
+  border-bottom:0.5px solid var(--mist);
+  cursor:pointer;
+  box-shadow:inset 3px 0 0 transparent;
+  transition:box-shadow 0.35s ease,background 0.8s ease;
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.office-card:last-child{border-bottom:none;}
+/* court photo — reveals on hover */
+.oc-img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;opacity:0;
+  filter:grayscale(100%) brightness(0.45) contrast(1.1);
+  transition:opacity 0.9s ease;pointer-events:none;z-index:0;
+}
+.office-card:hover{background:var(--ch);}
+.office-card:hover .oc-img{opacity:1;}
+.office-card.active{background:var(--iv);box-shadow:inset 3px 0 0 var(--crim);}
+/* z-stacking */
+.oc-header,.oc-city,.oc-addr,.oc-footer{position:relative;z-index:2;}
+/* header row: label + index */
+.oc-header{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:16px;
+}
+.oc-tag{
+  font-family:'Barlow',sans-serif;
+  font-size:8px;letter-spacing:0.38em;text-transform:uppercase;
+  color:var(--st);font-weight:300;
+  display:flex;align-items:center;gap:10px;
+  transition:color 0.6s ease;
+}
+.oc-tag::before{
+  content:'';display:block;width:14px;height:0.5px;
+  background:var(--mist);transition:background 0.6s ease;
+}
+.office-card.active .oc-tag{color:var(--crim);}
+.office-card.active .oc-tag::before{background:var(--crim);}
+.office-card:hover .oc-tag{color:rgba(255,255,255,0.55);}
+.office-card:hover .oc-tag::before{background:rgba(255,255,255,0.3);}
+.oc-index{
+  font-family:'Barlow',sans-serif;font-size:9px;letter-spacing:0.16em;
+  color:var(--mist);font-weight:300;transition:color 0.6s ease;
+}
+.office-card:hover .oc-index{color:rgba(255,255,255,0.2);}
+/* city name — the visual anchor, large italic serif */
+.oc-city{
+  font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;
+  font-size:clamp(46px,4.8vw,68px);
+  color:var(--ch);line-height:0.92;letter-spacing:-0.03em;
+  margin-bottom:28px;
+  transition:color 0.6s ease,text-shadow 0.6s ease;
+}
+.office-card:hover .oc-city{color:#fff;text-shadow:0 2px 20px rgba(0,0,0,0.9);}
+/* address */
+.oc-addr{
+  font-size:11.5px;color:var(--mid);font-weight:300;
+  line-height:1.72;letter-spacing:0.018em;
+  border-top:0.5px solid var(--mist);padding-top:16px;
+  margin-bottom:20px;
+  transition:color 0.6s ease,border-color 0.6s ease;
+}
+.office-card:hover .oc-addr{color:rgba(255,255,255,0.72);border-top-color:rgba(255,255,255,0.15);}
+/* footer: court note + directions */
+.oc-footer{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-top:auto;
+}
+.oc-note{
+  font-family:'Barlow',sans-serif;font-size:7.5px;
+  letter-spacing:0.26em;text-transform:uppercase;
+  color:transparent;font-weight:300;transition:color 0.6s ease;
+}
+.office-card:hover .oc-note{color:rgba(255,255,255,0.42);}
+.oc-dir{
+  font-family:'Barlow',sans-serif;font-size:8px;letter-spacing:0.3em;
+  text-transform:uppercase;color:var(--st);
+  text-decoration:none;transition:color 0.3s ease;flex-shrink:0;
+}
+.office-card:hover .oc-dir{color:rgba(255,255,255,0.65);}
+.office-card:hover .oc-dir:hover{color:#fff;}
+/* map panel */
+.map-panel{position:relative;overflow:hidden;min-height:72vh;}
+.city-map{
+  position:absolute;inset:0;width:100%;height:100%;border:none;
+  filter:grayscale(80%) contrast(1.04);opacity:0;
+  transition:opacity 0.65s ease,filter 0.65s ease;pointer-events:none;
+}
+.city-map.active{opacity:1;pointer-events:auto;filter:grayscale(50%) contrast(1.04);}
+.city-map.active:hover{filter:grayscale(0%) contrast(1.03);}
 
 @media(max-width:960px){
+  .where-inner{grid-template-columns:1fr;}
+  .office-list{border-right:none;}
+  .map-panel{min-height:320px;}
   .chap-band{padding:80px 28px 40px;}
-  .loc-grid{grid-template-columns:1fr;}
-  .loc-card{min-height:auto;padding:44px 28px 52px;}
-  .commit-section{padding:80px 28px 72px;}
+  .office-card{padding:40px 28px 36px;}
+  .oc-city{font-size:clamp(40px,9vw,60px);}
 }
 
-/* ── ATMOSPHERIC SECTION BACKGROUND ── */
-.atm-bg{
-  position:absolute;inset:0;
-  pointer-events:none;overflow:hidden;
-  z-index:0;
+/* ── PULL-QUOTE CLOSING ── */
+.pull-close{
+  position:relative;overflow:hidden;
+  padding:112px 56px 100px;
+  text-align:center;
+  display:flex;align-items:center;justify-content:center;
 }
-.atm-img{
-  position:absolute;inset:0;
-  width:100%;height:100%;
-  object-fit:cover;object-position:center 30%;
-  opacity:0;
-  filter:grayscale(100%) brightness(1.55) contrast(0.7) blur(3px);
-  transition:opacity 0.72s cubic-bezier(0.4,0,0.2,1);
-  -webkit-mask-image:linear-gradient(
-    to bottom,
-    black 0%,
-    black 30%,
-    rgba(0,0,0,0.55) 62%,
-    transparent 100%
-  );
-  mask-image:linear-gradient(
-    to bottom,
-    black 0%,
-    black 30%,
-    rgba(0,0,0,0.55) 62%,
-    transparent 100%
-  );
+/* water image — oversized for strong parallax travel */
+.pull-close-water{
+  position:absolute;
+  left:0;right:0;
+  top:-40%;height:180%;
+  pointer-events:none;will-change:transform;
+  background:url('water texture.jpg') center center / cover no-repeat;
 }
-.atm-img.atm-on{ opacity:0.10; }
+/* dark overlay so text reads over photo */
+.pull-close::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:rgba(4,10,20,0.58);
+}
+.pull-close-inner{position:relative;z-index:2;}
+.pull-close-coords{
+  position:absolute;bottom:20px;left:0;right:0;
+  text-align:center;z-index:2;pointer-events:none;
+  font-family:'Barlow',sans-serif;font-size:7px;letter-spacing:0.38em;
+  text-transform:uppercase;color:rgba(255,255,255,0.2);font-weight:300;
+}
+.pull-close-quote{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+  font-size:clamp(16px,1.6vw,22px);
+  color:rgba(255,255,255,0.72);line-height:1.7;letter-spacing:0.01em;
+  max-width:560px;margin:0 auto;
+}
+@media(max-width:960px){
+  .pull-close{padding:36px 28px 32px;}
+  .pull-close-quote{font-size:clamp(26px,7vw,40px);}
+}
 </style>
 </head>
 <body>
@@ -117,61 +206,82 @@
 </div>
 
 <!-- HEADING -->
-<section style="background:var(--ww);position:relative;overflow:hidden;">
-
-  <!-- atmospheric background — decorative, aria-hidden -->
-  <div class="atm-bg" aria-hidden="true">
-    <img class="atm-img" id="atm-mumbai" src="Bombay High Court.jpg" alt="">
-    <img class="atm-img" id="atm-delhi"  src="Delhi Supreme Court.jpg" alt="" style="object-position:center top;">
-    <img class="atm-img" id="atm-nagpur" src="High Court, Nagpur Bench.jpg" alt="">
-  </div>
-
-  <div class="chap-band" style="position:relative;z-index:1;">
+<section style="background:var(--ww);">
+  <div class="chap-band">
     <h1 class="chap-h reveal">Our <em>offices.</em></h1>
   </div>
 
-  <!-- LOCATION CARDS -->
-  <div class="loc-body" style="position:relative;z-index:1;">
-    <div class="where-grid">
+  <!-- OFFICES SPLIT — cards left, interactive map right -->
+  <div class="where-inner">
 
-      <div class="wloc-card reveal" data-atm="atm-mumbai">
-        <img class="wloc-img" src="Bombay High Court.jpg" alt="">
-        <div class="wloc-tag">Head Office</div>
-        <div class="wloc-city">Mumbai</div>
-        <div class="wloc-addr">
-          1st Floor, Great Western Building,<br>Opp. Carter's Blue, Kalaghoda, Fort,<br>Mumbai, Maharashtra, India — 400 001
+    <!-- left: office cards -->
+    <div class="office-list">
+
+      <div class="office-card active reveal" data-city="0">
+        <img class="oc-img" src="Bombay High Court.jpg" alt="">
+        <div class="oc-header">
+          <div class="oc-tag">Head Office</div>
         </div>
-        <div class="wloc-note">
-          <span class="wloc-note-court">Bombay High Court · Original Side</span>
+        <div class="oc-city">Mumbai</div>
+        <div class="oc-addr">1st Floor, Great Western Building,<br>Opp. Carter's Blue, Kalaghoda, Fort,<br>Mumbai, Maharashtra — 400 001</div>
+        <div class="oc-footer">
+          <span class="oc-note">Bombay High Court · Original Side</span>
+          <a class="oc-dir" href="https://maps.google.com/maps?q=Great+Western+Building,+Kalaghoda,+Fort,+Mumbai+400001" target="_blank" rel="noopener">Get directions ↗</a>
         </div>
       </div>
 
-      <div class="wloc-card reveal reveal-d1" data-atm="atm-delhi">
-        <img class="wloc-img" src="Delhi Supreme Court.jpg" alt="" style="object-position:top;">
-        <div class="wloc-tag">Regional Office</div>
-        <div class="wloc-city">Delhi</div>
-        <div class="wloc-addr">
-          A-402, Area Chamber D,<br>Bhikaji Cama Place,<br>New Delhi, India — 110 066
+      <div class="office-card reveal reveal-d1" data-city="1">
+        <img class="oc-img" src="Delhi Supreme Court.jpg" alt="" style="object-position:top;">
+        <div class="oc-header">
+          <div class="oc-tag">Regional Office</div>
         </div>
-        <div class="wloc-note">
-          <span class="wloc-note-court">Supreme Court of India</span>
+        <div class="oc-city">Delhi</div>
+        <div class="oc-addr">A-402, Area Chamber D,<br>Bhikaji Cama Place,<br>New Delhi — 110 066</div>
+        <div class="oc-footer">
+          <span class="oc-note">Supreme Court of India</span>
+          <a class="oc-dir" href="https://maps.google.com/maps?q=A-402,+Bhikaji+Cama+Place,+New+Delhi+110066" target="_blank" rel="noopener">Get directions ↗</a>
         </div>
       </div>
 
-      <div class="wloc-card reveal reveal-d2" data-atm="atm-nagpur">
-        <img class="wloc-img" src="High Court, Nagpur Bench.jpg" alt="">
-        <div class="wloc-tag">Regional Office</div>
-        <div class="wloc-city">Nagpur</div>
-        <div class="wloc-addr">
-          Ground Floor, Neelkamal Apartment,<br>Shivaji Nagar, Nagpur, Maharashtra,<br>India — 440 010
+      <div class="office-card reveal reveal-d2" data-city="2">
+        <img class="oc-img" src="High Court, Nagpur Bench.jpg" alt="">
+        <div class="oc-header">
+          <div class="oc-tag">Regional Office</div>
         </div>
-        <div class="wloc-note">
-          <span class="wloc-note-court">Nagpur Bench · Bombay High Court</span>
+        <div class="oc-city">Nagpur</div>
+        <div class="oc-addr">Ground Floor, Neelkamal Apartment,<br>Shivaji Nagar, Nagpur,<br>Maharashtra — 440 010</div>
+        <div class="oc-footer">
+          <span class="oc-note">Nagpur Bench · Bombay High Court</span>
+          <a class="oc-dir" href="https://maps.google.com/maps?q=Neelkamal+Apartment,+Shivaji+Nagar,+Nagpur+440010" target="_blank" rel="noopener">Get directions ↗</a>
         </div>
       </div>
 
     </div>
+
+    <!-- right: large interactive map — fades between cities -->
+    <div class="map-panel">
+      <iframe class="city-map active"
+        src="https://maps.google.com/maps?q=Great+Western+Building,+Kalaghoda,+Fort,+Mumbai,+Maharashtra+400001&t=&z=16&ie=UTF8&iwloc=&output=embed"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe class="city-map"
+        src="https://maps.google.com/maps?q=Bhikaji+Cama+Place,+New+Delhi+110066&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe class="city-map"
+        src="https://maps.google.com/maps?q=Shivaji+Nagar,+Nagpur,+Maharashtra+440010&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
   </div>
+
+</section>
+
+<!-- CLOSING PULL QUOTE -->
+<section class="pull-close">
+  <div class="pull-close-water" id="pullWater" aria-hidden="true"></div>
+  <div class="pull-close-inner">
+    <p class="pull-close-quote reveal">"Every great outcome begins<br>with one conversation."</p>
+  </div>
+  <span class="pull-close-coords" aria-hidden="true">18.9°N 72.8°E &nbsp;·&nbsp; 28.6°N 77.2°E &nbsp;·&nbsp; 21.1°N 79.1°E</span>
 </section>
 
 <!-- FOOTER -->
@@ -225,25 +335,34 @@
 <script src="script.js"></script>
 <script>
 (function(){
-  var cards   = document.querySelectorAll('.wloc-card[data-atm]');
-  if(!cards.length) return;
-  var section = cards[0].closest('section');
-  var imgs    = {};
-  document.querySelectorAll('.atm-img').forEach(function(img){ imgs[img.id] = img; });
 
-  function crossfade(id){
-    Object.keys(imgs).forEach(function(k){
-      imgs[k].classList.toggle('atm-on', k === id);
+  /* map switching */
+  var cards = document.querySelectorAll('.office-card');
+  var maps  = document.querySelectorAll('.city-map');
+  cards.forEach(function(card,i){
+    card.addEventListener('click',function(e){
+      if(e.target.classList.contains('oc-dir')) return;
+      cards.forEach(function(c){c.classList.remove('active');});
+      maps.forEach(function(m){m.classList.remove('active');});
+      card.classList.add('active');
+      if(maps[i]) maps[i].classList.add('active');
     });
-  }
-  function fadeAll(){
-    Object.keys(imgs).forEach(function(k){ imgs[k].classList.remove('atm-on'); });
+  });
+
+  /* strong parallax on water photo */
+  var water=document.getElementById('pullWater');
+  if(water){
+    var waterSec=water.closest('section');
+    function driftWater(){
+      var r=waterSec.getBoundingClientRect(),vh=window.innerHeight;
+      if(r.bottom<0||r.top>vh) return;
+      var p=(vh-r.top)/(r.height+vh);
+      water.style.transform='translateY('+((p-0.5)*320)+'px)';
+    }
+    window.addEventListener('scroll',driftWater,{passive:true});
+    driftWater();
   }
 
-  cards.forEach(function(card){
-    card.addEventListener('mouseenter', function(){ crossfade(card.dataset.atm); });
-  });
-  if(section) section.addEventListener('mouseleave', fadeAll);
 })();
 </script>
 </body>
