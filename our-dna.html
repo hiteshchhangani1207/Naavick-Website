@@ -70,13 +70,20 @@
 }
 
 /* ───── PRINCIPLES — 2×2 tilt grid ───── */
+.prin-section{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  background:var(--iv);
+}
 .prin-grid{
+  flex:1;
   display:grid;grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;
   gap:1px;background:var(--mist);
 }
 .pr-cell{
   background:var(--ww);
-  padding:52px 56px 56px;
+  padding:36px 56px 40px;
   position:relative;overflow:hidden;
   transform-style:preserve-3d;
   will-change:transform;
@@ -101,7 +108,7 @@
 .pr-idx{
   display:block;
   font-size:9px;letter-spacing:0.32em;color:var(--st);
-  font-weight:300;margin-bottom:40px;
+  font-weight:300;margin-bottom:20px;
 }
 .pr-t{
   font-family:'Cormorant Garamond',serif;
@@ -114,7 +121,7 @@
   font-size:9px;letter-spacing:0.28em;text-transform:uppercase;
   color:var(--crim);font-weight:400;
   display:flex;align-items:center;gap:12px;
-  margin-bottom:28px;
+  margin-bottom:16px;
 }
 .pr-tag::before{
   content:'';display:block;
@@ -122,8 +129,8 @@
 }
 .pr-d{
   font-size:13px;color:var(--mid);
-  line-height:1.9;font-weight:300;text-align:justify;
-  border-top:0.5px solid var(--mist);padding-top:20px;
+  line-height:1.75;font-weight:300;text-align:justify;
+  border-top:0.5px solid var(--mist);padding-top:14px;
 }
 
 /* ───── LIFE AT WORK ───── */
@@ -374,8 +381,8 @@
 </div>
 
 <!-- PRINCIPLES -->
-<section style="background:var(--iv);">
-  <div class="chap-band" style="padding-top:112px;padding-bottom:44px;border-bottom:0.5px solid var(--mist);">
+<section class="prin-section">
+  <div class="chap-band">
     <h1 class="chap-h reveal">Our <em>Principles.</em></h1>
   </div>
   <div class="prin-grid">
