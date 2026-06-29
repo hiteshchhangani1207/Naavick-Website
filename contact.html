@@ -164,21 +164,20 @@
   background:url('water texture.jpg') center center / cover no-repeat;
   will-change:transform;
   animation:waterDrift 52s ease-in-out infinite;
+  filter:grayscale(100%);
 }
-/* gradient overlay — dissolves water into footer */
+/* gradient merges water into footer colour */
 .pull-close::after{
   content:'';position:absolute;inset:0;pointer-events:none;z-index:1;
   background:linear-gradient(
     to bottom,
-    rgba(4,10,20,0.55) 0%,
-    rgba(4,10,20,0.70) 35%,
-    rgba(14,14,18,0.90) 60%,
-    rgba(24,24,24,0.99) 80%,
-    #1a1a1a 88%
+    rgba(4,10,20,0.50) 0%,
+    rgba(4,10,20,0.68) 38%,
+    rgba(10,12,18,0.93) 58%,
+    #1a1a1a 72%
   );
 }
 footer{border-top:none;}
-/* wheel must sit above gradient (z-index:1) */
 .footer-ghost-wheel{z-index:2;}
 .pull-close-inner{position:relative;z-index:2;}
 .pull-close-coords{
@@ -375,17 +374,21 @@ footer{border-top:none;}
     });
   });
 
-  /* strong parallax on water photo */
+  /* parallax — RAF-throttled, no getBoundingClientRect on scroll */
   var water=document.getElementById('pullWater');
   if(water){
     var waterSec=water.closest('section');
+    var wTop=0,wH=0,vh=0,ticking=false;
+    function cacheMetrics(){wTop=waterSec.offsetTop;wH=waterSec.offsetHeight;vh=window.innerHeight;}
     function driftWater(){
-      var r=waterSec.getBoundingClientRect(),vh=window.innerHeight;
-      if(r.bottom<0||r.top>vh) return;
-      var p=(vh-r.top)/(r.height+vh);
+      var top=wTop-window.scrollY;ticking=false;
+      if(top>vh||top+wH<0) return;
+      var p=(vh-top)/(wH+vh);
       water.style.transform='translateY('+((p-0.5)*320)+'px)';
     }
-    window.addEventListener('scroll',driftWater,{passive:true});
+    cacheMetrics();
+    window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(driftWater);ticking=true;}},{passive:true});
+    window.addEventListener('resize',cacheMetrics,{passive:true});
     driftWater();
   }
 
