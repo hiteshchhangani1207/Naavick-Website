@@ -340,14 +340,15 @@
 .test-track{
   display:flex;
   transition:transform 600ms cubic-bezier(0.25,0,0.1,1);
-  width:200%;
+  width:400%;
 }
 .test-slide{
-  width:50%;display:grid;
+  width:25%;display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:0.5px;background:var(--mist);
   flex-shrink:0;
 }
+.test-slide-single{grid-template-columns:1fr;max-width:50%;}
 .test-card{
   background:var(--ww);
   padding:18px 18px 16px;
@@ -927,6 +928,25 @@ function acceptDisclaimer(){
             <div class="test-author-block"><div class="test-an">Chandrashekar Krishnamurthy</div><div class="test-ar">Director · ABC Dubash Ltd</div></div>
           </div>
         </div>
+        <div class="test-slide">
+          <div class="test-card">
+            <span class="test-qmark">"</span>
+            <p class="test-qt">Naavick Legal has represented us in various NCLT proceedings and has been entrusted with drafting a wide range of petitions, applications, replies, and other pleadings. Their drafting is well researched, practical, and tailored to the commercial realities of each matter. Equally commendable is their effective representation before the NCLT. What distinguishes the team is their responsiveness, timely delivery, and willingness to invest adequate time in understanding the facts and discussing the legal strategy before advising on the best course of action.</p>
+            <div class="test-author-block"><div class="test-an">CA. Jayesh Sanghrajka</div><div class="test-ar">Founding Partner · Incorp Restructuring Services LLP</div></div>
+          </div>
+          <div class="test-card">
+            <span class="test-qmark">"</span>
+            <p class="test-qt">We are extremely satisfied with the services provided by Naavick Legal. Special mention to Muskaan and Shritee for their in-depth knowledge of corporate laws, SEBI regulations, listing compliances, and governance practices — invaluable to our organisation. Their proactive approach, attention to detail, and timely execution of regulatory requirements ensured seamless compliance and strengthened our corporate governance framework.</p>
+            <div class="test-author-block"><div class="test-an">Rachit Malhotra</div><div class="test-ar">Company Secretary &amp; Chief Compliance Officer · Cian Healthcare Limited</div></div>
+          </div>
+        </div>
+        <div class="test-slide test-slide-single">
+          <div class="test-card">
+            <span class="test-qmark">"</span>
+            <p class="test-qt">Naavick Legal has been a dependable legal partner throughout our engagement. Their team is highly responsive, customer-focused, and consistently delivers practical, solution-oriented advice while ensuring full compliance with legal and regulatory requirements.</p>
+            <div class="test-author-block"><div class="test-an">Romil Ramgarhia</div><div class="test-ar">COO · Streambox and Zee Entertainment Enterprises Limited</div></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -935,6 +955,8 @@ function acceptDisclaimer(){
       <span class="test-dots">
         <button class="test-dot active" id="testDot0" onclick="testGo(0)"></button>
         <button class="test-dot" id="testDot1" onclick="testGo(1)"></button>
+        <button class="test-dot" id="testDot2" onclick="testGo(2)"></button>
+        <button class="test-dot" id="testDot3" onclick="testGo(3)"></button>
       </span>
       <button class="test-nav-btn" id="testNext" onclick="testNav(1)">Next →</button>
     </div>
@@ -1112,12 +1134,14 @@ function acceptDisclaimer(){
 /* testimonial carousel */
 var _tCur = 0;
 function testGo(idx){
-  _tCur = Math.max(0, Math.min(1, idx));
-  document.getElementById('testTrack').style.transform = 'translateX(-'+(_tCur*50)+'%)';
+  _tCur = Math.max(0, Math.min(3, idx));
+  document.getElementById('testTrack').style.transform = 'translateX(-'+(_tCur*25)+'%)';
   document.getElementById('testDot0').classList.toggle('active', _tCur===0);
   document.getElementById('testDot1').classList.toggle('active', _tCur===1);
+  document.getElementById('testDot2').classList.toggle('active', _tCur===2);
+  document.getElementById('testDot3').classList.toggle('active', _tCur===3);
   document.getElementById('testPrev').disabled = _tCur===0;
-  document.getElementById('testNext').disabled = _tCur===1;
+  document.getElementById('testNext').disabled = _tCur===3;
 }
 function testNav(dir){ testGo(_tCur + dir); }
 </script>
