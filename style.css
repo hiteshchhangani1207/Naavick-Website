@@ -431,6 +431,8 @@ footer{
 @media(max-width:600px){
   .footer-main{grid-template-columns:1fr;}
   .footer-bottom{flex-direction:column;align-items:flex-start;}
+  .footer-ghost-wheel{display:none;}
+  nav.site-nav{padding:0 20px}
 }
 
 /* ─── PAGE TRANSITION ─── */
