@@ -164,21 +164,12 @@
   background:url('water texture.jpg') center center / cover no-repeat;
   will-change:transform;
   animation:waterDrift 52s ease-in-out infinite;
-  filter:grayscale(100%);
 }
-/* gradient merges water into footer colour */
+/* dark overlay so text reads over photo */
 .pull-close::after{
   content:'';position:absolute;inset:0;pointer-events:none;z-index:1;
-  background:linear-gradient(
-    to bottom,
-    rgba(4,10,20,0.50) 0%,
-    rgba(4,10,20,0.68) 38%,
-    rgba(10,12,18,0.93) 58%,
-    #1a1a1a 72%
-  );
+  background:rgba(4,10,20,0.58);
 }
-footer{border-top:none;}
-.footer-ghost-wheel{z-index:2;}
 .pull-close-inner{position:relative;z-index:2;}
 .pull-close-coords{
   position:absolute;bottom:20px;left:0;right:0;
@@ -310,7 +301,7 @@ footer{border-top:none;}
 </section>
 
 <!-- FOOTER -->
-<footer style="overflow:visible;">
+<footer>
   <img class="footer-ghost-wheel" src="brand assets/wheel-element-white.png" aria-hidden="true" alt="">
   <div class="footer-main">
     <div class="footer-brand">
@@ -374,21 +365,17 @@ footer{border-top:none;}
     });
   });
 
-  /* parallax — RAF-throttled, no getBoundingClientRect on scroll */
+  /* strong parallax on water photo */
   var water=document.getElementById('pullWater');
   if(water){
     var waterSec=water.closest('section');
-    var wTop=0,wH=0,vh=0,ticking=false;
-    function cacheMetrics(){wTop=waterSec.offsetTop;wH=waterSec.offsetHeight;vh=window.innerHeight;}
     function driftWater(){
-      var top=wTop-window.scrollY;ticking=false;
-      if(top>vh||top+wH<0) return;
-      var p=(vh-top)/(wH+vh);
+      var r=waterSec.getBoundingClientRect(),vh=window.innerHeight;
+      if(r.bottom<0||r.top>vh) return;
+      var p=(vh-r.top)/(r.height+vh);
       water.style.transform='translateY('+((p-0.5)*320)+'px)';
     }
-    cacheMetrics();
-    window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(driftWater);ticking=true;}},{passive:true});
-    window.addEventListener('resize',cacheMetrics,{passive:true});
+    window.addEventListener('scroll',driftWater,{passive:true});
     driftWater();
   }
 

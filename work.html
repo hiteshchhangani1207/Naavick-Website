@@ -364,6 +364,15 @@ html { overflow-x: clip; }
   font-size:10px;color:var(--st);font-weight:300;line-height:1.8;
   letter-spacing:0.02em;
 }
+/* ── PULL-QUOTE CLOSING ── */
+.pull-close{position:relative;overflow:hidden;padding:112px 56px 100px;text-align:center;display:flex;align-items:center;justify-content:center;}
+.pull-close-water{position:absolute;left:0;right:0;top:-40%;height:180%;pointer-events:none;will-change:transform;overflow:hidden;}
+@keyframes waterDrift{0%{transform:translate(0%,0%);}25%{transform:translate(-5%,-3%);}50%{transform:translate(-8%,-1%);}75%{transform:translate(-4%,-4%);}100%{transform:translate(0%,0%);}}
+.pull-close-water-inner{position:absolute;inset:-12%;background:url('water texture.jpg') center center/cover no-repeat;will-change:transform;animation:waterDrift 52s ease-in-out infinite;filter:grayscale(100%);}
+.pull-close::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:1;background:rgba(4,10,20,0.58);}
+.pull-close-inner{position:relative;z-index:2;}
+.pull-close-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(16px,1.6vw,22px);color:rgba(255,255,255,0.72);line-height:1.7;letter-spacing:0.01em;max-width:560px;margin:0 auto;}
+@media(max-width:960px){.pull-close{padding:36px 28px 32px;}.pull-close-quote{font-size:clamp(26px,7vw,40px);}}
 </style>
 </head>
 <body>
@@ -738,6 +747,14 @@ html { overflow-x: clip; }
   </div>
 </section>
 
+<!-- CLOSING PULL QUOTE -->
+<section class="pull-close">
+  <div class="pull-close-water" id="pullWater" aria-hidden="true"><div class="pull-close-water-inner"></div></div>
+  <div class="pull-close-inner">
+    <p class="pull-close-quote reveal">"Every matter handled<br>is a commitment honoured."</p>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <img class="footer-ghost-wheel" src="brand assets/wheel-element-white.png" aria-hidden="true" alt="">
@@ -789,6 +806,9 @@ html { overflow-x: clip; }
 </footer>
 
 <script src="script.js"></script>
+<script>
+(function(){var water=document.getElementById('pullWater');if(water){var waterSec=water.closest('section'),wTop=0,wH=0,vh=0,ticking=false;function cm(){wTop=waterSec.offsetTop;wH=waterSec.offsetHeight;vh=window.innerHeight;}function dw(){var top=wTop-window.scrollY;ticking=false;if(top>vh||top+wH<0)return;var p=(vh-top)/(wH+vh);water.style.transform='translateY('+((p-0.5)*320)+'px)';}cm();window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(dw);ticking=true;}},{passive:true});window.addEventListener('resize',cm,{passive:true});dw();}})();
+</script>
 
 <script>
 (function(){
