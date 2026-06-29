@@ -181,22 +181,50 @@
 }
 .lv-cell{
   border-top:0.5px solid var(--mist);
-  padding-top:28px;
+  padding:28px 28px 36px;
+  position:relative;overflow:hidden;
+  min-height:280px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  transition:background 0.55s ease,border-color 0.55s ease;
 }
+.lv-cell:hover{background:var(--ch);border-top-color:rgba(255,255,255,0.1);}
+.lv-bg{
+  position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;
+  object-position:var(--op,center);
+  opacity:0;pointer-events:none;z-index:0;
+  transition:opacity 0.7s ease;
+}
+.lv-cell:hover .lv-bg{opacity:1;}
+.lv-cell::after{
+  content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(to top,rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.35) 55%,rgba(0,0,0,0) 100%);
+  opacity:0;transition:opacity 0.55s ease;
+}
+.lv-cell:hover::after{opacity:1;}
 .lv-icon{
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(26px,2.8vw,36px);font-weight:300;color:var(--ch);
   line-height:1.1;margin-bottom:18px;
   font-style:italic;letter-spacing:-0.01em;
+  position:relative;z-index:2;
+  transition:color 0.4s ease;
 }
 .lv-t{
   font-family:'Cormorant Garamond',serif;
   font-weight:400;font-size:20px;color:var(--ch);
   margin-bottom:10px;letter-spacing:-0.01em;
+  position:relative;z-index:2;
+  transition:color 0.4s ease;
 }
 .lv-d{
   font-size:12.5px;color:var(--mid);line-height:1.85;font-weight:300;text-align:justify;
+  position:relative;z-index:2;
+  transition:color 0.4s ease;
 }
+.lv-cell:hover .lv-icon{color:rgba(255,255,255,0.2);}
+.lv-cell:hover .lv-t{color:#fff;}
+.lv-cell:hover .lv-d{color:rgba(255,255,255,0.68);}
 
 /* ───── CAREERS VIEWPORT ───── */
 #careers{
@@ -515,19 +543,22 @@
 
     <div class="life-values">
       <div class="lv-cell reveal">
+        <img class="lv-bg" src="Office Images/New Images/WhatsApp Image 2026-06-26 at 22.17.32 (1).jpeg" alt="" style="--op:center 80%;">
         <div class="lv-icon">i.</div>
         <div class="lv-t">Collaboration</div>
         <p class="lv-d">We work with our clients as partners, not just counsel. Every matter benefits from the combined thinking of the whole firm — no one works alone at Naavick.</p>
       </div>
       <div class="lv-cell reveal reveal-d1">
+        <img class="lv-bg" src="Office Images/New Images/WhatsApp Image 2026-06-26 at 22.17.32.jpeg" alt="" style="--op:40% 75%;">
         <div class="lv-icon">ii.</div>
-        <div class="lv-t">Consistency</div>
-        <p class="lv-d">Our standards do not vary with the size of the matter or the name of the client. The same rigour that goes into a flagship transaction goes into every brief we touch.</p>
-      </div>
-      <div class="lv-cell reveal reveal-d2">
-        <div class="lv-icon">iii.</div>
         <div class="lv-t">Commitment</div>
         <p class="lv-d">We see every engagement through — from first brief to final resolution. Our clients know they can count on us to stay the course, however long or difficult it becomes.</p>
+      </div>
+      <div class="lv-cell reveal reveal-d2">
+        <img class="lv-bg" src="Office Images/New Images/WhatsApp Image 2026-06-26 at 22.17.31 (1).jpeg" alt="" style="--op:center 40%;">
+        <div class="lv-icon">iii.</div>
+        <div class="lv-t">Consistency</div>
+        <p class="lv-d">Our standards do not vary with the size of the matter or the name of the client. The same rigour that goes into a flagship transaction goes into every brief we touch.</p>
       </div>
     </div>
   </div>

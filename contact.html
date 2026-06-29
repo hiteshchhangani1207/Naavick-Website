@@ -297,7 +297,7 @@
   <div class="pull-close-inner">
     <p class="pull-close-quote reveal">"Every great outcome begins<br>with one conversation."</p>
   </div>
-  <span class="pull-close-coords" aria-hidden="true">18.9°N 72.8°E &nbsp;·&nbsp; 28.6°N 77.2°E &nbsp;·&nbsp; 21.1°N 79.1°E</span>
+
 </section>
 
 <!-- FOOTER -->
@@ -355,13 +355,31 @@
   /* map switching */
   var cards = document.querySelectorAll('.office-card');
   var maps  = document.querySelectorAll('.city-map');
+
+  function showMap(idx){
+    maps.forEach(function(m){m.classList.remove('active');});
+    if(maps[idx]) maps[idx].classList.add('active');
+  }
+
+  function activeIdx(){
+    for(var i=0;i<cards.length;i++){
+      if(cards[i].classList.contains('active')) return i;
+    }
+    return 0;
+  }
+
   cards.forEach(function(card,i){
+    card.addEventListener('mouseenter',function(){
+      showMap(i);
+    });
+    card.addEventListener('mouseleave',function(){
+      showMap(activeIdx());
+    });
     card.addEventListener('click',function(e){
       if(e.target.classList.contains('oc-dir')) return;
       cards.forEach(function(c){c.classList.remove('active');});
-      maps.forEach(function(m){m.classList.remove('active');});
       card.classList.add('active');
-      if(maps[i]) maps[i].classList.add('active');
+      showMap(i);
     });
   });
 
