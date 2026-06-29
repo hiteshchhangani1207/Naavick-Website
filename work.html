@@ -161,90 +161,56 @@ html { overflow-x: clip; }
   line-height:1.6;max-width:360px;padding-top:56px;
 }
 
-/* ── LATEST UPDATES — click left, read right ── */
-.achieve-list-wrap{ position:relative; }
-.achieve-list-wrap::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:48px;
-  background:linear-gradient(to bottom,transparent,var(--iv));
-  pointer-events:none;z-index:1;
+/* ── LATEST UPDATES ACCORDION ── */
+.acc-list{ border-top:0.5px solid var(--mist); }
+.acc-item{ border-bottom:0.5px solid var(--mist);overflow:hidden; }
+.acc-header{
+  display:grid;grid-template-columns:52px 1fr 36px;
+  align-items:center;padding:22px 0;
+  cursor:pointer;user-select:none;
 }
-.achieve-list{
-  display:flex;flex-direction:column;
-  max-height:calc(100vh - 280px);overflow-y:auto;
-  scrollbar-width:thin;scrollbar-color:var(--mist) transparent;
-  padding-bottom:48px;
+.acc-num{
+  font-family:'Barlow',sans-serif;font-size:9px;
+  letter-spacing:0.32em;color:var(--st);font-weight:300;
+  transition:color 0.3s ease;
 }
-.achieve-list::-webkit-scrollbar{ width:2px; }
-.achieve-list::-webkit-scrollbar-track{ background:transparent; }
-.achieve-list::-webkit-scrollbar-thumb{ background:var(--mist);border-radius:2px; }
-.achieve-item{
-  padding:16px 0;
-  border-top:0.5px solid var(--mist);
-  border-left:1.5px solid transparent;
-  padding-left:0;cursor:pointer;
-  transition:border-left-color 0.26s ease,padding-left 0.26s ease,opacity 0.26s ease;
-}
-.achieve-item:first-child{ border-top:none; }
-.achieve-item:hover,.achieve-item.active{ border-left-color:var(--crim);padding-left:14px; }
-.achieve-list:has(.achieve-item:hover) .achieve-item:not(:hover):not(.active){ opacity:0.2; }
-.achieve-item-title{
-  font-family:'Barlow',sans-serif;
-  font-weight:300;font-size:12.5px;
-  color:var(--sl);letter-spacing:0.01em;line-height:1.6;
-  transition:color 0.26s ease;
-}
-.achieve-item.active .achieve-item-title{ color:var(--ch);font-weight:400; }
-
-/* Right: sticky panel */
-.achieve-detail{
-  position:sticky;top:112px;
-  min-height:480px;display:flex;align-items:flex-start;
-}
-.achieve-panel{ display:none;flex-direction:column;width:100%; }
-.achieve-panel.active{
-  display:flex;
-  animation:achieveIn 400ms cubic-bezier(0.16,1,0.3,1) forwards;
-}
-@keyframes achieveIn{
-  from{opacity:0;transform:translateY(8px)}
-  to{opacity:1;transform:translateY(0)}
-}
-.achieve-d-prompt{
-  font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;
-  font-size:clamp(15px,1.6vw,20px);color:var(--st);
-  line-height:1.7;max-width:300px;padding-top:36px;
-}
-.achieve-d-meta{
-  font-size:7.5px;letter-spacing:0.4em;text-transform:uppercase;
-  color:var(--crim);font-weight:300;margin-bottom:14px;
-  display:flex;align-items:center;gap:10px;
-}
-.achieve-d-meta::before{
-  content:'';display:block;width:16px;height:0.5px;background:var(--crim);flex-shrink:0;
-}
-.achieve-d-title{
+.acc-item.open .acc-num{ color:var(--crim); }
+.acc-title{
   font-family:'Cormorant Garamond',serif;
-  font-weight:300;font-style:italic;
-  font-size:clamp(17px,1.9vw,24px);
-  color:var(--ch);letter-spacing:-0.01em;line-height:1.35;
-  margin-bottom:14px;
+  font-weight:300;font-size:clamp(16px,1.6vw,22px);
+  color:var(--sl);letter-spacing:-0.005em;line-height:1.25;
+  transition:color 0.3s ease;
 }
-.achieve-d-rule{ width:18px;height:0.5px;background:var(--crim);margin-bottom:18px; }
-.achieve-d-img{
-  width:100%;height:auto;display:block;
-  margin-bottom:16px;border:0.5px solid var(--mist);
+.acc-header:hover .acc-title{ color:var(--ch); }
+.acc-item.open .acc-title{ color:var(--ch); }
+.acc-icon{
+  font-size:20px;font-weight:200;color:var(--st);
+  line-height:1;text-align:right;
+  transition:transform 0.42s ease,color 0.3s ease;
 }
-.achieve-d-collage{
-  display:grid;grid-template-columns:1fr 1.35fr;gap:6px;margin-bottom:16px;
+.acc-item.open .acc-icon{ transform:rotate(45deg);color:var(--crim); }
+.acc-body{
+  max-height:0;overflow:hidden;
+  transition:max-height 0.55s cubic-bezier(0.16,1,0.3,1);
 }
-.achieve-d-collage img{
-  width:100%;height:auto;object-fit:contain;border:0.5px solid var(--mist);
+.acc-content{
+  display:grid;grid-template-columns:1fr 340px;
+  gap:52px;align-items:start;
+  padding:4px 0 44px 52px;
 }
-.achieve-d-body{
-  font-family:'Barlow',sans-serif;
-  font-size:11.5px;color:var(--mid);
+.acc-rule{ width:18px;height:0.5px;background:var(--crim);margin-bottom:18px; }
+.acc-text{
+  font-size:13px;color:var(--mid);
   line-height:1.9;font-weight:300;text-align:justify;
 }
+.acc-media img{
+  width:100%;display:block;object-fit:cover;
+  height:220px;border:0.5px solid var(--mist);
+}
+.acc-collage{
+  display:grid;grid-template-columns:1fr 1fr;gap:3px;
+}
+.acc-collage img{ height:140px;width:100%;object-fit:cover;display:block; }
 
 /* ── RESPONSIVE ── */
 @media(max-width:960px){
@@ -626,91 +592,104 @@ html { overflow-x: clip; }
   </div>
 
   <div class="chap-body" style="flex:1;border-bottom:none;padding-top:44px;padding-bottom:56px;">
-    <div class="chap-grid" style="align-items:start;">
+    <div class="acc-list reveal" id="accList">
 
-      <!-- ── LEFT: entry list ─────────────────────────────────────────
-           To add a new entry:
-           1. Copy one .achieve-item block below and give it a unique data-target (e.g. data-target="ach4")
-           2. Copy the matching .achieve-panel block on the right and give it the same id (e.g. id="ach4")
-           3. Fill in year, category, title, full description, and optionally an image
-           ──────────────────────────────────────────────────────────── -->
-      <div class="achieve-list-wrap reveal reveal-d1">
-      <div class="achieve-list" id="achieveList">
-
-        <div class="achieve-item" data-target="ach1">
-          <h3 class="achieve-item-title">Admach Systems Limited — Sole Legal Counsel to IPO</h3>
+      <div class="acc-item">
+        <div class="acc-header">
+          <span class="acc-num">01</span>
+          <h3 class="acc-title">Admach Systems Limited — Sole Legal Counsel to IPO</h3>
+          <span class="acc-icon">+</span>
         </div>
-
-        <div class="achieve-item" data-target="ach2">
-          <h3 class="achieve-item-title">Rappid Valves (India) Limited — Listed on NSE Emerge</h3>
-        </div>
-
-        <div class="achieve-item" data-target="ach3">
-          <h3 class="achieve-item-title">Cian Healthcare Limited — Resolution Plan Approved by NCLT</h3>
-        </div>
-
-        <div class="achieve-item" data-target="ach4">
-          <h3 class="achieve-item-title">Rishi Kamlesh Agarwal — Personal Guarantor Insolvency, NCLT Ahmedabad</h3>
-        </div>
-
-        <div class="achieve-item" data-target="ach5">
-          <h3 class="achieve-item-title">Viksit Engineering Limited — Resolution Plan Approved, NCLT Mumbai</h3>
-        </div>
-
-      </div><!-- /.achieve-list -->
-      </div><!-- /.achieve-list-wrap -->
-
-      <!-- ── RIGHT: sticky detail panels ────────────────────────────── -->
-      <div class="achieve-detail chap-right" id="achieveDetail">
-
-        <!-- shown when nothing is selected -->
-        <div class="achieve-panel active" id="ach-default">
-          <p class="achieve-d-prompt">"Tap any achievement on the left to read the full account."</p>
-        </div>
-
-        <!-- Panel 1 — Admach Systems IPO -->
-        <div class="achieve-panel" id="ach1">
-          <h3 class="achieve-d-title">Admach Systems Limited — Successful Listing</h3>
-          <div class="achieve-d-rule"></div>
-          <img class="achieve-d-img" src="Admach Image.jpeg" alt="Admach Systems IPO — Naavick Legal" loading="lazy">
-          <p class="achieve-d-body">Naavick Legal acted as Sole Legal Counsel for the IPO of Admach Systems Limited, a Pune-based manufacturer of Special Purpose Machines. In-Principal Approval received.</p>
-        </div>
-
-        <!-- Panel 2 — Rappid Valves NSE Emerge listing -->
-        <div class="achieve-panel" id="ach2">
-          <h3 class="achieve-d-title">Rappid Valves (India) Limited — Listed on NSE Emerge</h3>
-          <div class="achieve-d-rule"></div>
-          <div class="achieve-d-collage">
-            <img src="1727676871512.jpeg" alt="Naavick Legal — Rappid Valves listing memento, NSE Emerge" loading="lazy">
-            <img src="Rappid Image.jpeg" alt="Rappid Valves (India) Limited — NSE Emerge listing" loading="lazy">
+        <div class="acc-body">
+          <div class="acc-content">
+            <div>
+              <div class="acc-rule"></div>
+              <p class="acc-text">Naavick Legal acted as Sole Legal Counsel for the IPO of Admach Systems Limited, a Pune-based manufacturer of Special Purpose Machines. In-Principal Approval received.</p>
+            </div>
+            <div class="acc-media">
+              <img src="Admach Image.jpeg" alt="Admach Systems IPO — Naavick Legal" loading="lazy">
+            </div>
           </div>
-          <p class="achieve-d-body">Naavick Legal advised on the successful listing of Rappid Valves (India) Limited on NSE Emerge. A leading name in the Indian valve manufacturing industry, the listing marks a significant step in its growth journey.</p>
         </div>
+      </div>
 
-        <!-- Panel 4 — Rishi Kamlesh Agarwal Personal Guarantor -->
-        <div class="achieve-panel" id="ach4">
-          <h3 class="achieve-d-title">Rishi Kamlesh Agarwal — Personal Guarantor Insolvency, NCLT Ahmedabad</h3>
-          <div class="achieve-d-rule"></div>
-          <img class="achieve-d-img" src="Rishi Agarwal.jpeg.avif" alt="Rishi Kamlesh Agarwal — ABG Shipyard" loading="lazy">
-          <p class="achieve-d-body">Naavick Legal appeared before NCLT Ahmedabad for the Resolution Professional in personal insolvency proceedings against Rishi Kamlesh Agarwal, promoter of ABG Shipyard Limited (₹22,842 crore fraud). NCLT allowed the application on 09 September 2024 under Section 121 of the IBC.</p>
+      <div class="acc-item">
+        <div class="acc-header">
+          <span class="acc-num">02</span>
+          <h3 class="acc-title">Rappid Valves (India) Limited — Listed on NSE Emerge</h3>
+          <span class="acc-icon">+</span>
         </div>
-
-        <!-- Panel 3 — Cian Healthcare NCLT Resolution Plan -->
-        <div class="achieve-panel" id="ach3">
-          <h3 class="achieve-d-title">Cian Healthcare Limited — Resolution Plan Approved by NCLT</h3>
-          <div class="achieve-d-rule"></div>
-          <img class="achieve-d-img" src="Ananta Medicare.jpg" alt="Ananta Medicare — Cian Healthcare NCLT Resolution Plan" loading="lazy">
-          <p class="achieve-d-body">Naavick Legal appeared before NCLT Mumbai Bench VI for the Successful Resolution Applicant in the CIRP of Cian Healthcare Limited. The Resolution Plan of Mr. Pradeep Kumar Jain (Ananta Medicare Ltd.) was approved by 100% of the CoC and sanctioned on 18 December 2025.</p>
+        <div class="acc-body">
+          <div class="acc-content">
+            <div>
+              <div class="acc-rule"></div>
+              <p class="acc-text">Naavick Legal advised on the successful listing of Rappid Valves (India) Limited on NSE Emerge. A leading name in the Indian valve manufacturing industry, the listing marks a significant step in its growth journey.</p>
+            </div>
+            <div class="acc-media">
+              <div class="acc-collage">
+                <img src="1727676871512.jpeg" alt="" loading="lazy">
+                <img src="Rappid Image.jpeg" alt="" loading="lazy">
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <!-- Panel 5 — Viksit Engineering Resolution Plan -->
-        <div class="achieve-panel" id="ach5">
-          <h3 class="achieve-d-title">Viksit Engineering Limited — Resolution Plan Approved, NCLT Mumbai</h3>
-          <div class="achieve-d-rule"></div>
-          <img class="achieve-d-img" src="viksit-engineering.jpg" alt="Viksit Engineering Limited — NCLT Mumbai Resolution Plan" loading="lazy">
-          <p class="achieve-d-body">Naavick Legal appeared before NCLT Mumbai Bench (Court-II) for the Resolution Professional in the CIRP of Viksit Engineering Limited. The Resolution Plan by Mrs. Ruchika Chaturvedi and Mr. Kushal Chaturvedi was sanctioned on 11 February 2025 under Section 31(1) of the IBC.</p>
+      <div class="acc-item">
+        <div class="acc-header">
+          <span class="acc-num">03</span>
+          <h3 class="acc-title">Cian Healthcare Limited — Resolution Plan Approved by NCLT</h3>
+          <span class="acc-icon">+</span>
         </div>
+        <div class="acc-body">
+          <div class="acc-content">
+            <div>
+              <div class="acc-rule"></div>
+              <p class="acc-text">Naavick Legal appeared before NCLT Mumbai Bench VI for the Successful Resolution Applicant in the CIRP of Cian Healthcare Limited. The Resolution Plan of Mr. Pradeep Kumar Jain (Ananta Medicare Ltd.) was approved by 100% of the CoC and sanctioned on 18 December 2025.</p>
+            </div>
+            <div class="acc-media">
+              <img src="Ananta Medicare.jpg" alt="" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <div class="acc-item">
+        <div class="acc-header">
+          <span class="acc-num">04</span>
+          <h3 class="acc-title">Rishi Kamlesh Agarwal — Personal Guarantor Insolvency, NCLT Ahmedabad</h3>
+          <span class="acc-icon">+</span>
+        </div>
+        <div class="acc-body">
+          <div class="acc-content">
+            <div>
+              <div class="acc-rule"></div>
+              <p class="acc-text">Naavick Legal appeared before NCLT Ahmedabad for the Resolution Professional in personal insolvency proceedings against Rishi Kamlesh Agarwal, promoter of ABG Shipyard Limited (₹22,842 crore fraud). NCLT allowed the application on 09 September 2024 under Section 121 of the IBC.</p>
+            </div>
+            <div class="acc-media">
+              <img src="Rishi Agarwal.jpeg.avif" alt="" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header">
+          <span class="acc-num">05</span>
+          <h3 class="acc-title">Viksit Engineering Limited — Resolution Plan Approved, NCLT Mumbai</h3>
+          <span class="acc-icon">+</span>
+        </div>
+        <div class="acc-body">
+          <div class="acc-content">
+            <div>
+              <div class="acc-rule"></div>
+              <p class="acc-text">Naavick Legal appeared before NCLT Mumbai Bench (Court-II) for the Resolution Professional in the CIRP of Viksit Engineering Limited. The Resolution Plan by Mrs. Ruchika Chaturvedi and Mr. Kushal Chaturvedi was sanctioned on 11 February 2025 under Section 31(1) of the IBC.</p>
+            </div>
+            <div class="acc-media">
+              <img src="viksit-engineering.jpg" alt="" loading="lazy">
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -907,22 +886,22 @@ function submitContact(e){
 }
 </script>
 <script>
-/* ── ACHIEVEMENTS: click left entry → show right panel ── */
+/* ── LATEST UPDATES ACCORDION ── */
 (function(){
-  var items  = document.querySelectorAll('.achieve-item');
-  var panels = document.querySelectorAll('.achieve-panel');
-
-  function showPanel(id){
-    panels.forEach(function(p){ p.classList.remove('active'); });
-    var el = document.getElementById(id);
-    if(el) el.classList.add('active');
+  var items = document.querySelectorAll('.acc-item');
+  function close(item){
+    item.classList.remove('open');
+    item.querySelector('.acc-body').style.maxHeight='0';
   }
-
+  function open(item){
+    item.classList.add('open');
+    item.querySelector('.acc-body').style.maxHeight=item.querySelector('.acc-body').scrollHeight+'px';
+  }
   items.forEach(function(item){
-    item.addEventListener('click', function(){
-      items.forEach(function(i){ i.classList.remove('active'); });
-      item.classList.add('active');
-      showPanel(item.dataset.target);
+    item.querySelector('.acc-header').addEventListener('click',function(){
+      var isOpen=item.classList.contains('open');
+      items.forEach(close);
+      if(!isOpen) open(item);
     });
   });
 }());
