@@ -165,11 +165,21 @@
   will-change:transform;
   animation:waterDrift 52s ease-in-out infinite;
 }
-/* dark overlay so text reads over photo */
+/* gradient overlay — dissolves water into footer */
 .pull-close::after{
   content:'';position:absolute;inset:0;pointer-events:none;z-index:1;
-  background:rgba(4,10,20,0.58);
+  background:linear-gradient(
+    to bottom,
+    rgba(4,10,20,0.55) 0%,
+    rgba(4,10,20,0.70) 35%,
+    rgba(14,14,18,0.90) 60%,
+    rgba(24,24,24,0.99) 80%,
+    #1a1a1a 88%
+  );
 }
+footer{border-top:none;}
+/* wheel must sit above gradient (z-index:1) */
+.footer-ghost-wheel{z-index:2;}
 .pull-close-inner{position:relative;z-index:2;}
 .pull-close-coords{
   position:absolute;bottom:20px;left:0;right:0;
@@ -301,7 +311,7 @@
 </section>
 
 <!-- FOOTER -->
-<footer>
+<footer style="overflow:visible;">
   <img class="footer-ghost-wheel" src="brand assets/wheel-element-white.png" aria-hidden="true" alt="">
   <div class="footer-main">
     <div class="footer-brand">
