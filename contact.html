@@ -142,12 +142,28 @@
   display:flex;align-items:center;justify-content:center;
 }
 /* water image — oversized for strong parallax travel */
+/* outer: handles JS parallax translateY only */
 .pull-close-water{
   position:absolute;
   left:0;right:0;
   top:-40%;height:180%;
   pointer-events:none;will-change:transform;
+  overflow:hidden;
+}
+/* inner: GPU-composited transform animation — no paint, no layout */
+@keyframes waterDrift{
+  0%   { transform:translate(0%,0%); }
+  25%  { transform:translate(-5%,-3%); }
+  50%  { transform:translate(-8%,-1%); }
+  75%  { transform:translate(-4%,-4%); }
+  100% { transform:translate(0%,0%); }
+}
+.pull-close-water-inner{
+  position:absolute;
+  inset:-12%;
   background:url('water texture.jpg') center center / cover no-repeat;
+  will-change:transform;
+  animation:waterDrift 52s ease-in-out infinite;
 }
 /* dark overlay so text reads over photo */
 .pull-close::after{
@@ -277,7 +293,7 @@
 
 <!-- CLOSING PULL QUOTE -->
 <section class="pull-close">
-  <div class="pull-close-water" id="pullWater" aria-hidden="true"></div>
+  <div class="pull-close-water" id="pullWater" aria-hidden="true"><div class="pull-close-water-inner"></div></div>
   <div class="pull-close-inner">
     <p class="pull-close-quote reveal">"Every great outcome begins<br>with one conversation."</p>
   </div>
