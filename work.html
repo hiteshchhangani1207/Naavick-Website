@@ -49,8 +49,15 @@ html { overflow-x: clip; }
 }
 
 /* ── PRACTICE NAVIGATION SYSTEM ── */
+.pn-wrap{
+  flex:1;display:grid;
+  grid-template-columns:44% 56%;
+  border-bottom:0.5px solid var(--mist);
+}
 .pn-left{
   position:relative;
+  padding:52px 0 64px 56px;
+  border-right:0.5px solid var(--mist);
 }
 .pn-wheel-wrap{
   position:absolute;
@@ -220,6 +227,8 @@ html { overflow-x: clip; }
   .chap-right{border-left:none;padding-left:0;}
   .pn-list{padding-right:0;}
   .pn-list:has(.pn-item:hover) .pn-item:not(:hover){opacity:1;}
+  .pn-wrap{grid-template-columns:1fr;}
+  .pn-left{padding:40px 28px 48px;border-right:none;border-bottom:0.5px solid var(--mist);}
   .pn-detail{position:static;min-height:auto;margin-top:40px;}
   .pn-wheel-wrap{display:none;}
   .detail-panel.mobile-show{display:flex;}
@@ -245,6 +254,10 @@ html { overflow-x: clip; }
   .acc-content{padding-left:0;}
   .acc-header{grid-template-columns:40px 1fr 32px;padding:18px 0;}
   .acc-collage img{height:90px;}
+  .pn-left{padding:32px 20px 40px;}
+  .chap-band{padding:72px 20px 32px;}
+  .chap-body{padding:28px 20px 40px;}
+  .form-body{padding:28px 20px 40px;}
 }
 /* ── CLIENTELE GRID ── */
 .cl-section{background:var(--ww);border-bottom:0.5px solid var(--mist);overflow:hidden;}
@@ -401,10 +414,10 @@ html { overflow-x: clip; }
     <h1 class="chap-h reveal">Practice <em>Areas.</em></h1>
   </div>
 
-  <div style="flex:1;display:grid;grid-template-columns:44% 56%;border-bottom:0.5px solid var(--mist);">
+  <div class="pn-wrap">
 
     <!-- LEFT: practice list with ghost wheel -->
-    <div class="pn-left" style="padding:52px 0 64px 56px;border-right:0.5px solid var(--mist);">
+    <div class="pn-left">
       <div class="pn-wheel-wrap" aria-hidden="true">
         <img id="practiceWheelImg" class="pn-wheel-img"
              src="brand assets/wheel-element-1.png" alt="">
