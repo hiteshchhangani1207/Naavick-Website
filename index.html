@@ -297,10 +297,23 @@
   grid-template-columns:repeat(4,1fr);
   gap:14px;flex-shrink:0;
 }
-.deals-slide iframe{
+.deals-slide iframe,.deals-slide .li-post{
   width:100%;height:280px;
   border:0.5px solid var(--mist);
   background:var(--ww);display:block;
+}
+.li-post{position:relative;overflow:hidden;}
+.li-post::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,var(--iv) 0%,var(--ww) 50%,var(--iv) 100%);
+  background-size:200% 100%;
+  animation:liShimmer 1.6s ease infinite;
+}
+.li-post.loaded::before{display:none;}
+.li-post iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+@keyframes liShimmer{
+  from{background-position:200% 0}
+  to{background-position:-200% 0}
 }
 .deals-nav{
   display:flex;align-items:center;justify-content:center;
@@ -881,16 +894,16 @@ function acceptDisclaimer(){
   <div class="deals-carousel reveal">
     <div class="deals-track" id="dealsTrack">
       <div class="deals-slide">
-        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7454884103260106752" frameborder="0" allowfullscreen="" title="LinkedIn Post" loading="lazy" referrerpolicy="no-referrer"></iframe>
-        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7412142073069531136" frameborder="0" allowfullscreen="" title="LinkedIn Post" loading="lazy" referrerpolicy="no-referrer"></iframe>
-        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7408766226669277185" frameborder="0" allowfullscreen="" title="LinkedIn Post" loading="lazy" referrerpolicy="no-referrer"></iframe>
-        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7388445454029512704" frameborder="0" allowfullscreen="" title="LinkedIn Post" loading="lazy" referrerpolicy="no-referrer"></iframe>
+        <div class="li-post" data-src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7454884103260106752"></div>
+        <div class="li-post" data-src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7412142073069531136"></div>
+        <div class="li-post" data-src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7408766226669277185"></div>
+        <div class="li-post" data-src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7388445454029512704"></div>
       </div>
       <div class="deals-slide">
-        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7325546146255269888" frameborder="0" allowfullscreen="" title="LinkedIn Post" loading="lazy" referrerpolicy="no-referrer"></iframe>
-        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7320473961077571584" frameborder="0" allowfullscreen="" title="LinkedIn Post" loading="lazy" referrerpolicy="no-referrer"></iframe>
-        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7377228079653527552" frameborder="0" allowfullscreen="" title="LinkedIn Post" loading="lazy" referrerpolicy="no-referrer"></iframe>
-        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7326058344442421248" frameborder="0" allowfullscreen="" title="LinkedIn Post" loading="lazy" referrerpolicy="no-referrer"></iframe>
+        <div class="li-post" data-src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7325546146255269888"></div>
+        <div class="li-post" data-src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7320473961077571584"></div>
+        <div class="li-post" data-src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7377228079653527552"></div>
+        <div class="li-post" data-src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7326058344442421248"></div>
       </div>
     </div>
   </div>
@@ -1211,6 +1224,36 @@ function dealsSlide(dir){
   document.getElementById('dealsPrev').disabled = _dealsCur===0;
   document.getElementById('dealsNext').disabled = _dealsCur===1;
 }
+</script>
+<script>
+/* LinkedIn deferred loader — no src set until section enters viewport;
+   sandbox without allow-downloads blocks Content-Disposition:attachment */
+(function(){
+  var posts = document.querySelectorAll('.li-post');
+  if(!posts.length) return;
+  function loadPost(el){
+    var src = el.getAttribute('data-src');
+    if(!src || el.classList.contains('loaded')) return;
+    el.classList.add('loaded');
+    var fr = document.createElement('iframe');
+    fr.setAttribute('src', src);
+    fr.setAttribute('frameborder', '0');
+    fr.setAttribute('allowfullscreen', '');
+    fr.setAttribute('title', 'LinkedIn Post');
+    fr.setAttribute('referrerpolicy', 'no-referrer');
+    fr.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-popups allow-forms allow-presentation');
+    el.appendChild(fr);
+  }
+  var section = document.getElementById('deal-highlights');
+  if(!section){ posts.forEach(loadPost); return; }
+  var obs = new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting){
+      posts.forEach(loadPost);
+      obs.disconnect();
+    }
+  }, {rootMargin:'200px'});
+  obs.observe(section);
+})();
 </script>
 </body>
 </html>
