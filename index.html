@@ -868,6 +868,37 @@ function acceptDisclaimer(){
   </div>
 </section>
 
+<!-- LEGAL DEVELOPMENTS -->
+<section class="sec" id="legal-developments">
+  <div class="ch-label reveal" style="color:var(--crim)">Legal Intelligence</div>
+  <h2 class="sh reveal reveal-d1">Latest Legal<br><em>Developments.</em></h2>
+  <p class="ld-sub reveal reveal-d2">Stay informed with significant judicial pronouncements and regulatory developments across corporate and commercial law.</p>
+
+  <div class="ld-grid reveal">
+    <div class="ld-col">
+      <div class="ld-col-header">
+        <div class="ld-col-label">Recent Judgments</div>
+        <div class="ld-col-courts">Supreme Court · NCLAT · NCLT · High Courts</div>
+      </div>
+      <div id="ldJudgments"><p class="ld-placeholder">Loading…</p></div>
+    </div>
+
+    <div class="ld-divider" aria-hidden="true"></div>
+
+    <div class="ld-col">
+      <div class="ld-col-header">
+        <div class="ld-col-label">Regulatory Updates</div>
+        <div class="ld-col-courts">MCA · IBBI · SEBI · RBI · CCI</div>
+      </div>
+      <div id="ldRegulations"><p class="ld-placeholder">Loading…</p></div>
+    </div>
+  </div>
+
+  <div class="exp-all reveal" style="margin-top:48px">
+    <a href="legal-updates.html" class="btn">View All Updates →</a>
+  </div>
+</section>
+
 <!-- DEAL HIGHLIGHTS / LINKEDIN -->
 <section class="sec" id="deal-highlights">
   <div class="deals-header">
@@ -1211,6 +1242,47 @@ function dealsSlide(dir){
   document.getElementById('dealsPrev').disabled = _dealsCur===0;
   document.getElementById('dealsNext').disabled = _dealsCur===1;
 }
+</script>
+<script>
+// ─── LEGAL DEVELOPMENTS LOADER ───
+(function(){
+  var jEl = document.getElementById('ldJudgments');
+  var rEl = document.getElementById('ldRegulations');
+  if(!jEl && !rEl) return;
+
+  function fmt(d){
+    if(!d) return '';
+    var p = d.split('-');
+    var dt = new Date(+p[0], +p[1]-1, +p[2]);
+    return dt.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+  }
+
+  function card(item){
+    var venue = item.court || item.authority || '';
+    return '<article class="ld-card">' +
+      '<div class="ld-card-top"><span class="ld-cat">'+(item.category||'')+'</span><span class="ld-date">'+fmt(item.date)+'</span></div>'+
+      '<h3 class="ld-title">'+item.title+'</h3>'+
+      (venue?'<div class="ld-court">'+venue+'</div>':'')+
+      '<p class="ld-summary">'+item.summary+'</p>'+
+      '<a href="legal-update.html?id='+item.id+'" class="ld-read">Read More</a>'+
+      '</article>';
+  }
+
+  var empty = '<p class="ld-placeholder">Updates coming soon.</p>';
+
+  fetch('content/legal-updates/index.json')
+    .then(function(r){return r.ok?r.json():Promise.reject();})
+    .then(function(data){
+      var j = data.filter(function(d){return d.type==='judgment';}).slice(0,2);
+      var r = data.filter(function(d){return d.type==='regulation';}).slice(0,2);
+      if(jEl) jEl.innerHTML = j.length ? j.map(card).join('') : empty;
+      if(rEl) rEl.innerHTML = r.length ? r.map(card).join('') : empty;
+    })
+    .catch(function(){
+      if(jEl) jEl.innerHTML = empty;
+      if(rEl) rEl.innerHTML = empty;
+    });
+})();
 </script>
 </body>
 </html>

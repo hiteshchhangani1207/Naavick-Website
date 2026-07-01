@@ -439,6 +439,35 @@ footer{
   .sec{padding:48px 20px;}
 }
 
+/* ─── LEGAL DEVELOPMENTS ─── */
+.ld-sub{font-size:14px;color:var(--mid);font-weight:300;max-width:600px;line-height:1.85;margin-top:16px;}
+.ld-grid{display:grid;grid-template-columns:1fr 0.5px 1fr;gap:0 56px;margin-top:48px;}
+.ld-divider{background:var(--mist);}
+.ld-col-header{padding-bottom:20px;border-bottom:0.5px solid var(--mist);margin-bottom:0;}
+.ld-col-label{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:22px;color:var(--ch);letter-spacing:-0.01em;margin-bottom:6px;}
+.ld-col-courts{font-family:'Barlow',sans-serif;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:var(--st);font-weight:300;}
+.ld-card{padding:24px 0;border-bottom:0.5px solid var(--mist);display:flex;flex-direction:column;gap:7px;}
+.ld-card:last-child{border-bottom:none;}
+.ld-card-top{display:flex;align-items:center;justify-content:space-between;}
+.ld-cat{font-family:'Barlow',sans-serif;font-size:8px;letter-spacing:0.26em;text-transform:uppercase;color:var(--crim);font-weight:400;display:flex;align-items:center;gap:8px;}
+.ld-cat::before{content:'';display:block;width:10px;height:0.5px;background:var(--crim);flex-shrink:0;}
+.ld-date{font-family:'Barlow',sans-serif;font-size:8px;letter-spacing:0.12em;color:var(--st);font-weight:300;}
+.ld-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(16px,1.4vw,20px);color:var(--ch);line-height:1.35;letter-spacing:-0.008em;}
+.ld-court{font-family:'Barlow',sans-serif;font-size:8.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--st);font-weight:300;}
+.ld-summary{font-size:13px;color:var(--mid);line-height:1.85;font-weight:300;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.ld-read{font-family:'Barlow',sans-serif;font-size:8.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--crim);font-weight:400;text-decoration:none;display:inline-flex;align-items:center;gap:6px;margin-top:2px;transition:gap .2s;}
+.ld-read:hover{gap:10px;}
+.ld-read::after{content:'→';}
+.ld-placeholder{font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:15px;color:var(--sv);padding:32px 0;}
+@media(max-width:960px){
+  .ld-grid{grid-template-columns:1fr;gap:40px 0;}
+  .ld-divider{display:none;}
+}
+@media(max-width:600px){
+  .ld-grid{margin-top:28px;}
+  .ld-col-label{font-size:19px;}
+}
+
 /* ─── PAGE TRANSITION ─── */
 #pt{
   position:fixed;inset:0;z-index:9999;
