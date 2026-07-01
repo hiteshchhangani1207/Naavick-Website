@@ -48,34 +48,36 @@ function closeMenu(){
 
   var busy = false;
 
-  // ── EXIT: overlay fades in, wheel fades in, then navigate ──
+  // ── EXIT: overlay + wheel fade in together; navigate once overlay is opaque ──
   function exit(href){
     if(busy) return;
     busy = true;
 
+    wh.style.transition = 'opacity 340ms ease';
     ov.classList.add('pt-visible');
-
-    setTimeout(function(){
-      wh.style.opacity = '1';
-    }, 200);
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        wh.style.opacity = '1';
+      });
+    });
 
     setTimeout(function(){
       sessionStorage.setItem('pt','1');
       window.location.href = href;
-    }, 900);
+    }, 420);
   }
 
-  // ── ENTER: overlay + wheel visible, dissolves smoothly ──
+  // ── ENTER: start opaque, dissolve overlay and wheel together ──
   function enter(){
-    wh.style.opacity = '1';
     wh.style.transition = 'none';
+    wh.style.opacity = '1';
     ov.style.transition = 'none';
     ov.classList.add('pt-visible');
 
     requestAnimationFrame(function(){
       requestAnimationFrame(function(){
-        wh.style.transition = 'opacity 480ms ease';
-        ov.style.transition = 'opacity 500ms cubic-bezier(0.4,0,0.2,1) 100ms';
+        wh.style.transition = 'opacity 400ms ease 60ms';
+        ov.style.transition = 'opacity 460ms cubic-bezier(0.4,0,0.2,1) 60ms';
         wh.style.opacity = '0';
         ov.classList.remove('pt-visible');
       });
