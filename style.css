@@ -456,7 +456,7 @@ footer{
   width:6vmin;height:6vmin;
   -webkit-mask:url('Content/Brand Assets/wheel-element-1.png') center/contain no-repeat;
   mask:url('Content/Brand Assets/wheel-element-1.png') center/contain no-repeat;
-  background:rgba(191,27,27,0.55);
+  background:#BF1B1B;
   animation:ptSpin 22s linear infinite;
   will-change:transform;
   opacity:0;
