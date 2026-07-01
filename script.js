@@ -22,22 +22,6 @@ if(reveals.length){
   reveals.forEach(el => ro.observe(el));
 }
 
-// ─── LINKEDIN IFRAME LAZY LOAD ───
-(function(){
-  var carousel = document.getElementById('dealsCarousel');
-  if(!carousel) return;
-  var loaded = false;
-  var io = new IntersectionObserver(function(entries){
-    if(loaded || !entries[0].isIntersecting) return;
-    loaded = true;
-    io.disconnect();
-    carousel.querySelectorAll('iframe[data-src]').forEach(function(f){
-      f.src = f.getAttribute('data-src');
-    });
-  }, {rootMargin:'200px'});
-  io.observe(carousel);
-})();
-
 // ─── MOBILE MENU ───
 function openMenu(){
   const m = document.getElementById('mobileMenu');
