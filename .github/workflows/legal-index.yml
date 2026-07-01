@@ -1,0 +1,102 @@
+name: Build Legal Updates Index
+
+on:
+  push:
+    paths:
+      - 'content/legal-updates/**.json'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate index.json, RSS and sitemap
+        run: |
+          python3 - << 'PYEOF'
+          import json, os, glob
+          from datetime import datetime
+
+          base = 'content/legal-updates'
+          files = sorted(glob.glob(f'{base}/*.json'))
+          files = [f for f in files if os.path.basename(f) != 'index.json']
+
+          updates = []
+          for f in files:
+              try:
+                  with open(f, encoding='utf-8') as fp:
+                      data = json.load(fp)
+                  data['id'] = os.path.splitext(os.path.basename(f))[0]
+                  updates.append(data)
+              except Exception as e:
+                  print(f'Skipping {f}: {e}')
+
+          updates.sort(key=lambda x: x.get('date', ''), reverse=True)
+
+          with open(f'{base}/index.json', 'w', encoding='utf-8') as fp:
+              json.dump(updates, fp, indent=2, ensure_ascii=False)
+          print(f'index.json: {len(updates)} entries')
+
+          base_url = 'https://hiteshchhangani1207.github.io/Naavick-Website'
+
+          # RSS feed
+          items = ''
+          for u in updates[:20]:
+              try:
+                  dt = datetime.strptime(u.get('date', '2000-01-01'), '%Y-%m-%d')
+                  pub = dt.strftime('%a, %d %b %Y 00:00:00 +0530')
+              except:
+                  pub = ''
+              link = f"{base_url}/legal-update.html?id={u.get('id','')}"
+              items += f"""
+    <item>
+      <title><![CDATA[{u.get('title','')}]]></title>
+      <link>{link}</link>
+      <description><![CDATA[{u.get('summary','')}]]></description>
+      <pubDate>{pub}</pubDate>
+      <category><![CDATA[{u.get('category','')}]]></category>
+      <guid isPermaLink="true">{link}</guid>
+    </item>"""
+
+          rss = f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Naavick Legal — Legal Developments</title>
+    <link>{base_url}/</link>
+    <description>Latest judicial pronouncements and regulatory updates in Indian corporate and commercial law</description>
+    <language>en-in</language>
+    <atom:link href="{base_url}/legal-updates.rss" rel="self" type="application/rss+xml"/>{items}
+  </channel>
+</rss>"""
+          with open('legal-updates.rss', 'w', encoding='utf-8') as fp:
+              fp.write(rss)
+          print('RSS generated')
+
+          # Sitemap
+          pages = ['', 'who-we-are.html', 'what-we-do.html', 'how-we-do.html',
+                   'where-we-are.html', 'legal-updates.html']
+          urls = [f'  <url><loc>{base_url}/{p}</loc><changefreq>weekly</changefreq></url>' for p in pages]
+          for u in updates:
+              urls.append(
+                  f'  <url><loc>{base_url}/legal-update.html?id={u.get("id","")}</loc>'
+                  f'<lastmod>{u.get("date","")}</lastmod><changefreq>monthly</changefreq></url>'
+              )
+          sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+          sitemap += '\n'.join(urls) + '\n</urlset>'
+          with open('sitemap.xml', 'w', encoding='utf-8') as fp:
+              fp.write(sitemap)
+          print('Sitemap generated')
+          PYEOF
+
+      - name: Commit generated files
+        run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add content/legal-updates/index.json legal-updates.rss sitemap.xml
+          git diff --staged --quiet || git commit -m "chore: auto-rebuild legal index, RSS and sitemap [skip ci]"
+          git push
