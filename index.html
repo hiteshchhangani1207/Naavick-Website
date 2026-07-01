@@ -429,9 +429,7 @@
 .sp-marquee::after{right:0;background:linear-gradient(to left,var(--ww),transparent)}
 .sp-track{
   display:flex;align-items:center;gap:0;width:max-content;
-  animation:spScroll 50s linear infinite;
   will-change:transform;
-  transform:translateZ(0);
   backface-visibility:hidden;
   -webkit-backface-visibility:hidden;
 }
@@ -454,10 +452,6 @@
 .sp-logo-xl{height:110px;}
 .sp-logo-xxl{height:120px;}
 .sp-logo-multiply{mix-blend-mode:multiply;filter:sepia(1) saturate(8) hue-rotate(315deg) brightness(0.72) contrast(1.2);}
-@keyframes spScroll{
-  from{transform:translateX(-50%)}
-  to{transform:translateX(0)}
-}
 
 /* ───── WHERE WE ARE ───── */
 .where-section{background:var(--ww);padding:72px 56px;border-bottom:0.5px solid var(--mist);display:flex;flex-direction:column;justify-content:flex-start;}
@@ -1226,6 +1220,45 @@ function dealsSlide(dir){
 }
 </script>
 <script>
+/* Logo marquee — JS RAF avoids CSS animation loop-reset flash */
+(function(){
+  var track = document.querySelector('.sp-track');
+  var wrap  = document.querySelector('.sp-marquee');
+  if(!track) return;
+  var halfW = 0, pos = 0, raf = null, running = false;
+
+  function measure(){ halfW = track.scrollWidth / 2; }
+
+  function tick(){
+    pos += 0.7;
+    if(pos >= halfW) pos -= halfW;
+    /* rightward: starts at -halfW (set B visible), moves toward 0 (set A) */
+    track.style.transform = 'translate3d(' + (pos - halfW) + 'px,0,0)';
+    if(running) raf = requestAnimationFrame(tick);
+  }
+
+  function start(){ if(!running){ running = true; raf = requestAnimationFrame(tick); } }
+  function stop(){  running = false; cancelAnimationFrame(raf); }
+
+  if(wrap){
+    wrap.addEventListener('mouseenter', stop);
+    wrap.addEventListener('mouseleave', start);
+  }
+
+  /* pause when scrolled off-screen to save CPU */
+  var iobs = new IntersectionObserver(function(e){
+    e[0].isIntersecting ? start() : stop();
+  });
+  iobs.observe(wrap || track);
+
+  /* measure after all images load so scrollWidth is final */
+  window.addEventListener('load', function(){
+    measure();
+    window.addEventListener('resize', function(){ measure(); pos = 0; }, {passive:true});
+    start();
+  }, {once:true});
+})();
+
 /* LinkedIn deferred loader — no src set until section enters viewport;
    sandbox without allow-downloads blocks Content-Disposition:attachment */
 (function(){
