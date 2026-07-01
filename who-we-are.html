@@ -173,11 +173,13 @@
   background:var(--crim);flex-shrink:0;
 }
 
-/* ── NAVIGATION WHEEL ── */
-#wheel-base-img{
-  display:block;
-  will-change:transform;
+/* ── NAVIGATION WHEEL 3D ── */
+#wheelWrap{
+  width:300px;height:300px;flex-shrink:0;
+  position:relative;
 }
+@media(max-width:960px){#wheelWrap{width:260px;height:260px;}}
+@media(max-width:600px){#wheelWrap{width:min(260px,80vw);height:min(260px,80vw);}}
 .deconstruct-item{
   flex:1;
   display:flex;flex-direction:column;justify-content:center;
@@ -349,9 +351,9 @@
     </div>
 
     <div class="chap-right reveal reveal-d2" style="display:flex;justify-content:center;align-items:center;">
-      <img id="wheel-base-img" src="Content/Brand Assets/wheel-element-1.png"
-           alt="Naavick navigation wheel"
-           style="width:260px;height:260px;object-fit:contain;">
+      <div id="wheelWrap">
+        <canvas id="wheelCanvas" style="display:block;width:100%;height:100%;"></canvas>
+      </div>
     </div>
 
   </div>
@@ -505,26 +507,179 @@
   obs.observe(trigger);
 }());
 </script>
-<script>
-(function () {
-  'use strict';
-  var img = document.getElementById('wheel-base-img');
-  if (!img) return;
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { RoomEnvironment }  from 'three/addons/environments/RoomEnvironment.js';
 
-  var current = 0;
-  var target  = 0;
+const wrap   = document.getElementById('wheelWrap');
+const canvas = document.getElementById('wheelCanvas');
+if (!wrap || !canvas) throw new Error('wheel canvas missing');
 
-  window.addEventListener('scroll', function () {
-    target = window.scrollY * 0.15; /* deg per scrolled pixel */
-  }, { passive: true });
+/* ── Renderer ─────────────────────────────────────────────────────────── */
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.outputColorSpace  = THREE.SRGBColorSpace;
+renderer.toneMapping       = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type    = THREE.PCFSoftShadowMap;
 
-  /* rAF lerp: silky trailing rotation that eases into each scroll step */
-  (function tick() {
-    current += (target - current) * 0.10;
-    img.style.transform = 'rotate(' + current.toFixed(3) + 'deg)';
-    requestAnimationFrame(tick);
-  }());
-}());
+/* ── Scene / Camera ───────────────────────────────────────────────────── */
+const scene  = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 50);
+camera.position.set(0, 0, 4.8);
+
+/* PBR environment for metalness reflections */
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.05).texture;
+pmrem.dispose();
+
+/* ── Wheel geometry ───────────────────────────────────────────────────── */
+/* Dimensions match the actual logo proportions (normalised to handle tip = 1.0) */
+const RO  = 0.79,  RI  = 0.67;   /* outer ring : outer / inner radius      */
+const RHO = 0.45,  RHI = 0.30;   /* inner hub  : outer / inner (hollow ctr)*/
+const HW  = 0.045;                /* spoke half-width                        */
+const D   = 0.14,  BV  = 0.012;  /* extrusion depth / bevel                */
+
+function annulus(oR, iR, segs) {
+  const s = new THREE.Shape();
+  s.absarc(0, 0, oR, 0, Math.PI * 2, false);
+  const h = new THREE.Path();
+  h.absarc(0, 0, iR, 0, Math.PI * 2, true);
+  s.holes.push(h);
+  return new THREE.ExtrudeGeometry(s, {
+    depth: D, bevelEnabled: true,
+    bevelThickness: BV, bevelSize: BV,
+    bevelSegments: 3, curveSegments: segs || 64
+  });
+}
+
+function bar(r1, r2, hw, roundedTip) {
+  const s = new THREE.Shape();
+  if (roundedTip) {
+    /* pill-shaped handle — matches the rounded tips on the real logo */
+    s.moveTo(-hw, r1);
+    s.lineTo(-hw, r2 - hw);
+    s.quadraticCurveTo(-hw, r2, 0,  r2);
+    s.quadraticCurveTo( hw, r2, hw, r2 - hw);
+    s.lineTo(hw, r1);
+  } else {
+    s.moveTo(-hw, r1); s.lineTo(hw, r1);
+    s.lineTo(hw,  r2); s.lineTo(-hw, r2);
+  }
+  s.closePath();
+  return new THREE.ExtrudeGeometry(s, {
+    depth: D, bevelEnabled: true,
+    bevelThickness: BV * 0.55, bevelSize: BV * 0.55,
+    bevelSegments: 2, curveSegments: roundedTip ? 8 : 1
+  });
+}
+
+let wheel;
+{
+  const gs = [
+    annulus(RO, RI, 64),   /* outer ring  */
+    annulus(RHO, RHI, 32)  /* inner hub   */
+  ];
+  for (let i = 0; i < 8; i++) {
+    const a  = i * Math.PI / 4;
+    const sp = bar(RHO, RI,  HW, false); sp.rotateZ(a); gs.push(sp); /* spoke  */
+    const hd = bar(RO,  1.0, HW, true);  hd.rotateZ(a); gs.push(hd); /* handle */
+  }
+  const geo = mergeGeometries(gs, false);
+  geo.translate(0, 0, -D / 2);
+  gs.forEach(g => g.dispose());
+
+  wheel = new THREE.Mesh(
+    geo,
+    new THREE.MeshStandardMaterial({
+      color: 0x1c1c1c, metalness: 0.87, roughness: 0.28, envMapIntensity: 0.35
+    })
+  );
+  wheel.castShadow = true;
+  scene.add(wheel);
+}
+
+/* Soft shadow beneath the wheel */
+const shadowPlane = new THREE.Mesh(
+  new THREE.PlaneGeometry(5, 5),
+  new THREE.ShadowMaterial({ opacity: 0.22, transparent: true })
+);
+shadowPlane.rotation.x = -Math.PI / 2;
+shadowPlane.position.y = -1.55;
+shadowPlane.receiveShadow = true;
+scene.add(shadowPlane);
+
+/* ── Lights ───────────────────────────────────────────────────────────── */
+scene.add(new THREE.AmbientLight(0xffffff, 0.38));
+
+const key = new THREE.DirectionalLight(0xf8f5ef, 2.6);
+key.position.set(2.5, 3.5, 4);
+key.castShadow = true;
+key.shadow.mapSize.set(512, 512);
+Object.assign(key.shadow.camera, { left:-2, right:2, top:2, bottom:-2, near:0.5, far:20 });
+scene.add(key);
+
+const fill = new THREE.DirectionalLight(0xd0dcff, 0.22);
+fill.position.set(-3, 0.5, 2);
+scene.add(fill);
+
+/* Brand-red rim from behind — very subtle */
+const rim = new THREE.PointLight(0xBF1B1B, 1.6, 12);
+rim.position.set(0, 0.5, -3.5);
+scene.add(rim);
+
+/* ── Scroll animation (GSAP ScrollTrigger) ────────────────────────────── */
+gsap.registerPlugin(ScrollTrigger);
+
+const sc = { rotY: 0, rotX: 0.12, camZ: 4.8 };
+const section = wrap.closest('section');
+
+ScrollTrigger.create({
+  trigger : section,
+  start   : 'top 85%',
+  end     : 'bottom 15%',
+  scrub   : 2.2,          /* smooth 2.2 s lag — feels like weight */
+  onUpdate(self) {
+    sc.rotY =  self.progress * Math.PI * 0.67;   /* 0 → ~120 ° on Y */
+    sc.rotX =  0.12 - self.progress * 0.26;       /* gentle X tilt    */
+    sc.camZ =  4.8  - self.progress * 0.4;        /* barely-there push*/
+  }
+});
+
+/* ── Render loop ──────────────────────────────────────────────────────── */
+let active = false;
+new IntersectionObserver(e => { active = e[0].isIntersecting; }).observe(wrap);
+
+(function frame(t) {
+  requestAnimationFrame(frame);
+  if (!active || !wheel) return;
+
+  /* Idle — extremely slow; should feel like the object is breathing, not spinning */
+  wheel.rotation.y = sc.rotY + Math.sin(t * 0.00045) * 0.006; /* micro Y sway  */
+  wheel.rotation.x = sc.rotX;
+  wheel.rotation.z = t * 0.0000035;    /* ≈ 1 ° every 5 s — barely perceptible */
+  wheel.position.y = Math.sin(t * 0.00088) * 0.018;            /* ≈ 7 s breathe */
+  camera.position.z = sc.camZ;
+
+  renderer.render(scene, camera);
+}(0));
+
+/* ── Resize ───────────────────────────────────────────────────────────── */
+function resize() {
+  const W = wrap.clientWidth, H = wrap.clientHeight;
+  renderer.setSize(W, H, false);
+  camera.aspect = W / H;
+  camera.updateProjectionMatrix();
+}
+resize();
+window.addEventListener('resize', resize, { passive: true });
 </script>
 </body>
 </html>
