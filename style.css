@@ -440,6 +440,7 @@ footer{
 }
 
 /* ─── PAGE TRANSITION ─── */
+@keyframes ptSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 #pt{
   position:fixed;inset:0;z-index:9999;
   background:rgba(10,10,10,0.76);
@@ -452,9 +453,10 @@ footer{
 }
 #pt.pt-visible{opacity:1;pointer-events:all;}
 #pt-w{
-  width:8vmin;height:8vmin;
+  width:10vmin;height:10vmin;
   -webkit-mask:url('Content/Brand Assets/wheel-element-1.png') center/contain no-repeat;
   mask:url('Content/Brand Assets/wheel-element-1.png') center/contain no-repeat;
-  background:#8E1B1B;
-  will-change:transform,opacity;
+  background:#BF1B1B;
+  animation:ptSpin 1.2s linear infinite;
+  will-change:transform;
 }
