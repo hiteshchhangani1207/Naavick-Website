@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Where We Are — Naavick Legal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Barlow:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+
+/* ── CHAPTER PATTERN ── */
+.chap-band{
+  padding:112px 56px 44px;
+  border-bottom:0.5px solid var(--mist);
+  position:relative;
+}
+.chap-h{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;font-size:clamp(42px,5.2vw,72px);
+  color:var(--ch);line-height:1.1;letter-spacing:-0.02em;
+}
+.chap-h em{font-style:italic;color:var(--st);}
+
+/* ── OFFICES — light left / map right ── */
+.where-inner{
+  display:grid;
+  grid-template-columns:42% 58%;
+  border-bottom:0.5px solid var(--mist);
+}
+.office-list{
+  background:var(--ww);
+  border-right:0.5px solid var(--mist);
+  display:flex;flex-direction:column;
+}
+.office-card{
+  padding:52px 48px 44px;
+  border-bottom:0.5px solid var(--mist);
+  cursor:pointer;
+  box-shadow:inset 3px 0 0 transparent;
+  transition:box-shadow 0.35s ease,background 0.8s ease;
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.office-card:last-child{border-bottom:none;}
+/* court photo — reveals on hover */
+.oc-img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;opacity:0;
+  filter:grayscale(100%) brightness(0.45) contrast(1.1);
+  transition:opacity 0.9s ease;pointer-events:none;z-index:0;
+}
+.office-card:hover{background:var(--ch);}
+.office-card:hover .oc-img{opacity:1;}
+.office-card.active{background:var(--iv);box-shadow:inset 3px 0 0 var(--crim);}
+/* z-stacking */
+.oc-header,.oc-city,.oc-addr,.oc-footer{position:relative;z-index:2;}
+/* header row: label + index */
+.oc-header{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:16px;
+}
+.oc-tag{
+  font-family:'Barlow',sans-serif;
+  font-size:8px;letter-spacing:0.38em;text-transform:uppercase;
+  color:var(--st);font-weight:300;
+  display:flex;align-items:center;gap:10px;
+  transition:color 0.6s ease;
+}
+.oc-tag::before{
+  content:'';display:block;width:14px;height:0.5px;
+  background:var(--mist);transition:background 0.6s ease;
+}
+.office-card.active .oc-tag{color:var(--crim);}
+.office-card.active .oc-tag::before{background:var(--crim);}
+.office-card:hover .oc-tag{color:rgba(255,255,255,0.55);}
+.office-card:hover .oc-tag::before{background:rgba(255,255,255,0.3);}
+.oc-index{
+  font-family:'Barlow',sans-serif;font-size:9px;letter-spacing:0.16em;
+  color:var(--mist);font-weight:300;transition:color 0.6s ease;
+}
+.office-card:hover .oc-index{color:rgba(255,255,255,0.2);}
+/* city name — the visual anchor, large italic serif */
+.oc-city{
+  font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;
+  font-size:clamp(46px,4.8vw,68px);
+  color:var(--ch);line-height:0.92;letter-spacing:-0.03em;
+  margin-bottom:28px;
+  transition:color 0.6s ease,text-shadow 0.6s ease;
+}
+.office-card:hover .oc-city{color:#fff;text-shadow:0 2px 20px rgba(0,0,0,0.9);}
+/* address */
+.oc-addr{
+  font-size:11.5px;color:var(--mid);font-weight:300;
+  line-height:1.72;letter-spacing:0.018em;
+  border-top:0.5px solid var(--mist);padding-top:16px;
+  margin-bottom:20px;
+  transition:color 0.6s ease,border-color 0.6s ease;
+}
+.office-card:hover .oc-addr{color:rgba(255,255,255,0.72);border-top-color:rgba(255,255,255,0.15);}
+/* footer: court note + directions */
+.oc-footer{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-top:auto;
+}
+.oc-note{
+  font-family:'Barlow',sans-serif;font-size:7.5px;
+  letter-spacing:0.26em;text-transform:uppercase;
+  color:transparent;font-weight:300;transition:color 0.6s ease;
+}
+.office-card:hover .oc-note{color:rgba(255,255,255,0.42);}
+.oc-dir{
+  font-family:'Barlow',sans-serif;font-size:8px;letter-spacing:0.3em;
+  text-transform:uppercase;color:var(--st);
+  text-decoration:none;transition:color 0.3s ease;flex-shrink:0;
+}
+.office-card:hover .oc-dir{color:rgba(255,255,255,0.65);}
+.office-card:hover .oc-dir:hover{color:#fff;}
+/* map panel */
+.map-panel{position:relative;overflow:hidden;min-height:72vh;}
+.city-map{
+  position:absolute;inset:0;width:100%;height:100%;border:none;
+  filter:grayscale(80%) contrast(1.04);opacity:0;
+  transition:opacity 0.65s ease,filter 0.65s ease;pointer-events:none;
+}
+.city-map.active{opacity:1;pointer-events:auto;filter:grayscale(50%) contrast(1.04);}
+.city-map.active:hover{filter:grayscale(0%) contrast(1.03);}
+
+@media(max-width:960px){
+  .where-inner{grid-template-columns:1fr;}
+  .office-list{border-right:none;}
+  .map-panel{min-height:320px;}
+  .chap-band{padding:80px 28px 40px;}
+  .office-card{padding:40px 28px 36px;}
+  .oc-city{font-size:clamp(40px,9vw,60px);}
+}
+
+/* ── PULL-QUOTE CLOSING ── */
+.pull-close{
+  position:relative;overflow:hidden;
+  padding:112px 56px 100px;
+  text-align:center;
+  display:flex;align-items:center;justify-content:center;
+}
+/* water image — oversized for strong parallax travel */
+/* outer: handles JS parallax translateY only */
+.pull-close-water{
+  position:absolute;
+  left:0;right:0;
+  top:-40%;height:180%;
+  pointer-events:none;will-change:transform;
+  overflow:hidden;
+}
+/* inner: GPU-composited transform animation — no paint, no layout */
+@keyframes waterDrift{
+  0%   { transform:translate(0%,0%); }
+  25%  { transform:translate(-5%,-3%); }
+  50%  { transform:translate(-8%,-1%); }
+  75%  { transform:translate(-4%,-4%); }
+  100% { transform:translate(0%,0%); }
+}
+.pull-close-water-inner{
+  position:absolute;
+  inset:-12%;
+  background:url('Content/Global Images/water texture.jpg') center center / cover no-repeat;
+  will-change:transform;
+  animation:waterDrift 52s ease-in-out infinite;
+}
+/* dark overlay so text reads over photo */
+.pull-close::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:rgba(4,10,20,0.58);
+}
+.pull-close-inner{position:relative;z-index:2;}
+.pull-close-coords{
+  position:absolute;bottom:20px;left:0;right:0;
+  text-align:center;z-index:2;pointer-events:none;
+  font-family:'Barlow',sans-serif;font-size:7px;letter-spacing:0.38em;
+  text-transform:uppercase;color:rgba(255,255,255,0.2);font-weight:300;
+}
+.pull-close-quote{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+  font-size:clamp(16px,1.6vw,22px);
+  color:rgba(255,255,255,0.72);line-height:1.7;letter-spacing:0.01em;
+  max-width:560px;margin:0 auto;
+}
+@media(max-width:960px){
+  .pull-close{padding:36px 28px 32px;}
+  .pull-close-quote{font-size:clamp(26px,7vw,40px);}
+}
+@media(max-width:600px){
+  .oc-city{font-size:clamp(28px,9vw,42px);}
+  .office-card{padding:32px 20px 28px;}
+  .chap-band{padding:72px 20px 32px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav light" id="siteNav">
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-img nav-logo-white" src="Content/Brand Assets/logo1-white.png" alt="Naavick Legal">
+    <img class="nav-logo-img nav-logo-black" src="Content/Brand Assets/logo1-black.png" alt="Naavick Legal">
+  </a>
+  <ul class="nav-links">
+    <li><a href="who-we-are.html">Who we are</a></li>
+    <li><a href="what-we-do.html">What we do</a></li>
+    <li><a href="how-we-do.html">How we do</a></li>
+    <li><a href="where-we-are.html" class="active">Where we are</a></li>
+  </ul>
+  <a href="mailto:office@naavick.com" class="nav-cta">Write to us</a>
+  <div class="nav-mobile-btn" onclick="openMenu()"><span></span><span></span></div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-close" onclick="closeMenu()">Close ✕</div>
+  <ul class="mobile-nav-links">
+    <li><a href="who-we-are.html">Who we are</a></li>
+    <li><a href="what-we-do.html">What we do</a></li>
+    <li><a href="how-we-do.html">How we do</a></li>
+    <li><a href="where-we-are.html">Where we are</a></li>
+  </ul>
+  <div class="mobile-nav-contact">
+    office@naavick.com<br>+91 730 698 6335<br>Mumbai · Delhi · Nagpur
+  </div>
+</div>
+
+<!-- HEADING -->
+<section style="background:var(--ww);">
+  <div class="chap-band">
+    <h1 class="chap-h reveal">Our <em>offices.</em></h1>
+  </div>
+
+  <!-- OFFICES SPLIT — cards left, interactive map right -->
+  <div class="where-inner">
+
+    <!-- left: office cards -->
+    <div class="office-list">
+
+      <div class="office-card active reveal" data-city="0">
+        <img class="oc-img" src="Content/Global Images/Bombay High Court.jpg" alt="">
+        <div class="oc-header">
+          <div class="oc-tag">Head Office</div>
+        </div>
+        <div class="oc-city">Mumbai</div>
+        <div class="oc-addr">1st Floor, Great Western Building,<br>Opp. Carter's Blue, Kalaghoda, Fort,<br>Mumbai, Maharashtra — 400 001</div>
+        <div class="oc-footer">
+          <span class="oc-note">Bombay High Court · Original Side</span>
+          <a class="oc-dir" href="https://maps.google.com/maps?q=Great+Western+Building,+Kalaghoda,+Fort,+Mumbai+400001" target="_blank" rel="noopener">Get directions ↗</a>
+        </div>
+      </div>
+
+      <div class="office-card reveal reveal-d1" data-city="1">
+        <img class="oc-img" src="Content/Global Images/Delhi Supreme Court.jpg" alt="" style="object-position:top;">
+        <div class="oc-header">
+          <div class="oc-tag">Regional Office</div>
+        </div>
+        <div class="oc-city">Delhi</div>
+        <div class="oc-addr">A-402, Area Chamber D,<br>Bhikaji Cama Place,<br>New Delhi — 110 066</div>
+        <div class="oc-footer">
+          <span class="oc-note">Supreme Court of India</span>
+          <a class="oc-dir" href="https://maps.google.com/maps?q=A-402,+Bhikaji+Cama+Place,+New+Delhi+110066" target="_blank" rel="noopener">Get directions ↗</a>
+        </div>
+      </div>
+
+      <div class="office-card reveal reveal-d2" data-city="2">
+        <img class="oc-img" src="Content/Global Images/High Court, Nagpur Bench.jpg" alt="">
+        <div class="oc-header">
+          <div class="oc-tag">Regional Office</div>
+        </div>
+        <div class="oc-city">Nagpur</div>
+        <div class="oc-addr">Ground Floor, Neelkamal Apartment,<br>Shivaji Nagar, Nagpur,<br>Maharashtra — 440 010</div>
+        <div class="oc-footer">
+          <span class="oc-note">Nagpur Bench · Bombay High Court</span>
+          <a class="oc-dir" href="https://maps.google.com/maps?q=Neelkamal+Apartment,+Shivaji+Nagar,+Nagpur+440010" target="_blank" rel="noopener">Get directions ↗</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- right: large interactive map — fades between cities -->
+    <div class="map-panel">
+      <iframe class="city-map active"
+        src="https://maps.google.com/maps?q=Great+Western+Building,+Kalaghoda,+Fort,+Mumbai,+Maharashtra+400001&t=&z=16&ie=UTF8&iwloc=&output=embed"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe class="city-map"
+        src="https://maps.google.com/maps?q=Bhikaji+Cama+Place,+New+Delhi+110066&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe class="city-map"
+        src="https://maps.google.com/maps?q=Shivaji+Nagar,+Nagpur,+Maharashtra+440010&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CLOSING PULL QUOTE -->
+<section class="pull-close">
+  <div class="pull-close-water" id="pullWater" aria-hidden="true"><div class="pull-close-water-inner"></div></div>
+  <div class="pull-close-inner">
+    <p class="pull-close-quote reveal">"Every great outcome begins<br>with one conversation."</p>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img class="footer-ghost-wheel" src="Content/Brand Assets/wheel-element-white.png" aria-hidden="true" alt="">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <img src="Content/Brand Assets/logo1-white.png" class="footer-logo" alt="Naavick Legal">
+      <p class="footer-tagline">We practice at the intersection of law, finance and technology — built to anticipate risk, prevent conflict, and resolve the disputes in the commercial corporate world.</p>
+      <div class="footer-cities">
+        <span>Mumbai</span><span class="footer-city-sep">·</span>
+        <span>Delhi</span><span class="footer-city-sep">·</span>
+        <span>Nagpur</span>
+      </div>
+    </div>
+    <div class="footer-nav-col">
+      <div class="footer-col-title">Explore</div>
+      <ul class="footer-links">
+        <li><a href="who-we-are.html">Who we are</a></li>
+        <li><a href="what-we-do.html">What we do</a></li>
+        <li><a href="how-we-do.html">How we do</a></li>
+        <li><a href="where-we-are.html">Where we are</a></li>
+      </ul>
+    </div>
+    <div class="footer-cta-col">
+      <h3 class="footer-cta-h">Write to<br><em>us.</em></h3>
+      <div class="footer-icons">
+        <a href="https://www.linkedin.com/company/naavicklegal" target="_blank" class="footer-icon" aria-label="LinkedIn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="mailto:office@naavick.com" class="footer-icon" aria-label="Email">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><polyline points="2,4 12,13 22,4"/></svg>
+        </a>
+        <a href="https://wa.me/919644532091" target="_blank" class="footer-icon" aria-label="WhatsApp"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+      </div>
+      <a href="Naavick_Legal_Profile.pdf" target="_blank" class="footer-profile-bar">Firm Profile</a>
+    </div>
+  </div>
+  <div class="footer-divider">
+    <div class="footer-div-line"></div>
+    <div class="footer-div-wheel">
+      <img src="Content/Brand Assets/wheel-element-white.png" class="footer-div-wheel-img" aria-hidden="true" alt="">
+    </div>
+    <div class="footer-div-line"></div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Naavick Legal. All rights reserved.</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+(function(){
+
+  /* map switching */
+  var cards = document.querySelectorAll('.office-card');
+  var maps  = document.querySelectorAll('.city-map');
+
+  function showMap(idx){
+    maps.forEach(function(m){m.classList.remove('active');});
+    if(maps[idx]) maps[idx].classList.add('active');
+  }
+
+  function activeIdx(){
+    for(var i=0;i<cards.length;i++){
+      if(cards[i].classList.contains('active')) return i;
+    }
+    return 0;
+  }
+
+  cards.forEach(function(card,i){
+    card.addEventListener('mouseenter',function(){
+      showMap(i);
+    });
+    card.addEventListener('mouseleave',function(){
+      showMap(activeIdx());
+    });
+    card.addEventListener('click',function(e){
+      if(e.target.classList.contains('oc-dir')) return;
+      cards.forEach(function(c){c.classList.remove('active');});
+      card.classList.add('active');
+      showMap(i);
+    });
+  });
+
+  /* strong parallax on water photo */
+  var water=document.getElementById('pullWater');
+  if(water){
+    var waterSec=water.closest('section');
+    function driftWater(){
+      var r=waterSec.getBoundingClientRect(),vh=window.innerHeight;
+      if(r.bottom<0||r.top>vh) return;
+      var p=(vh-r.top)/(r.height+vh);
+      water.style.transform='translateY('+((p-0.5)*320)+'px)';
+    }
+    window.addEventListener('scroll',driftWater,{passive:true});
+    driftWater();
+  }
+
+})();
+</script>
+</body>
+</html>
