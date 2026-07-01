@@ -441,7 +441,7 @@ footer{
 
 /* ─── LEGAL DEVELOPMENTS ─── */
 .ld-sub{font-size:14px;color:var(--mid);font-weight:300;max-width:600px;line-height:1.85;margin-top:16px;}
-.ld-grid{display:grid;grid-template-columns:1fr 0.5px 1fr;gap:0 56px;margin-top:48px;}
+.ld-grid{display:grid;grid-template-columns:1fr 0.5px 1fr;gap:0 56px;margin-top:48px;width:100%;align-self:stretch;}
 .ld-divider{background:var(--mist);}
 .ld-col-header{padding-bottom:20px;border-bottom:0.5px solid var(--mist);margin-bottom:0;}
 .ld-col-label{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:22px;color:var(--ch);letter-spacing:-0.01em;margin-bottom:6px;}
@@ -459,6 +459,17 @@ footer{
 .ld-read:hover{gap:10px;}
 .ld-read::after{content:'→';}
 .ld-placeholder{font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:15px;color:var(--sv);padding:32px 0;}
+/* accordion expand (legal-updates.html only) */
+.ld-expand-body{max-height:0;overflow:hidden;transition:max-height .45s ease;}
+.ld-card.expanded .ld-expand-body{max-height:1200px;}
+.ld-card.expanded .ld-summary{display:none;}
+.ld-full-text{font-size:13px;color:var(--mid);line-height:1.85;font-weight:300;margin-top:8px;white-space:pre-line;}
+.ld-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;padding-top:12px;border-top:0.5px solid var(--mist);}
+.ld-tag{font-family:'Barlow',sans-serif;font-size:7.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--st);font-weight:300;border:0.5px solid var(--mist);padding:5px 12px;}
+.ld-toggle{font-family:'Barlow',sans-serif;font-size:8.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--crim);font-weight:400;background:none;border:none;padding:0;cursor:pointer;display:inline-flex;align-items:center;gap:6px;margin-top:2px;transition:gap .2s;}
+.ld-toggle:hover{gap:10px;}
+.ld-toggle::after{content:'↓';transition:transform .3s;}
+.ld-card.expanded .ld-toggle::after{transform:rotate(180deg);}
 @media(max-width:960px){
   .ld-grid{grid-template-columns:1fr;gap:40px 0;}
   .ld-divider{display:none;}

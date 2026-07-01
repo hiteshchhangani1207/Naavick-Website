@@ -213,14 +213,21 @@
     return dt.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
   }
 
+  function esc(s){ return s ? String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : ''; }
+
   function card(item){
     var venue = item.court || item.authority || '';
+    var tags = (item.tags||[]).map(function(t){ return '<span class="ld-tag">'+esc(t)+'</span>'; }).join('');
     return '<article class="ld-card">' +
-      '<div class="ld-card-top"><span class="ld-cat">'+(item.category||'')+'</span><span class="ld-date">'+fmt(item.date)+'</span></div>'+
-      '<h2 class="ld-title">'+item.title+'</h2>'+
-      (venue?'<div class="ld-court">'+venue+'</div>':'')+
-      '<p class="ld-summary" style="-webkit-line-clamp:4;">'+item.summary+'</p>'+
-      '<a href="legal-update.html?id='+item.id+'" class="ld-read">Read More</a>'+
+      '<div class="ld-card-top"><span class="ld-cat">'+esc(item.category||'')+'</span><span class="ld-date">'+fmt(item.date)+'</span></div>'+
+      '<h2 class="ld-title">'+esc(item.title)+'</h2>'+
+      (venue?'<div class="ld-court">'+esc(venue)+'</div>':'')+
+      '<p class="ld-summary">'+esc(item.summary)+'</p>'+
+      '<div class="ld-expand-body">'+
+        '<p class="ld-full-text">'+esc(item.summary)+'</p>'+
+        (tags?'<div class="ld-tags">'+tags+'</div>':'')+
+      '</div>'+
+      '<button class="ld-toggle" aria-expanded="false">Read More</button>'+
       '</article>';
   }
 
@@ -287,6 +294,15 @@
       render();
     });
   }
+
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('.ld-toggle');
+    if(!btn) return;
+    var card = btn.closest('.ld-card');
+    var expanded = card.classList.toggle('expanded');
+    btn.textContent = expanded ? 'Read Less' : 'Read More';
+    btn.setAttribute('aria-expanded', expanded);
+  });
 })();
 </script>
 </body>
