@@ -440,7 +440,6 @@ footer{
 }
 
 /* ─── PAGE TRANSITION ─── */
-@keyframes ptSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 #pt{
   position:fixed;inset:0;z-index:9999;
   background:rgba(10,10,10,0.72);
@@ -457,7 +456,6 @@ footer{
   -webkit-mask:url('Content/Brand Assets/wheel-element-1.png') center/contain no-repeat;
   mask:url('Content/Brand Assets/wheel-element-1.png') center/contain no-repeat;
   background:#BF1B1B;
-  animation:ptSpin 22s linear infinite;
   will-change:transform;
   opacity:0;
 }

@@ -39,7 +39,6 @@ function closeMenu(){
 
   var ov = document.createElement('div');
   ov.id = 'pt';
-
   var wh = document.createElement('div');
   wh.id = 'pt-w';
   wh.setAttribute('aria-hidden','true');
@@ -47,14 +46,32 @@ function closeMenu(){
   document.body.appendChild(ov);
 
   var busy = false;
+  var PERIOD = 22000; // ms per full rotation
 
-  // ── EXIT: overlay + wheel fade in together; navigate once overlay is opaque ──
+  // Restore angle accounting for time elapsed during page load
+  var savedAngle = parseFloat(sessionStorage.getItem('pt-angle') || '0');
+  var savedTime  = parseInt(sessionStorage.getItem('pt-time')  || '0');
+  var angle = savedAngle + (savedTime ? ((Date.now() - savedTime) / PERIOD * 360) : 0);
+  var lastTs = null;
+
+  // JS-driven rotation — angle is continuous across page navigations
+  function spinLoop(ts){
+    if(lastTs !== null){
+      angle = (angle + (ts - lastTs) / PERIOD * 360) % 360;
+      wh.style.transform = 'rotate(' + angle.toFixed(2) + 'deg)';
+    }
+    lastTs = ts;
+    requestAnimationFrame(spinLoop);
+  }
+  requestAnimationFrame(spinLoop);
+
+  // ── EXIT: overlay + wheel fade in; navigate once overlay is fully opaque ──
   function exit(href){
     if(busy) return;
     busy = true;
 
-    wh.style.transition = 'opacity 340ms ease';
     ov.classList.add('pt-visible');
+    wh.style.transition = 'opacity 340ms ease';
     requestAnimationFrame(function(){
       requestAnimationFrame(function(){
         wh.style.opacity = '1';
@@ -62,15 +79,17 @@ function closeMenu(){
     });
 
     setTimeout(function(){
-      sessionStorage.setItem('pt','1');
+      sessionStorage.setItem('pt',      '1');
+      sessionStorage.setItem('pt-angle', angle.toFixed(2));
+      sessionStorage.setItem('pt-time',  Date.now().toString());
       window.location.href = href;
     }, 420);
   }
 
-  // ── ENTER: start opaque, dissolve overlay and wheel together ──
+  // ── ENTER: overlay starts opaque, dissolves to reveal new page ──
   function enter(){
     wh.style.transition = 'none';
-    wh.style.opacity = '1';
+    wh.style.opacity    = '1';
     ov.style.transition = 'none';
     ov.classList.add('pt-visible');
 
@@ -78,7 +97,7 @@ function closeMenu(){
       requestAnimationFrame(function(){
         wh.style.transition = 'opacity 400ms ease 60ms';
         ov.style.transition = 'opacity 460ms cubic-bezier(0.4,0,0.2,1) 60ms';
-        wh.style.opacity = '0';
+        wh.style.opacity    = '0';
         ov.classList.remove('pt-visible');
       });
     });
@@ -99,6 +118,8 @@ function closeMenu(){
 
   if(sessionStorage.getItem('pt')){
     sessionStorage.removeItem('pt');
+    sessionStorage.removeItem('pt-angle');
+    sessionStorage.removeItem('pt-time');
     enter();
   }
 
