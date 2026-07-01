@@ -443,13 +443,13 @@ footer{
 @keyframes ptSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 #pt{
   position:fixed;inset:0;z-index:9999;
-  background:rgba(10,10,10,0.76);
-  backdrop-filter:blur(18px) saturate(0.12);
-  -webkit-backdrop-filter:blur(18px) saturate(0.12);
+  background:rgba(10,10,10,0.72);
+  backdrop-filter:blur(22px) saturate(0.1);
+  -webkit-backdrop-filter:blur(22px) saturate(0.1);
   display:flex;align-items:center;justify-content:center;
   opacity:0;
   pointer-events:none;
-  transition:opacity 220ms cubic-bezier(0.25,0,0.1,1);
+  transition:opacity 380ms cubic-bezier(0.4,0,0.2,1);
 }
 #pt.pt-visible{opacity:1;pointer-events:all;}
 #pt-w{
@@ -457,6 +457,8 @@ footer{
   -webkit-mask:url('Content/Brand Assets/wheel-element-1.png') center/contain no-repeat;
   mask:url('Content/Brand Assets/wheel-element-1.png') center/contain no-repeat;
   background:#BF1B1B;
-  animation:ptSpin 8s linear infinite;
+  animation:ptSpin 14s linear infinite;
   will-change:transform;
+  opacity:0;
+  transition:opacity 480ms ease;
 }

@@ -48,36 +48,35 @@ function closeMenu(){
 
   var busy = false;
 
-  // ── EXIT: overlay fades in, spinning wheel appears, then navigate ──
+  // ── EXIT: overlay fades in, wheel fades in, then navigate ──
   function exit(href){
     if(busy) return;
     busy = true;
 
-    wh.style.opacity = '0';
     ov.classList.add('pt-visible');
 
-    requestAnimationFrame(function(){
-      requestAnimationFrame(function(){
-        wh.style.transition = 'opacity 300ms ease';
-        wh.style.opacity = '1';
+    setTimeout(function(){
+      wh.style.opacity = '1';
+    }, 200);
 
-        setTimeout(function(){
-          sessionStorage.setItem('pt','1');
-          window.location.href = href;
-        }, 700);
-      });
-    });
+    setTimeout(function(){
+      sessionStorage.setItem('pt','1');
+      window.location.href = href;
+    }, 900);
   }
 
-  // ── ENTER: overlay starts visible with spinning wheel, then dissolves ──
+  // ── ENTER: overlay + wheel visible, dissolves smoothly ──
   function enter(){
     wh.style.opacity = '1';
+    wh.style.transition = 'none';
     ov.style.transition = 'none';
     ov.classList.add('pt-visible');
 
     requestAnimationFrame(function(){
       requestAnimationFrame(function(){
-        ov.style.transition = 'opacity 420ms cubic-bezier(0.25,0,0.1,1) 80ms';
+        wh.style.transition = 'opacity 480ms ease';
+        ov.style.transition = 'opacity 500ms cubic-bezier(0.4,0,0.2,1) 100ms';
+        wh.style.opacity = '0';
         ov.classList.remove('pt-visible');
       });
     });
