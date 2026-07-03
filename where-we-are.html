@@ -37,7 +37,7 @@
   border-bottom:0.5px solid var(--mist);
   cursor:pointer;
   box-shadow:inset 3px 0 0 transparent;
-  transition:box-shadow 0.35s ease,background 0.8s ease;
+  transition:box-shadow 0.35s cubic-bezier(0.25,0.46,0.45,0.94),background 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
   position:relative;overflow:hidden;
   display:flex;flex-direction:column;
 }
@@ -47,7 +47,7 @@
   position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;opacity:0;
   filter:grayscale(100%) brightness(0.45) contrast(1.1);
-  transition:opacity 0.9s ease;pointer-events:none;z-index:0;
+  transition:opacity 0.9s cubic-bezier(0.25,0.46,0.45,0.94);pointer-events:none;z-index:0;
 }
 .office-card:hover{background:var(--ch);}
 .office-card:hover .oc-img{opacity:1;}
@@ -64,11 +64,11 @@
   font-size:8px;letter-spacing:0.38em;text-transform:uppercase;
   color:var(--st);font-weight:300;
   display:flex;align-items:center;gap:10px;
-  transition:color 0.6s ease;
+  transition:color 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
 }
 .oc-tag::before{
   content:'';display:block;width:14px;height:0.5px;
-  background:var(--mist);transition:background 0.6s ease;
+  background:var(--mist);transition:background 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
 }
 .office-card.active .oc-tag{color:var(--crim);}
 .office-card.active .oc-tag::before{background:var(--crim);}
@@ -76,7 +76,7 @@
 .office-card:hover .oc-tag::before{background:rgba(255,255,255,0.3);}
 .oc-index{
   font-family:'Barlow',sans-serif;font-size:9px;letter-spacing:0.16em;
-  color:var(--mist);font-weight:300;transition:color 0.6s ease;
+  color:var(--mist);font-weight:300;transition:color 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
 }
 .office-card:hover .oc-index{color:rgba(255,255,255,0.2);}
 /* city name — the visual anchor, large italic serif */
@@ -85,7 +85,7 @@
   font-size:clamp(46px,4.8vw,68px);
   color:var(--ch);line-height:0.92;letter-spacing:-0.03em;
   margin-bottom:28px;
-  transition:color 0.6s ease,text-shadow 0.6s ease;
+  transition:color 0.6s cubic-bezier(0.25,0.46,0.45,0.94),text-shadow 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
 }
 .office-card:hover .oc-city{color:#fff;text-shadow:0 2px 20px rgba(0,0,0,0.9);}
 /* address */
@@ -94,7 +94,7 @@
   line-height:1.72;letter-spacing:0.018em;
   border-top:0.5px solid var(--mist);padding-top:16px;
   margin-bottom:20px;
-  transition:color 0.6s ease,border-color 0.6s ease;
+  transition:color 0.6s cubic-bezier(0.25,0.46,0.45,0.94),border-color 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
 }
 .office-card:hover .oc-addr{color:rgba(255,255,255,0.72);border-top-color:rgba(255,255,255,0.15);}
 /* footer: court note + directions */
@@ -105,13 +105,13 @@
 .oc-note{
   font-family:'Barlow',sans-serif;font-size:7.5px;
   letter-spacing:0.26em;text-transform:uppercase;
-  color:transparent;font-weight:300;transition:color 0.6s ease;
+  color:transparent;font-weight:300;transition:color 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
 }
 .office-card:hover .oc-note{color:rgba(255,255,255,0.42);}
 .oc-dir{
   font-family:'Barlow',sans-serif;font-size:8px;letter-spacing:0.3em;
   text-transform:uppercase;color:var(--st);
-  text-decoration:none;transition:color 0.3s ease;flex-shrink:0;
+  text-decoration:none;transition:color 0.3s cubic-bezier(0.25,0.46,0.45,0.94);flex-shrink:0;
 }
 .office-card:hover .oc-dir{color:rgba(255,255,255,0.65);}
 .office-card:hover .oc-dir:hover{color:#fff;}
@@ -120,7 +120,7 @@
 .city-map{
   position:absolute;inset:0;width:100%;height:100%;border:none;
   filter:grayscale(80%) contrast(1.04);opacity:0;
-  transition:opacity 0.65s ease,filter 0.65s ease;pointer-events:none;
+  transition:opacity 0.65s cubic-bezier(0.25,0.46,0.45,0.94),filter 0.65s cubic-bezier(0.25,0.46,0.45,0.94);pointer-events:none;
 }
 .city-map.active{opacity:1;pointer-events:auto;filter:grayscale(50%) contrast(1.04);}
 .city-map.active:hover{filter:grayscale(0%) contrast(1.03);}

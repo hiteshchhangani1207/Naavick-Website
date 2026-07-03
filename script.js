@@ -18,7 +18,7 @@ if(reveals.length){
         ro.unobserve(e.target);
       }
     });
-  }, {threshold:0.1, rootMargin:'0px 0px -50px 0px'});
+  }, {threshold:0.12, rootMargin:'0px 0px -64px 0px'});
   reveals.forEach(el => ro.observe(el));
 }
 
@@ -71,7 +71,7 @@ function closeMenu(){
     busy = true;
 
     ov.classList.add('pt-visible');
-    wh.style.transition = 'opacity 340ms ease';
+    wh.style.transition = 'opacity 360ms cubic-bezier(0.25,0.46,0.45,0.94)';
     requestAnimationFrame(function(){
       requestAnimationFrame(function(){
         wh.style.opacity = '1';
@@ -83,7 +83,7 @@ function closeMenu(){
       sessionStorage.setItem('pt-angle', angle.toFixed(2));
       sessionStorage.setItem('pt-time',  Date.now().toString());
       window.location.href = href;
-    }, 420);
+    }, 460);
   }
 
   // ── ENTER: overlay starts opaque, dissolves to reveal new page ──
@@ -95,8 +95,8 @@ function closeMenu(){
 
     requestAnimationFrame(function(){
       requestAnimationFrame(function(){
-        wh.style.transition = 'opacity 400ms ease 60ms';
-        ov.style.transition = 'opacity 460ms cubic-bezier(0.4,0,0.2,1) 60ms';
+        wh.style.transition = 'opacity 480ms cubic-bezier(0.25,0.46,0.45,0.94) 40ms';
+        ov.style.transition = 'opacity 520ms cubic-bezier(0.25,0.46,0.45,0.94) 40ms';
         wh.style.opacity    = '0';
         ov.classList.remove('pt-visible');
       });

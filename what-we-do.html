@@ -71,7 +71,7 @@ html { overflow-x: clip; }
   opacity:0.035;
   transform-origin:center center;
   transition:transform 1200ms cubic-bezier(0.25,0,0.1,1),
-             opacity 900ms ease;
+             opacity 900ms cubic-bezier(0.25,0.46,0.45,0.94);
 }
 .pn-list{
   position:relative;z-index:1;
@@ -84,20 +84,20 @@ html { overflow-x: clip; }
   padding:18px 0;
   border-bottom:0.5px solid var(--mist);
   cursor:pointer;
-  transition:opacity 380ms ease;
+  transition:opacity 380ms cubic-bezier(0.25,0.46,0.45,0.94);
 }
 .pn-item:first-child{border-top:0.5px solid var(--mist);}
 .pn-n{
   font-family:'Barlow',sans-serif;
   font-size:9px;font-weight:300;color:var(--sv);
   letter-spacing:0.2em;padding-top:3px;
-  transition:color 380ms ease;
+  transition:color 380ms cubic-bezier(0.25,0.46,0.45,0.94);
 }
 .pn-t{
   font-family:'Cormorant Garamond',serif;
   font-weight:300;font-size:clamp(17px,1.75vw,24px);
   color:var(--sl);letter-spacing:-0.008em;line-height:1.2;
-  transition:color 380ms ease;
+  transition:color 380ms cubic-bezier(0.25,0.46,0.45,0.94);
 }
 .pn-item.active .pn-t{color:var(--ch);}
 .pn-item.active .pn-n{color:var(--crim);}
@@ -179,21 +179,21 @@ html { overflow-x: clip; }
 .acc-num{
   font-family:'Barlow',sans-serif;font-size:9px;
   letter-spacing:0.32em;color:var(--st);font-weight:300;
-  transition:color 0.3s ease;
+  transition:color 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
 }
 .acc-item.open .acc-num{ color:var(--crim); }
 .acc-title{
   font-family:'Cormorant Garamond',serif;
   font-weight:300;font-size:clamp(16px,1.6vw,22px);
   color:var(--sl);letter-spacing:-0.005em;line-height:1.25;
-  transition:color 0.3s ease;
+  transition:color 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
 }
 .acc-header:hover .acc-title{ color:var(--ch); }
 .acc-item.open .acc-title{ color:var(--ch); }
 .acc-icon{
   font-size:20px;font-weight:200;color:var(--st);
   line-height:1;text-align:right;
-  transition:transform 0.42s ease,color 0.3s ease;
+  transition:transform 0.42s cubic-bezier(0.25,0.46,0.45,0.94),color 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
 }
 .acc-item.open .acc-icon{ transform:rotate(45deg);color:var(--crim); }
 .acc-body{
@@ -283,7 +283,7 @@ html { overflow-x: clip; }
   width:auto;height:auto;display:block;
   filter:brightness(0) saturate(100%) invert(18%) sepia(95%) saturate(1400%) hue-rotate(343deg) brightness(1.05) contrast(1.1);
   opacity:0.8;
-  transition:opacity 0.36s ease, filter 0.36s ease;
+  transition:opacity 0.36s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.36s cubic-bezier(0.25,0.46,0.45,0.94);
 }
 .cl-cell:hover .cl-logo{
   opacity:1;
@@ -340,7 +340,7 @@ html { overflow-x: clip; }
   color:var(--ch);
   font-family:'Barlow',sans-serif;font-weight:300;font-size:14px;
   padding:9px 0;outline:none;
-  transition:border-color .2s;letter-spacing:0.02em;
+  transition:border-color .28s cubic-bezier(0.25,0.46,0.45,0.94);letter-spacing:0.02em;
 }
 .cf-input::placeholder,.cf-textarea::placeholder{color:var(--st)}
 .cf-input:focus,.cf-textarea:focus{border-bottom-color:var(--crim)}
@@ -355,7 +355,7 @@ html { overflow-x: clip; }
   color:var(--ch);background:transparent;
   border:0.5px solid var(--ch);padding:13px 28px;cursor:pointer;
   font-family:'Barlow',sans-serif;font-weight:300;
-  transition:all .22s;
+  transition:background .3s cubic-bezier(0.25,0.46,0.45,0.94),color .3s cubic-bezier(0.25,0.46,0.45,0.94);
 }
 .cf-submit:hover{background:var(--ch);color:var(--ww)}
 .cf-privacy{
