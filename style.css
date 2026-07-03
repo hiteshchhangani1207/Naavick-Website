@@ -27,7 +27,7 @@
   --ease-out: cubic-bezier(0.16,1,0.3,1);
 }
 
-html{scroll-behavior:smooth;font-size:16px;overflow-x:clip;}
+html{scroll-behavior:smooth;font-size:16px;overflow-x:clip;scroll-padding-top:88px;}
 
 body{
   font-family:'Barlow',sans-serif;
@@ -549,4 +549,16 @@ footer{
 @media(max-width:600px){
   .ld-grid{margin-top:28px;}
   .ld-col-label{font-size:19px;}
+}
+
+/* ─── REDUCED MOTION ─── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+  .reveal{opacity:1;transform:none;}
+  .footer-ghost-wheel{animation:none;}
 }
