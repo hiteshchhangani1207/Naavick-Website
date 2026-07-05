@@ -553,51 +553,86 @@
 
 /* ───── RESPONSIVE ───── */
 @media(max-width:960px){
-  .hero{padding:calc(88px + env(safe-area-inset-top,0px)) 28px 56px}
-  .hero-h{font-size:clamp(42px,11vw,72px)}
-  /* Shrink hero wheel so it doesn't dominate on tablets */
+  .hero{padding:calc(88px + env(safe-area-inset-top,0px)) 28px 44px}
+  .hero-h{font-size:clamp(34px,9vw,62px)}
+  .hero-bottom{margin-top:36px;gap:20px}
   .hero-wheel{width:44vw;height:44vw;right:-4vw;bottom:-4vw;}
+  .philo-grid{grid-template-columns:1fr 1fr;}
+  .principles-grid{grid-template-columns:repeat(2,1fr);}
   .exp-preview-grid{grid-template-columns:repeat(2,1fr)}
-  .test-wrap{padding:80px 28px 64px}
-  /* Bring arrows inside the viewport — at -32px they extend off the edge */
+  .exp-all{margin-top:32px}
+  .test-wrap{padding:48px 28px 36px}
   .test-arrow-prev{left:8px}
   .test-arrow-next{right:8px}
-  .touch-section{padding:88px 28px 88px}
-  /* Shrink touch wheel proportionally */
+  .test-header-centered{margin-bottom:32px}
+  .social-proof{padding:48px 28px 36px}
+  .touch-section{padding:56px 28px}
   .touch-wheel{width:36vw;height:36vw;right:-4vw;}
-  .touch-content{grid-template-columns:1fr;gap:48px}
+  .touch-content{grid-template-columns:1fr;gap:36px}
   .scroll-ind{display:none}
-  .social-proof{padding:72px 28px 40px}
-  .where-section{padding:56px 28px}
-  /* Remove minmax(280px,...) minimum — lets the grid collapse below 608px */
-  .philo-grid{grid-template-columns:1fr 1fr;}
-  /* 4-col fixed repeat would force 880px min — collapse to 2 columns */
-  .principles-grid{grid-template-columns:repeat(2,1fr);}
+  .where-section{padding:48px 28px}
 }
 @media(max-width:600px){
+  /* ── Hero ── */
   .test-arrow{display:none}
-  .hero{padding:calc(88px + env(safe-area-inset-top,0px)) 20px 48px}
-  /* Further reduce hero wheel on phones — hero is overflow:hidden so clipped anyway */
-  .hero-wheel{width:72vw;height:72vw;right:-4vw;bottom:-8vw;}
-  .hero-bottom{margin-top:40px;gap:24px}
-  .hero-actions{margin-left:0;width:100%}
+  .hero{padding:calc(88px + env(safe-area-inset-top,0px)) 20px 32px}
+  .hero-h{font-size:clamp(28px,9.5vw,46px)}
+  .hero-wheel{width:64vw;height:64vw;right:-4vw;bottom:-8vw;}
+  .hero-loc{margin-bottom:16px}
+  .hero-bottom{margin-top:22px;gap:14px;flex-direction:column;align-items:flex-start}
+  .hero-actions{margin-left:0;gap:12px;width:auto}
+  .hero-tagline{font-size:12px;max-width:100%}
+  .hero-tagline strong{font-size:16px}
+  /* ── Philosophy ── */
+  .philo-grid{grid-template-columns:1fr;gap:24px;}
+  .philo-left p{font-size:13px;margin-bottom:14px}
+  .philo-right{border-left:none;padding-left:0;border-top:0.5px solid var(--mist);padding-top:22px;}
+  .philo-pull{font-size:clamp(16px,5vw,22px);}
+  .philo-stats{flex-wrap:wrap;gap:12px;margin-top:16px}
+  .philo-stat{padding:10px 14px 10px 0;margin-right:0;border-right:none;}
+  .ps-n{font-size:32px}
+  /* ── Principles ── */
+  .principles-grid{grid-template-columns:1fr;}
+  .pr-cell{padding:20px 16px 18px}
+  .pr-n{font-size:32px;margin-bottom:8px}
+  .pr-t{font-size:18px;margin-bottom:6px}
+  .pr-d{font-size:12.5px}
+  /* ── Experience ── */
+  .exp-preview-grid{grid-template-columns:1fr;}
+  .exp-cell{padding:18px 14px 14px}
+  .exp-title{font-size:18px}
+  .exp-all{margin-top:20px;padding-top:14px}
+  /* ── Testimonials ── */
+  .test-wrap{padding:36px 20px 24px}
+  .test-header-centered{margin-bottom:20px}
   .test-slide{grid-template-columns:1fr;}
   .test-slide-single{max-width:100%;}
-  .social-proof{padding:56px 20px 32px;}
-  .test-card{padding:16px 14px 14px}
-  .where-grid{grid-template-columns:1fr}
-  .wloc-card{padding:24px 20px 20px}
-  /* Shrink touch wheel on phones */
+  .test-card{padding:14px 12px 12px}
+  .test-qt{font-size:14px}
+  .test-qmark{font-size:30px;margin-bottom:8px}
+  /* ── Clients / Social Proof ── */
+  .social-proof{padding:36px 20px 24px;}
+  .sp-logo{height:24px}
+  .sp-logo-lg{height:40px}
+  .sp-logo-xl{height:54px}
+  .sp-logo-xxl{height:62px}
+  .sp-pill{padding:0 16px}
+  .sp-rule{margin:16px 0}
+  /* ── Where ── */
+  .where-section{padding:36px 20px}
+  .where-grid{grid-template-columns:1fr;margin-bottom:16px}
+  .wloc-card{padding:18px 14px 14px}
+  .wloc-city{font-size:clamp(22px,6vw,32px);margin-bottom:12px}
+  .wloc-addr{font-size:10px;line-height:1.62;padding-top:10px;margin-bottom:10px}
+  /* ── Touch ── */
+  .touch-section{padding:44px 20px}
   .touch-wheel{width:52vw;height:52vw;right:-4vw;}
-  /* Stack philosophy grid and fix visual separators */
-  .philo-grid{grid-template-columns:1fr;gap:32px;}
-  .philo-right{border-left:none;padding-left:0;border-top:0.5px solid var(--mist);padding-top:32px;}
-  /* Wrap stats row so it doesn't overflow on narrow phones */
-  .philo-stats{flex-wrap:wrap;gap:16px;}
-  .philo-stat{padding-right:16px;margin-right:0;border-right:none;}
-  /* Stack principles and experience grids — 2 columns is 320px content, too tight for padding */
-  .principles-grid{grid-template-columns:1fr;}
-  .exp-preview-grid{grid-template-columns:1fr;}
+  .touch-h{font-size:clamp(27px,9vw,42px)}
+  .touch-eye{margin-bottom:16px}
+  .touch-right{gap:12px}
+  .touch-row{padding-bottom:10px}
+  .touch-row a{font-size:12.5px}
+  .touch-cta{padding:11px 20px;font-size:9px;letter-spacing:0.18em}
   #disclaimerOverlay{padding:0 20px !important;}
   .disc-inner{flex-direction:column !important;gap:20px !important;align-items:flex-start !important;}
   .disc-divider{display:none !important;}
