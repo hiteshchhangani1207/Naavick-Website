@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>How We Do — Naavick Legal</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Barlow:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
 
@@ -185,46 +187,22 @@
   position:relative;overflow:hidden;
   min-height:280px;
   display:flex;flex-direction:column;justify-content:flex-end;
-  transition:background 0.55s cubic-bezier(0.25,0.46,0.45,0.94),border-color 0.55s cubic-bezier(0.25,0.46,0.45,0.94);
 }
-.lv-cell:hover{background:var(--ch);border-top-color:rgba(255,255,255,0.1);}
-.lv-bg{
-  position:absolute;inset:0;
-  width:100%;height:100%;object-fit:cover;
-  object-position:var(--op,center);
-  opacity:0;pointer-events:none;z-index:0;
-  transition:opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
-}
-.lv-cell:hover .lv-bg{opacity:1;}
-.lv-cell::after{
-  content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(to top,rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.35) 55%,rgba(0,0,0,0) 100%);
-  opacity:0;transition:opacity 0.55s cubic-bezier(0.25,0.46,0.45,0.94);
-}
-.lv-cell:hover::after{opacity:1;}
+.lv-bg{display:none;}
 .lv-icon{
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(26px,2.8vw,36px);font-weight:300;color:var(--ch);
   line-height:1.1;margin-bottom:18px;
   font-style:italic;letter-spacing:-0.01em;
-  position:relative;z-index:2;
-  transition:color 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
 }
 .lv-t{
   font-family:'Cormorant Garamond',serif;
   font-weight:400;font-size:20px;color:var(--ch);
   margin-bottom:10px;letter-spacing:-0.01em;
-  position:relative;z-index:2;
-  transition:color 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
 }
 .lv-d{
   font-size:12.5px;color:var(--mid);line-height:1.85;font-weight:300;text-align:justify;
-  position:relative;z-index:2;
-  transition:color 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
 }
-.lv-cell:hover .lv-icon{color:rgba(255,255,255,0.2);}
-.lv-cell:hover .lv-t{color:#fff;}
-.lv-cell:hover .lv-d{color:rgba(255,255,255,0.68);}
 
 /* ───── CAREERS VIEWPORT ───── */
 #careers{

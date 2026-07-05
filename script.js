@@ -124,3 +124,29 @@ function closeMenu(){
   }
 
 })();
+
+// ─── PAPER GRAIN TEXTURE ───
+(function(){
+  var g = document.createElement('div');
+  g.id = 'nl-grain';
+  g.setAttribute('aria-hidden','true');
+  document.body.appendChild(g);
+})();
+
+// ─── LIVE CLOCK ───
+(function(){
+  var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  function pad(n){ return n < 10 ? '0'+n : ''+n; }
+  function fmt(d){
+    return days[d.getDay()] + ', ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear() + ' · ' + pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
+  }
+  var p = document.createElement('p');
+  p.id = 'nl-clock';
+  var fb = document.querySelector('.footer-bottom');
+  if(!fb) return;
+  fb.appendChild(p);
+  function tick(){ p.textContent = fmt(new Date()); }
+  tick();
+  setInterval(tick, 1000);
+})();
