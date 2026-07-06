@@ -581,15 +581,7 @@
   .test-arrow{display:none}
   .hero{padding:calc(88px + env(safe-area-inset-top,0px)) 20px 32px}
   .hero-h{font-size:clamp(28px,9.5vw,46px)}
-  @keyframes wheelSpinPhone{
-    from{transform:translateY(-50%) rotate(0deg)}
-    to{transform:translateY(-50%) rotate(360deg)}
-  }
-  .hero-wheel{
-    width:52vw;height:52vw;
-    right:-6vw;top:50%;bottom:auto;
-    animation:wheelSpinPhone 400s linear infinite;
-  }
+  .hero-wheel{display:none;}
   .hero-loc{margin-bottom:16px}
   .hero-bottom{margin-top:22px;gap:14px;flex-direction:column;align-items:flex-start}
   .hero-actions{margin-left:0;gap:12px;width:auto}
