@@ -728,7 +728,12 @@
 .pull-close-inner{position:relative;z-index:2;}
 .pull-close-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(16px,1.6vw,22px);color:rgba(255,255,255,0.72);line-height:1.7;letter-spacing:0.01em;max-width:560px;margin:0 auto;}
 @media(max-width:960px){.pull-close{padding:36px 28px 32px;}.pull-close-quote{font-size:clamp(18px,5.5vw,30px);}}
-@media(max-width:600px){.pull-close{padding:32px 20px 28px;min-height:200px;}.pull-close-quote{font-size:clamp(16px,5vw,22px);}}
+@media(max-width:600px){
+  .pull-close{padding:32px 20px 28px;min-height:260px;}
+  .pull-close-water{top:-100%;height:300%;}
+  .pull-close-water-inner{inset:-18%;background-size:130% auto;}
+  .pull-close-quote{font-size:clamp(16px,5vw,22px);}
+}
 .disc-btn{
   font-family:'Barlow',sans-serif;font-weight:300;
   font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
@@ -1299,7 +1304,7 @@ function testNav(dir){ testGo(_tCur + dir); }
 </script>
 <script src="script.js"></script>
 <script>
-(function(){var water=document.getElementById('pullWater');if(water){var waterSec=water.closest('section'),wTop=0,wH=0,vh=0,ticking=false;function cm(){wTop=waterSec.offsetTop;wH=waterSec.offsetHeight;vh=window.innerHeight;}function dw(){var top=wTop-window.scrollY;ticking=false;if(top>vh||top+wH<0)return;var p=(vh-top)/(wH+vh);water.style.transform='translateY('+((p-0.5)*320)+'px)';}cm();window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(dw);ticking=true;}},{passive:true});window.addEventListener('resize',cm,{passive:true});dw();}})();
+(function(){var water=document.getElementById('pullWater');if(water){var waterSec=water.closest('section'),wTop=0,wH=0,vh=0,ticking=false;function cm(){wTop=waterSec.offsetTop;wH=waterSec.offsetHeight;vh=window.innerHeight;}function dw(){var top=wTop-window.scrollY;ticking=false;if(top>vh||top+wH<0)return;var p=(vh-top)/(wH+vh);var range=window.innerWidth<=600?120:320;water.style.transform='translateY('+((p-0.5)*range)+'px)';}cm();window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(dw);ticking=true;}},{passive:true});window.addEventListener('resize',cm,{passive:true});dw();}})();
 </script>
 <script>
 var _dealsCur = 0;
