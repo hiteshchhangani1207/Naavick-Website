@@ -396,19 +396,8 @@
     });
   });
 
-  /* strong parallax on water photo */
-  var water=document.getElementById('pullWater');
-  if(water){
-    var waterSec=water.closest('section');
-    function driftWater(){
-      var r=waterSec.getBoundingClientRect(),vh=window.innerHeight;
-      if(r.bottom<0||r.top>vh) return;
-      var p=(vh-r.top)/(r.height+vh);
-      water.style.transform='translateY('+((p-0.5)*320)+'px)';
-    }
-    window.addEventListener('scroll',driftWater,{passive:true});
-    driftWater();
-  }
+  /* strong parallax on water photo — rAF-gated, offsetTop cached to avoid layout reads during scroll */
+  (function(){var water=document.getElementById('pullWater');if(water){var waterSec=water.closest('section'),wTop=0,wH=0,vh=0,ticking=false;function cm(){wTop=waterSec.offsetTop;wH=waterSec.offsetHeight;vh=window.innerHeight;}function dw(){var top=wTop-window.scrollY;ticking=false;if(top>vh||top+wH<0)return;var p=(vh-top)/(wH+vh);var range=window.innerWidth<=600?120:320;water.style.transform='translateY('+((p-0.5)*range)+'px)';}cm();window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(dw);ticking=true;}},{passive:true});window.addEventListener('resize',cm,{passive:true});dw();}})();
 
 })();
 </script>
