@@ -509,16 +509,16 @@ footer{
   .footer-icons{gap:10px;}
   .footer-divider{margin:32px 0 20px;}
   .footer-bottom{flex-direction:column;align-items:flex-start;gap:8px;}
-  .sec{padding:36px 20px;}
-  section{padding:36px 20px;}
-  .page-header{padding:calc(88px + env(safe-area-inset-top,0px)) 20px 36px;min-height:auto;}
-  /* Scale down global typography on phones */
-  .sh{font-size:clamp(26px,8vw,40px);margin-bottom:14px;}
-  .ch-label{margin-bottom:12px;font-size:8.5px;}
-  .section-intro{font-size:13px;margin-bottom:20px;}
-  .page-title{font-size:clamp(32px,9.5vw,60px);}
-  .page-eyebrow{margin-bottom:14px;font-size:8.5px;}
-  .page-subtitle{font-size:12.5px;margin-top:16px;max-width:100%;}
+  .sec{padding:52px 20px;}
+  section{padding:52px 20px;}
+  .page-header{padding:calc(96px + env(safe-area-inset-top,0px)) 20px 52px;min-height:auto;}
+  /* Refined mobile typography */
+  .sh{font-size:clamp(24px,7.5vw,38px);margin-bottom:20px;letter-spacing:-0.02em;}
+  .ch-label{margin-bottom:16px;font-size:8px;letter-spacing:0.4em;}
+  .section-intro{font-size:13px;line-height:1.92;margin-bottom:28px;}
+  .page-title{font-size:clamp(28px,8.5vw,52px);}
+  .page-eyebrow{margin-bottom:16px;font-size:8px;}
+  .page-subtitle{font-size:13px;margin-top:20px;line-height:1.88;max-width:100%;}
 }
 
 /* ─── PAGE TRANSITION ─── */
