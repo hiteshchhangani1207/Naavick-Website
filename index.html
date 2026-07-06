@@ -743,7 +743,7 @@
 <div id="disclaimerOverlay" style="
   position:fixed;inset:0;z-index:9999;
   background:rgba(244,241,234,0.88);
-  display:flex;align-items:center;justify-content:center;
+  display:none;align-items:center;justify-content:center;
   padding:0 56px;
   opacity:1;transition:opacity .45s cubic-bezier(0.25,0.46,0.45,0.94);
 ">
@@ -760,9 +760,9 @@
 
 <script>
 (function(){
-  if(sessionStorage.getItem('nl_disc')){
+  if(!sessionStorage.getItem('nl_disc')){
     var o=document.getElementById('disclaimerOverlay');
-    if(o) o.style.display='none';
+    if(o) o.style.display='flex';
   }
 })();
 function acceptDisclaimer(){
