@@ -424,7 +424,7 @@
 
 <script src="script.js"></script>
 <script>
-(function(){var water=document.getElementById('pullWater');if(water){var waterSec=water.closest('section'),wTop=0,wH=0,vh=0,ticking=false;function cm(){wTop=waterSec.offsetTop;wH=waterSec.offsetHeight;vh=window.innerHeight;}function dw(){var top=wTop-window.scrollY;ticking=false;if(top>vh||top+wH<0)return;var p=(vh-top)/(wH+vh);water.style.transform='translateY('+((p-0.5)*320)+'px)';}cm();window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(dw);ticking=true;}},{passive:true});window.addEventListener('resize',cm,{passive:true});dw();}})();
+(function(){var water=document.getElementById('pullWater');if(!water)return;var waterSec=water.closest('section'),wTop=0,wH=0,vh=0,range=320,ticking=false;function cm(){wTop=waterSec.offsetTop;wH=waterSec.offsetHeight;vh=window.innerHeight;range=window.innerWidth<=600?120:320;}function dw(){ticking=false;var top=wTop-window.scrollY;if(top>vh*1.5||top+wH<-vh)return;var p=(vh-top)/(wH+vh);p=p<0?0:p>1?1:p;water.style.transform='translateY('+((p-0.5)*range).toFixed(1)+'px)';}cm();dw();window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(dw);}},{passive:true});window.addEventListener('resize',function(){cm();if(!ticking){ticking=true;requestAnimationFrame(dw);}},{passive:true});})();
 </script>
 <script>
 (function () {
