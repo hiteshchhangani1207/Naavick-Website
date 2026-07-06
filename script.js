@@ -55,30 +55,30 @@ function closeMenu(){
   document.body.appendChild(ov);
 
   var busy = false;
-  var PERIOD = 22000; // ms per full rotation
-
-  // Restore angle accounting for time elapsed during page load
+  var PERIOD = 22000;
   var savedAngle = parseFloat(sessionStorage.getItem('pt-angle') || '0');
   var savedTime  = parseInt(sessionStorage.getItem('pt-time')  || '0');
   var angle = savedAngle + (savedTime ? ((Date.now() - savedTime) / PERIOD * 360) : 0);
   var lastTs = null;
+  var rafId  = null;
 
-  // JS-driven rotation — angle is continuous across page navigations
+  // Only spin while the overlay is on screen — never run idle in the background
   function spinLoop(ts){
     if(lastTs !== null){
       angle = (angle + (ts - lastTs) / PERIOD * 360) % 360;
       wh.style.transform = 'rotate(' + angle.toFixed(2) + 'deg)';
     }
     lastTs = ts;
-    requestAnimationFrame(spinLoop);
+    rafId = requestAnimationFrame(spinLoop);
   }
-  requestAnimationFrame(spinLoop);
+  function startSpin(){ if(!rafId){ lastTs=null; rafId=requestAnimationFrame(spinLoop); } }
+  function stopSpin(){ if(rafId){ cancelAnimationFrame(rafId); rafId=null; } }
 
   // ── EXIT: overlay + wheel fade in; navigate once overlay is fully opaque ──
   function exit(href){
     if(busy) return;
     busy = true;
-
+    startSpin();
     ov.classList.add('pt-active');
     ov.classList.add('pt-visible');
     wh.style.transition = 'opacity 360ms cubic-bezier(0.25,0.46,0.45,0.94)';
@@ -87,7 +87,6 @@ function closeMenu(){
         wh.style.opacity = '1';
       });
     });
-
     setTimeout(function(){
       sessionStorage.setItem('pt',      '1');
       sessionStorage.setItem('pt-angle', angle.toFixed(2));
@@ -98,20 +97,22 @@ function closeMenu(){
 
   // ── ENTER: overlay starts opaque, dissolves to reveal new page ──
   function enter(){
+    startSpin();
     ov.classList.add('pt-active');
     wh.style.transition = 'none';
     wh.style.opacity    = '1';
     ov.style.transition = 'none';
     ov.classList.add('pt-visible');
-
     requestAnimationFrame(function(){
       requestAnimationFrame(function(){
         wh.style.transition = 'opacity 480ms cubic-bezier(0.25,0.46,0.45,0.94) 40ms';
         ov.style.transition = 'opacity 520ms cubic-bezier(0.25,0.46,0.45,0.94) 40ms';
         wh.style.opacity    = '0';
         ov.classList.remove('pt-visible');
-        // Once fade-out completes, pull it fully off the render tree
-        setTimeout(function(){ ov.classList.remove('pt-active'); }, 580);
+        setTimeout(function(){
+          ov.classList.remove('pt-active');
+          stopSpin(); // no more style mutations once overlay is off screen
+        }, 580);
       });
     });
   }
