@@ -11,6 +11,7 @@ if(nav && !nav.classList.contains('light')){
 // ─── REVEAL ON SCROLL ───
 const reveals = document.querySelectorAll('.reveal');
 if(reveals.length){
+  const isMobile = window.innerWidth <= 600;
   const ro = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if(e.isIntersecting){
@@ -18,7 +19,7 @@ if(reveals.length){
         ro.unobserve(e.target);
       }
     });
-  }, {threshold:0.12, rootMargin:'0px 0px -64px 0px'});
+  }, {threshold:0.06, rootMargin: isMobile ? '0px 0px -24px 0px' : '0px 0px -64px 0px'});
   reveals.forEach(el => ro.observe(el));
 }
 
