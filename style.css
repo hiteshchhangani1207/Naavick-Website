@@ -527,11 +527,12 @@ footer{
   background:rgba(10,10,10,0.72);
   backdrop-filter:blur(22px) saturate(0.1);
   -webkit-backdrop-filter:blur(22px) saturate(0.1);
-  display:flex;align-items:center;justify-content:center;
+  display:none;align-items:center;justify-content:center;
   opacity:0;
   pointer-events:none;
   transition:opacity 400ms var(--ease);
 }
+#pt.pt-active{display:flex;}
 #pt.pt-visible{opacity:1;pointer-events:all;}
 #pt-w{
   width:6vmin;height:6vmin;
@@ -611,8 +612,9 @@ footer{
 @media(max-width:600px){
   /* Kill grain overlay — it forces a compositor layer that jitters on scroll */
   #nl-grain{display:none;}
-  /* Lighten nav blur on mobile GPU */
-  nav.site-nav.scrolled,nav.site-nav.light{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+  /* Remove all backdrop-filter on mobile — blur compositing causes scroll artifacts on iOS */
+  nav.site-nav.scrolled,nav.site-nav.light{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(249,248,244,0.98);}
+  #pt{backdrop-filter:none !important;-webkit-backdrop-filter:none !important;background:rgba(10,10,10,0.96);}
   /* GPU promote nav so it never repaints during scroll */
   nav.site-nav{transform:translateZ(0);-webkit-transform:translateZ(0);}
   /* Hide scrollbars on all swipe carousels */

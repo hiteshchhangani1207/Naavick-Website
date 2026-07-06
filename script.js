@@ -20,7 +20,15 @@ if(reveals.length){
       }
     });
   }, {threshold:0.06, rootMargin: isMobile ? '0px 0px -24px 0px' : '0px 0px -64px 0px'});
-  reveals.forEach(el => ro.observe(el));
+  reveals.forEach(el => {
+    // Elements already in viewport on page load reveal instantly — no flash of invisible content
+    const r = el.getBoundingClientRect();
+    if(r.top < window.innerHeight && r.bottom > 0){
+      el.classList.add('visible');
+    } else {
+      ro.observe(el);
+    }
+  });
 }
 
 // ─── MOBILE MENU ───
@@ -71,6 +79,7 @@ function closeMenu(){
     if(busy) return;
     busy = true;
 
+    ov.classList.add('pt-active');
     ov.classList.add('pt-visible');
     wh.style.transition = 'opacity 360ms cubic-bezier(0.25,0.46,0.45,0.94)';
     requestAnimationFrame(function(){
@@ -89,6 +98,7 @@ function closeMenu(){
 
   // ── ENTER: overlay starts opaque, dissolves to reveal new page ──
   function enter(){
+    ov.classList.add('pt-active');
     wh.style.transition = 'none';
     wh.style.opacity    = '1';
     ov.style.transition = 'none';
@@ -100,6 +110,8 @@ function closeMenu(){
         ov.style.transition = 'opacity 520ms cubic-bezier(0.25,0.46,0.45,0.94) 40ms';
         wh.style.opacity    = '0';
         ov.classList.remove('pt-visible');
+        // Once fade-out completes, pull it fully off the render tree
+        setTimeout(function(){ ov.classList.remove('pt-active'); }, 580);
       });
     });
   }
