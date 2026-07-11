@@ -1,12 +1,10 @@
 name: Deploy to Hostinger
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
-    inputs:
-      message:
-        description: 'What are you deploying? (optional note)'
-        required: false
-        default: 'Manual deploy'
 
 jobs:
   deploy:
