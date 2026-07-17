@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /Content/Data/
+
+Sitemap: https://naavick.com/sitemap.xml
