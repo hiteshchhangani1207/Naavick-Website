@@ -31,3 +31,4 @@ jobs:
             Cian.pdf
             .gitignore
             **/.DS_Store
+          dangerous-clean-slate: false

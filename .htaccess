@@ -1,0 +1,45 @@
+Options -Indexes
+
+# Force HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirect www to non-www
+RewriteCond %{HTTP_HOST} ^www\.naavick\.com [NC]
+RewriteRule ^ https://naavick.com%{REQUEST_URI} [L,R=301]
+
+# ── Redirect old WordPress pages to new equivalents ──
+RewriteRule ^our-team/?$ /who-we-are.html [R=301,L]
+RewriteRule ^team/?$ /who-we-are.html [R=301,L]
+RewriteRule ^about/?$ /who-we-are.html [R=301,L]
+RewriteRule ^about-us/?$ /who-we-are.html [R=301,L]
+RewriteRule ^who-we-are/?$ /who-we-are.html [R=301,L]
+
+RewriteRule ^our-services/?$ /what-we-do.html [R=301,L]
+RewriteRule ^services/?$ /what-we-do.html [R=301,L]
+RewriteRule ^practice-areas/?$ /what-we-do.html [R=301,L]
+RewriteRule ^what-we-do/?$ /what-we-do.html [R=301,L]
+
+RewriteRule ^our-approach/?$ /how-we-do.html [R=301,L]
+RewriteRule ^approach/?$ /how-we-do.html [R=301,L]
+RewriteRule ^how-we-do/?$ /how-we-do.html [R=301,L]
+
+RewriteRule ^contact/?$ / [R=301,L]
+RewriteRule ^contact-us/?$ / [R=301,L]
+RewriteRule ^reach-us/?$ /where-we-are.html [R=301,L]
+RewriteRule ^offices/?$ /where-we-are.html [R=301,L]
+RewriteRule ^where-we-are/?$ /where-we-are.html [R=301,L]
+
+# ── Custom 404 ──
+ErrorDocument 404 /404.html
+
+# ── Cache static assets ──
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+</IfModule>
