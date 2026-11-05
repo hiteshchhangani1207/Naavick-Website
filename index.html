@@ -790,6 +790,31 @@
   transition:background .36s var(--ease),color .36s var(--ease),border-color .36s var(--ease);
 }
 .disc-btn:hover{background:var(--ch);color:var(--ww);}
+
+/* ── NAV HIRING CUE (subtle, left of "Write to us") ── */
+.nav-right{display:flex;align-items:center;gap:24px;}
+.nav-hiring{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:'Barlow',sans-serif;
+  font-size:8.5px;letter-spacing:0.26em;text-transform:uppercase;
+  color:rgba(255,255,255,0.6);font-weight:300;
+  text-decoration:none;white-space:nowrap;transition:color .3s var(--ease);
+}
+.nav-hiring:hover{color:rgba(255,255,255,0.95);}
+nav.site-nav.scrolled .nav-hiring,
+nav.site-nav.light .nav-hiring{color:var(--mid);}
+nav.site-nav.scrolled .nav-hiring:hover,
+nav.site-nav.light .nav-hiring:hover{color:var(--ch);}
+.nav-hiring .hh-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--crim);flex-shrink:0;
+  animation:hhPulse 2.6s ease-out infinite;
+}
+@keyframes hhPulse{
+  0%{box-shadow:0 0 0 0 rgba(192,28,28,0.5);}
+  70%{box-shadow:0 0 0 7px rgba(192,28,28,0);}
+  100%{box-shadow:0 0 0 0 rgba(192,28,28,0);}
+}
+@media(max-width:960px){ .nav-hiring{display:none;} }
 </style>
 </head>
 <body>
@@ -840,7 +865,10 @@ function acceptDisclaimer(){
     <li><a href="how-we-do.html">How we do</a></li>
     <li><a href="where-we-are.html">Where we are</a></li>
   </ul>
-  <a href="mailto:office@naavick.com" class="nav-cta">Write to us</a>
+  <div class="nav-right">
+    <a class="nav-hiring" href="what-we-do.html#hiring"><span class="hh-dot"></span>We're Hiring</a>
+    <a href="mailto:office@naavick.com" class="nav-cta">Write to us</a>
+  </div>
   <div class="nav-mobile-btn" onclick="openMenu()"><span></span><span></span></div>
 </nav>
 
